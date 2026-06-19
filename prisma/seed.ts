@@ -30,7 +30,7 @@ const TYPE_MAP: Record<string, QuestionType> = {
 
 async function main() {
   if (isReset) {
-    console.log("🔁 RESET mode: clearing existing data...");
+    // Xoa du lieu cu neu reset
     await prisma.attempt.deleteMany();
     await prisma.option.deleteMany();
     await prisma.question.deleteMany();
