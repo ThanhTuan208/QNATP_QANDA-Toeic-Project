@@ -4,395 +4,1346 @@
     "type": "comparison",
     "difficulty": "easy",
     "options": [
-      { "text": "effectively", "isCorrect": false, "rationale": "Đây là trạng từ. 'Proved to be' là linking verb, cần tính từ." },
-      { "text": "more effective", "isCorrect": true, "rationale": "Chính xác. 'Effective' là tính từ dài, đi với 'more' sau linking verb." },
-      { "text": "most effective", "isCorrect": false, "rationale": "So sánh nhất, nhưng câu có 'than' nên phải dùng so sánh hơn." },
-      { "text": "effective", "isCorrect": false, "rationale": "Thiếu 'more' để tạo so sánh hơn đi với 'than'." }
+      {
+        "text": "effectively",
+        "isCorrect": false,
+        "rationale": "Đây là trạng từ. 'Proved to be' là linking verb, cần tính từ."
+      },
+      {
+        "text": "more effective",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Effective' là tính từ dài, đi với 'more' sau linking verb."
+      },
+      {
+        "text": "most effective",
+        "isCorrect": false,
+        "rationale": "So sánh nhất, nhưng câu có 'than' nên phải dùng so sánh hơn."
+      },
+      {
+        "text": "effective",
+        "isCorrect": false,
+        "rationale": "Thiếu 'more' để tạo so sánh hơn đi với 'than'."
+      }
     ],
-    "hint": "Chú ý cụm 'proved to be' (linking verb) và từ 'than'."
+    "hint": "Chú ý cụm 'proved to be' (linking verb) và từ 'than'.",
+    "code": "P5_001"
   },
   {
     "question": "Our productivity has been _______ lower this month because of the unexpected power outages.",
     "type": "comparison",
     "difficulty": "medium",
     "options": [
-      { "text": "very", "isCorrect": false, "rationale": "'Very' không dùng trước tính từ so sánh hơn (lower)." },
-      { "text": "much", "isCorrect": true, "rationale": "Chính xác. 'Much' là intensifier nhấn mạnh mức độ trong so sánh hơn." },
-      { "text": "more", "isCorrect": false, "rationale": "'Lower' đã là so sánh hơn, không thêm 'more'." },
-      { "text": "many", "isCorrect": false, "rationale": "'Many' dùng cho danh từ đếm được, không bổ nghĩa cho tính từ." }
+      {
+        "text": "very",
+        "isCorrect": false,
+        "rationale": "'Very' không dùng trước tính từ so sánh hơn (lower)."
+      },
+      {
+        "text": "much",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Much' là intensifier nhấn mạnh mức độ trong so sánh hơn."
+      },
+      {
+        "text": "more",
+        "isCorrect": false,
+        "rationale": "'Lower' đã là so sánh hơn, không thêm 'more'."
+      },
+      {
+        "text": "many",
+        "isCorrect": false,
+        "rationale": "'Many' dùng cho danh từ đếm được, không bổ nghĩa cho tính từ."
+      }
     ],
-    "hint": "Intensifier nào dùng được với so sánh hơn?"
+    "hint": "Intensifier nào dùng được với so sánh hơn?",
+    "code": "P5_002"
   },
   {
     "question": "The CEO requested that the financial report be prepared _______ than usual for the board meeting.",
     "type": "word-form",
     "difficulty": "medium",
     "options": [
-      { "text": "more thorough", "isCorrect": false, "rationale": "Tính từ không thể bổ nghĩa cho động từ 'prepared'." },
-      { "text": "thoroughly", "isCorrect": false, "rationale": "Đúng loại từ (trạng từ) nhưng thiếu so sánh hơn đi với 'than'." },
-      { "text": "more thoroughly", "isCorrect": true, "rationale": "Chính xác. Trạng từ dài 'thoroughly' cần 'more' để tạo so sánh hơn." },
-      { "text": "most thoroughly", "isCorrect": false, "rationale": "So sánh nhất không phù hợp khi so sánh với 'than usual'." }
+      {
+        "text": "more thorough",
+        "isCorrect": false,
+        "rationale": "Tính từ không thể bổ nghĩa cho động từ 'prepared'."
+      },
+      {
+        "text": "thoroughly",
+        "isCorrect": false,
+        "rationale": "Đúng loại từ (trạng từ) nhưng thiếu so sánh hơn đi với 'than'."
+      },
+      {
+        "text": "more thoroughly",
+        "isCorrect": true,
+        "rationale": "Chính xác. Trạng từ dài 'thoroughly' cần 'more' để tạo so sánh hơn."
+      },
+      {
+        "text": "most thoroughly",
+        "isCorrect": false,
+        "rationale": "So sánh nhất không phù hợp khi so sánh với 'than usual'."
+      }
     ],
-    "hint": "Xác định từ cần điền bổ nghĩa cho hành động 'prepared'."
+    "hint": "Xác định từ cần điền bổ nghĩa cho hành động 'prepared'.",
+    "code": "P5_003"
   },
   {
     "question": "The new automation system allows the factory to operate _______ than before.",
     "type": "comparison",
     "difficulty": "medium",
     "options": [
-      { "text": "smooth", "isCorrect": false, "rationale": "Tính từ không thể bổ nghĩa cho động từ 'operate'." },
-      { "text": "more smoothly", "isCorrect": true, "rationale": "Chính xác. 'Operate' là động từ thường, cần trạng từ so sánh hơn." },
-      { "text": "smoother", "isCorrect": false, "rationale": "Thường dùng như tính từ, không phù hợp bổ nghĩa cho động từ." },
-      { "text": "smoothly", "isCorrect": false, "rationale": "Đúng loại từ nhưng thiếu dạng so sánh hơn." }
+      {
+        "text": "smooth",
+        "isCorrect": false,
+        "rationale": "Tính từ không thể bổ nghĩa cho động từ 'operate'."
+      },
+      {
+        "text": "more smoothly",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Operate' là động từ thường, cần trạng từ so sánh hơn."
+      },
+      {
+        "text": "smoother",
+        "isCorrect": false,
+        "rationale": "Thường dùng như tính từ, không phù hợp bổ nghĩa cho động từ."
+      },
+      {
+        "text": "smoothly",
+        "isCorrect": false,
+        "rationale": "Đúng loại từ nhưng thiếu dạng so sánh hơn."
+      }
     ],
-    "hint": "Động từ 'operate' cần loại từ gì bổ nghĩa?"
+    "hint": "Động từ 'operate' cần loại từ gì bổ nghĩa?",
+    "code": "P5_004"
   },
   {
     "question": "The _______ you research the target market, the better your chances of success will be.",
     "type": "comparison",
     "difficulty": "hard",
     "options": [
-      { "text": "more thorough", "isCorrect": false, "rationale": "Cần trạng từ vì bổ nghĩa cho hành động 'research'." },
-      { "text": "thoroughly", "isCorrect": false, "rationale": "Thiếu 'more' để tạo cấu trúc song hành." },
-      { "text": "more thoroughly", "isCorrect": true, "rationale": "Chính xác. Cấu trúc 'The + so sánh hơn, the + so sánh hơn'." },
-      { "text": "most thoroughly", "isCorrect": false, "rationale": "Cấu trúc song hành dùng so sánh hơn, không dùng so sánh nhất." }
+      {
+        "text": "more thorough",
+        "isCorrect": false,
+        "rationale": "Cần trạng từ vì bổ nghĩa cho hành động 'research'."
+      },
+      {
+        "text": "thoroughly",
+        "isCorrect": false,
+        "rationale": "Thiếu 'more' để tạo cấu trúc song hành."
+      },
+      {
+        "text": "more thoroughly",
+        "isCorrect": true,
+        "rationale": "Chính xác. Cấu trúc 'The + so sánh hơn, the + so sánh hơn'."
+      },
+      {
+        "text": "most thoroughly",
+        "isCorrect": false,
+        "rationale": "Cấu trúc song hành dùng so sánh hơn, không dùng so sánh nhất."
+      }
     ],
-    "hint": "Đây là cấu trúc 'Càng... càng...', chú ý vế sau 'the better'."
+    "hint": "Đây là cấu trúc 'Càng... càng...', chú ý vế sau 'the better'.",
+    "code": "P5_005"
   },
   {
     "question": "The HR department is responsible ______ employee training and development.",
     "type": "preposition",
     "difficulty": "easy",
     "options": [
-      { "text": "to", "isCorrect": false, "rationale": "'Responsible to' mang nghĩa chịu trách nhiệm với cấp trên, không phù hợp ở đây." },
-      { "text": "with", "isCorrect": false, "rationale": "Không phải collocation chuẩn của 'responsible'." },
-      { "text": "for", "isCorrect": true, "rationale": "Chính xác. 'Responsible for + N/V-ing' chịu trách nhiệm về việc gì." },
-      { "text": "about", "isCorrect": false, "rationale": "Không đi với 'responsible'. Ta có 'concerned about'." }
+      {
+        "text": "to",
+        "isCorrect": false,
+        "rationale": "'Responsible to' mang nghĩa chịu trách nhiệm với cấp trên, không phù hợp ở đây."
+      },
+      {
+        "text": "with",
+        "isCorrect": false,
+        "rationale": "Không phải collocation chuẩn của 'responsible'."
+      },
+      {
+        "text": "for",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Responsible for + N/V-ing' chịu trách nhiệm về việc gì."
+      },
+      {
+        "text": "about",
+        "isCorrect": false,
+        "rationale": "Không đi với 'responsible'. Ta có 'concerned about'."
+      }
     ],
-    "hint": "Collocation cố định của tính từ 'responsible'."
+    "hint": "Collocation cố định của tính từ 'responsible'.",
+    "code": "P5_006"
   },
   {
     "question": "Since its establishment in 2010, the company ______ over 500 branches worldwide.",
     "type": "verb-tense",
     "difficulty": "easy",
     "options": [
-      { "text": "opens", "isCorrect": false, "rationale": "Hiện tại đơn không phù hợp với 'since' chỉ thời gian từ quá khứ." },
-      { "text": "opened", "isCorrect": false, "rationale": "Quá khứ đơn, nhưng 'since' yêu cầu thì hoàn thành." },
-      { "text": "has opened", "isCorrect": true, "rationale": "Chính xác. 'Since + mốc thời gian' → Present Perfect." },
-      { "text": "is opening", "isCorrect": false, "rationale": "Hiện tại tiếp diễn không phù hợp với ý nghĩa hoàn thành." }
+      {
+        "text": "opens",
+        "isCorrect": false,
+        "rationale": "Hiện tại đơn không phù hợp với 'since' chỉ thời gian từ quá khứ."
+      },
+      {
+        "text": "opened",
+        "isCorrect": false,
+        "rationale": "Quá khứ đơn, nhưng 'since' yêu cầu thì hoàn thành."
+      },
+      {
+        "text": "has opened",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Since + mốc thời gian' → Present Perfect."
+      },
+      {
+        "text": "is opening",
+        "isCorrect": false,
+        "rationale": "Hiện tại tiếp diễn không phù hợp với ý nghĩa hoàn thành."
+      }
     ],
-    "hint": "Dấu hiệu 'Since its establishment in 2010' → thì gì?"
+    "hint": "Dấu hiệu 'Since its establishment in 2010' → thì gì?",
+    "code": "P5_007"
   },
   {
     "question": "The conference is scheduled to take place ______ May 15th.",
     "type": "preposition",
     "difficulty": "easy",
     "options": [
-      { "text": "in", "isCorrect": false, "rationale": "'In' dùng cho tháng/năm, không dùng cho ngày cụ thể." },
-      { "text": "on", "isCorrect": true, "rationale": "Chính xác. 'On + ngày cụ thể'." },
-      { "text": "at", "isCorrect": false, "rationale": "'At' dùng cho giờ hoặc địa điểm, không dùng cho ngày." },
-      { "text": "by", "isCorrect": false, "rationale": "'By' mang nghĩa 'trước ngày đó', không phải 'vào ngày đó'." }
+      {
+        "text": "in",
+        "isCorrect": false,
+        "rationale": "'In' dùng cho tháng/năm, không dùng cho ngày cụ thể."
+      },
+      {
+        "text": "on",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'On + ngày cụ thể'."
+      },
+      {
+        "text": "at",
+        "isCorrect": false,
+        "rationale": "'At' dùng cho giờ hoặc địa điểm, không dùng cho ngày."
+      },
+      {
+        "text": "by",
+        "isCorrect": false,
+        "rationale": "'By' mang nghĩa 'trước ngày đó', không phải 'vào ngày đó'."
+      }
     ],
-    "hint": "Giới từ nào dùng với ngày cụ thể?"
+    "hint": "Giới từ nào dùng với ngày cụ thể?",
+    "code": "P5_008"
   },
   {
     "question": "The project was completed on schedule, ______ several unexpected challenges.",
     "type": "conjunction",
     "difficulty": "medium",
     "options": [
-      { "text": "because", "isCorrect": false, "rationale": "'Because + clause', không dùng trước cụm danh từ." },
-      { "text": "despite", "isCorrect": true, "rationale": "Chính xác. 'Despite + N/V-ing' mang nghĩa nhượng bộ." },
-      { "text": "although", "isCorrect": false, "rationale": "'Although + clause', cần mệnh đề đầy đủ chủ-vị." },
-      { "text": "however", "isCorrect": false, "rationale": "'However' đứng đầu câu mới, ngăn cách bằng dấu chấm phẩy hoặc dấu chấm." }
+      {
+        "text": "because",
+        "isCorrect": false,
+        "rationale": "'Because + clause', không dùng trước cụm danh từ."
+      },
+      {
+        "text": "despite",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Despite + N/V-ing' mang nghĩa nhượng bộ."
+      },
+      {
+        "text": "although",
+        "isCorrect": false,
+        "rationale": "'Although + clause', cần mệnh đề đầy đủ chủ-vị."
+      },
+      {
+        "text": "however",
+        "isCorrect": false,
+        "rationale": "'However' đứng đầu câu mới, ngăn cách bằng dấu chấm phẩy hoặc dấu chấm."
+      }
     ],
-    "hint": "Cần từ nối mang nghĩa 'mặc dù' + cụm danh từ."
+    "hint": "Cần từ nối mang nghĩa 'mặc dù' + cụm danh từ.",
+    "code": "P5_009"
   },
   {
     "question": "We will ______ the software updated by the IT department.",
     "type": "voice",
     "difficulty": "medium",
     "options": [
-      { "text": "make", "isCorrect": false, "rationale": "'Make something done' không phải cấu trúc causative chuẩn." },
-      { "text": "let", "isCorrect": false, "rationale": "'Let' + V(bare), không dùng với V3/ed." },
-      { "text": "have", "isCorrect": true, "rationale": "Chính xác. 'Have something done' = thuê/sắp xếp cho ai làm gì." },
-      { "text": "allow", "isCorrect": false, "rationale": "'Allow + O + to V', không phù hợp cấu trúc này." }
+      {
+        "text": "make",
+        "isCorrect": false,
+        "rationale": "'Make something done' không phải cấu trúc causative chuẩn."
+      },
+      {
+        "text": "let",
+        "isCorrect": false,
+        "rationale": "'Let' + V(bare), không dùng với V3/ed."
+      },
+      {
+        "text": "have",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Have something done' = thuê/sắp xếp cho ai làm gì."
+      },
+      {
+        "text": "allow",
+        "isCorrect": false,
+        "rationale": "'Allow + O + to V', không phù hợp cấu trúc này."
+      }
     ],
-    "hint": "Cấu trúc causative: thuê người khác làm gì."
+    "hint": "Cấu trúc causative: thuê người khác làm gì.",
+    "code": "P5_010"
   },
   {
     "question": "The consultant ______ expertise we rely on has decided to retire.",
     "type": "relative-clause",
     "difficulty": "medium",
     "options": [
-      { "text": "who", "isCorrect": false, "rationale": "'Who' là chủ ngữ, không thể hiện sở hữu." },
-      { "text": "which", "isCorrect": false, "rationale": "'Which' dùng cho vật, không dùng cho người." },
-      { "text": "whose", "isCorrect": true, "rationale": "Chính xác. 'Whose' chỉ sở hữu: expertise của consultant." },
-      { "text": "whom", "isCorrect": false, "rationale": "'Whom' là tân ngữ, không thể hiện sở hữu." }
+      {
+        "text": "who",
+        "isCorrect": false,
+        "rationale": "'Who' là chủ ngữ, không thể hiện sở hữu."
+      },
+      {
+        "text": "which",
+        "isCorrect": false,
+        "rationale": "'Which' dùng cho vật, không dùng cho người."
+      },
+      {
+        "text": "whose",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Whose' chỉ sở hữu: expertise của consultant."
+      },
+      {
+        "text": "whom",
+        "isCorrect": false,
+        "rationale": "'Whom' là tân ngữ, không thể hiện sở hữu."
+      }
     ],
-    "hint": "Cần đại từ quan hệ chỉ sở hữu."
+    "hint": "Cần đại từ quan hệ chỉ sở hữu.",
+    "code": "P5_011"
   },
   {
     "question": "The number of applications for this position ______ significantly this year.",
     "type": "agreement",
     "difficulty": "medium",
     "options": [
-      { "text": "increase", "isCorrect": false, "rationale": "'The number of' + N số nhiều nhưng động từ chia số ít." },
-      { "text": "increases", "isCorrect": true, "rationale": "Chính xác. 'The number of' → chủ ngữ số ít → động từ thêm 's'." },
-      { "text": "are increasing", "isCorrect": false, "rationale": "Số nhiều, không phù hợp với 'the number of' số ít." },
-      { "text": "have increased", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." }
+      {
+        "text": "increase",
+        "isCorrect": false,
+        "rationale": "'The number of' + N số nhiều nhưng động từ chia số ít."
+      },
+      {
+        "text": "increases",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'The number of' → chủ ngữ số ít → động từ thêm 's'."
+      },
+      {
+        "text": "are increasing",
+        "isCorrect": false,
+        "rationale": "Số nhiều, không phù hợp với 'the number of' số ít."
+      },
+      {
+        "text": "have increased",
+        "isCorrect": false,
+        "rationale": "Số nhiều, không phù hợp."
+      }
     ],
-    "hint": "Phân biệt 'the number of' (số ít) vs 'a number of' (số nhiều)."
+    "hint": "Phân biệt 'the number of' (số ít) vs 'a number of' (số nhiều).",
+    "code": "P5_012"
   },
   {
     "question": "Management is optimistic that the new strategy will ______ positive results.",
     "type": "vocabulary",
     "difficulty": "medium",
     "options": [
-      { "text": "result", "isCorrect": false, "rationale": "'Result' cần giới từ 'in' (result in) để mang nghĩa 'dẫn đến'." },
-      { "text": "lead", "isCorrect": false, "rationale": "'Lead' cần 'to' (lead to) để mang nghĩa 'dẫn đến'." },
-      { "text": "cause", "isCorrect": false, "rationale": "'Cause' thường dùng với tác động tiêu cực, không tự nhiên bằng 'yield'." },
-      { "text": "yield", "isCorrect": true, "rationale": "Chính xác. 'Yield results' = mang lại kết quả, collocation chuẩn." }
+      {
+        "text": "result",
+        "isCorrect": false,
+        "rationale": "'Result' cần giới từ 'in' (result in) để mang nghĩa 'dẫn đến'."
+      },
+      {
+        "text": "lead",
+        "isCorrect": false,
+        "rationale": "'Lead' cần 'to' (lead to) để mang nghĩa 'dẫn đến'."
+      },
+      {
+        "text": "cause",
+        "isCorrect": false,
+        "rationale": "'Cause' thường dùng với tác động tiêu cực, không tự nhiên bằng 'yield'."
+      },
+      {
+        "text": "yield",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Yield results' = mang lại kết quả, collocation chuẩn."
+      }
     ],
-    "hint": "Collocation nào tự nhiên nhất với 'results'?"
+    "hint": "Collocation nào tự nhiên nhất với 'results'?",
+    "code": "P5_013"
   },
   {
     "question": "All employees are required to ______ with the company's safety regulations.",
     "type": "vocabulary",
     "difficulty": "easy",
     "options": [
-      { "text": "comply", "isCorrect": true, "rationale": "Chính xác. 'Comply with' = tuân thủ, collocation cố định." },
-      { "text": "apply", "isCorrect": false, "rationale": "'Apply for' = nộp đơn, không phù hợp ngữ cảnh." },
-      { "text": "reply", "isCorrect": false, "rationale": "'Reply to' = trả lời, không phù hợp." },
-      { "text": "supply", "isCorrect": false, "rationale": "'Supply' = cung cấp, không phù hợp." }
+      {
+        "text": "comply",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Comply with' = tuân thủ, collocation cố định."
+      },
+      {
+        "text": "apply",
+        "isCorrect": false,
+        "rationale": "'Apply for' = nộp đơn, không phù hợp ngữ cảnh."
+      },
+      {
+        "text": "reply",
+        "isCorrect": false,
+        "rationale": "'Reply to' = trả lời, không phù hợp."
+      },
+      {
+        "text": "supply",
+        "isCorrect": false,
+        "rationale": "'Supply' = cung cấp, không phù hợp."
+      }
     ],
-    "hint": "Động từ + giới từ mang nghĩa 'tuân thủ'."
+    "hint": "Động từ + giới từ mang nghĩa 'tuân thủ'.",
+    "code": "P5_014"
   },
   {
     "question": "The newly ______ manager will oversee the restructuring process.",
     "type": "participle",
     "difficulty": "medium",
     "options": [
-      { "text": "appointing", "isCorrect": false, "rationale": "V-ing mang nghĩa chủ động, ai đó đang bổ nhiệm → không hợp lý." },
-      { "text": "appointed", "isCorrect": true, "rationale": "Chính xác. 'The manager who was appointed' → rút gọn thành 'the appointed manager'." },
-      { "text": "appointment", "isCorrect": false, "rationale": "Danh từ, không thể bổ nghĩa cho 'manager'." },
-      { "text": "appoints", "isCorrect": false, "rationale": "Động từ chia ngôi, không phù hợp vị trí này." }
+      {
+        "text": "appointing",
+        "isCorrect": false,
+        "rationale": "V-ing mang nghĩa chủ động, ai đó đang bổ nhiệm → không hợp lý."
+      },
+      {
+        "text": "appointed",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'The manager who was appointed' → rút gọn thành 'the appointed manager'."
+      },
+      {
+        "text": "appointment",
+        "isCorrect": false,
+        "rationale": "Danh từ, không thể bổ nghĩa cho 'manager'."
+      },
+      {
+        "text": "appoints",
+        "isCorrect": false,
+        "rationale": "Động từ chia ngôi, không phù hợp vị trí này."
+      }
     ],
-    "hint": "Manager được bổ nhiệm → cần phân từ bị động."
+    "hint": "Manager được bổ nhiệm → cần phân từ bị động.",
+    "code": "P5_015"
   },
   {
     "question": "The new policy ______ to all employees last Monday.",
     "type": "voice",
     "difficulty": "easy",
     "options": [
-      { "text": "communicated", "isCorrect": false, "rationale": "Chủ động nhưng thiếu tân ngữ, không đúng ngữ pháp." },
-      { "text": "was communicated", "isCorrect": true, "rationale": "Chính xác. Bị động thì quá khứ: 'The policy was communicated'." },
-      { "text": "communicating", "isCorrect": false, "rationale": "V-ing không thể làm động từ chính trong câu này." },
-      { "text": "has communicated", "isCorrect": false, "rationale": "Chủ động, thiếu tân ngữ và không phù hợp với 'last Monday'." }
+      {
+        "text": "communicated",
+        "isCorrect": false,
+        "rationale": "Chủ động nhưng thiếu tân ngữ, không đúng ngữ pháp."
+      },
+      {
+        "text": "was communicated",
+        "isCorrect": true,
+        "rationale": "Chính xác. Bị động thì quá khứ: 'The policy was communicated'."
+      },
+      {
+        "text": "communicating",
+        "isCorrect": false,
+        "rationale": "V-ing không thể làm động từ chính trong câu này."
+      },
+      {
+        "text": "has communicated",
+        "isCorrect": false,
+        "rationale": "Chủ động, thiếu tân ngữ và không phù hợp với 'last Monday'."
+      }
     ],
-    "hint": "Chính sách được truyền đạt → cần thể bị động."
+    "hint": "Chính sách được truyền đạt → cần thể bị động.",
+    "code": "P5_016"
   },
   {
     "question": "Ms. Tanaka is the representative ______ will lead the negotiation.",
     "type": "relative-clause",
     "difficulty": "easy",
     "options": [
-      { "text": "whom", "isCorrect": false, "rationale": "'Whom' là tân ngữ, không thể làm chủ ngữ của 'will lead'." },
-      { "text": "who", "isCorrect": true, "rationale": "Chính xác. 'Who' làm chủ ngữ cho động từ 'will lead'." },
-      { "text": "whose", "isCorrect": false, "rationale": "'Whose' chỉ sở hữu, không phù hợp." },
-      { "text": "which", "isCorrect": false, "rationale": "'Which' dùng cho vật, không dùng cho người." }
+      {
+        "text": "whom",
+        "isCorrect": false,
+        "rationale": "'Whom' là tân ngữ, không thể làm chủ ngữ của 'will lead'."
+      },
+      {
+        "text": "who",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Who' làm chủ ngữ cho động từ 'will lead'."
+      },
+      {
+        "text": "whose",
+        "isCorrect": false,
+        "rationale": "'Whose' chỉ sở hữu, không phù hợp."
+      },
+      {
+        "text": "which",
+        "isCorrect": false,
+        "rationale": "'Which' dùng cho vật, không dùng cho người."
+      }
     ],
-    "hint": "Cần đại từ quan hệ làm chủ ngữ chỉ người."
+    "hint": "Cần đại từ quan hệ làm chủ ngữ chỉ người.",
+    "code": "P5_017"
   },
   {
     "question": "The company is ______ a new customer loyalty program next month.",
     "type": "vocabulary",
     "difficulty": "easy",
     "options": [
-      { "text": "launching", "isCorrect": true, "rationale": "Chính xác. 'Launch a program' = triển khai chương trình." },
-      { "text": "opening", "isCorrect": false, "rationale": "'Open' dùng cho cửa hàng/công ty, không dùng với chương trình." },
-      { "text": "starting", "isCorrect": false, "rationale": "Có thể dùng nhưng 'launch' là từ chuẩn xác hơn trong business." },
-      { "text": "creating", "isCorrect": false, "rationale": "Tạo ra, nhưng 'launch' mới là từ chuyên ngành cho việc ra mắt." }
+      {
+        "text": "launching",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Launch a program' = triển khai chương trình."
+      },
+      {
+        "text": "opening",
+        "isCorrect": false,
+        "rationale": "'Open' dùng cho cửa hàng/công ty, không dùng với chương trình."
+      },
+      {
+        "text": "starting",
+        "isCorrect": false,
+        "rationale": "Có thể dùng nhưng 'launch' là từ chuẩn xác hơn trong business."
+      },
+      {
+        "text": "creating",
+        "isCorrect": false,
+        "rationale": "Tạo ra, nhưng 'launch' mới là từ chuyên ngành cho việc ra mắt."
+      }
     ],
-    "hint": "Từ nào là collocation chuẩn với 'program' trong business?"
+    "hint": "Từ nào là collocation chuẩn với 'program' trong business?",
+    "code": "P5_018"
   },
   {
     "question": "Thank you for your application. You will be notified ______ the result via email.",
     "type": "preposition",
     "difficulty": "medium",
     "options": [
-      { "text": "with", "isCorrect": false, "rationale": "'Notify with' không phải collocation chuẩn." },
-      { "text": "for", "isCorrect": false, "rationale": "'Notify for' không đúng." },
-      { "text": "about", "isCorrect": true, "rationale": "Chính xác. 'Notify someone about something' = thông báo cho ai về việc gì." },
-      { "text": "on", "isCorrect": false, "rationale": "Không phải collocation chuẩn của 'notify'." }
+      {
+        "text": "with",
+        "isCorrect": false,
+        "rationale": "'Notify with' không phải collocation chuẩn."
+      },
+      {
+        "text": "for",
+        "isCorrect": false,
+        "rationale": "'Notify for' không đúng."
+      },
+      {
+        "text": "about",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Notify someone about something' = thông báo cho ai về việc gì."
+      },
+      {
+        "text": "on",
+        "isCorrect": false,
+        "rationale": "Không phải collocation chuẩn của 'notify'."
+      }
     ],
-    "hint": "Collocation của động từ 'notify'."
+    "hint": "Collocation của động từ 'notify'.",
+    "code": "P5_019"
   },
   {
     "question": "By the end of this quarter, the company ______ its expansion into three new markets.",
     "type": "verb-tense",
     "difficulty": "hard",
     "options": [
-      { "text": "completes", "isCorrect": false, "rationale": "Hiện tại đơn không diễn tả hành động hoàn thành trước 1 mốc tương lai." },
-      { "text": "will complete", "isCorrect": false, "rationale": "Tương lai đơn, không nhấn mạnh tính hoàn thành trước mốc." },
-      { "text": "will have completed", "isCorrect": true, "rationale": "Chính xác. 'By the end of' → Future Perfect." },
-      { "text": "has completed", "isCorrect": false, "rationale": "Present Perfect, không dùng với mốc tương lai." }
+      {
+        "text": "completes",
+        "isCorrect": false,
+        "rationale": "Hiện tại đơn không diễn tả hành động hoàn thành trước 1 mốc tương lai."
+      },
+      {
+        "text": "will complete",
+        "isCorrect": false,
+        "rationale": "Tương lai đơn, không nhấn mạnh tính hoàn thành trước mốc."
+      },
+      {
+        "text": "will have completed",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'By the end of' → Future Perfect."
+      },
+      {
+        "text": "has completed",
+        "isCorrect": false,
+        "rationale": "Present Perfect, không dùng với mốc tương lai."
+      }
     ],
-    "hint": "Mốc thời gian 'By the end of this quarter' → thì gì?"
+    "hint": "Mốc thời gian 'By the end of this quarter' → thì gì?",
+    "code": "P5_020"
   },
   {
     "question": "The ______ desk on the second floor handles all customer inquiries.",
     "type": "participle",
     "difficulty": "medium",
     "options": [
-      { "text": "serving", "isCorrect": true, "rationale": "Chính xác. 'The desk which serves' → rút gọn thành 'the serving desk'." },
-      { "text": "served", "isCorrect": false, "rationale": "Bị động → cái bàn được phục vụ → không hợp lý." },
-      { "text": "service", "isCorrect": false, "rationale": "Danh từ, không thể bổ nghĩa cho 'desk' theo cách này." },
-      { "text": "serves", "isCorrect": false, "rationale": "Động từ chia ngôi, không phù hợp vị trí bổ nghĩa." }
+      {
+        "text": "serving",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'The desk which serves' → rút gọn thành 'the serving desk'."
+      },
+      {
+        "text": "served",
+        "isCorrect": false,
+        "rationale": "Bị động → cái bàn được phục vụ → không hợp lý."
+      },
+      {
+        "text": "service",
+        "isCorrect": false,
+        "rationale": "Danh từ, không thể bổ nghĩa cho 'desk' theo cách này."
+      },
+      {
+        "text": "serves",
+        "isCorrect": false,
+        "rationale": "Động từ chia ngôi, không phù hợp vị trí bổ nghĩa."
+      }
     ],
-    "hint": "Bàn mà phục vụ → cần phân từ chủ động."
+    "hint": "Bàn mà phục vụ → cần phân từ chủ động.",
+    "code": "P5_021"
   },
   {
     "question": "Employees are encouraged to ______ any suspicious activity to security immediately.",
     "type": "vocabulary",
     "difficulty": "medium",
     "options": [
-      { "text": "tell", "isCorrect": false, "rationale": "'Tell' + someone, không dùng 'tell something to' trong ngữ cảnh này." },
-      { "text": "say", "isCorrect": false, "rationale": "'Say' + something, không đi với 'to security' như object." },
-      { "text": "report", "isCorrect": true, "rationale": "Chính xác. 'Report something to someone' = báo cáo." },
-      { "text": "inform", "isCorrect": false, "rationale": "'Inform someone of/about something' → cấu trúc khác." }
+      {
+        "text": "tell",
+        "isCorrect": false,
+        "rationale": "'Tell' + someone, không dùng 'tell something to' trong ngữ cảnh này."
+      },
+      {
+        "text": "say",
+        "isCorrect": false,
+        "rationale": "'Say' + something, không đi với 'to security' như object."
+      },
+      {
+        "text": "report",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Report something to someone' = báo cáo."
+      },
+      {
+        "text": "inform",
+        "isCorrect": false,
+        "rationale": "'Inform someone of/about something' → cấu trúc khác."
+      }
     ],
-    "hint": "Động từ nào phù hợp với 'suspicious activity'?"
+    "hint": "Động từ nào phù hợp với 'suspicious activity'?",
+    "code": "P5_022"
   },
   {
     "question": "The management team is ______ of the need to upgrade the IT infrastructure.",
     "type": "word-form",
     "difficulty": "easy",
     "options": [
-      { "text": "aware", "isCorrect": true, "rationale": "Chính xác. 'Aware of' = nhận thức về, tính từ." },
-      { "text": "awareness", "isCorrect": false, "rationale": "Danh từ, không thể đứng sau 'be' ở vị trí này." },
-      { "text": "unaware", "isCorrect": false, "rationale": "Mang nghĩa ngược lại (không nhận thức), không phù hợp ngữ cảnh." },
-      { "text": "awarely", "isCorrect": false, "rationale": "Trạng từ, không dùng sau 'be'." }
+      {
+        "text": "aware",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Aware of' = nhận thức về, tính từ."
+      },
+      {
+        "text": "awareness",
+        "isCorrect": false,
+        "rationale": "Danh từ, không thể đứng sau 'be' ở vị trí này."
+      },
+      {
+        "text": "unaware",
+        "isCorrect": false,
+        "rationale": "Mang nghĩa ngược lại (không nhận thức), không phù hợp ngữ cảnh."
+      },
+      {
+        "text": "awarely",
+        "isCorrect": false,
+        "rationale": "Trạng từ, không dùng sau 'be'."
+      }
     ],
-    "hint": "Sau 'be' cần tính từ hay danh từ?"
+    "hint": "Sau 'be' cần tính từ hay danh từ?",
+    "code": "P5_023"
   },
   {
     "question": "______ the bad weather, the outdoor team-building event went ahead as planned.",
     "type": "conjunction",
     "difficulty": "medium",
     "options": [
-      { "text": "Because of", "isCorrect": false, "rationale": "Mang nghĩa nguyên nhân, mâu thuẫn với nội dung câu." },
-      { "text": "Despite", "isCorrect": true, "rationale": "Chính xác. 'Despite + N' = mặc dù, phù hợp ý nhượng bộ." },
-      { "text": "Although", "isCorrect": false, "rationale": "'Although + clause', cần mệnh đề đầy đủ." },
-      { "text": "In spite", "isCorrect": false, "rationale": "Thiếu 'of'. 'In spite of + N' mới đúng." }
+      {
+        "text": "Because of",
+        "isCorrect": false,
+        "rationale": "Mang nghĩa nguyên nhân, mâu thuẫn với nội dung câu."
+      },
+      {
+        "text": "Despite",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Despite + N' = mặc dù, phù hợp ý nhượng bộ."
+      },
+      {
+        "text": "Although",
+        "isCorrect": false,
+        "rationale": "'Although + clause', cần mệnh đề đầy đủ."
+      },
+      {
+        "text": "In spite",
+        "isCorrect": false,
+        "rationale": "Thiếu 'of'. 'In spite of + N' mới đúng."
+      }
     ],
-    "hint": "Cần giới từ mang nghĩa 'mặc dù' + cụm danh từ."
+    "hint": "Cần giới từ mang nghĩa 'mặc dù' + cụm danh từ.",
+    "code": "P5_024"
   },
   {
     "question": "The ______ department is located on the fifth floor of the building.",
     "type": "word-form",
     "difficulty": "easy",
     "options": [
-      { "text": "account", "isCorrect": false, "rationale": "Danh từ, không thể bổ nghĩa cho 'department' trực tiếp." },
-      { "text": "accounting", "isCorrect": true, "rationale": "Chính xác. 'Accounting department' = phòng kế toán, V-ing ở đây như tính từ." },
-      { "text": "accounted", "isCorrect": false, "rationale": "V3/ed, mang nghĩa bị động, không phù hợp." },
-      { "text": "accounts", "isCorrect": false, "rationale": "Danh từ số nhiều, không tự nhiên bằng 'accounting'." }
+      {
+        "text": "account",
+        "isCorrect": false,
+        "rationale": "Danh từ, không thể bổ nghĩa cho 'department' trực tiếp."
+      },
+      {
+        "text": "accounting",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Accounting department' = phòng kế toán, V-ing ở đây như tính từ."
+      },
+      {
+        "text": "accounted",
+        "isCorrect": false,
+        "rationale": "V3/ed, mang nghĩa bị động, không phù hợp."
+      },
+      {
+        "text": "accounts",
+        "isCorrect": false,
+        "rationale": "Danh từ số nhiều, không tự nhiên bằng 'accounting'."
+      }
     ],
-    "hint": "Từ nào kết hợp với 'department' để tạo tên phòng ban?"
+    "hint": "Từ nào kết hợp với 'department' để tạo tên phòng ban?",
+    "code": "P5_025"
   },
   {
     "question": "The proposal was ______ by all members of the board during the meeting.",
     "type": "verb-tense",
     "difficulty": "easy",
     "options": [
-      { "text": "approve", "isCorrect": false, "rationale": "Động từ nguyên mẫu, không phù hợp thể bị động." },
-      { "text": "approved", "isCorrect": true, "rationale": "Chính xác. 'Was approved' = bị động thì quá khứ đơn." },
-      { "text": "approves", "isCorrect": false, "rationale": "Hiện tại đơn, không phù hợp thì và thể bị động." },
-      { "text": "approving", "isCorrect": false, "rationale": "V-ing, không thể làm động từ chính ở bị động." }
+      {
+        "text": "approve",
+        "isCorrect": false,
+        "rationale": "Động từ nguyên mẫu, không phù hợp thể bị động."
+      },
+      {
+        "text": "approved",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Was approved' = bị động thì quá khứ đơn."
+      },
+      {
+        "text": "approves",
+        "isCorrect": false,
+        "rationale": "Hiện tại đơn, không phù hợp thì và thể bị động."
+      },
+      {
+        "text": "approving",
+        "isCorrect": false,
+        "rationale": "V-ing, không thể làm động từ chính ở bị động."
+      }
     ],
-    "hint": "Đề xuất được phê duyệt → cần thể bị động."
+    "hint": "Đề xuất được phê duyệt → cần thể bị động.",
+    "code": "P5_026"
   },
   {
     "question": "You will need to obtain ______ from the director before proceeding.",
     "type": "word-form",
     "difficulty": "medium",
     "options": [
-      { "text": "approve", "isCorrect": false, "rationale": "Động từ, không thể đứng sau 'obtain' (động từ + danh từ)." },
-      { "text": "approved", "isCorrect": false, "rationale": "Tính từ/phân từ, không thể làm tân ngữ." },
-      { "text": "approval", "isCorrect": true, "rationale": "Chính xác. 'Obtain approval' = nhận được sự chấp thuận." },
-      { "text": "approving", "isCorrect": false, "rationale": "V-ing/danh động từ, không phải collocation chuẩn." }
+      {
+        "text": "approve",
+        "isCorrect": false,
+        "rationale": "Động từ, không thể đứng sau 'obtain' (động từ + danh từ)."
+      },
+      {
+        "text": "approved",
+        "isCorrect": false,
+        "rationale": "Tính từ/phân từ, không thể làm tân ngữ."
+      },
+      {
+        "text": "approval",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Obtain approval' = nhận được sự chấp thuận."
+      },
+      {
+        "text": "approving",
+        "isCorrect": false,
+        "rationale": "V-ing/danh động từ, không phải collocation chuẩn."
+      }
     ],
-    "hint": "'Obtain' + loại từ gì?"
+    "hint": "'Obtain' + loại từ gì?",
+    "code": "P5_027"
   },
   {
     "question": "Our company specializes ______ providing customized software solutions.",
     "type": "preposition",
     "difficulty": "easy",
     "options": [
-      { "text": "on", "isCorrect": false, "rationale": "'Specialize on' không phải collocation chuẩn." },
-      { "text": "at", "isCorrect": false, "rationale": "'Specialize at' không đúng." },
-      { "text": "in", "isCorrect": true, "rationale": "Chính xác. 'Specialize in' = chuyên về." },
-      { "text": "for", "isCorrect": false, "rationale": "Không phải collocation chuẩn của 'specialize'." }
+      {
+        "text": "on",
+        "isCorrect": false,
+        "rationale": "'Specialize on' không phải collocation chuẩn."
+      },
+      {
+        "text": "at",
+        "isCorrect": false,
+        "rationale": "'Specialize at' không đúng."
+      },
+      {
+        "text": "in",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Specialize in' = chuyên về."
+      },
+      {
+        "text": "for",
+        "isCorrect": false,
+        "rationale": "Không phải collocation chuẩn của 'specialize'."
+      }
     ],
-    "hint": "Collocation cố định của động từ 'specialize'."
+    "hint": "Collocation cố định của động từ 'specialize'.",
+    "code": "P5_028"
   },
   {
     "question": "The meeting will be held virtually, ______ the participants can join from different locations.",
     "type": "conjunction",
     "difficulty": "medium",
     "options": [
-      { "text": "although", "isCorrect": false, "rationale": "Mang nghĩa đối lập, không phù hợp ngữ cảnh giải thích." },
-      { "text": "because", "isCorrect": false, "rationale": "Mang nghĩa nguyên nhân, cần kết quả." },
-      { "text": "so that", "isCorrect": true, "rationale": "Chính xác. 'So that' = để mà, chỉ mục đích/kết quả." },
-      { "text": "unless", "isCorrect": false, "rationale": "Mang nghĩa điều kiện phủ định, không phù hợp." }
+      {
+        "text": "although",
+        "isCorrect": false,
+        "rationale": "Mang nghĩa đối lập, không phù hợp ngữ cảnh giải thích."
+      },
+      {
+        "text": "because",
+        "isCorrect": false,
+        "rationale": "Mang nghĩa nguyên nhân, cần kết quả."
+      },
+      {
+        "text": "so that",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'So that' = để mà, chỉ mục đích/kết quả."
+      },
+      {
+        "text": "unless",
+        "isCorrect": false,
+        "rationale": "Mang nghĩa điều kiện phủ định, không phù hợp."
+      }
     ],
-    "hint": "Cần từ nối chỉ mục đích hoặc kết quả."
+    "hint": "Cần từ nối chỉ mục đích hoặc kết quả.",
+    "code": "P5_029"
   },
   {
     "question": "Each employee ______ required to complete the online training course by Friday.",
     "type": "agreement",
     "difficulty": "easy",
     "options": [
-      { "text": "are", "isCorrect": false, "rationale": "'Each' + N số ít → động từ chia số ít." },
-      { "text": "is", "isCorrect": true, "rationale": "Chính xác. 'Each employee' → chủ ngữ số ít → 'is'." },
-      { "text": "were", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." },
-      { "text": "have been", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." }
+      {
+        "text": "are",
+        "isCorrect": false,
+        "rationale": "'Each' + N số ít → động từ chia số ít."
+      },
+      {
+        "text": "is",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Each employee' → chủ ngữ số ít → 'is'."
+      },
+      {
+        "text": "were",
+        "isCorrect": false,
+        "rationale": "Số nhiều, không phù hợp."
+      },
+      {
+        "text": "have been",
+        "isCorrect": false,
+        "rationale": "Số nhiều, không phù hợp."
+      }
     ],
-    "hint": "Chủ ngữ 'Each employee' là số ít hay số nhiều?"
+    "hint": "Chủ ngữ 'Each employee' là số ít hay số nhiều?",
+    "code": "P5_030"
   },
   {
     "question": "The contract clearly ______ that both parties must agree to the terms before signing.",
     "type": "vocabulary",
     "difficulty": "medium",
     "options": [
-      { "text": "says", "isCorrect": false, "rationale": "Không trang trọng bằng 'states' trong văn bản hợp đồng." },
-      { "text": "states", "isCorrect": true, "rationale": "Chính xác. 'State' = nêu rõ, trang trọng, phù hợp văn bản pháp lý." },
-      { "text": "tells", "isCorrect": false, "rationale": "'Tell' + người, không dùng với 'contract'." },
-      { "text": "speaks", "isCorrect": false, "rationale": "Không tự nhiên với chủ ngữ là hợp đồng." }
+      {
+        "text": "says",
+        "isCorrect": false,
+        "rationale": "Không trang trọng bằng 'states' trong văn bản hợp đồng."
+      },
+      {
+        "text": "states",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'State' = nêu rõ, trang trọng, phù hợp văn bản pháp lý."
+      },
+      {
+        "text": "tells",
+        "isCorrect": false,
+        "rationale": "'Tell' + người, không dùng với 'contract'."
+      },
+      {
+        "text": "speaks",
+        "isCorrect": false,
+        "rationale": "Không tự nhiên với chủ ngữ là hợp đồng."
+      }
     ],
-    "hint": "Từ nào trang trọng nhất cho văn bản hợp đồng?"
+    "hint": "Từ nào trang trọng nhất cho văn bản hợp đồng?",
+    "code": "P5_031"
   },
   {
     "question": "The goods have not been ______ yet, so we are still waiting for confirmation.",
     "type": "participle",
     "difficulty": "medium",
     "options": [
-      { "text": "delivering", "isCorrect": false, "rationale": "V-ing chủ động, không phù hợp thể bị động." },
-      { "text": "delivered", "isCorrect": true, "rationale": "Chính xác. 'Have not been delivered' = bị động thì hiện tại hoàn thành." },
-      { "text": "delivery", "isCorrect": false, "rationale": "Danh từ, không thể dùng sau 'been'." },
-      { "text": "delivers", "isCorrect": false, "rationale": "Động từ chia ngôi, không phù hợp." }
+      {
+        "text": "delivering",
+        "isCorrect": false,
+        "rationale": "V-ing chủ động, không phù hợp thể bị động."
+      },
+      {
+        "text": "delivered",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Have not been delivered' = bị động thì hiện tại hoàn thành."
+      },
+      {
+        "text": "delivery",
+        "isCorrect": false,
+        "rationale": "Danh từ, không thể dùng sau 'been'."
+      },
+      {
+        "text": "delivers",
+        "isCorrect": false,
+        "rationale": "Động từ chia ngôi, không phù hợp."
+      }
     ],
-    "hint": "Hàng hóa được giao → cần phân từ bị động."
+    "hint": "Hàng hóa được giao → cần phân từ bị động.",
+    "code": "P5_032"
   },
   {
     "question": "The reason ______ the delay was a technical issue with the server.",
     "type": "preposition",
     "difficulty": "easy",
     "options": [
-      { "text": "of", "isCorrect": false, "rationale": "'The reason of' không phải collocation chuẩn." },
-      { "text": "for", "isCorrect": true, "rationale": "Chính xác. 'The reason for' = lý do cho." },
-      { "text": "about", "isCorrect": false, "rationale": "Không phải collocation chuẩn." },
-      { "text": "to", "isCorrect": false, "rationale": "Không phù hợp." }
+      {
+        "text": "of",
+        "isCorrect": false,
+        "rationale": "'The reason of' không phải collocation chuẩn."
+      },
+      {
+        "text": "for",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'The reason for' = lý do cho."
+      },
+      {
+        "text": "about",
+        "isCorrect": false,
+        "rationale": "Không phải collocation chuẩn."
+      },
+      {
+        "text": "to",
+        "isCorrect": false,
+        "rationale": "Không phù hợp."
+      }
     ],
-    "hint": "Collocation cố định với 'reason'."
+    "hint": "Collocation cố định với 'reason'.",
+    "code": "P5_033"
+  },
+  {
+    "question": "The company is looking for candidates who are ______ in both English and Japanese.",
+    "type": "vocabulary",
+    "difficulty": "easy",
+    "options": [
+      { "text": "fluent", "isCorrect": true, "rationale": "Chính xác. 'Fluent in' = thông thạo (ngôn ngữ)." },
+      { "text": "smooth", "isCorrect": false, "rationale": "'Smooth' = trơn tru, không dùng cho ngôn ngữ." },
+      { "text": "easy", "isCorrect": false, "rationale": "'Easy' = dễ dàng, không phù hợp." },
+      { "text": "liquid", "isCorrect": false, "rationale": "'Liquid' = chất lỏng, không liên quan." }
+    ],
+    "hint": "Từ nào chỉ sự thông thạo ngôn ngữ?",
+    "code": "P5_034"
+  },
+  {
+    "question": "The seminar will focus ______ the latest trends in digital marketing.",
+    "type": "preposition",
+    "difficulty": "easy",
+    "options": [
+      { "text": "at", "isCorrect": false, "rationale": "'Focus at' không phải collocation chuẩn." },
+      { "text": "on", "isCorrect": true, "rationale": "Chính xác. 'Focus on' = tập trung vào." },
+      { "text": "in", "isCorrect": false, "rationale": "'Focus in' không đúng." },
+      { "text": "for", "isCorrect": false, "rationale": "Không phải collocation của 'focus'." }
+    ],
+    "hint": "Collocation cố định của 'focus'.",
+    "code": "P5_035"
+  },
+  {
+    "question": "The report must be ______ by the end of the business day.",
+    "type": "verb-tense",
+    "difficulty": "medium",
+    "options": [
+      { "text": "submit", "isCorrect": false, "rationale": "Động từ nguyên mẫu, không phù hợp thể bị động." },
+      { "text": "submitted", "isCorrect": false, "rationale": "Thiếu trợ động từ 'be' cho bị động." },
+      { "text": "submitting", "isCorrect": false, "rationale": "V-ing, không phù hợp." },
+      { "text": "submits", "isCorrect": false, "rationale": "Chủ động số ít, không phù hợp." }
+    ],
+    "hint": "Cần thể bị động với động từ khuyết thiếu 'must'.",
+    "code": "P5_036"
+  },
+  {
+    "question": "______ the new regulation, all staff must complete the training by Friday.",
+    "type": "conjunction",
+    "difficulty": "medium",
+    "options": [
+      { "text": "According to", "isCorrect": true, "rationale": "Chính xác. 'According to' = theo như." },
+      { "text": "Because", "isCorrect": false, "rationale": "'Because + clause', không dùng trước danh từ." },
+      { "text": "Despite", "isCorrect": false, "rationale": "Mang nghĩa đối lập, không phù hợp." },
+      { "text": "In spite of", "isCorrect": false, "rationale": "Mang nghĩa đối lập, không phù hợp." }
+    ],
+    "hint": "Từ nối mang nghĩa 'theo như, dựa trên'.",
+    "code": "P5_037"
+  },
+  {
+    "question": "The ______ report indicated a significant drop in quarterly profits.",
+    "type": "participle",
+    "difficulty": "medium",
+    "options": [
+      { "text": "auditing", "isCorrect": false, "rationale": "V-ing chủ động, không phù hợp." },
+      { "text": "audited", "isCorrect": true, "rationale": "Chính xác. 'The report which was audited' → 'the audited report'." },
+      { "text": "audit", "isCorrect": false, "rationale": "Danh từ, không thể bổ nghĩa cho 'report'." },
+      { "text": "audits", "isCorrect": false, "rationale": "Động từ chia ngôi, không phù hợp." }
+    ],
+    "hint": "Báo cáo được kiểm toán → phân từ bị động.",
+    "code": "P5_038"
+  },
+  {
+    "question": "The email ______ to all employees yesterday contained important updates.",
+    "type": "voice",
+    "difficulty": "medium",
+    "options": [
+      { "text": "sent", "isCorrect": true, "rationale": "Chính xác. 'The email which was sent' → rút gọn 'the email sent'." },
+      { "text": "sending", "isCorrect": false, "rationale": "V-ing chủ động, không hợp lý." },
+      { "text": "sends", "isCorrect": false, "rationale": "Động từ chia ngôi, không phù hợp bổ nghĩa." },
+      { "text": "was sent", "isCorrect": false, "rationale": "Đã có động từ 'contained' → không thể thêm 'was sent'." }
+    ],
+    "hint": "Email được gửi → cần phân từ bị động.",
+    "code": "P5_039"
+  },
+  {
+    "question": "The building ______ was renovated last year now houses the IT department.",
+    "type": "relative-clause",
+    "difficulty": "medium",
+    "options": [
+      { "text": "who", "isCorrect": false, "rationale": "'Who' dùng cho người, không dùng cho vật." },
+      { "text": "which", "isCorrect": true, "rationale": "Chính xác. 'Which' thay thế 'the building' làm chủ ngữ." },
+      { "text": "whose", "isCorrect": false, "rationale": "Chỉ sở hữu, không phù hợp." },
+      { "text": "whom", "isCorrect": false, "rationale": "Tân ngữ chỉ người, không phù hợp." }
+    ],
+    "hint": "Đại từ quan hệ thay thế chủ ngữ chỉ vật.",
+    "code": "P5_040"
+  },
+  {
+    "question": "Neither the manager nor his assistants ______ able to attend the conference.",
+    "type": "agreement",
+    "difficulty": "hard",
+    "options": [
+      { "text": "is", "isCorrect": false, "rationale": "Động từ chia theo chủ ngữ gần nhất 'his assistants' (số nhiều)." },
+      { "text": "are", "isCorrect": true, "rationale": "Chính xác. 'Neither... nor' chia theo chủ ngữ gần nhất → 'assistants' số nhiều." },
+      { "text": "was", "isCorrect": false, "rationale": "Số ít, không phù hợp." },
+      { "text": "has been", "isCorrect": false, "rationale": "Số ít, không phù hợp." }
+    ],
+    "hint": "Quy tắc hòa hợp với 'Neither... nor'.",
+    "code": "P5_041"
+  },
+  {
+    "question": "The marketing team presented a ______ analysis of the campaign results.",
+    "type": "word-form",
+    "difficulty": "easy",
+    "options": [
+      { "text": "comprehensiveness", "isCorrect": false, "rationale": "Danh từ, không thể bổ nghĩa cho 'analysis'." },
+      { "text": "comprehensive", "isCorrect": true, "rationale": "Chính xác. Tính từ bổ nghĩa cho danh từ 'analysis'." },
+      { "text": "comprehensively", "isCorrect": false, "rationale": "Trạng từ, không bổ nghĩa cho danh từ." },
+      { "text": "comprehend", "isCorrect": false, "rationale": "Động từ, không thể đứng trước danh từ." }
+    ],
+    "hint": "Cần loại từ gì bổ nghĩa cho danh từ 'analysis'?",
+    "code": "P5_042"
+  },
+  {
+    "question": "The new system is far ______ than the previous one we used.",
+    "type": "comparison",
+    "difficulty": "easy",
+    "options": [
+      { "text": "efficient", "isCorrect": false, "rationale": "Thiếu dạng so sánh hơn với 'than'." },
+      { "text": "more efficient", "isCorrect": true, "rationale": "Chính xác. 'More efficient than' = hiệu quả hơn." },
+      { "text": "most efficient", "isCorrect": false, "rationale": "So sánh nhất, không phù hợp với 'than'." },
+      { "text": "efficiently", "isCorrect": false, "rationale": "Trạng từ, 'be' là linking verb cần tính từ." }
+    ],
+    "hint": "'Far' là intensifier + so sánh hơn.",
+    "code": "P5_043"
+  },
+  {
+    "question": "The cost of raw materials has increased significantly ______ the past few months.",
+    "type": "verb-tense",
+    "difficulty": "easy",
+    "options": [
+      { "text": "in", "isCorrect": true, "rationale": "Chính xác. 'In the past few months' dùng với thì hoàn thành." },
+      { "text": "since", "isCorrect": false, "rationale": "'Since + mốc thời gian', không dùng với khoảng thời gian." },
+      { "text": "for", "isCorrect": false, "rationale": "'For + khoảng thời gian' nhưng cần thì hoàn thành." },
+      { "text": "during", "isCorrect": false, "rationale": "'During' không phải dấu hiệu của thì hoàn thành." }
+    ],
+    "hint": "Cụm từ nào đi với Present Perfect?",
+    "code": "P5_044"
+  },
+  {
+    "question": "We need to come up ______ a solution to this problem before the deadline.",
+    "type": "vocabulary",
+    "difficulty": "easy",
+    "options": [
+      { "text": "to", "isCorrect": false, "rationale": "'Come to' = đi đến, không phù hợp." },
+      { "text": "with", "isCorrect": true, "rationale": "Chính xác. 'Come up with' = nghĩ ra, tìm ra (giải pháp)." },
+      { "text": "for", "isCorrect": false, "rationale": "Không phải collocation của 'come up'." },
+      { "text": "on", "isCorrect": false, "rationale": "'Come on' = thôi nào, không liên quan." }
+    ],
+    "hint": "Collocation mang nghĩa 'nghĩ ra'.",
+    "code": "P5_045"
+  },
+  {
+    "question": "Applicants must have a ______ understanding of financial principles.",
+    "type": "word-form",
+    "difficulty": "medium",
+    "options": [
+      { "text": "thoroughly", "isCorrect": false, "rationale": "Trạng từ, không bổ nghĩa cho danh từ 'understanding'." },
+      { "text": "thorough", "isCorrect": true, "rationale": "Chính xác. Tính từ bổ nghĩa cho danh từ." },
+      { "text": "thoroughness", "isCorrect": false, "rationale": "Danh từ, không thể đứng trước danh từ khác." },
+      { "text": "thoroughs", "isCorrect": false, "rationale": "Không phải từ tiếng Anh chuẩn." }
+    ],
+    "hint": "Vị trí trước danh từ cần loại từ gì?",
+    "code": "P5_046"
+  },
+  {
+    "question": "Please hand in your report ______ Friday at the latest.",
+    "type": "preposition",
+    "difficulty": "easy",
+    "options": [
+      { "text": "in", "isCorrect": false, "rationale": "'In Friday' không đúng." },
+      { "text": "at", "isCorrect": false, "rationale": "'At' dùng cho giờ/địa điểm." },
+      { "text": "by", "isCorrect": true, "rationale": "Chính xác. 'By Friday' = trước hoặc chậm nhất thứ Sáu." },
+      { "text": "on", "isCorrect": false, "rationale": "'On Friday' = vào thứ Sáu, không có nghĩa hạn chót." }
+    ],
+    "hint": "Giới từ nào mang nghĩa 'trước thời điểm'?",
+    "code": "P5_047"
+  },
+  {
+    "question": "The company decided to ______ its operations to Southeast Asia.",
+    "type": "vocabulary",
+    "difficulty": "medium",
+    "options": [
+      { "text": "extend", "isCorrect": true, "rationale": "Chính xác. 'Extend operations to' = mở rộng hoạt động đến." },
+      { "text": "expand", "isCorrect": false, "rationale": "'Expand' thường dùng nội động từ hoặc 'expand into'." },
+      { "text": "enlarge", "isCorrect": false, "rationale": "'Enlarge' = làm to hơn về kích thước, ít dùng với operations." },
+      { "text": "widen", "isCorrect": false, "rationale": "'Widen' = mở rộng bề ngang, không phù hợp." }
+    ],
+    "hint": "Động từ nào phù hợp với 'operations to'?",
+    "code": "P5_048"
+  },
+  {
+    "question": "She has been working for this company ______ she graduated from university.",
+    "type": "verb-tense",
+    "difficulty": "medium",
+    "options": [
+      { "text": "for", "isCorrect": false, "rationale": "'For + khoảng thời gian', không dùng với mốc." },
+      { "text": "since", "isCorrect": true, "rationale": "Chính xác. 'Since + mốc thời gian' → Present Perfect." },
+      { "text": "from", "isCorrect": false, "rationale": "'From... to...' không dùng với thì hoàn thành." },
+      { "text": "during", "isCorrect": false, "rationale": "'During' không phải dấu hiệu của thì hoàn thành." }
+    ],
+    "hint": "Dấu hiệu 'she graduated' là mốc thời gian → chọn từ gì?",
+    "code": "P5_049"
+  },
+  {
+    "question": "The hotel offers a wide ______ of services to its business guests.",
+    "type": "word-form",
+    "difficulty": "medium",
+    "options": [
+      { "text": "vary", "isCorrect": false, "rationale": "Động từ, không thể đứng sau tính từ 'wide'." },
+      { "text": "variety", "isCorrect": true, "rationale": "Chính xác. 'A wide variety of' = nhiều loại." },
+      { "text": "various", "isCorrect": false, "rationale": "Tính từ, không thể đứng sau mạo từ 'a'." },
+      { "text": "varied", "isCorrect": false, "rationale": "Tính từ/phân từ, không phù hợp cấu trúc." }
+    ],
+    "hint": "'A wide + ___ + of' → cần danh từ.",
+    "code": "P5_050"
+  },
+  {
+    "question": "Handling customer complaints ______ a great deal of patience and skill.",
+    "type": "agreement",
+    "difficulty": "medium",
+    "options": [
+      { "text": "require", "isCorrect": false, "rationale": "Chủ ngữ 'Handling' (V-ing) là số ít → động từ số ít." },
+      { "text": "requires", "isCorrect": true, "rationale": "Chính xác. V-ing làm chủ ngữ → động từ số ít." },
+      { "text": "are requiring", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." },
+      { "text": "have required", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." }
+    ],
+    "hint": "Chủ ngữ là V-ing → số ít hay nhiều?",
+    "code": "P5_051"
+  },
+  {
+    "question": "The employees were satisfied ______ the new working conditions.",
+    "type": "preposition",
+    "difficulty": "easy",
+    "options": [
+      { "text": "to", "isCorrect": false, "rationale": "'Satisfied to' không phải collocation chuẩn." },
+      { "text": "for", "isCorrect": false, "rationale": "Không phù hợp." },
+      { "text": "with", "isCorrect": true, "rationale": "Chính xác. 'Satisfied with' = hài lòng với." },
+      { "text": "about", "isCorrect": false, "rationale": "Không phải collocation của 'satisfied'." }
+    ],
+    "hint": "Collocation của tính từ 'satisfied'.",
+    "code": "P5_052"
+  },
+  {
+    "question": "The finance department, along with the auditors, ______ reviewing the annual report.",
+    "type": "agreement",
+    "difficulty": "hard",
+    "options": [
+      { "text": "are", "isCorrect": false, "rationale": "'Together with' không làm thay đổi số của chủ ngữ chính." },
+      { "text": "is", "isCorrect": true, "rationale": "Chính xác. Chủ ngữ chính 'The finance department' số ít." },
+      { "text": "were", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." },
+      { "text": "have been", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." }
+    ],
+    "hint": "Bỏ qua cụm 'along with...' xác định chủ ngữ chính.",
+    "code": "P5_053"
+  },
+  {
+    "question": "The company has decided to ______ the production of its flagship model.",
+    "type": "vocabulary",
+    "difficulty": "medium",
+    "options": [
+      { "text": "discontinue", "isCorrect": true, "rationale": "Chính xác. 'Discontinue production' = ngừng sản xuất." },
+      { "text": "uncontinue", "isCorrect": false, "rationale": "Không phải từ tiếng Anh chuẩn." },
+      { "text": "incontinue", "isCorrect": false, "rationale": "Không phải từ tiếng Anh chuẩn." },
+      { "text": "miscontinue", "isCorrect": false, "rationale": "Không phải từ tiếng Anh chuẩn." }
+    ],
+    "hint": "Tiền tố nào mang nghĩa 'ngừng'?",
+    "code": "P5_054"
+  },
+  {
+    "question": "The conference room on the third floor is currently ______ renovated.",
+    "type": "voice",
+    "difficulty": "medium",
+    "options": [
+      { "text": "being", "isCorrect": true, "rationale": "Chính xác. 'Is being renovated' = đang được cải tạo (bị động tiếp diễn)." },
+      { "text": "been", "isCorrect": false, "rationale": "Thiếu 'being' để tạo thể bị động tiếp diễn." },
+      { "text": "having", "isCorrect": false, "rationale": "Không phù hợp cấu trúc này." },
+      { "text": "had", "isCorrect": false, "rationale": "Quá khứ hoàn thành, không phù hợp với 'currently'." }
+    ],
+    "hint": "'Currently' → hiện tại + 'renovated' → thể gì?",
+    "code": "P5_055"
+  },
+  {
+    "question": "The accountant ______ was hired last month has already resigned.",
+    "type": "relative-clause",
+    "difficulty": "easy",
+    "options": [
+      { "text": "which", "isCorrect": false, "rationale": "'Which' dùng cho vật, không dùng cho người." },
+      { "text": "who", "isCorrect": true, "rationale": "Chính xác. 'Who' thay thế 'the accountant' làm chủ ngữ." },
+      { "text": "whose", "isCorrect": false, "rationale": "Chỉ sở hữu, không phù hợp." },
+      { "text": "whom", "isCorrect": false, "rationale": "Tân ngữ, không thể làm chủ ngữ của 'was hired'." }
+    ],
+    "hint": "Cần đại từ quan hệ làm chủ ngữ chỉ người.",
+    "code": "P5_056"
+  },
+  {
+    "question": "The ______ employees received a bonus for their excellent performance.",
+    "type": "participle",
+    "difficulty": "easy",
+    "options": [
+      { "text": "qualifying", "isCorrect": false, "rationale": "V-ing chủ động, không phù hợp." },
+      { "text": "qualified", "isCorrect": true, "rationale": "Chính xác. 'Employees who are qualified' → 'the qualified employees'." },
+      { "text": "qualification", "isCorrect": false, "rationale": "Danh từ, không thể bổ nghĩa cho 'employees'." },
+      { "text": "qualifies", "isCorrect": false, "rationale": "Động từ chia ngôi, không phù hợp." }
+    ],
+    "hint": "Nhân viên có đủ điều kiện → phân từ bị động.",
+    "code": "P5_057"
+  },
+  {
+    "question": "Customers who pay within 30 days will receive a 5% ______.",
+    "type": "word-form",
+    "difficulty": "medium",
+    "options": [
+      { "text": "discounting", "isCorrect": false, "rationale": "V-ing, không thể đứng sau mạo từ." },
+      { "text": "discounted", "isCorrect": false, "rationale": "Tính từ/phân từ, không thể làm tân ngữ." },
+      { "text": "discount", "isCorrect": true, "rationale": "Chính xác. 'Receive a discount' = nhận chiết khấu, danh từ." },
+      { "text": "discounts", "isCorrect": false, "rationale": "Danh từ số nhiều, không phù hợp với 'a'." }
+    ],
+    "hint": "Sau mạo từ 'a' cần loại từ gì?",
+    "code": "P5_058"
+  },
+  {
+    "question": "______ you finish the report early, please send it to my office.",
+    "type": "conjunction",
+    "difficulty": "easy",
+    "options": [
+      { "text": "If", "isCorrect": true, "rationale": "Chính xác. 'If' chỉ điều kiện." },
+      { "text": "Unless", "isCorrect": false, "rationale": "'Unless' = nếu không, mang nghĩa phủ định." },
+      { "text": "Although", "isCorrect": false, "rationale": "Mang nghĩa đối lập, không phù hợp." },
+      { "text": "Because", "isCorrect": false, "rationale": "Mang nghĩa nguyên nhân, không phù hợp." }
+    ],
+    "hint": "Liên từ chỉ điều kiện.",
+    "code": "P5_059"
+  },
+  {
+    "question": "The construction of the new office building ______ next month, ahead of schedule.",
+    "type": "verb-tense",
+    "difficulty": "medium",
+    "options": [
+      { "text": "complete", "isCorrect": false, "rationale": "Động từ nguyên mẫu chủ động, không phù hợp." },
+      { "text": "will be completed", "isCorrect": true, "rationale": "Chính xác. Bị động tương lai: 'will be completed'." },
+      { "text": "is completing", "isCorrect": false, "rationale": "Chủ động tiếp diễn, không phù hợp." },
+      { "text": "completed", "isCorrect": false, "rationale": "Quá khứ, không phù hợp với 'next month'." }
+    ],
+    "hint": "'Next month' + 'construction... building' → cần thể gì?",
+    "code": "P5_060"
+  },
+  {
+    "question": "We apologize ______ any inconvenience caused by the delay.",
+    "type": "preposition",
+    "difficulty": "easy",
+    "options": [
+      { "text": "about", "isCorrect": false, "rationale": "'Apologize about' không phải collocation chuẩn." },
+      { "text": "for", "isCorrect": true, "rationale": "Chính xác. 'Apologize for' = xin lỗi về." },
+      { "text": "to", "isCorrect": false, "rationale": "'Apologize to someone' = xin lỗi ai, không dùng với lý do." },
+      { "text": "with", "isCorrect": false, "rationale": "Không phải collocation của 'apologize'." }
+    ],
+    "hint": "Động từ 'apologize' đi với giới từ gì?",
+    "code": "P5_061"
+  },
+  {
+    "question": "The candidate ______ application was incomplete was not considered for the position.",
+    "type": "relative-clause",
+    "difficulty": "medium",
+    "options": [
+      { "text": "who", "isCorrect": false, "rationale": "'Who' là chủ ngữ, không thể hiện sở hữu." },
+      { "text": "whose", "isCorrect": true, "rationale": "Chính xác. 'Whose application' = đơn của ứng viên đó." },
+      { "text": "which", "isCorrect": false, "rationale": "'Which' dùng cho vật, không dùng cho người." },
+      { "text": "that", "isCorrect": false, "rationale": "'That' không thể hiện sở hữu." }
+    ],
+    "hint": "Đại từ quan hệ chỉ sở hữu cho người.",
+    "code": "P5_062"
+  },
+  {
+    "question": "A number of employees ______ chosen to participate in the pilot program.",
+    "type": "agreement",
+    "difficulty": "medium",
+    "options": [
+      { "text": "has been", "isCorrect": false, "rationale": "'A number of + N' → số nhiều." },
+      { "text": "have been", "isCorrect": true, "rationale": "Chính xác. 'A number of employees' → số nhiều." },
+      { "text": "is", "isCorrect": false, "rationale": "Số ít, không phù hợp." },
+      { "text": "was", "isCorrect": false, "rationale": "Số ít quá khứ, không phù hợp." }
+    ],
+    "hint": "Phân biệt 'a number of' vs 'the number of'.",
+    "code": "P5_063"
   }
 ]

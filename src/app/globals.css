@@ -1,0 +1,413 @@
+@import "tailwindcss";
+/* @import "tw-animate-css"; */
+/* @import "shadcn/tailwind.css"; */
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* --- BẢNG MÀU GỐC ĐÃ QUY ĐỔI SANG OKLCH --- */
+  --white: oklch(1 0 0);
+  --black: oklch(0 0 0);
+
+  /* Green Teal */
+  --green-teal-default: oklch(0.504 0.125 192.5); /* #008081 */
+  --green-teal-80: oklch(0.504 0.125 192.5 / 0.8);
+  --green-teal-60: oklch(0.50\4 0.125 192.5 / 0.6);
+  --green-teal-40: oklch(0.504 0.125 192.5 / 0.4);
+  --green-teal-20: oklch(0.504 0.125 192.5 / 0.2);
+  --green-teal-10: oklch(0.504 0.125 192.5 / 0.1);
+  --green-teal-5: oklch(0.504 0.125 192.5 / 0.05);
+  --green-bright: oklch(0.965 0.015 192.5); /* #eef7f7 */
+  --green-dark: oklch(0.402 0.096 192.5); /* #0c6465 */
+  --primary-teal: oklch(0.358 0.081 192.5); /* #185858 */
+  --mint: oklch(0.898 0.035 192.5); /* #cce5e7 */
+
+  /* Pale Teal & Leaf */
+  --pale-teal-default: oklch(0.758 0.081 169.3); /* #7bbfac */
+  --pale-teal-80: oklch(0.758 0.081 169.3 / 0.8);
+  --pale-teal-60: oklch(0.758 0.081 169.3 / 0.6);
+  --pale-teal-40: oklch(0.758 0.081 169.3 / 0.4);
+  --pale-teal-20: oklch(0.758 0.081 169.3 / 0.2);
+  --pale-teal-10: oklch(0.758 0.081 169.3 / 0.1);
+  --pale-teal-5: oklch(0.758 0.081 169.3 / 0.05);
+  --pale-light: oklch(0.812 0.083 169.3); /* #90d3c6 */
+  --leaf: oklch(0.942 0.024 169.3); /* #e2f2eb */
+
+  /* Safety Orange */
+  --safety-orange-default: oklch(0.752 0.145 44.5); /* #f99974 */
+  --safety-orange-80: oklch(0.752 0.145 44.5 / 0.8);
+  --safety-orange-60: oklch(0.752 0.145 44.5 / 0.6);
+  --safety-orange-40: oklch(0.752 0.145 44.5 / 0.4);
+  --safety-orange-20: oklch(0.752 0.145 44.5 / 0.2);
+  --safety-orange-10: oklch(0.752 0.145 44.5 / 0.1);
+  --safety-orange-5: oklch(0.752 0.145 44.5 / 0.05);
+
+  /* Steel Blue */
+  --steel-blue-default: oklch(0.732 0.072 254.2); /* #99afd1 */
+  --steel-blue-80: oklch(0.732 0.072 254.2 / 0.8);
+  --steel-blue-60: oklch(0.732 0.072 254.2 / 0.6);
+  --steel-blue-40: oklch(0.732 0.072 254.2 / 0.4);
+  --steel-blue-20: oklch(0.732 0.072 254.2 / 0.2);
+  --steel-blue-10: oklch(0.732 0.072 254.2 / 0.1);
+  --steel-blue-5: oklch(0.732 0.072 254.2 / 0.05);
+
+  /* Sand */
+  --sand-default: oklch(0.859 0.046 84.8); /* #e3d3b2 */
+  --sand-80: oklch(0.859 0.046 84.8 / 0.8);
+  --sand-60: oklch(0.859 0.046 84.8 / 0.6);
+  --sand-40: oklch(0.859 0.046 84.8 / 0.4);
+  --sand-20: oklch(0.859 0.046 84.8 / 0.2);
+  --sand-10: oklch(0.859 0.046 84.8 / 0.1);
+  --sand-5: oklch(0.859 0.046 84.8 / 0.05);
+
+  /* Neutrals */
+  --neutral-100: oklch(0 0 0);          /* #000000 */
+  --neutral-90: oklch(0.178 0 0);       /* #171717 */
+  --neutral-80: oklch(0.531 0.004 192.5);/* #6e7373 */
+  --neutral-70: oklch(0.347 0 0);       /* #444444 */
+  --neutral-60: oklch(0.428 0 0);       /* #5a5a5a */
+  --neutral-50: oklch(0.512 0 0);       /* #707070 */
+  --neutral-40: oklch(0.597 0 0);       /* #878787 */
+  --neutral-30: oklch(0.681 0 0);       /* #9e9e9e */
+  --neutral-20: oklch(0.763 0 0);       /* #b4b4b4 */
+  --neutral-10: oklch(0.844 0 0);       /* #cbcbcb */
+  --neutral-5: oklch(0.958 0 0);        /* #f2f2f2 */
+  --neutral-2: oklch(0.891 0 0);        /* #dddddd */
+  --neutral-0: oklch(1 0 0);            /* #ffffff */
+
+  --subtext-100: oklch(0.427 0.004 192.5); /* #515858 */
+  --subtext-90: oklch(0.481 0.004 192.5);  /* #606666 */
+  --subtext-50: oklch(0.677 0.004 192.5);  /* #989c9c */
+  --subtext-2: oklch(0.898 0 0);           /* #dfdfdf */
+
+  --peach-cream: oklch(0.962 0.025 58.2); /* #fff1e6 */
+  --pale-grey: oklch(0.985 0.004 74.2);   /* #fbf9f5 */
+  --near-white: oklch(0.989 0 0);         /* #fcfcfc */
+  --hover-grey: oklch(0.887 0.005 155.6); /* #d7dedc */
+  --ghost-white: oklch(0.971 0.004 240.5);/* #f5f6f7 */
+  --auth-layout: oklch(0.925 0.038 169.3);/* #ceede7 */
+
+  /* States */
+  --success-default: oklch(0.758 0.081 169.3); /* #7bbfac */
+  --info-default: oklch(0.734 0.079 242.2);    /* #7eafd7 */
+  --warning-default: oklch(0.742 0.141 63.5);   /* #eca458 */
+
+  --error-soft: oklch(0.78 0.10 20);
+  --error-default: oklch(0.69 0.17 18);
+  --error-hover: oklch(0.63 0.20 20);
+  --error-active: oklch(0.57 0.23 24);
+  --error-foreground: oklch(0.98 0 0);
+  --error-default: oklch(0.692 0.165 17.5);     /* #ff696e */
+
+  /* --- SHADCN MAPPING SYSTEM --- */
+  --background: var(--green-bright); /* Bạn đã chọn màu này làm nền chính */
+  --foreground: var(--neutral-90);
+
+  --primary: var(--primary-teal);
+  --primary-foreground: var(--neutral-0);
+
+  --secondary: var(--green-bright);
+  --secondary-foreground: var(--green-dark);
+
+  --muted: var(--neutral-5);
+  --muted-foreground: var(--subtext-90);
+
+  --border: var(--neutral-2);
+  --input: var(--neutral-10);
+
+  --destructive: var(--error-default);
+  --destructive-foreground: var(--neutral-0);
+
+  --ring: var(--green-teal-default);
+
+  --card: var(--neutral-0);
+  --card-foreground: var(--neutral-90);
+
+  --popover: var(--neutral-0);
+  --popover-foreground: var(--neutral-90);
+
+  --accent: var(--green-teal-5);
+  --accent-foreground: var(--green-teal-default);
+
+  --radius: 0.625rem;
+
+  /* Sidebar */
+  --sidebar: var(--neutral-0); /* Để sidebar màu trắng phân biệt với nền green-bright */
+  --sidebar-foreground: var(--neutral-90);
+  --sidebar-primary: var(--primary-teal);
+  --sidebar-primary-foreground: var(--neutral-0);
+  --sidebar-accent: var(--green-teal-5);
+  --sidebar-accent-foreground: var(--primary-teal);
+  --sidebar-border: var(--neutral-2);
+  --sidebar-ring: var(--green-teal-default);
+
+  --shadow-tab-active:
+    0 4px 6px -1px oklch(0 0 0 / 0.1),
+    0 2px 4px -2px oklch(0 0 0 / 0.1);
+
+  --shadow-tab-active-dark:
+    0 4px 6px -1px oklch(0 0 0 / 0.4);
+
+  --shadow-tab-inactive:
+    0 4px 12px oklch(0 0 0 / 0.15);
+
+}
+
+/* --- DARK MODE CONFIG --- */
+.dark {
+  --background: var(--neutral-90);
+  --foreground: var(--near-white);
+
+  --card: oklch(0.22 0.02 192.5);
+  --card-foreground: var(--near-white);
+
+  --popover: oklch(0.22 0.02 192.5);
+  --popover-foreground: var(--near-white);
+
+  --primary: var(--pale-light);
+  --primary-foreground: var(--primary-teal);
+
+  --secondary: var(--green-dark);
+  --secondary-foreground: var(--green-bright);
+
+  --muted: oklch(0.25 0.01 192.5);
+  --muted-foreground: var(--neutral-30);
+
+  --accent: var(--green-teal-20);
+  --accent-foreground: var(--pale-light);
+
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 18%);
+  
+  --ring: var(--pale-teal-default);
+
+  --sidebar: oklch(0.18 0.02 192.5);
+  --sidebar-foreground: var(--pale-light);
+  --sidebar-primary: var(--pale-teal-default);
+  --sidebar-primary-foreground: var(--neutral-90);
+  --sidebar-accent: var(--green-teal-20);
+  --sidebar-accent-foreground: var(--white);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: var(--pale-teal-default);
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+
+  /* --- 1. CUSTOM DANH SÁCH MÀU ĐỦ CLASS TIỆN ÍCH --- */
+  
+  /* Green Teal Utilities */
+  --color-green-teal: var(--green-teal-default);
+  --color-green-teal-80: var(--green-teal-80);
+  --color-green-teal-60: var(--green-teal-60);
+  --color-green-teal-40: var(--green-teal-40);
+  --color-green-teal-20: var(--green-teal-20);
+  --color-green-teal-10: var(--green-teal-10);
+  --color-green-teal-5: var(--green-teal-5);
+  --color-green-bright: var(--green-bright);
+  --color-green-dark: var(--green-dark);
+  --color-primary-teal: var(--primary-teal);
+  --color-mint: var(--mint);
+
+  /* Pale Teal & Leaf Utilities */
+  --color-mint: var(--pale-teal-default);
+  --color-pale-teal-80: var(--pale-teal-80);
+  --color-pale-teal-60: var(--pale-teal-60);
+  --color-pale-teal-40: var(--pale-teal-40);
+  --color-pale-teal-20: var(--pale-teal-20);
+  --color-pale-teal-10: var(--pale-teal-10);
+  --color-pale-teal-5: var(--pale-teal-5);
+  --color-pale-light: var(--pale-light);
+  --color-leaf: var(--leaf);
+
+  /* Safety Orange Utilities */
+  --color-safety-orange: var(--safety-orange-default);
+  --color-safety-orange-80: var(--safety-orange-80);
+  --color-safety-orange-60: var(--safety-orange-60);
+  --color-safety-orange-40: var(--safety-orange-40);
+  --color-safety-orange-20: var(--safety-orange-20);
+  --color-safety-orange-10: var(--safety-orange-10);
+  --color-safety-orange-5: var(--safety-orange-5);
+
+  /* Steel Blue Utilities */
+  --color-steel-blue: var(--steel-blue-default);
+  --color-steel-blue-80: var(--steel-blue-80);
+  --color-steel-blue-60: var(--steel-blue-60);
+  --color-steel-blue-40: var(--steel-blue-40);
+  --color-steel-blue-20: var(--steel-blue-20);
+  --color-steel-blue-10: var(--steel-blue-10);
+  --color-steel-blue-5: var(--steel-blue-5);
+
+  /* Sand Utilities */
+  --color-sand: var(--sand-default);
+  --color-sand-80: var(--sand-80);
+  --color-sand-60: var(--sand-60);
+  --color-sand-40: var(--sand-40);
+  --color-sand-20: var(--sand-20);
+  --color-sand-10: var(--sand-10);
+  --color-sand-5: var(--sand-5);
+
+  /* Neutrals Utilities */
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-90: var(--neutral-90);
+  --color-neutral-80: var(--neutral-80);
+  --color-neutral-70: var(--neutral-70);
+  --color-neutral-60: var(--neutral-60);
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-40: var(--neutral-40);
+  --color-neutral-30: var(--neutral-30);
+  --color-neutral-20: var(--neutral-20);
+  --color-neutral-10: var(--neutral-10);
+  --color-neutral-5: var(--neutral-5);
+  --color-neutral-2: var(--neutral-2);
+  --color-neutral-0: var(--neutral-0);
+
+  /* Subtexts & Special App Layout Backgrounds */
+  --color-subtext-100: var(--subtext-100);
+  --color-subtext-90: var(--subtext-90);
+  --color-subtext-50: var(--subtext-50);
+  --color-subtext-2: var(--subtext-2);
+  --color-peach-cream: var(--peach-cream);
+  --color-pale-grey: var(--pale-grey);
+  --color-near-white: var(--near-white);
+  --color-hover-grey: var(--hover-grey);
+  --color-ghost-white: var(--ghost-white);
+  --color-auth-layout: var(--auth-layout);
+
+  /* States Utilities */
+  --color-success: var(--success-default);
+  --color-success-soft: var(--green-teal-10);
+  --color-success-hover: oklch(0.42 0.10 192.5);
+  --color-success-foreground: var(--green-dark);
+
+  --color-info: var(--info-default);
+  --color-info-soft: var(--steel-blue-10);
+  --color-info-foreground: var(--steel-blue-default);
+
+  --color-warning: var(--warning-default);
+  --color-warning-soft: var(--safety-orange-10);
+  --color-warning-foreground: var(--safety-orange-default);
+
+  --color-error-soft: oklch(0.78 0.10 20);
+  --color-error-default: oklch(0.69 0.17 18);
+  --color-error-hover: oklch(0.63 0.20 20);
+  --color-error-active: oklch(0.57 0.23 24);
+  --color-error-foreground: oklch(0.98 0 0);
+  --color-error: var(--error-default);
+
+  /* Destructive (shadcn system alias) */
+  --color-destructive: var(--error-default);
+  --color-destructive-foreground: var(--neutral-0);
+
+  /* Gradient */
+  --image-gradient-green: linear-gradient(90deg, oklch(0.45 0.09 192.5), var(--mint));
+
+  /* System Shadcn Variables Link to Theme classes */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--green-teal-80);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  /* Sidebar Tokens */
+  /* --color-sidebar: var(--sidebar); */
+  --color-sidebar: var(--neutral-0);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Radius calculation */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+
+    /* Notification tabs */
+  --color-tab-inactive-bg: oklch(1 0 0 / 0.10);
+  --color-tab-inactive-text: oklch(1 0 0 / 0.80);
+  --color-tab-inactive-hover: oklch(1 0 0 / 0.20);
+  --color-tab-inactive-border: oklch(1 0 0 / 0.05);
+
+  --color-tab-active-bg: var(--neutral-0);
+  --color-tab-active-text: var(--green-teal-default);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@utility tab-switcher-container {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--green-teal-60);
+  border-radius: calc(var(--radius) * 3);
+  box-shadow: inset 0px 1px 2px 0px oklch(1 0 0 / 0.4);
+}
+
+@utility tab-switcher-btn {
+  flex: 1 1 0%;
+  padding-block: 0.375rem;
+  border-radius: 0.375rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  transition: all 200ms;
+
+  @media (min-width: 640px) {
+    padding-block: 0.5rem;
+    border-radius: calc(var(--radius) * 3);
+    font-size: 0.75rem;
+  }
+}
+
+@utility tab-switcher-btn-active {
+  background-color: var(--neutral-0);
+  color: var(--green-teal-default);
+  box-shadow: var(--shadow-tab-active);
+}
+
+.dark .tab-switcher-btn-active {
+  box-shadow: var(--shadow-tab-active-dark);
+}
+
+@utility tab-switcher-btn-inactive {
+  background-color: var(--color-tab-inactive-bg);
+  color: var(--color-tab-inactive-text);
+  border: 1px solid var(--color-tab-inactive-border);
+  box-shadow: var(--shadow-tab-inactive);
+
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE, Edge cũ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
