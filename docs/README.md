@@ -6,18 +6,15 @@
 
 ## Database (Prisma)
 
-- [Prisma v7 Notes](database/PRISMA_V7_NOTES.md) — khác biệt so với staged docs
-- [Stage 1: Schema](database/STAGE_1_SCHEMA.md) — định nghĩa models
 - [Stage 2: Migration](database/STAGE_2_MIGRATION.md) — tạo database
-- [Stage 3: Seed](database/STAGE_3_SEED.md) — dữ liệu mẫu
-- [Stage 4: Client](database/STAGE_4_CLIENT.md) — PrismaClient trong code
-- [Stage 5: Advanced](database/STAGE_5_ADVANCED.md) — query nâng cao
-- [Cheatsheet](database/CHEATSHEET.md) — tra cứu nhanh
+- [Schema Reference](database/SCHEMA_REFERENCE.md) — chi tiết models, enums, relations
 
 ## Architecture
 
 - [Architecture](architecture/ARCHITECTURE.md) — tổng quan kiến trúc
-- [Decomposition](architecture/DECOMPOSE_INDEX_HTML.md) — từ HTML → Next.js
+- [Quiz Flow](architecture/quiz-flow.md) — luồng dữ liệu feature quiz
+- [Quiz Flow Detailed](architecture/quiz-flow-detailed.md) — giải thích chi tiết từng file quiz
+- [Feature Structure](architecture/feature-structure.md) — pattern feature module
 
 ## Content
 
@@ -25,9 +22,14 @@
 
 ## Tech Stack
 
-- [Final Stack](tech-stack/tech_stack_final.md) — công nghệ đã chọn
 - [Package Cheatsheet](tech-stack/package_cheatsheet.md) — lệnh package thường dùng
 
-## Learning
+## Archive (lịch sử / không còn active)
 
-- [Learning Mapping](learning/learning_mapping.md) — từ tnp-ui-web → stack mới
+- [Decomposition HTML → Next.js](archive/DECOMPOSE_INDEX_HTML.md) — kế hoạch chuyển đổi từ prototype
+- [Tech Stack Final](archive/tech_stack_final.md) — quyết định công nghệ ban đầu
+- [Learning Mapping](archive/learning_mapping.md) — so sánh stack cũ → mới (cá nhân)
+
+## Plans (tính năng tương lai)
+
+- [AI Prompt Spec](plans/ai_prompt_spec.md) — spec tích hợp AI sinh câu hỏi

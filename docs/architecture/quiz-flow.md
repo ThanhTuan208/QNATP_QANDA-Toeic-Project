@@ -2,6 +2,8 @@
 
 Feature path: `src/features/quiz/`
 
+> 📖 **Chi tiết từng file code (input/output, flow, data transform):** [quiz-flow-detailed.md](quiz-flow-detailed.md)
+
 ---
 
 ## 1. Tổng Quan Layers
@@ -34,30 +36,32 @@ Quiz feature được chia làm 4 tầng, mỗi tầng có 1 responsibility duy 
 
 ### File index
 
-| File | Layer | Lines | Responsibility |
-|---|---|---|---|
-| `types.ts` | Definition | 15 | Interfaces: `Question`, `AttemptResult`, `Option`, `OptionStatus`, `QuizState` |
-| `constants.ts` | Definition | 65 | Label maps, TYPE_CONTEXT, OPTION_LABELS, VALID_QUIZ_TYPES |
-| `api/quiz.api.ts` | Network | 35 | `fetchQuestions()`, `submitAttempt()` |
-| `controllers/quiz.controller.ts` | Pure Logic | 90 | `generateTemplate()`, `generatePrompt()`, `parseImportedJSON()`, `calculateAccuracy()` |
-| `controllers/question.controller.ts` | Pure Logic | 13 | `getOptionStatus()` |
-| `controllers/theory.controller.tsx` | Pure Logic | 620 | `THEORY_DATA`, `getTheoryContent()` |
-| `hooks/useQuizQuestions.ts` | Orchestration | 55 | Load questions, track currentIdx |
-| `hooks/useQuizAttempt.ts` | Orchestration | 95 | Answer flow state machine (useReducer) |
-| `hooks/useQuizImport.ts` | Orchestration | 58 | Import dialog state |
-| `hooks/useQuizEngine.ts` | Orchestration | 95 | Compose 3 hooks trên, wire callbacks |
-| `components/QuizEngine/QuizEngine.tsx` | Presentation | 160 | Smart component: call useQuizEngine, render children |
-| `components/ImportDialog/ImportDialog.tsx` | Presentation | 90 | Dumb dialog: render + call controller for prompt |
-| `components/QuestionCard/QuestionCard.tsx` | Presentation | 65 | Dumb: question text + options + hint |
-| `components/OptionButton/OptionButton.tsx` | Presentation | 65 | Dumb: single option button with status styling |
-| `components/RationaleBox/RationaleBox.tsx` | Presentation | 50 | Dumb: correct/incorrect + rationale + next |
-| `sections/TheorySection/TheorySection.tsx` | Presentation | 12 | Dumb: render theory content |
-| `sections/QuizSection/QuizSection.tsx` | Presentation | 54 | Layout: QuizEngine + sidebar progress |
-| `sections/PracticeHeaderSection/PracticeHeaderSection.tsx` | Presentation | 17 | Dumb: header with type label |
+| File | Layer | Lines | Responsibility | Chi tiết |
+|---|---|---|---|---|
+| `types.ts` | Definition | 15 | Interfaces: `Question`, `AttemptResult`, `Option`, `OptionStatus`, `QuizState` | [📖](quiz-flow-detailed.md#2-typests--định-nghĩa-dữ-liệu) |
+| `constants.ts` | Definition | 65 | Label maps, TYPE_CONTEXT, OPTION_LABELS, VALID_QUIZ_TYPES | [📖](quiz-flow-detailed.md#3-constantsts--hằng-số) |
+| `api/quiz.api.ts` | Network | 35 | `fetchQuestions()`, `submitAttempt()` | [📖](quiz-flow-detailed.md#4-apiquizapits--network-layer) |
+| `controllers/quiz.controller.ts` | Pure Logic | 90 | `generateTemplate()`, `generatePrompt()`, `parseImportedJSON()`, `calculateAccuracy()` | [📖](quiz-flow-detailed.md#5-controllersquizcontrollerts--pure-logic) |
+| `controllers/question.controller.ts` | Pure Logic | 13 | `getOptionStatus()` | [📖](quiz-flow-detailed.md#6-controllersquestioncontrollerts--option-status-logic) |
+| `controllers/theory.controller.tsx` | Pure Logic | 620 | `THEORY_DATA`, `getTheoryContent()` | [📖](quiz-flow-detailed.md#7-controllerstheorycontrollertsx--lý-thuyết) |
+| `hooks/useQuizQuestions.ts` | Orchestration | 55 | Load questions, track currentIdx | [📖](quiz-flow-detailed.md#8-hooksusequizquestionsts--quản-lý-danh-sách-câu-hỏi) |
+| `hooks/useQuizAttempt.ts` | Orchestration | 95 | Answer flow state machine (useReducer) | [📖](quiz-flow-detailed.md#9-hooksusequizattemptts--state-machine-trả-lời) |
+| `hooks/useQuizImport.ts` | Orchestration | 58 | Import dialog state | [📖](quiz-flow-detailed.md#10-hooksusequizimportts--import-dialog) |
+| `hooks/useQuizEngine.ts` | Orchestration | 95 | Compose 3 hooks trên, wire callbacks | [📖](quiz-flow-detailed.md#11-hooksusequizenginets--orchestrator) |
+| `components/QuizEngine/QuizEngine.tsx` | Presentation | 160 | Smart component: call useQuizEngine, render children | [📖](quiz-flow-detailed.md#12-componentsquizenginequizenginetsx--smart-component) |
+| `components/ImportDialog/ImportDialog.tsx` | Presentation | 90 | Dumb dialog: render + call controller for prompt | [📖](quiz-flow-detailed.md#16-componentsimportdialogimportdialogtsx) |
+| `components/QuestionCard/QuestionCard.tsx` | Presentation | 65 | Dumb: question text + options + hint | [📖](quiz-flow-detailed.md#13-componentsquestioncardquestioncardtsx) |
+| `components/OptionButton/OptionButton.tsx` | Presentation | 65 | Dumb: single option button with status styling | [📖](quiz-flow-detailed.md#14-componentsoptionbuttonoptionbuttontsx) |
+| `components/RationaleBox/RationaleBox.tsx` | Presentation | 50 | Dumb: correct/incorrect + rationale + next | [📖](quiz-flow-detailed.md#15-componentsrationaleboxrationaleboxtsx) |
+| `sections/TheorySection/TheorySection.tsx` | Presentation | 12 | Dumb: render theory content | [📖](quiz-flow-detailed.md#18-sectionstheorysectiontheorysectiontsx) |
+| `sections/QuizSection/QuizSection.tsx` | Presentation | 54 | Layout: QuizEngine + sidebar progress | [📖](quiz-flow-detailed.md#17-sectionsquizsectionquizsectiontsx) |
+| `sections/PracticeHeaderSection/PracticeHeaderSection.tsx` | Presentation | 17 | Dumb: header with type label | [📖](quiz-flow-detailed.md#19-sectionspracticeheadersectionpracticeheadersectiontsx) |
 
 ---
 
 ## 2. Data Flow Chi Tiết
+
+> Chi tiết từng file: [`page.tsx` entry](quiz-flow-detailed.md#1-entry-point-page-server-component) · [`useQuizQuestions`](quiz-flow-detailed.md#8-hooksusequizquestionsts--quản-lý-danh-sách-câu-hỏi) · [`useQuizAttempt`](quiz-flow-detailed.md#9-hooksusequizattemptts--state-machine-trả-lời) · [`useQuizImport`](quiz-flow-detailed.md#10-hooksusequizimportts--import-dialog) · [`useQuizEngine`](quiz-flow-detailed.md#11-hooksusequizenginets--orchestrator)
 
 ### 2a. Khởi tạo Quiz (Page Load)
 
@@ -120,6 +124,8 @@ QuizEngine là **duy nhất cần biết về orchestration**. Nếu QuestionCar
 - Không thể tái sử dụng ở màn hình khác
 - Phá vỡ luồng dữ liệu 1 chiều (parent → child props)
 
+> Chi tiết: [`useQuizAttempt` state machine](quiz-flow-detailed.md#9-hooksusequizattemptts--state-machine-trả-lời) · [`quiz.api.ts` submitAttempt](quiz-flow-detailed.md#4-apiquizapits--network-layer) · [`OptionButton`](quiz-flow-detailed.md#14-componentsoptionbuttonoptionbuttontsx)
+
 ### 2b. User Chọn Đáp Án
 
 ```
@@ -161,6 +167,8 @@ useQuizEngine.handleSelect
 
 Reducer cập nhật `state.correctCount` cho lần render tiếp theo. Callback (`onStatsUpdate`) cần `newCorrect` **ngay lập tức** để parent cập nhật stats mà ko cần chờ re-render. Công thức `state.correctCount + (isCorrect ? 1 : 0)` luôn khớp với reducer vì cả 2 đều dùng `state.correctCount` từ cùng 1 render.
 
+> Chi tiết: [`handleNext` trong orchestrator](quiz-flow-detailed.md#functions-tự-định-nghĩa) · [`advanceQuestion`](quiz-flow-detailed.md#flow-thực-thi-1)
+
 ### 2c. Click "Next Question"
 
 ```
@@ -187,6 +195,8 @@ Vì nó cần phối hợp 2 hooks khác nhau:
 - `questionsHook.advanceQuestion()` — chuyển câu hỏi
 
 Nếu `handleNext` nằm trong `useQuizAttempt`, attempt hook sẽ phải biết về questions hook → tạo dependency vòng. Orchestrator giải quyết vấn đề này bằng cách đứng giữa 2 hooks.
+
+> Chi tiết: [`useQuizImport`](quiz-flow-detailed.md#10-hooksusequizimportts--import-dialog) · [`quiz.controller` pure functions](quiz-flow-detailed.md#5-controllersquizcontrollerts--pure-logic) · [`ImportDialog`](quiz-flow-detailed.md#16-componentsimportdialogimportdialogtsx)
 
 ### 2d. Import Dialog
 
@@ -234,6 +244,8 @@ QuizEngine.handleSubmitImport
 - Dễ test: `expect(parseImportedJSON(json, 'word-form')).toEqual([...])`
 - Có thể reuse ở feature khác (admin import)
 
+> Chi tiết: [`reset` trong orchestrator](quiz-flow-detailed.md#functions-tự-định-nghĩa)
+
 ### 2e. Reset Quiz
 
 ```
@@ -250,6 +262,8 @@ QuizEngine.reset
 ```
 
 ---
+
+> Chi tiết: [`useQuizAttempt` reducer](quiz-flow-detailed.md#state-machine-usereducer)
 
 ## 3. State Machine (useReducer)
 
@@ -298,6 +312,8 @@ State của questions:
 - `useState` đơn giản hơn đọc, đủ cho 3 biến ít phụ thuộc
 
 ---
+
+> Chi tiết từng component: [`QuizEngine`](quiz-flow-detailed.md#12-componentsquizenginequizenginetsx--smart-component) · [`QuestionCard`](quiz-flow-detailed.md#13-componentsquestioncardquestioncardtsx) · [`OptionButton`](quiz-flow-detailed.md#14-componentsoptionbuttonoptionbuttontsx) · [`RationaleBox`](quiz-flow-detailed.md#15-componentsrationaleboxrationaleboxtsx) · [`ImportDialog`](quiz-flow-detailed.md#16-componentsimportdialogimportdialogtsx)
 
 ## 4. Component Tree & Data Flow
 
@@ -461,4 +477,12 @@ export default async function PracticeTypePage({ params }) {
 `loadQuestions()` dùng `fs.readFileSync` — chỉ chạy được ở server component. Kết quả được truyền xuống client component (`QuizSection`) qua props. Client ko cần gọi API lần nào nếu đã có data từ server.
 
 Nếu ko có `initialQuestions` (VD: truy cập từ link ko có data file), `useQuizQuestions` sẽ tự động fetch từ `/api/questions/random` ở client.
+
+---
+
+## 8. Tài liệu tham khảo
+
+| File | Mô tả |
+|---|---|
+| [quiz-flow-detailed.md](quiz-flow-detailed.md) | Giải thích chi tiết từng file: input/output, flow thực thi, data transform, mapping controller → hook → component |
 

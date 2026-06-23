@@ -95,9 +95,8 @@ src/app/
 │   ├── dashboard/
 │   │   └── page.tsx         ← Thống kê cá nhân (doughnut chart, lịch sử)
 │   ├── practice/
-│   │   ├── page.tsx         ← Chọn dạng câu hỏi + độ khó
-│   │   └── session/
-│   │       └── page.tsx     ← Quiz engine (câu hỏi, options, submit, rationale)
+│   │   └── [type]/
+│   │       └── page.tsx     ← Quiz engine (câu hỏi, lý thuyết, submit theo type)
 │   └── admin/
 │       ├── page.tsx         ← Admin dashboard (overview)
 │       └── questions/
@@ -113,7 +112,7 @@ src/app/
     │   ├── route.ts         ← GET list, POST create question
     │   ├── random/route.ts  ← GET random question (có filter type/difficulty)
     │   └── [id]/route.ts    ← GET, PUT, DELETE 1 question
-    ├── attempt/
+    ├── attempts/
     │   └── route.ts         ← POST submit answer + lưu kết quả
     └── stats/
         └── route.ts         ← GET user statistics (correct rate, history)
@@ -156,10 +155,25 @@ src/features/
 │
 ├── quiz/
 │   ├── types.ts             ← Kiểu: Question, Option, Attempt, QuizState
+│   ├── constants.ts         ← Label maps, OPTION_LABELS, VALID_QUIZ_TYPES
+│   ├── api/
+│   │   └── quiz.api.ts      ← fetchQuestions(), submitAttempt()
+│   ├── controllers/
+│   │   ├── quiz.controller.ts     ← generateTemplate, generatePrompt, parseImportedJSON
+│   │   ├── question.controller.ts ← getOptionStatus()
+│   │   └── theory.controller.tsx  ← THEORY_DATA, getTheoryContent()
+│   ├── hooks/
+│   │   ├── useQuizQuestions.ts    ← Load questions + current index
+│   │   ├── useQuizAttempt.ts      ← Answer flow state machine (useReducer)
+│   │   ├── useQuizImport.ts       ← Import dialog state
+│   │   └── useQuizEngine.ts       ← Orchestrator: compose 3 hooks trên
 │   └── components/
-│       ├── QuestionCard.tsx ← Render question text + 4 options
-│       ├── OptionButton.tsx ← 1 button đáp án (A/B/C/D) + trạng thái
-│       └── RationaleBox.tsx ← Hiển thị giải thích sau khi chọn
+│       ├── QuizEngine/       ← Smart component: call useQuizEngine, render children
+│       ├── QuestionCard/     ← Render question text + 4 options
+│       ├── OptionButton/     ← 1 button đáp án (A/B/C/D) + trạng thái
+│       ├── RationaleBox/     ← Hiển thị giải thích sau khi chọn
+│       ├── ImportDialog/     ← Dialog nhập JSON câu hỏi
+│       └── sections/         ← Feature sections (QuizSection, TheorySection, PracticeHeaderSection)
 │
 └── dashboard/
     ├── types.ts             ← Kiểu: Stats, ChartData, AttemptHistory
@@ -173,8 +187,10 @@ src/features/
 ```
 features/{tên}/
 ├── types.ts                 ← Định nghĩa interface/types riêng cho feature đó
+├── constants.ts             ← Hằng số riêng của feature
 ├── schemas/                 ← Zod validation (nếu có form)
 ├── api/                     ← API call functions (nếu cần, dùng fetch)
+├── controllers/             ← Pure logic, không side-effect, có thể test unit (nếu cần)
 ├── hooks/                   ← Custom hooks (nếu có logic phức tạp)
 └── components/              ← UI components của riêng feature đó
 ```

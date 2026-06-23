@@ -67,7 +67,7 @@ pnpm add @auth/prisma-adapter    # Prisma adapter cho NextAuth
 |------|---------|
 | `src/lib/auth.ts` | NextAuth config |
 | `src/app/api/auth/[...nextauth]/route.ts` | API route auth |
-| `src/app/api/auth/signin/page.tsx` | Trang login custom (nếu cần) |
+| `src/app/(auth)/login/page.tsx` | Trang login custom |
 
 ### 2.3 UI Components
 

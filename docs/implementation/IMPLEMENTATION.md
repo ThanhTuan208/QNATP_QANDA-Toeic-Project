@@ -130,10 +130,10 @@ New-Item -ItemType Junction -Path "$storePath\.prisma" -Target "$storeRoot\.pris
 
 | Component | File | Chức năng |
 |-----------|------|-----------|
-| `OptionButton` | `src/components/OptionButton.tsx` | 5 states: idle, selected, correct, wrong, disabled |
-| `QuestionCard` | `src/components/QuestionCard.tsx` | Hiển thị câu hỏi + options + hint |
-| `RationaleBox` | `src/components/RationaleBox.tsx` | Kết quả + giải thích + nút Next |
-| `QuizEngine` | `src/components/QuizEngine.tsx` | State machine: loading → answering → result → next/complete |
+| `OptionButton` | `src/features/quiz/components/OptionButton/OptionButton.tsx` | 5 states: idle, selected, correct, wrong, disabled |
+| `QuestionCard` | `src/features/quiz/components/QuestionCard/QuestionCard.tsx` | Hiển thị câu hỏi + options + hint |
+| `RationaleBox` | `src/features/quiz/components/RationaleBox/RationaleBox.tsx` | Kết quả + giải thích + nút Next |
+| `QuizEngine` | `src/features/quiz/components/QuizEngine/QuizEngine.tsx` | State machine: loading → answering → result → next/complete |
 
 **Luồng QuizEngine:**
 ```

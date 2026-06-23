@@ -2,6 +2,8 @@
 
 > CLI: `npx prisma migrate dev`
 
+> ⚠ **Lưu ý Prisma v7:** Các lệnh CLI vẫn giống v5/v6, nhưng `prisma.config.ts` (file cấu hình riêng ở root) quản lý connection string thay vì thuộc tính `url` trong `schema.prisma`. Xem `ARCHITECTURE.md` hoặc `IMPLEMENTATION.md` để biết chi tiết adapter pattern.`
+
 ---
 
 ## 1. Migration là gì?
