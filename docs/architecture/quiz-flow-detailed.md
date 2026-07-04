@@ -9,10 +9,10 @@
 - [1. Entry Point: Page Server Component](#1-entry-point-page-server-component)
 - [2. types.ts — Định nghĩa dữ liệu](#2-typests--định-nghĩa-dữ-liệu)
 - [3. constants.ts — Hằng số](#3-constantsts--hằng-số)
-- [4. api/quiz.api.ts — Network Layer](#4-apiquizapits--network-layer)
-- [5. controllers/quiz.controller.ts — Pure Logic](#5-controllersquizcontrollerts--pure-logic)
-- [6. controllers/question.controller.ts — Option Status Logic](#6-controllersquestioncontrollerts--option-status-logic)
-- [7. controllers/theory.controller.tsx — Lý thuyết](#7-controllerstheorycontrollertsx--lý-thuyết)
+- [4. client/quiz.client.ts — Network Layer](#4-clientquizclientts--network-layer)
+- [5. utils/quiz.utils.ts — Pure Logic](#5-utilsquizutilsts--pure-logic)
+- [6. utils/question.utils.ts — Option Status Logic](#6-utilsquestionutilsts--option-status-logic)
+- [7. utils/theory.utils.tsx — Lý thuyết](#7-utilstheoryutilstsx--lý-thuyết)
 - [8. hooks/useQuizQuestions.ts — Quản lý danh sách câu hỏi](#8-hooksusequizquestionsts--quản-lý-danh-sách-câu-hỏi)
 - [9. hooks/useQuizAttempt.ts — State Machine trả lời](#9-hooksusequizattemptts--state-machine-trả-lời)
 - [10. hooks/useQuizImport.ts — Import dialog](#10-hooksusequizimportts--import-dialog)
@@ -90,9 +90,9 @@ URL: /practice/comparison
 | Interface | File sử dụng |
 |---|---|
 | `Option` | `Question` (embedded), `QuizSection`, `loadQuestions` |
-| `Question` | Hooks: `useQuizQuestions`, `useQuizAttempt`, `useQuizEngine`. Components: `QuizEngine`, `QuestionCard`. API: `quiz.api.ts` |
+| `Question` | Hooks: `useQuizQuestions`, `useQuizAttempt`, `useQuizEngine`. Components: `QuizEngine`, `QuestionCard`. API: `quiz.client.ts` |
 | `AttemptResult` | `useQuizAttempt`, `useQuizEngine`, `RationaleBox` |
-| `OptionStatus` | `question.controller`, `OptionButton`, `QuestionCard` |
+| `OptionStatus` | `question.utils`, `OptionButton`, `QuestionCard` |
 
 ### Data flow của `Option`:
 
@@ -117,15 +117,15 @@ data/questions.json (raw format)
 | `TYPE_SLUG_MAP` | `Record<string, string>` | `"comparison"` → `"COMPARISON"` | ⚠ Defined nhưng **không dùng** |
 | `TYPE_LABEL_MAP` | `Record<string, string>` | `"comparison"` → `"So Sánh Hơn"` | `page.tsx` lấy label hiển thị header |
 | `TYPE_CONTEXT` | `Record<string, string>` | `"comparison"` → mô tả ngữ cảnh | `page.tsx` lấy description |
-| `TYPE_LABEL_MAP_FULL` | `Record<string, string>` | `"comparison"` → `"Comparisons (So sánh)"` | `quiz.controller` → `generatePrompt()` |
+| `TYPE_LABEL_MAP_FULL` | `Record<string, string>` | `"comparison"` → `"Comparisons (So sánh)"` | `quiz.utils` → `generatePrompt()` |
 | `OPTION_LABELS` | readonly `["A","B","C","D"]` | `OPTION_LABELS[idx]` → `"A"` | `QuestionCard` render label cho option |
 | `VALID_QUIZ_TYPES` | `Set<string>` | `"comparison"` → `true` | Validate type slug |
 
 ---
 
-## 4. api/quiz.api.ts — Network Layer
+## 4. client/quiz.client.ts — Network Layer
 
-**File:** `src/features/quiz/api/quiz.api.ts`
+**File:** `src/features/quiz/client/quiz.client.ts`
 
 ### `fetchQuestions(params)`
 
@@ -166,9 +166,9 @@ useQuizAttempt.handleSelect(optionId)
 
 ---
 
-## 5. controllers/quiz.controller.ts — Pure Logic
+## 5. utils/quiz.utils.ts — Pure Logic
 
-**File:** `src/features/quiz/controllers/quiz.controller.ts`
+**File:** `src/features/quiz/utils/quiz.utils.ts`
 
 ### `generateTemplate(type)`
 
@@ -240,9 +240,9 @@ Raw JSON item:
 
 ---
 
-## 6. controllers/question.controller.ts — Option Status Logic
+## 6. utils/question.utils.ts — Option Status Logic
 
-**File:** `src/features/quiz/controllers/question.controller.ts`
+**File:** `src/features/quiz/utils/question.utils.ts`
 
 ### `getOptionStatus(optId, selectedOptionId, correctOptionId)`
 
@@ -268,9 +268,9 @@ correctOptionId !== null?  → đã trả lời xong
 
 ---
 
-## 7. controllers/theory.controller.tsx — Lý thuyết
+## 7. utils/theory.utils.tsx — Lý thuyết
 
-**File:** `src/features/quiz/controllers/theory.controller.tsx`
+**File:** `src/features/quiz/utils/theory.utils.tsx`
 
 ### `getTheoryContent(type)`
 
@@ -349,14 +349,14 @@ const [isLoading, setIsLoading] = useState(!options.initialQuestions)
 useEffect(() => {
   if (options.initialQuestions) return          // có sẵn → skip fetch
   setIsLoading(true)
-  fetchQuestions({ type, difficulty })          // gọi quiz.api.ts
+  fetchQuestions({ type, difficulty })          // gọi quiz.client.ts
     .then((data) => setQuestions(data.questions))
     .catch(() => setQuestions([]))
     .finally(() => setIsLoading(false))
 }, [options.type, options.difficulty, options.initialQuestions])
 ```
 
-→ `fetchQuestions()` gọi **`GET /api/questions/random?type=...&difficulty=...`** (xem `quiz.api.ts:24`)
+→ `fetchQuestions()` gọi **`GET /api/questions/random?type=...&difficulty=...`** (xem `quiz.client.ts:24`)
 
 #### 3. Điều khiển vị trí
 
@@ -511,7 +511,7 @@ type AttemptAction =
 **Liên hệ:** `AttemptResult` được định nghĩa ở `types.ts` — cùng kiểu với response JSON từ API route `POST /api/attempts`:
 
 ```typescript
-// quiz.api.ts:13-15
+// quiz.client.ts:13-15
 interface SubmitAttemptResponse extends AttemptResult {
   attempt: { id: string }
 }
@@ -711,7 +711,7 @@ useQuizEngine (orchestrator)
     │     │     → dispatch: SELECT | SUBMIT_SUCCESS | SUBMIT_ERROR | CLEAR
     │     │
     │     │ Gọi ra:
-    │     │   quiz.api.submitAttempt(questionId, optionId)
+    │     │   quiz.client.submitAttempt(questionId, optionId)
     │     │     → POST /api/attempts body: { questionId, selectedOptionId }
     │     │     → response: { isCorrect, correctOptionId, rationale }
     │     │
@@ -816,7 +816,7 @@ User click "Next Question" button
 Là hook **quản lý dialog import câu hỏi** — cho phép user tự nhập JSON câu hỏi hoặc dùng AI sinh. Nó đóng vai trò:
 
 1. **Quản lý UI state** của dialog (mở/đóng, nội dung textarea, lỗi)
-2. **Sinh template mẫu** + prompt cho AI qua `quiz.controller`
+2. **Sinh template mẫu** + prompt cho AI qua `quiz.utils`
 3. **Parse + validate JSON** user nhập và gửi lên orchestrator
 
 ### Nó đang thực hiện logic cho AI? Cho cái gì?
@@ -1122,7 +1122,7 @@ QuestionCard render:
 
 ### Controller sử dụng
 
-- `getOptionStatus()` từ `question.controller`  
+- `getOptionStatus()` từ `question.utils`  
   **Input:** `optId, selectedOptionId, correctOptionId`  
   **Output:** `OptionStatus`
 
@@ -1258,7 +1258,7 @@ QuizSection:
 
 ### Controller sử dụng
 
-- `getTheoryContent(type)` từ `theory.controller`  
+- `getTheoryContent(type)` từ `theory.utils`  
   **Input:** `"comparison"`  
   **Output:** `{ title: string, content: JSX }`
 

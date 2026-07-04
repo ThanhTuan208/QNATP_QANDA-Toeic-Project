@@ -15,6 +15,7 @@
 - [Quiz Flow](architecture/quiz-flow.md) — luồng dữ liệu feature quiz
 - [Quiz Flow Detailed](architecture/quiz-flow-detailed.md) — giải thích chi tiết từng file quiz
 - [Feature Structure](architecture/feature-structure.md) — pattern feature module
+- [Comparison PHF vs TOEIC](architecture/comparison-phf-vs-toeic.md) — so sánh kiến trúc cũ/mới
 
 ## Content
 
@@ -28,7 +29,9 @@
 
 - [Decomposition HTML → Next.js](archive/DECOMPOSE_INDEX_HTML.md) — kế hoạch chuyển đổi từ prototype
 - [Tech Stack Final](archive/tech_stack_final.md) — quyết định công nghệ ban đầu
-- [Learning Mapping](archive/learning_mapping.md) — so sánh stack cũ → mới (cá nhân)
+- [Refactor Execution Plan](archive/refactor-execution-plan.md) — kế hoạch thêm Service/Repository (đã hoàn thành)
+- [Refactor Option A Guide](archive/refactor-option-a-guide.md) — hướng dẫn refactor chi tiết (đã hoàn thành)
+- [Scalability Roadmap](archive/scalability-roadmap.md) — lộ trình scale (Phase 1 đã xong)
 
 ## Plans (tính năng tương lai)
 

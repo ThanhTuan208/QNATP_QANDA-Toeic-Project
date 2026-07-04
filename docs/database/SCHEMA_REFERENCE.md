@@ -21,7 +21,7 @@
 ## Enums
 
 ### `QuestionType`
-Enum các dạng câu hỏi Part 5, mapping trực tiếp với `TYPE_SLUG_MAP` trong `src/lib/utils.ts`.
+Enum các dạng câu hỏi Part 5, mapping trực tiếp với `TYPE_SLUG_MAP` trong `src/features/quiz/constants.ts`.
 
 | Value | Slug |
 |---|---|

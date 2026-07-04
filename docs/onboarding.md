@@ -89,7 +89,7 @@ OptionButton.onClick
 
 **File cần đọc:**
 1. `useQuizAttempt.ts` — state machine (useReducer), 3 phase: idle → submitting → answered
-2. `quiz.api.ts` — `submitAttempt()` gọi POST /api/attempts
+2. `quiz.client.ts` — `submitAttempt()` gọi POST /api/attempts
 3. `RationaleBox.tsx` — hiển thị kết quả + nút Next
 
 ### Flow 4: Import câu hỏi bằng JSON
@@ -210,12 +210,12 @@ Mở src/app/api/attempts/route.ts
 │  useQuizEngine    → phối hợp 3 hooks trên  │
 ├────────────────────────────────────────────┤
 │          CONTROLLERS (pure logic)           │
-│  quiz.controller     → parse, generate     │
-│  question.controller → getOptionStatus     │
-│  theory.controller   → THEORY_DATA         │
+│  quiz.utils     → parse, generate          │
+│  question.utils → getOptionStatus          │
+│  theory.utils   → THEORY_DATA              │
 ├────────────────────────────────────────────┤
 │          API (network layer)               │
-│  quiz.api.ts → fetchQuestions, submit      │
+│  quiz.client.ts → fetchQuestions, submit   │
 ├────────────────────────────────────────────┤
 │         API ROUTES (server endpoints)      │
 │  /api/questions/random → GET               │

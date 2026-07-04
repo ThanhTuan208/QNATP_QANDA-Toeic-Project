@@ -60,8 +60,8 @@ src/
 │   └── quiz/
 │       ├── types.ts           ← Định nghĩa data
 │       ├── constants.ts       ← Hằng số
-│       ├── api/quiz.api.ts    ← API call functions (client → server)
-│       ├── controllers/       ← Pure logic (không React, không API)
+│       ├── client/quiz.client.ts  ← API call functions (client → server)
+│       ├── utils/                ← Pure logic (không React, không API)
 │       ├── hooks/             ← React hooks (orchestration + state)
 │       └── components/        ← UI components
 │
@@ -116,29 +116,40 @@ POST /api/attempts
 | phf-api Layer | TOEIC Layer | Ghi chú |
 |---|---|---|
 | **Route** (`api/routes/`) | **API Routes** (`app/api/*/route.ts`) | Next.js tự động match route bằng file system |
-| **Controller** | **route.ts** (chính nó) | TOEIC gộp controller vào route — không tách riêng |
-| **Service** (business logic) | **Controllers/** (`quiz.controller.ts`) | Pure function, không side-effect |
-| **DB** (data access) | **route.ts** (gọi Prisma trực tiếp) | TOEIC không có DB layer riêng |
+| **Controller** | **route.ts** (chính nó) | TOEIC có thể gộp controller vào route cho logic đơn giản |
+| **Service** (business logic) | **Service** (`src/api/*/*.service.ts`) | `quiz.service.ts` — business logic thuần |
+| **DB** (data access) | **Repository** (`src/api/*/*.repository.ts`) | `quiz.repository.ts` — DB layer riêng |
 | **Middleware** | — (không có middleware pattern) | Next.js không có express-style middleware cho API routes |
 
 ### Điểm khác biệt chính
 
-**1. TOEIC gộp Controller + Service + DB vào 1 file route.ts**
+**1. TOEIC đã tách Service + Repository layer**
 
 ```typescript
-// TOEIC: 1 file làm tất cả
+// TOEIC route.ts: chỉ làm controller — gọi service
+import { quizService } from '@/api/quiz/quiz.service'
+
 export async function POST(request: NextRequest) {
-  // Controller: parse request
   const body = await request.json()
+  const result = await quizService.submitAttempt(body)
+  return NextResponse.json(result)
+}
+```
 
-  // Service logic: validate, tính toán
-  const selectedOption = question.options.find(...)
+```typescript
+// quiz.service.ts: business logic
+export async function submitAttempt(input: SubmitInput) {
+  const question = await quizRepo.findQuestion(input.questionId)
+  const isCorrect = question.correctOptionId === input.selectedOptionId
+  const attempt = await quizRepo.createAttempt({ ... })
+  return { isCorrect, ... }
+}
+```
 
-  // DB: gọi Prisma trực tiếp
-  const attempt = await prisma.attempt.create({ ... })
-
-  // Response
-  return NextResponse.json({ ... })
+```typescript
+// quiz.repository.ts: data access
+export async function createAttempt(data: CreateAttemptInput) {
+  return prisma.attempt.create({ data })
 }
 ```
 
@@ -180,7 +191,7 @@ res.json({ token, user })
 **3. TOEIC có "controllers" là pure function (không React, không API)**
 
 ```typescript
-// features/quiz/controllers/quiz.controller.ts
+// features/quiz/utils/quiz.utils.ts
 export function parseImportedJSON(raw: string, type: string): Question[] {
   // Pure function: cùng input → cùng output
   // Không import React, không gọi API
