@@ -1,2 +1,2 @@
-export type { LoadingProps } from './loading'
-export { Loading } from './loading'
+export type { LoadingProps } from '@/components/common/Loading/loading'
+export { Loading } from '@/components/common/Loading/loading'

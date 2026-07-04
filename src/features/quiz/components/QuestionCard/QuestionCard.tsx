@@ -1,10 +1,10 @@
 'use client'
 
+import { OptionButton } from '@/features/quiz/components/OptionButton'
+import { OPTION_LABELS } from '@/features/quiz/constants'
+import type { OptionStatus } from '@/features/quiz/types'
+import { getOptionStatus } from '@/features/quiz/utils/question.utils'
 import { cn } from '@/lib/utils'
-import { OPTION_LABELS } from '../../constants'
-import { getOptionStatus } from '../../controllers/question.controller'
-import type { OptionStatus } from '../../types'
-import { OptionButton } from '../OptionButton'
 
 interface QuestionCardOption {
   id: string

@@ -1,4 +1,4 @@
-import type { OptionStatus } from '../types'
+import type { OptionStatus } from '@/features/quiz/types'
 
 export function getOptionStatus(
   optId: string,

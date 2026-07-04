@@ -1,4 +1,4 @@
-import type { AttemptResult, Question } from '../types'
+import type { AttemptResult, Question } from '@/features/quiz/types'
 
 interface FetchQuestionsParams {
   type?: string

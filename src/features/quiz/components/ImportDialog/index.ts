@@ -1,1 +1,1 @@
-export { ImportDialog } from './ImportDialog'
+export { ImportDialog } from '@/features/quiz/components/ImportDialog/ImportDialog'

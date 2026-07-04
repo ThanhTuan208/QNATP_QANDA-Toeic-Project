@@ -1,1 +1,1 @@
-export { OptionButton } from './OptionButton'
+export { OptionButton } from '@/features/quiz/components/OptionButton/OptionButton'

@@ -1,5 +1,5 @@
-import { notFound } from 'next/navigation'
 import { readFileSync } from 'fs'
+import { notFound } from 'next/navigation'
 import { join } from 'path'
 import { PracticeHeaderSection } from '@/features/quiz/components/sections/PracticeHeaderSection'
 import { QuizSection } from '@/features/quiz/components/sections/QuizSection'

@@ -1,8 +1,12 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { generatePrompt, generateTemplate, parseImportedJSON } from '../controllers/quiz.controller'
-import type { Question } from '../types'
+import type { Question } from '@/features/quiz/types'
+import {
+  generatePrompt,
+  generateTemplate,
+  parseImportedJSON,
+} from '@/features/quiz/utils/quiz.utils'
 
 interface UseQuizImportOptions {
   type?: string

@@ -1,6 +1,6 @@
 'use client'
 
-import { generatePrompt, generateTemplate } from '../../controllers/quiz.controller'
+import { generatePrompt, generateTemplate } from '@/features/quiz/utils/quiz.utils'
 
 interface ImportDialogProps {
   type: string

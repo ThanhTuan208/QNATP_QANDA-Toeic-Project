@@ -1,11 +1,11 @@
 'use client'
 
 import { Loader2 } from 'lucide-react'
-import { useQuizEngine } from '../../hooks/useQuizEngine'
-import type { Question } from '../../types'
-import { ImportDialog } from '../ImportDialog'
-import { QuestionCard } from '../QuestionCard'
-import { RationaleBox } from '../RationaleBox'
+import { ImportDialog } from '@/features/quiz/components/ImportDialog'
+import { QuestionCard } from '@/features/quiz/components/QuestionCard'
+import { RationaleBox } from '@/features/quiz/components/RationaleBox'
+import { useQuizEngine } from '@/features/quiz/hooks/useQuizEngine'
+import type { Question } from '@/features/quiz/types'
 
 interface QuizEngineProps {
   type?: string

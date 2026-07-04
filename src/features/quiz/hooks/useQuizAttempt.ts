@@ -1,8 +1,8 @@
 'use client'
 
 import { useCallback, useReducer } from 'react'
-import { submitAttempt } from '../api/quiz.api'
-import type { AttemptResult, Question } from '../types'
+import { submitAttempt } from '@/features/quiz/client/quiz.client'
+import type { AttemptResult, Question } from '@/features/quiz/types'
 
 type AttemptPhase = 'idle' | 'submitting' | 'answered'
 
@@ -20,6 +20,7 @@ type AttemptAction =
   | { type: 'CLEAR' }
 
 function attemptReducer(state: AttemptState, action: AttemptAction): AttemptState {
+  console.log('Attempt Reducer Action:', action)
   switch (action.type) {
     case 'SELECT':
       return { ...state, phase: 'submitting', selectedOptionId: action.optionId }
@@ -71,6 +72,7 @@ export function useQuizAttempt(options: UseQuizAttemptOptions): UseQuizAttemptRe
 
       try {
         const data = await submitAttempt(question.id, optionId)
+        console.log('data result: ', data)
         const newCorrect = state.correctCount + (data.isCorrect ? 1 : 0)
         dispatch({ type: 'SUBMIT_SUCCESS', result: data })
         options.onStatsUpdate?.(options.currentIdx + 1, newCorrect)

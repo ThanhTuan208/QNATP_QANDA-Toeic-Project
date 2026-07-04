@@ -1,10 +1,10 @@
 'use client'
 
 import { useCallback } from 'react'
-import type { AttemptResult, Question } from '../types'
-import { useQuizAttempt } from './useQuizAttempt'
-import { useQuizImport } from './useQuizImport'
-import { useQuizQuestions } from './useQuizQuestions'
+import { useQuizAttempt } from '@/features/quiz/hooks/useQuizAttempt'
+import { useQuizImport } from '@/features/quiz/hooks/useQuizImport'
+import { useQuizQuestions } from '@/features/quiz/hooks/useQuizQuestions'
+import type { AttemptResult, Question } from '@/features/quiz/types'
 
 interface UseQuizEngineOptions {
   type?: string

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { ProgressChart } from '@/features/dashboard/components/ProgressChart'
 import { StatsSummary } from '@/features/dashboard/components/StatsSummary'
-import { QuizEngine } from '../../QuizEngine'
+import { QuizEngine } from '@/features/quiz/components/QuizEngine'
 
 interface QuizSectionProps {
   type: string
