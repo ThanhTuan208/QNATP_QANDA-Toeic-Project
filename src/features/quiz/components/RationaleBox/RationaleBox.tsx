@@ -31,7 +31,7 @@ export function RationaleBox({ isCorrect, rationale, onNext, hasNext }: Rational
               <span className='text-lg font-semibold text-error'>Incorrect</span>
             </>
           )}
-        </div>
+        </div>  
         <p className={cn('text-sm leading-6', isCorrect ? 'text-green-dark' : 'text-error')}>
           {rationale}
         </p>

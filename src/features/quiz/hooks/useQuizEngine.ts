@@ -28,7 +28,7 @@ interface UseQuizEngineReturn {
   importJson: string
   importError: string
   promptText: string
-  handleSelect: (optionId: string) => Promise<void>
+  handleSelect: (optionId: string) => void
   handleNext: () => void
   handleOpenImport: () => void
   handleSubmitImport: () => void

@@ -1,16 +1,20 @@
 'use client'
 
 import { useCallback, useReducer } from 'react'
+import { useMutation } from '@tanstack/react-query'
 import { submitAttempt } from '@/features/quiz/client/quiz.client'
-import type { AttemptResult, Question } from '@/features/quiz/types'
+import type {
+  AttemptResult,
+  AttemptState,
+  UseQuizAttemptOptions,
+  UseQuizAttemptReturn,
+} from '@/features/quiz/types'
 
-type AttemptPhase = 'idle' | 'submitting' | 'answered'
-
-type AttemptState = {
-  phase: AttemptPhase
-  selectedOptionId: string | null
-  result: AttemptResult | null
-  correctCount: number
+const INITIAL_STATE: AttemptState = {
+  phase: 'idle',
+  selectedOptionId: null,
+  result: null,
+  correctCount: 0,
 }
 
 type AttemptAction =
@@ -20,7 +24,6 @@ type AttemptAction =
   | { type: 'CLEAR' }
 
 function attemptReducer(state: AttemptState, action: AttemptAction): AttemptState {
-  console.log('Attempt Reducer Action:', action)
   switch (action.type) {
     case 'SELECT':
       return { ...state, phase: 'submitting', selectedOptionId: action.optionId }
@@ -28,7 +31,11 @@ function attemptReducer(state: AttemptState, action: AttemptAction): AttemptStat
       return {
         ...state,
         phase: 'answered',
-        result: action.result,
+        result: {
+          isCorrect: action.result.isCorrect,
+          correctOptionId: action.result.correctOptionId,
+          rationale: action.result.rationale,
+        },
         correctCount: state.correctCount + (action.result.isCorrect ? 1 : 0),
       }
     case 'SUBMIT_ERROR':
@@ -38,55 +45,35 @@ function attemptReducer(state: AttemptState, action: AttemptAction): AttemptStat
   }
 }
 
-const INITIAL_STATE: AttemptState = {
-  phase: 'idle',
-  selectedOptionId: null,
-  result: null,
-  correctCount: 0,
-}
-
-interface UseQuizAttemptOptions {
-  currentQuestion: Question | null
-  currentIdx: number
-  onStatsUpdate?: (total: number, correct: number) => void
-}
-
-interface UseQuizAttemptReturn {
-  selectedOptionId: string | null
-  submitting: boolean
-  result: AttemptResult | null
-  correctCount: number
-  handleSelect: (optionId: string) => Promise<void>
-  clearAnswer: () => void
-}
-
 export function useQuizAttempt(options: UseQuizAttemptOptions): UseQuizAttemptReturn {
   const [state, dispatch] = useReducer(attemptReducer, INITIAL_STATE)
 
+  const mutation = useMutation({
+    mutationFn: ({
+      questionId,
+      selectedOptionId,
+    }: {
+      questionId: string
+      selectedOptionId: string
+    }) => submitAttempt(questionId, selectedOptionId),
+    onSuccess: (data) => {
+      dispatch({ type: 'SUBMIT_SUCCESS', result: data })
+      options.onStatsUpdate?.(options.currentIdx + 1, state.correctCount + (data.isCorrect ? 1 : 0))
+    },
+    onError: () => {
+      dispatch({ type: 'SUBMIT_ERROR' })
+    },
+  })
+
   const handleSelect = useCallback(
-    async (optionId: string) => {
+    (optionId: string) => {
       const question = options.currentQuestion
       if (!question || state.phase !== 'idle') return
 
       dispatch({ type: 'SELECT', optionId })
-
-      try {
-        const data = await submitAttempt(question.id, optionId)
-        console.log('data result: ', data)
-        const newCorrect = state.correctCount + (data.isCorrect ? 1 : 0)
-        dispatch({ type: 'SUBMIT_SUCCESS', result: data })
-        options.onStatsUpdate?.(options.currentIdx + 1, newCorrect)
-      } catch {
-        dispatch({ type: 'SUBMIT_ERROR' })
-      }
+      mutation.mutate({ questionId: question.id, selectedOptionId: optionId })
     },
-    [
-      options.currentQuestion,
-      options.currentIdx,
-      state.phase,
-      state.correctCount,
-      options.onStatsUpdate,
-    ],
+    [options.currentQuestion, state.phase, mutation.mutate],
   )
 
   const clearAnswer = useCallback(() => {

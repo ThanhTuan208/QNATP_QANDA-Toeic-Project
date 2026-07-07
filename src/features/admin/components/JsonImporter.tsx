@@ -69,6 +69,7 @@ export function JsonImporter() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <button
+          type='button'
           className='fixed bottom-6 right-6 z-40 bg-primary text-primary-foreground w-14 h-14 rounded-full shadow-xl hover:opacity-90 transition-all flex items-center justify-center text-2xl'
           title='Import JSON'
         >
@@ -102,13 +103,12 @@ export function JsonImporter() {
           </div>
           {status && (
             <div
-              className={`p-3 rounded-xl text-sm ${
-                status.type === 'success'
-                  ? 'bg-green-teal-10 text-green-dark border border-green-teal-20'
-                  : status.type === 'error'
-                    ? 'bg-error-soft text-error border border-error/20'
-                    : 'bg-safety-orange-10 text-safety-orange border border-safety-orange-20'
-              }`}
+              className={`p-3 rounded-xl text-sm ${status.type === 'success'
+                ? 'bg-green-teal-10 text-green-dark border border-green-teal-20'
+                : status.type === 'error'
+                  ? 'bg-error-soft text-error border border-error/20'
+                  : 'bg-safety-orange-10 text-safety-orange border border-safety-orange-20'
+                }`}
             >
               {status.message}
             </div>

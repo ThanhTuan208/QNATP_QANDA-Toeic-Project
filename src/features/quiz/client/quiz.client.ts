@@ -1,18 +1,10 @@
-import type { AttemptResult, Question } from '@/features/quiz/types'
-
-interface FetchQuestionsParams {
-  type?: string
-  difficulty?: string
-}
-
-interface FetchQuestionsResponse {
-  questions: Question[]
-  total: number
-}
-
-interface SubmitAttemptResponse extends AttemptResult {
-  attempt: { id: string }
-}
+import type {
+  FetchQuestionsParams,
+  FetchQuestionsResponse,
+  StatsData,
+  SubmitAttemptResponse,
+  AttemptResult,
+} from '@/features/quiz/types'
 
 export async function fetchQuestions(
   params: FetchQuestionsParams,
@@ -36,5 +28,14 @@ export async function submitAttempt(
     body: JSON.stringify({ questionId, selectedOptionId }),
   })
   if (!res.ok) throw new Error('Không thể ghi nhận câu trả lời')
-  return res.json()
+  const json = await res.json()
+
+  return json.data
+}
+
+export async function fetchStats(): Promise<StatsData> {
+  const res = await fetch('/api/stats')
+  if (!res.ok) throw new Error('Không thể tải thống kê')
+  const json = await res.json()
+  return json.data
 }

@@ -1,42 +1,36 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { fetchQuestions } from '@/features/quiz/client/quiz.client'
-import type { Question } from '@/features/quiz/types'
-
-interface UseQuizQuestionsOptions {
-  type?: string
-  difficulty?: string
-  initialQuestions?: Question[]
-}
-
-interface UseQuizQuestionsReturn {
-  questions: Question[]
-  currentQuestion: Question | null
-  currentIdx: number
-  totalQuestions: number
-  isLoading: boolean
-  isEmpty: boolean
-  isComplete: boolean
-  setQuestions: (questions: Question[]) => void
-  advanceQuestion: () => void
-  resetIdx: () => void
-}
+import type {
+  FetchQuestionsResponse,
+  Question,
+  UseQuizQuestionsOptions,
+  UseQuizQuestionsReturn,
+} from '@/features/quiz/types'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuestionsReturn {
-  const [questions, setQuestions] = useState<Question[]>(options.initialQuestions ?? [])
+  const queryClient = useQueryClient()
   const [currentIdx, setCurrentIdx] = useState(0)
-  const [isLoading, setIsLoading] = useState<boolean>(!options.initialQuestions)
 
-  useEffect(() => {
-    if (options.initialQuestions) return
-    setIsLoading(true)
-    fetchQuestions({ type: options.type, difficulty: options.difficulty })
-      .then((data) => setQuestions(data.questions))
-      .catch(() => setQuestions([]))
-      .finally(() => setIsLoading(false))
-  }, [options.type, options.difficulty, options.initialQuestions])
+  const { data, isLoading } = useQuery<FetchQuestionsResponse>({
+    enabled: !options.initialQuestions,
+    queryKey: ['questions', options.type, options.difficulty],
+    queryFn: () => fetchQuestions({ type: options.type, difficulty: options.difficulty }),
+    initialData: options.initialQuestions
+      ? { questions: options.initialQuestions, total: options.initialQuestions.length }
+      : undefined,
+  })
 
+  const questions = data?.questions ?? []
+  const setQuestions = useCallback(
+    (questions: Question[]) => {
+      queryClient.setQueryData(['questions', options.type, options.difficulty], { questions })
+    },
+    [queryClient, options.type, options.difficulty],
+  )
+  
   const advanceQuestion = useCallback(() => {
     setCurrentIdx((i) => i + 1)
   }, [])

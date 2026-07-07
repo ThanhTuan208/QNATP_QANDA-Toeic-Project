@@ -1,40 +1,24 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { AttemptHistorySection } from '@/features/dashboard/components/sections/AttemptHistorySection'
 import { DashboardHeaderSection } from '@/features/dashboard/components/sections/DashboardHeaderSection'
 import { DashboardStatsGridSection } from '@/features/dashboard/components/sections/DashboardStatsGridSection'
-
-interface StatsData {
-  totalAttempts: number
-  correctAttempts: number
-  accuracy: number
-  typeStats: Record<string, { total: number; correct: number }>
-  recentAttempts: Array<{
-    id: string
-    isCorrect: boolean
-    createdAt: string
-    question: { type: string; difficulty: string }
-  }>
-}
+import { fetchStats } from '@/features/quiz/client/quiz.client'
+import type { StatsData } from '@/features/quiz/types'
 
 export default function DashboardPage() {
-  const [stats, setStats] = useState<StatsData | null>(null)
-  const [loading, setLoading] = useState(true)
+  const { data: stats, isLoading } = useQuery<StatsData>({
+    queryKey: ['stats'],
+    queryFn: fetchStats,
+    staleTime: 30_000,
+    retry: 2,
+    refetchOnWindowFocus: true,
+  })
 
-  useEffect(() => {
-    fetch('/api/stats')
-      .then((res) => res.json())
-      .then((data) => {
-        setStats(data)
-        setLoading(false)
-      })
-      .catch(() => setLoading(false))
-  }, [])
-
-  if (loading) {
+  if (isLoading) {
     return (
-      <div className='flex items-center justify-center min-h-[400px]'>
+      <div className='flex items-center justify-center min-h-100'>
         <div className='text-muted-foreground'>Đang tải...</div>
       </div>
     )

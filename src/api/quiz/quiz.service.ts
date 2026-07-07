@@ -22,7 +22,8 @@ export async function submitAttempt(
   const correctOptionId = question.options.find((o) => o.isCorrect)?.id
 
   return {
-    attempt: { id: attempt.id, isCorrect: attempt.isCorrect },
+    attempt: { id: attempt.id },
+    isCorrect: selectedOption.isCorrect,
     correctOptionId,
     rationale: selectedOption.rationale,
   }

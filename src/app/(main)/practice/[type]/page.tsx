@@ -37,7 +37,7 @@ function loadQuestions(type: string) {
     }> = JSON.parse(raw)
     return all
       .filter((q) => q.type === type)
-      .map((q, i) => ({
+      .map((q) => ({
         id: q.code,
         questionText: q.question,
         type: q.type,
