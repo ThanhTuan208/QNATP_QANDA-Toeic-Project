@@ -69,7 +69,8 @@ toeic-reading/
     ├── features/            ← Feature modules
     ├── components/          ← Shared components
     ├── lib/                 ← Utilities, configs
-    └── env.ts               ← Env validation
+    ├── api/                 ← Service + Repository layers
+    └── env.ts               ← (planned — @t3-oss/env-nextjs)
 ```
 
 ### 2.2 src/app/ — Pages (Next.js App Router)
@@ -156,12 +157,12 @@ src/features/
 ├── quiz/
 │   ├── types.ts             ← Kiểu: Question, Option, Attempt, QuizState
 │   ├── constants.ts         ← Label maps, OPTION_LABELS, VALID_QUIZ_TYPES
-│   ├── api/
-│   │   └── quiz.api.ts      ← fetchQuestions(), submitAttempt()
-│   ├── controllers/
-│   │   ├── quiz.controller.ts     ← generateTemplate, generatePrompt, parseImportedJSON
-│   │   ├── question.controller.ts ← getOptionStatus()
-│   │   └── theory.controller.tsx  ← THEORY_DATA, getTheoryContent()
+│   ├── client/
+│   │   └── quiz.client.ts    ← fetchQuestions(), submitAttempt()
+│   ├── utils/
+│   │   ├── quiz.utils.ts     ← generateTemplate, generatePrompt, parseImportedJSON
+│   │   ├── question.utils.ts ← getOptionStatus()
+│   │   └── theory.utils.tsx  ← THEORY_DATA, getTheoryContent()
 │   ├── hooks/
 │   │   ├── useQuizQuestions.ts    ← Load questions + current index
 │   │   ├── useQuizAttempt.ts      ← Answer flow state machine (useReducer)
@@ -188,9 +189,8 @@ src/features/
 features/{tên}/
 ├── types.ts                 ← Định nghĩa interface/types riêng cho feature đó
 ├── constants.ts             ← Hằng số riêng của feature
-├── schemas/                 ← Zod validation (nếu có form)
-├── api/                     ← API call functions (nếu cần, dùng fetch)
-├── controllers/             ← Pure logic, không side-effect, có thể test unit (nếu cần)
+├── client/                  ← API call functions (nếu cần, dùng fetch)
+├── utils/                   ← Pure logic, không side-effect, có thể test unit (nếu cần)
 ├── hooks/                   ← Custom hooks (nếu có logic phức tạp)
 └── components/              ← UI components của riêng feature đó
 ```
@@ -234,20 +234,17 @@ src/components/
 │   ├── Header.tsx           ← Top bar (user avatar, search)
 │   └── Navbar.tsx           ← Navigation links
 │
-└── providers/               ← React context providers
-    ├── QueryProvider.tsx    ← TanStack Query provider
-    ├── SessionProvider.tsx  ← NextAuth session provider
-    └── ToastProvider.tsx    ← Toast notifications
+└── ...                       ← Sử dụng inline providers trong layout
 ```
 
 #### So sánh với tnp-ui-web
 
 | tnp-ui-web (14 categories) | TOEIC (4 categories) | Lý do |
 |---------------------------|---------------------|-------|
-| common/ | ✅ common/ | Giống |
+| common/ | ❌ gộp vào ui/ | TOEIC không tách common/ riêng |
 | form/, feedback/, navigation/, overlay/, data-display/, composite/ | ❌ gộp vào ui/ + common/ | TOEIC không cần nhiều |
 | layout/ | ✅ layout/ | Giống nhưng ít hơn |
-| providers/ | ✅ providers/ | Giống |
+| providers/ | ❌ inline trong layout | TOEIC dùng trực tiếp trong root layout |
 | effect/ | ❌ bỏ | Không cần animation phức tạp |
 | ui/ (shadcn sub) | ✅ ui/ | Giống |
 
@@ -258,8 +255,10 @@ src/lib/
 ├── prisma.ts                ← PrismaClient singleton
 ├── auth.ts                  ← NextAuth configuration
 ├── utils.ts                 ← cn() + helper functions
-├── validators.ts            ← Email, phone, password helpers
-└── constants.ts             ← QuestionTypes, Difficulty enums, routes
+├── auth-utils.ts            ← Auth helpers
+├── response.ts              ← Standardized API response helper
+└── errors/
+    └── AppError.ts          ← Custom error class
 ```
 
 #### Chi tiết từng file
@@ -302,36 +301,16 @@ export function cn(...inputs: ClassValue[]) {
 | `prisma.ts` | `DbContext` DI singleton |
 | `auth.ts` | `Program.cs` → `AddAuthentication()` + `AddIdentity()` |
 | `utils.ts` | Helper static class |
-| `validators.ts` | `FluentValidation` hoặc `DataAnnotations` |
-| `constants.ts` | `Constants.cs` / enum classes |
+| `response.ts` | `ApiResponse<T>` wrapper |
+| `errors/AppError.ts` | Custom error class with statusCode |
 
-### 2.6 src/env.ts — Environment Validation
+### 2.6 Environment Validation
 
 ```
-src/env.ts                   ← @t3-oss/env-nextjs validation
+src/env.ts                   ← (planned — @t3-oss/env-nextjs)
 ```
 
-```typescript
-import { createEnv } from '@t3-oss/env-nextjs'
-import { z } from 'zod'
-
-export const env = createEnv({
-  server: {
-    DATABASE_URL: z.string().url(),
-    NEXTAUTH_SECRET: z.string().min(1),
-    NEXTAUTH_URL: z.string().url(),
-  },
-  client: {
-    NEXT_PUBLIC_APP_URL: z.string().url(),
-  },
-  runtimeEnv: {
-    DATABASE_URL: process.env.DATABASE_URL,
-    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
-  },
-})
-```
+Hiện tại chưa triển khai `env.ts`. Các biến môi trường được dùng trực tiếp qua `process.env`.
 
 **Mục đích:** Nếu thiếu env, build FAIL ngay, không deploy được — tránh lỗi runtime.
 
@@ -431,10 +410,10 @@ prisma/
 | Thêm 1 API endpoint | `src/app/api/{tên}/route.ts` |
 | Thêm 1 trang mới | `src/app/(main)/{tên}/page.tsx` |
 | Sửa layout chung | `src/app/(main)/layout.tsx` |
-| Thêm 1 component dùng chung | `src/components/common/{Tên}.tsx` |
+| Thêm 1 component dùng chung | `src/components/ui/{Tên}.tsx` |
 | Sửa màu sắc theme | `src/app/globals.css` |
 | Sửa auth config | `src/lib/auth.ts` |
-| Thêm environment variable | `.env` + `src/env.ts` |
-| Thêm validation rule | `src/features/{module}/schemas/*.schema.ts` |
+| Thêm environment variable | `.env` + (planned) `src/env.ts` |
+| Thêm validation rule | `src/lib/utils.ts` hoặc trong feature `utils/*.ts` |
 | Thêm linter rule | `biome.json` |
 | Deploy lên production | `pnpm build` → `vercel --prod` |

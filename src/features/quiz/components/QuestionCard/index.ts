@@ -1,1 +1,1 @@
-export { QuestionCard } from './QuestionCard'
+export { QuestionCard } from '@/features/quiz/components/QuestionCard/QuestionCard'

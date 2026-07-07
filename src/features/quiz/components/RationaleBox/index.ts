@@ -1,1 +1,1 @@
-export { RationaleBox } from './RationaleBox'
+export { RationaleBox } from '@/features/quiz/components/RationaleBox/RationaleBox'

@@ -23,12 +23,12 @@ Quiz feature được chia làm 4 tầng, mỗi tầng có 1 responsibility duy 
 │  - useQuizAttempt: quản lý luồng trả lời (select → submit → result)│
 │  - useQuizImport: quản lý dialog nhập câu hỏi                      │
 ├─────────────────────────────────────────────────────────────────────┤
-│  PURE LOGIC LAYER  (controllers/*)                                  │
+│  PURE LOGIC LAYER  (utils/*)                                        │
 │  - Pure functions: cùng input → cùng output                         │
 │  - Không import React, không gọi API, không side-effect            │
 │  - Có thể test unit mà ko cần mock                                  │
 ├─────────────────────────────────────────────────────────────────────┤
-│  NETWORK LAYER  (api/*)                                             │
+│  NETWORK LAYER  (client/*)                                          │
 │  - Chỉ gọi fetch(), trả về typed Promise                           │
 │  - Không state, không logic transformation                          │
 └─────────────────────────────────────────────────────────────────────┘
@@ -40,10 +40,10 @@ Quiz feature được chia làm 4 tầng, mỗi tầng có 1 responsibility duy 
 |---|---|---|---|---|
 | `types.ts` | Definition | 15 | Interfaces: `Question`, `AttemptResult`, `Option`, `OptionStatus`, `QuizState` | [📖](quiz-flow-detailed.md#2-typests--định-nghĩa-dữ-liệu) |
 | `constants.ts` | Definition | 65 | Label maps, TYPE_CONTEXT, OPTION_LABELS, VALID_QUIZ_TYPES | [📖](quiz-flow-detailed.md#3-constantsts--hằng-số) |
-| `api/quiz.api.ts` | Network | 35 | `fetchQuestions()`, `submitAttempt()` | [📖](quiz-flow-detailed.md#4-apiquizapits--network-layer) |
-| `controllers/quiz.controller.ts` | Pure Logic | 90 | `generateTemplate()`, `generatePrompt()`, `parseImportedJSON()`, `calculateAccuracy()` | [📖](quiz-flow-detailed.md#5-controllersquizcontrollerts--pure-logic) |
-| `controllers/question.controller.ts` | Pure Logic | 13 | `getOptionStatus()` | [📖](quiz-flow-detailed.md#6-controllersquestioncontrollerts--option-status-logic) |
-| `controllers/theory.controller.tsx` | Pure Logic | 620 | `THEORY_DATA`, `getTheoryContent()` | [📖](quiz-flow-detailed.md#7-controllerstheorycontrollertsx--lý-thuyết) |
+| `client/quiz.client.ts` | Network | 35 | `fetchQuestions()`, `submitAttempt()` | [📖](quiz-flow-detailed.md#4-clientquizclientts--network-layer) |
+| `utils/quiz.utils.ts` | Pure Logic | 90 | `generateTemplate()`, `generatePrompt()`, `parseImportedJSON()`, `calculateAccuracy()` | [📖](quiz-flow-detailed.md#5-utilsquizutilsts--pure-logic) |
+| `utils/question.utils.ts` | Pure Logic | 13 | `getOptionStatus()` | [📖](quiz-flow-detailed.md#6-utilsquestionutilsts--option-status-logic) |
+| `utils/theory.utils.tsx` | Pure Logic | 620 | `THEORY_DATA`, `getTheoryContent()` | [📖](quiz-flow-detailed.md#7-utilstheoryutilstsx--lý-thuyết) |
 | `hooks/useQuizQuestions.ts` | Orchestration | 55 | Load questions, track currentIdx | [📖](quiz-flow-detailed.md#8-hooksusequizquestionsts--quản-lý-danh-sách-câu-hỏi) |
 | `hooks/useQuizAttempt.ts` | Orchestration | 95 | Answer flow state machine (useReducer) | [📖](quiz-flow-detailed.md#9-hooksusequizattemptts--state-machine-trả-lời) |
 | `hooks/useQuizImport.ts` | Orchestration | 58 | Import dialog state | [📖](quiz-flow-detailed.md#10-hooksusequizimportts--import-dialog) |
@@ -124,7 +124,7 @@ QuizEngine là **duy nhất cần biết về orchestration**. Nếu QuestionCar
 - Không thể tái sử dụng ở màn hình khác
 - Phá vỡ luồng dữ liệu 1 chiều (parent → child props)
 
-> Chi tiết: [`useQuizAttempt` state machine](quiz-flow-detailed.md#9-hooksusequizattemptts--state-machine-trả-lời) · [`quiz.api.ts` submitAttempt](quiz-flow-detailed.md#4-apiquizapits--network-layer) · [`OptionButton`](quiz-flow-detailed.md#14-componentsoptionbuttonoptionbuttontsx)
+> Chi tiết: [`useQuizAttempt` state machine](quiz-flow-detailed.md#9-hooksusequizattemptts--state-machine-trả-lời) · [`quiz.client.ts` submitAttempt](quiz-flow-detailed.md#4-apiquizapits--network-layer) · [`OptionButton`](quiz-flow-detailed.md#14-componentsoptionbuttonoptionbuttontsx)
 
 ### 2b. User Chọn Đáp Án
 
@@ -224,8 +224,8 @@ QuizEngine.handleSubmitImport
        │
        └─► useQuizImport.submitImport
               │
-              ├─ parseImportedJSON(importJson, type)
-              │   └─ quiz.controller.parseImportedJSON
+├─ parseImportedJSON(importJson, type)
+│   └─ quiz.utils.parseImportedJSON
               │       └─ JSON.parse → map → validate → return Question[]
               │
               ├─ onImportQuestions(parsed)
@@ -365,7 +365,7 @@ QuizEngine (stateful) ──props──► ImportDialog (stateless)
 OptionButton.onClick ──callback──► QuestionCard.onSelect
     ──callback──► QuizEngine.handleSelect
     ──callback──► useQuizAttempt.handleSelect
-    ──gọi API──► quiz.api.submitAttempt
+    ──gọi API──► quiz.client.submitAttempt
 ```
 
 ---
@@ -377,25 +377,25 @@ QuizEngine.tsx
   ├── useQuizEngine.ts
   │   ├── useQuizQuestions.ts
   │   │   ├── types.ts
-  │   │   └── api/quiz.api.ts
+  │   │   └── client/quiz.client.ts
   │   │       └── types.ts
   │   ├── useQuizAttempt.ts
   │   │   ├── types.ts
-  │   │   └── api/quiz.api.ts
+  │   │   └── client/quiz.client.ts
   │   │       └── types.ts
   │   └── useQuizImport.ts
   │       ├── types.ts
-  │       └── controllers/quiz.controller.ts
+  │       └── utils/quiz.utils.ts
   │           ├── types.ts
   │           └── constants.ts
   ├── QuestionCard.tsx
   │   ├── OptionButton.tsx
   │   ├── constants.ts
-  │   └── controllers/question.controller.ts
+  │   └── utils/question.utils.ts
   │       └── types.ts
   ├── RationaleBox.tsx
   └── ImportDialog.tsx
-      └── controllers/quiz.controller.ts
+      └── utils/quiz.utils.ts
           ├── types.ts
           └── constants.ts
 ```
@@ -417,9 +417,9 @@ Tập trung tất cả interfaces vào 1 file để:
 - Tránh circular import: các file khác import từ đây mà ko sợ vòng
 - Dễ tái cấu trúc: thay đổi type chỉ sửa 1 chỗ
 
-### `controllers/` — Logic thuần tách khỏi React
+### `utils/` — Logic thuần tách khỏi React
 
-Controller là pure function, ko biết React. Tại sao?
+Utils là pure function, ko biết React. Tại sao?
 - **Test unit**: ko cần `renderHook`, ko cần mock — chỉ gọi function
 - **Reuse**: `parseImportedJSON` có thể dùng ở admin feature
 - **Reasoning**: function có cùng input → luôn cùng output, ko side effect

@@ -1,1 +1,1 @@
-export { QuizEngine } from './QuizEngine'
+export { QuizEngine } from '@/features/quiz/components/QuizEngine/QuizEngine'

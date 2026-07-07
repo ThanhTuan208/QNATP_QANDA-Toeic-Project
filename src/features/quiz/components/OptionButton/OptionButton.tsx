@@ -1,8 +1,8 @@
 'use client'
 
 import { CheckCircle2, XCircle } from 'lucide-react'
+import type { OptionStatus } from '@/features/quiz/types'
 import { cn } from '@/lib/utils'
-import type { OptionStatus } from '../../types'
 
 interface OptionButtonProps {
   text: string

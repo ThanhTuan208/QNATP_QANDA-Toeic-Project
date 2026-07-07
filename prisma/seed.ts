@@ -48,13 +48,16 @@ async function main() {
       hint: q.hint || null,
     };
 
+    const questionId = q.code;
+
     if (isReset) {
       await prisma.question.create({
         data: {
-          code: q.code,
+          id: questionId,
           ...questionData,
           options: {
             create: q.options.map((opt: any, idx: number) => ({
+              id: `${questionId}_${idx + 1}`,
               text: opt.text,
               isCorrect: opt.isCorrect,
               rationale: opt.rationale,
@@ -65,21 +68,22 @@ async function main() {
       });
     } else {
       const existing = await prisma.question.findUnique({
-        where: { code: q.code },
+        where: { id: questionId },
       });
 
       if (existing) {
         await prisma.question.update({
-          where: { code: q.code },
+          where: { id: questionId },
           data: questionData,
         });
       } else {
         await prisma.question.create({
           data: {
-            code: q.code,
+            id: questionId,
             ...questionData,
             options: {
               create: q.options.map((opt: any, idx: number) => ({
+                id: `${questionId}_${idx + 1}`,
                 text: opt.text,
                 isCorrect: opt.isCorrect,
                 rationale: opt.rationale,

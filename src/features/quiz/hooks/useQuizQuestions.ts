@@ -1,8 +1,8 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { fetchQuestions } from '../api/quiz.api'
-import type { Question } from '../types'
+import { fetchQuestions } from '@/features/quiz/client/quiz.client'
+import type { Question } from '@/features/quiz/types'
 
 interface UseQuizQuestionsOptions {
   type?: string
@@ -26,7 +26,7 @@ interface UseQuizQuestionsReturn {
 export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuestionsReturn {
   const [questions, setQuestions] = useState<Question[]>(options.initialQuestions ?? [])
   const [currentIdx, setCurrentIdx] = useState(0)
-  const [isLoading, setIsLoading] = useState(!options.initialQuestions)
+  const [isLoading, setIsLoading] = useState<boolean>(!options.initialQuestions)
 
   useEffect(() => {
     if (options.initialQuestions) return

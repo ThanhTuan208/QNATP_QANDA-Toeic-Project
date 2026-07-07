@@ -8,10 +8,10 @@ Reference implementation: `src/features/quiz/`
 features/<feature>/
 ├── types.ts                        # Interfaces / Types
 ├── constants.ts                    # Constants, label maps
-├── api/
-│   └── <feature>.api.ts            # fetch/axios calls (ko state, ko logic)
-├── controllers/
-│   ├── <feature>.controller.ts     # Pure functions, ko biết React, dễ test
+├── client/
+│   └── <feature>.client.ts         # fetch/axios calls (ko state, ko logic)
+├── utils/
+│   ├── <feature>.utils.ts          # Pure functions, ko biết React, dễ test
 │   └── ...
 ├── hooks/
 │   ├── use<Resource>.ts            # Data hook (1 responsibility)
@@ -36,13 +36,13 @@ features/<feature>/
 - Constants, enums, label maps
 - Không import gì từ React
 
-### 2. `api/<feature>.api.ts` — Network Layer
+### 2. `client/<feature>.client.ts` — Network Layer
 - Chỉ gọi `fetch()` hoặc `axios`
 - Nhận params, trả về typed Promise
 - **KO** có React state, **KO** có logic xử lý
 
 ```typescript
-// quiz.api.ts
+// quiz.client.ts
 export async function fetchQuestions(params) {
   const res = await fetch(`/api/questions/random?${params}`)
   return res.json()
@@ -54,18 +54,18 @@ export async function submitAttempt(questionId, selectedOptionId) {
 }
 ```
 
-### 3. `controllers/*.ts` — Pure Logic Layer
+### 3. `utils/*.ts` — Pure Logic Layer
 - Pure functions: cùng input → luôn cùng output
 - **KHÔNG** import React, **KHÔNG** gọi API
 - Dễ unit test (ko cần mock React)
 
 ```typescript
-// quiz.controller.ts
+// quiz.utils.ts
 export function parseImportedJSON(raw: string, type: string): Question[]
 export function generatePrompt(type: string): string
 export function generateTemplate(type: string): string
 
-// question.controller.ts
+// question.utils.ts
 export function getOptionStatus(optId, selectedId, correctId): OptionStatus
 ```
 

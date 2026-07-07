@@ -1,4 +1,4 @@
-import { getTheoryContent } from '@/features/quiz/controllers/theory.controller'
+import { getTheoryContent } from '@/features/quiz/utils/theory.utils'
 
 export function TheorySection({ type }: { type: string }) {
   const data = getTheoryContent(type)
