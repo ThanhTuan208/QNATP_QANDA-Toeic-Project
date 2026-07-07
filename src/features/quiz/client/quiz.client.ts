@@ -1,9 +1,9 @@
 import type {
+  AttemptResult,
   FetchQuestionsParams,
   FetchQuestionsResponse,
   StatsData,
   SubmitAttemptResponse,
-  AttemptResult,
 } from '@/features/quiz/types'
 
 export async function fetchQuestions(

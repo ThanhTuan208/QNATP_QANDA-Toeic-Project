@@ -1,7 +1,7 @@
 'use client'
 
-import { useCallback, useReducer } from 'react'
 import { useMutation } from '@tanstack/react-query'
+import { useCallback, useReducer } from 'react'
 import { submitAttempt } from '@/features/quiz/client/quiz.client'
 import type {
   AttemptResult,

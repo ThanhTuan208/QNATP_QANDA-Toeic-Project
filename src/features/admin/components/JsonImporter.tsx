@@ -103,12 +103,13 @@ export function JsonImporter() {
           </div>
           {status && (
             <div
-              className={`p-3 rounded-xl text-sm ${status.type === 'success'
-                ? 'bg-green-teal-10 text-green-dark border border-green-teal-20'
-                : status.type === 'error'
-                  ? 'bg-error-soft text-error border border-error/20'
-                  : 'bg-safety-orange-10 text-safety-orange border border-safety-orange-20'
-                }`}
+              className={`p-3 rounded-xl text-sm ${
+                status.type === 'success'
+                  ? 'bg-green-teal-10 text-green-dark border border-green-teal-20'
+                  : status.type === 'error'
+                    ? 'bg-error-soft text-error border border-error/20'
+                    : 'bg-safety-orange-10 text-safety-orange border border-safety-orange-20'
+              }`}
             >
               {status.message}
             </div>

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 /* @import "tw-animate-css"; */
 /* @import "shadcn/tailwind.css"; */
 
@@ -100,7 +102,7 @@
   --error-default: oklch(0.692 0.165 17.5);     /* #ff696e */
 
   /* --- SHADCN MAPPING SYSTEM --- */
-  --background: var(--green-bright); /* Bạn đã chọn màu này làm nền chính */
+  --background: var(--green-bright);
   --foreground: var(--neutral-90);
 
   --primary: var(--primary-teal);
@@ -132,7 +134,7 @@
   --radius: 0.625rem;
 
   /* Sidebar */
-  --sidebar: var(--neutral-0); /* Để sidebar màu trắng phân biệt với nền green-bright */
+  --sidebar: var(--neutral-0);
   --sidebar-foreground: var(--neutral-90);
   --sidebar-primary: var(--primary-teal);
   --sidebar-primary-foreground: var(--neutral-0);
@@ -144,13 +146,16 @@
   --shadow-tab-active:
     0 4px 6px -1px oklch(0 0 0 / 0.1),
     0 2px 4px -2px oklch(0 0 0 / 0.1);
-
   --shadow-tab-active-dark:
     0 4px 6px -1px oklch(0 0 0 / 0.4);
-
   --shadow-tab-inactive:
     0 4px 12px oklch(0 0 0 / 0.15);
 
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
 }
 
 /* --- DARK MODE CONFIG --- */
@@ -178,7 +183,7 @@
 
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 18%);
-  
+
   --ring: var(--pale-teal-default);
 
   --sidebar: oklch(0.18 0.02 192.5);
@@ -189,6 +194,13 @@
   --sidebar-accent-foreground: var(--white);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: var(--pale-teal-default);
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
 }
 
 @theme inline {
@@ -196,7 +208,7 @@
   --font-sans: var(--font-sans);
 
   /* --- 1. CUSTOM DANH SÁCH MÀU ĐỦ CLASS TIỆN ÍCH --- */
-  
+
   /* Green Teal Utilities */
   --color-green-teal: var(--green-teal-default);
   --color-green-teal-80: var(--green-teal-80);
@@ -344,6 +356,17 @@
 
   --color-tab-active-bg: var(--neutral-0);
   --color-tab-active-text: var(--green-teal-default);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 @layer base {
@@ -388,10 +411,6 @@
   box-shadow: var(--shadow-tab-active);
 }
 
-.dark .tab-switcher-btn-active {
-  box-shadow: var(--shadow-tab-active-dark);
-}
-
 @utility tab-switcher-btn-inactive {
   background-color: var(--color-tab-inactive-bg);
   color: var(--color-tab-inactive-text);
@@ -411,3 +430,6 @@
   display: none; /* Chrome, Safari */
 }
 
+.dark .tab-switcher-btn-active {
+  box-shadow: var(--shadow-tab-active-dark);
+}

@@ -1,5 +1,6 @@
 'use client'
 
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useCallback, useState } from 'react'
 import { fetchQuestions } from '@/features/quiz/client/quiz.client'
 import type {
@@ -8,7 +9,6 @@ import type {
   UseQuizQuestionsOptions,
   UseQuizQuestionsReturn,
 } from '@/features/quiz/types'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuestionsReturn {
   const queryClient = useQueryClient()
@@ -30,7 +30,7 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
     },
     [queryClient, options.type, options.difficulty],
   )
-  
+
   const advanceQuestion = useCallback(() => {
     setCurrentIdx((i) => i + 1)
   }, [])
