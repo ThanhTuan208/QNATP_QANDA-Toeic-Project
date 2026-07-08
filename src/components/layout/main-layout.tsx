@@ -1,15 +1,32 @@
 'use client'
 
-import Header from '@/components/layout/Header/header'
 import Sidebar from '@/components/layout/Sidebar/sidebar'
+import { SiteHeader } from '@/components/layout/SiteHeader/site-header'
 import { useMainLayoutController } from '@/hooks/useMainLayoutController'
+import { Button } from '../common/Button'
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const { isAuthenticated, isSidebarOpen, toggleSidebar, closeSidebar, handleLogout } =
     useMainLayoutController()
 
   return (
-    <div className='lg:flex min-h-screen w-full bg-background'>
+    <div className='min-h-screen w-full bg-background'>
+      <SiteHeader
+        showSidebarToggle
+        onToggleSidebar={toggleSidebar}
+        actions={
+          <div className='flex items-center gap-4'>
+            <Button
+              buttonType='none'
+              onClick={handleLogout}
+              className='px-4 py-2 text-xs sm:text-sm font-bold text-foreground border border-border rounded-xl hover:bg-accent active:scale-95 transition-all'
+            >
+              Đăng xuất
+            </Button>
+          </div>
+        }
+      />
+
       <Sidebar
         isOpen={isSidebarOpen}
         onClose={closeSidebar}
@@ -17,14 +34,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         onNavigateItem={closeSidebar}
         onLogout={handleLogout}
       />
-      <div className='flex-1 min-w-0 flex flex-col'>
-        <Header
-          isLoggedIn={isAuthenticated}
-          onToggleSidebar={toggleSidebar}
-          onNavigateLanding={() => (window.location.href = '/')}
-        />
-        <main className='flex-1 p-4 md:p-10 max-w-5xl mx-auto w-full'>{children}</main>
-      </div>
+
+      <main className='pt-20 lg:ml-64 p-4 md:p-10 max-w-5xl mx-auto min-h-screen'>{children}</main>
     </div>
   )
 }

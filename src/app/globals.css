@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-/* @import "tw-animate-css"; */
-/* @import "shadcn/tailwind.css"; */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -207,7 +205,7 @@
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
 
-  /* --- 1. CUSTOM DANH SÁCH MÀU ĐỦ CLASS TIỆN ÍCH --- */
+  /* --- CUSTOM DANH SÁCH MÀU ĐỦ CLASS TIỆN ÍCH --- */
 
   /* Green Teal Utilities */
   --color-green-teal: var(--green-teal-default);
@@ -421,15 +419,26 @@
   backdrop-filter: blur(4px);
 }
 
-.hide-scrollbar {
-  -ms-overflow-style: none; /* IE, Edge cũ */
-  scrollbar-width: none; /* Firefox */
+body {
+     font-family: 'Inter', sans-serif;
+     scroll-behavior: smooth;
 }
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+ .material-symbols-outlined {
+     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
-
-.dark .tab-switcher-btn-active {
-  box-shadow: var(--shadow-tab-active-dark);
+ .glass-card {
+     background: rgba(255, 255, 255, 0.65);
+     backdrop-filter: blur(20px);
+     border: 1px solid rgba(255, 255, 255, 0.4);
+     box-shadow: 0 8px 32px rgba(0, 102, 103, 0.08);
+}
+ .soft-depth {
+     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.04);
+}
+ .skill-card-hover {
+     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+ .skill-card-hover:hover {
+     transform: translateY(-4px);
+     box-shadow: 0 20px 40px -12px rgba(0, 102, 103, 0.12);
 }
