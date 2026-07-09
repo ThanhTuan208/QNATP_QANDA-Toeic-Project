@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --inspect=9229",
+		"dev": "next dev --inspect=9229",
+		"dev:clean": "powershell -Command \"Remove-Item -Recurse -Force '.next/dev/cache' -ErrorAction SilentlyContinue\" && next dev --inspect=9229",
     "build": "next build",
     "start": "next start",
     "lint": "biome check --write src/",

@@ -19,7 +19,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             <Button
               buttonType='none'
               onClick={handleLogout}
-              className='px-4 py-2 text-xs sm:text-sm font-bold text-foreground border border-border rounded-xl hover:bg-accent active:scale-95 transition-all'
+              className='px-4 py-2 text-xs sm:text-sm font-bold text-foreground border border-border rounded-md hover:bg-accent active:scale-95 transition-all'
             >
               Đăng xuất
             </Button>
@@ -35,7 +35,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         onLogout={handleLogout}
       />
 
-      <main className='pt-20 lg:ml-64 p-4 md:p-10 max-w-5xl mx-auto min-h-screen'>{children}</main>
+      <main className='pt-20 lg:ml-64 p-4 md:p-10 max-w-5xl mt-18 mx-auto min-h-screen'>{children}</main>
     </div>
   )
 }

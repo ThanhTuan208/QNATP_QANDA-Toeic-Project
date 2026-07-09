@@ -1,9 +1,7 @@
 'use client'
 
-import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Button } from '@/components/common/Button/button'
 import { DropdownNavItem } from '@/components/layout/SiteHeader/dropdown-nav-item'
 import { navItems as defaultNavItems, type NavItem } from '@/constants/header.constant'
 
@@ -30,33 +28,28 @@ export function SiteHeader({
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-border transition-all duration-300 ${
-        scrolled ? 'h-16 shadow-sm' : 'h-20'
-      }`}
+      className={`fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-border transition-all duration-300 
+        ${scrolled ? 'h-16 shadow-sm' : 'h-18'}`}
     >
-      <div className='max-w-7xl mx-auto px-12 flex justify-between items-center h-full'>
+      <div
+        className='max-w-7xl mx-auto h-full px-12 grid grid-cols-[1fr_auto_1fr] items-center'
+      >
+        {/* Logo */}
         <div className='flex items-center gap-3'>
-          {showSidebarToggle && (
-            <Button
-              onClick={onToggleSidebar}
-              className='p-2 -ml-2 text-muted-foreground hover:text-foreground transition-colors'
-              aria-label='Toggle sidebar'
-            >
-              <Menu size={20} />
-            </Button>
-          )}
-          <Link href='/' className='text-2xl font-bold text-primary tracking-tight'>
-            TOEIC Mastery
+          <Link href='/' className='text-2xl font-semibold text-primary tracking-tight'>
+            <span className='text-neutral-100'>LI</span>TOEIC
           </Link>
         </div>
 
-        <div className='hidden lg:flex items-center gap-x-2'>
+        {/* Navigation */}
+        <div className='hidden lg:flex justify-center gap-x-2 mr-10'>
           {navItems.map((item) => (
             <DropdownNavItem key={item.label} item={item} />
           ))}
         </div>
 
-        <div className='flex items-center gap-4'>{actions}</div>
+        {/* Actions */}
+        <div className='flex justify-end items-center'>{actions}</div>
       </div>
     </nav>
   )

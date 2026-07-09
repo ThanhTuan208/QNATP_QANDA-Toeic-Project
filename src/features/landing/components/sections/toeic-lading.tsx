@@ -93,7 +93,7 @@ export default function TOEICLanding() {
             </div>
           </div>
         </section>
-
+        
         {/* Practice Section */}
         <section className='py-32 bg-card'>
           <div className='max-w-7xl mx-auto px-12'>
@@ -110,7 +110,7 @@ export default function TOEICLanding() {
               </p>
             </div>
 
-            <PracticeCardsSection />
+            <PracticeCardsSection />  
 
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
               {/* Listening Skills Group */}
