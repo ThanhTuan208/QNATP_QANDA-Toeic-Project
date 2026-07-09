@@ -1,31 +1,31 @@
-import { 
-  BookOpen, 
-  Library, 
-  GraduationCap, 
-  Bookmark, 
-  XCircle, 
-  FileText, 
-  Ear, 
-  BookOpenCheck,
-  LayoutDashboard,
-  TrendingUp,
-  History,
+import {
   AlertTriangle,
-  Target,
-  Compass,
-  BarChart3,
   Award,
-  ClipboardList,
+  BarChart3,
   BookMarked,
-  Layers,
-  Lightbulb,
-  Map,
-  FileSpreadsheet,
-  Newspaper,
-  HelpCircle,
+  Bookmark,
+  BookOpen,
+  BookOpenCheck,
+  ClipboardList,
+  Compass,
   Download,
-  type LucideIcon
-} from 'lucide-react';
+  Ear,
+  FileSpreadsheet,
+  FileText,
+  GraduationCap,
+  HelpCircle,
+  History,
+  Layers,
+  LayoutDashboard,
+  Library,
+  Lightbulb,
+  type LucideIcon,
+  Map,
+  Newspaper,
+  Target,
+  TrendingUp,
+  XCircle,
+} from 'lucide-react'
 
 export interface NavDropdownItem {
   label: string
@@ -217,4 +217,4 @@ export const navItems: NavItem[] = [
       },
     ],
   },
-];
+]

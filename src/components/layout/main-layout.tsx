@@ -6,8 +6,17 @@ import { useMainLayoutController } from '@/hooks/useMainLayoutController'
 import { Button } from '../common/Button'
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated, isSidebarOpen, toggleSidebar, closeSidebar, handleLogout } =
-    useMainLayoutController()
+  const {
+    isAuthenticated,
+    isSidebarOpen,
+    isSidebarCollapsed,
+    toggleSidebar,
+    closeSidebar,
+    toggleSidebarCollapsed,
+    handleSidebarNavigate,
+    handleSettingsClick,
+    handleLogout,
+  } = useMainLayoutController()
 
   return (
     <div className='min-h-screen w-full bg-background'>
@@ -27,15 +36,25 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         }
       />
 
-      <Sidebar
+      <Sidebar 
         isOpen={isSidebarOpen}
-        onClose={closeSidebar}
+        isCollapsed={isSidebarCollapsed}
         isLoggedIn={isAuthenticated}
-        onNavigateItem={closeSidebar}
+        onClose={closeSidebar}
+        onToggleCollapse={toggleSidebarCollapsed}
+        onNavigateItem={handleSidebarNavigate}
+        onSettingsClick={handleSettingsClick}
         onLogout={handleLogout}
       />
 
-      <main className='pt-20 lg:ml-64 p-4 md:p-10 max-w-5xl mt-18 mx-auto min-h-screen'>{children}</main>
+      <main
+        className={`pt-20 p-4 md:px-18 mt-10 min-h-screen transition-all duration-300 flex justify-center 
+          ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}
+      >
+        <div className='w-full max-w-6xl'>
+          {children}
+        </div>
+      </main>
     </div>
   )
 }

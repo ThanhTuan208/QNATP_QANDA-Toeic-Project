@@ -419,6 +419,15 @@
   backdrop-filter: blur(4px);
 }
 
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 body {
      font-family: 'Inter', sans-serif;
      scroll-behavior: smooth;

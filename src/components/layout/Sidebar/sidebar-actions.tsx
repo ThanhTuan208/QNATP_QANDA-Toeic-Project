@@ -30,6 +30,7 @@ export default function SidebarActions({
         {isExpanded && <span className='text-sm font-bold whitespace-nowrap'>Cài đặt</span>}
       </Button>
       <button
+        type='button'
         onClick={onLogout}
         className={`w-full flex items-center rounded-xl transition-all text-destructive hover:bg-destructive/10 cursor-pointer ${isExpanded ? 'px-4 py-3 gap-4' : 'px-0 py-3 justify-center'}`}
       >

@@ -22,6 +22,7 @@ export default function Sidebar({
   isCollapsed = false,
   isLoggedIn = true,
   onClose,
+  onToggleCollapse,
   onNavigateItem,
   onSettingsClick,
   onLogout,
@@ -33,16 +34,22 @@ export default function Sidebar({
       <SidebarOverlay isOpen={isOpen} onClose={onClose} />
 
       <aside
-        className={`h-screen border-r border-border fixed left-0 top-0 shadow-[2px_0_12px_-4px_rgba(0,0,0,0.5)] flex flex-col p-4 z-40 transition-all duration-300 ease-in-out transform lg:translate-x-0 w-64 
+        className={`h-screen border-r border-border fixed left-0 top-0 shadow-[2px_0_12px_-4px_rgba(0,0,0,0.5)] flex flex-col p-4 z-40 transition-all duration-400 ease-in-out transform lg:translate-x-0 w-64 
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
           ${isCollapsed ? 'lg:w-20' : ''}
-          bg-sidebar text-sidebar-foreground`}
+          bg-white/60 backdrop-blur-md text-sidebar-foreground`}
       >
-        {/* Spacer tương ứng với chiều cao SiteHeader */}
-        <div className='h-20 shrink-0' />
-        <SidebarBrand isExpanded={isExpanded} onClose={onClose} />
+        <div className='h-16 shrink-0' />
+        <SidebarBrand
+          isExpanded={isExpanded}
+          onToggleCollapse={onToggleCollapse}
+          onClose={onClose}
+        />
 
-        <SidebarNavigation isExpanded={isExpanded} onNavigateItem={onNavigateItem} />
+        <SidebarNavigation
+          isExpanded={isExpanded}
+          onNavigateItem={onNavigateItem}
+        />
 
         <SidebarActions
           isExpanded={isExpanded}
