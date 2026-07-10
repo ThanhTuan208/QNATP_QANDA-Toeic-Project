@@ -20,7 +20,7 @@ import {
   Library,
   Lightbulb,
   type LucideIcon,
-  Map,
+  Map as MapIcon,
   Newspaper,
   Target,
   TrendingUp,
@@ -189,7 +189,7 @@ export const navItems: NavItem[] = [
         label: 'Study Roadmap',
         description: 'Lộ trình học tập',
         href: '/resources/study-roadmap',
-        icon: Map,
+        icon: MapIcon,
       },
       {
         label: 'Cheat Sheets',

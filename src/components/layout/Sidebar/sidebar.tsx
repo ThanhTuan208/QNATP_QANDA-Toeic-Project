@@ -57,6 +57,8 @@ export default function Sidebar({
             strokeWidth='2'
             strokeLinecap='round'
             strokeLinejoin='round'
+            role='img'
+            aria-hidden='true'
           >
             <line x1='3' y1='6' x2='21' y2='6' />
             <line x1='3' y1='12' x2='21' y2='12' />
@@ -66,7 +68,7 @@ export default function Sidebar({
       )}
 
       <aside
-        className={`h-screen border-r border-sidebar-border fixed left-0 top-0 flex flex-col z-40 transition-all duration-400 ease-in-out transform lg:translate-x-0 w-64
+        className={`h-screen border-r border-sidebar-border fixed left-0 top-0 flex flex-col z-60 lg:z-40 transition-all duration-400 ease-in-out transform lg:translate-x-0 w-64
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
           ${isCollapsed ? 'lg:w-20' : ''}
           bg-white/75 backdrop-blur-xl text-sidebar-foreground shadow-[2px_0_24px_-8px_rgba(0,0,0,0.12)]

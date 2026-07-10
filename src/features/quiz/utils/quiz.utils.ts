@@ -1,5 +1,5 @@
-import type { Question } from '@/features/quiz/types'
 import { TYPE_LABEL_MAP_VIETNAM } from '@/constants/index.constant'
+import type { Question } from '@/features/quiz/types'
 
 const SAMPLE_QUESTIONS: Record<string, string> = {
   comparison: 'The new system is ______ than the previous version.',

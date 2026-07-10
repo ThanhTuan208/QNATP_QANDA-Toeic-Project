@@ -14,7 +14,10 @@ export default async function PracticeTopicView({ practiceModule, topic }: Pract
 
   return (
     <div className='space-y-8'>
-      <PracticeHeaderSection typeLabel={practiceModule.label} contextDesc={practiceModule.description} />
+      <PracticeHeaderSection
+        typeLabel={practiceModule.label}
+        contextDesc={practiceModule.description}
+      />
 
       <section id={topic.slug} className='scroll-mt-24'>
         <div className='mb-8'>

@@ -13,11 +13,13 @@ export function useMainLayoutController() {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
   const scrollPositions = useRef<Record<string, number>>({})
 
   const isAuthenticated = !!session?.user
 
   const isPracticeRoute = pathname.startsWith('/practice')
+  const isLandingRoute = pathname === '/'
 
   const currentPracticeContext = useMemo(() => {
     if (!isPracticeRoute) return null
@@ -72,7 +74,6 @@ export function useMainLayoutController() {
       if (!moduleId) return
       scrollPositions.current[pathname] = window.scrollY
       router.push(`/practice/${moduleId}/${topicSlug}`)
-      setIsSidebarOpen(false)
     },
     [router, params.module, pathname],
   )
@@ -83,7 +84,6 @@ export function useMainLayoutController() {
       if (!moduleId) return
       scrollPositions.current[pathname] = window.scrollY
       router.push(`/practice/${moduleId}/${topicSlug}#${topicSlug}-${sectionId}`)
-      setIsSidebarOpen(false)
     },
     [router, params.module, pathname],
   )
@@ -92,6 +92,22 @@ export function useMainLayoutController() {
     router.push('/settings')
   }, [router])
 
+  // lock body scroll when mobile nav is open
+  useEffect(() => {
+    document.body.style.overflow = isMobileNavOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMobileNavOpen])
+
+  const handleMobileNavToggle = useCallback(() => {
+    setIsMobileNavOpen((prev) => !prev)
+  }, [])
+
+  const handleMobileNavClose = useCallback(() => {
+    setIsMobileNavOpen(false)
+  }, [])
+
   const handleLogout = useCallback(async () => {
     await signOut({ callbackUrl: '/' })
   }, [])
@@ -99,12 +115,16 @@ export function useMainLayoutController() {
   return {
     isAuthenticated,
     user: session?.user,
+    isLandingRoute,
     isSidebarOpen,
     isSidebarCollapsed,
+    isMobileNavOpen,
     currentPracticeContext,
     toggleSidebar,
     closeSidebar,
     toggleSidebarCollapsed,
+    handleMobileNavToggle,
+    handleMobileNavClose,
     handleTopicClick,
     handleSectionClick,
     handleSettingsClick,

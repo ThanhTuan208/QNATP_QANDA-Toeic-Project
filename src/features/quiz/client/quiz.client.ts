@@ -1,5 +1,4 @@
 import type {
-  AttemptResult,
   FetchQuestionsParams,
   FetchQuestionsResponse,
   StatsData,

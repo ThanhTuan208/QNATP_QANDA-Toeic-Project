@@ -63,6 +63,8 @@ function CardIcon({ name }: { name: string }) {
         strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'
+        role='img'
+        aria-hidden='true'
       >
         <path d='M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20' />
       </svg>
@@ -78,6 +80,8 @@ function CardIcon({ name }: { name: string }) {
         strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'
+        role='img'
+        aria-hidden='true'
       >
         <path d='m5 8 6 6' />
         <path d='m4 14 6-6 2-3' />
@@ -98,6 +102,8 @@ function CardIcon({ name }: { name: string }) {
         strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'
+        role='img'
+        aria-hidden='true'
       >
         <rect x='8' y='2' width='8' height='4' rx='1' />
         <path d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2' />
@@ -118,6 +124,8 @@ function CardIcon({ name }: { name: string }) {
         strokeWidth='1.5'
         strokeLinecap='round'
         strokeLinejoin='round'
+        role='img'
+        aria-hidden='true'
       >
         <rect x='2' y='4' width='20' height='16' rx='2' />
         <path d='m10 9 5 3-5 3Z' />
@@ -145,12 +153,14 @@ export function PracticeCardsSection() {
         <h3 className='text-2xl font-semibold text-foreground'>Tài nguyên học tập</h3>
         <div className='flex gap-2'>
           <button
+            type='button'
             onClick={() => scrollContainer('left')}
             className='w-10 h-10 rounded-full border border-border flex items-center justify-center text-primary hover:bg-primary/5 transition-colors'
           >
             <ChevronLeft className='h-5 w-5' />
           </button>
           <button
+            type='button'
             onClick={() => scrollContainer('right')}
             className='w-10 h-10 rounded-full border border-border flex items-center justify-center text-primary hover:bg-primary/5 transition-colors'
           >

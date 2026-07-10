@@ -1,6 +1,6 @@
 export default function PracticeTopicLoading() {
   return (
-    <div className='space-y-8 animate-pulse'>
+    <div className='space-y-8'>
       <div className='space-y-2'>
         <div className='h-8 w-48 bg-muted rounded-lg' />
         <div className='h-4 w-72 bg-muted rounded-md' />

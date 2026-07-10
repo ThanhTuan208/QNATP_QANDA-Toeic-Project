@@ -30,7 +30,7 @@ export const TYPE_LABEL_MAP_VIETNAM: Record<string, string> = {
   preposition: 'Giới từ',
   conjunction: 'Liên từ',
   participle: 'Phân từ',
-  voice: 'Thể bị động và cấu trúc sai bảo',
+  voice: 'Câu bị động',
   'relative-clause': 'Mệnh đề quan hệ',
-  agreement: 'Sự hòa hợp giữa chủ ngữ và động từ',
+  agreement: 'Sự hòa hợp',
 }

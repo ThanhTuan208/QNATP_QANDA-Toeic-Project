@@ -29,8 +29,8 @@ export function ProgressChart({ correct, total }: ProgressChartProps) {
             dataKey='value'
             strokeWidth={0}
           >
-            {data.map((_, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index]} />
+            {data.map((entry, index) => (
+              <Cell key={entry.name} fill={COLORS[index]} />
             ))}
           </Pie>
         </PieChart>

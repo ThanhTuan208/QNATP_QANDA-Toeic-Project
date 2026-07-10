@@ -19,7 +19,13 @@ export default function SidebarBrand({
   onToggleCollapse,
   onClose,
 }: SidebarBrandProps) {
-  const { topics, module, expandedFeature, expandedModule, expandedTopic } = currentPracticeContext ?? { topics: [], expandedFeature: null, expandedModule: null, expandedTopic: null }
+  const { topics, module, expandedFeature, expandedModule, expandedTopic } =
+    currentPracticeContext ?? {
+      topics: [],
+      expandedFeature: null,
+      expandedModule: null,
+      expandedTopic: null,
+    }
   const expandedTopicFind = topics.find((t) => t.slug === expandedTopic)
   const displayTopic = expandedTopicFind ?? null
   const IconComp = displayTopic?.icon ?? module?.icon ?? BookOpen
@@ -42,7 +48,9 @@ export default function SidebarBrand({
           >
             <div className='text-sm font-bold truncate leading-tight'>{title}</div>
             <div className='text-[12px] text-muted-foreground/90 mt-0.5'>
-              <span>{expandedFeature} - {expandedModule}</span>
+              <span>
+                {expandedFeature} - {expandedModule}
+              </span>
             </div>
           </motion.div>
         )}
