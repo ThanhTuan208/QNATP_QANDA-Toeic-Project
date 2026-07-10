@@ -10,10 +10,12 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     isAuthenticated,
     isSidebarOpen,
     isSidebarCollapsed,
+    currentPracticeContext,
     toggleSidebar,
     closeSidebar,
     toggleSidebarCollapsed,
-    handleSidebarNavigate,
+    handleTopicClick,
+    handleSectionClick,
     handleSettingsClick,
     handleLogout,
   } = useMainLayoutController()
@@ -36,24 +38,25 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         }
       />
 
-      <Sidebar 
+      <Sidebar
         isOpen={isSidebarOpen}
         isCollapsed={isSidebarCollapsed}
         isLoggedIn={isAuthenticated}
         onClose={closeSidebar}
+        onToggle={toggleSidebar}
         onToggleCollapse={toggleSidebarCollapsed}
-        onNavigateItem={handleSidebarNavigate}
         onSettingsClick={handleSettingsClick}
         onLogout={handleLogout}
+        currentPracticeContext={currentPracticeContext}
+        onTopicClick={handleTopicClick}
+        onSectionClick={handleSectionClick}
       />
 
       <main
         className={`pt-20 p-4 md:px-18 mt-10 min-h-screen transition-all duration-300 flex justify-center 
           ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}
       >
-        <div className='w-full max-w-6xl'>
-          {children}
-        </div>
+        <div className='w-full max-w-6xl'>{children}</div>
       </main>
     </div>
   )

@@ -1,20 +1,58 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
+import { useParams, usePathname, useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
-import { useCallback, useState } from 'react'
-import { currentPageMap } from '@/constants/sidebar.constant'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { practiceModules } from '@/constants/sidebar.constant'
 
 export function useMainLayoutController() {
   const { data: session } = useSession()
   const router = useRouter()
   const pathname = usePathname()
+  const params = useParams()
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
+  const scrollPositions = useRef<Record<string, number>>({})
 
   const isAuthenticated = !!session?.user
-  const currentPage = currentPageMap[pathname] || '/'
+
+  const isPracticeRoute = pathname.startsWith('/practice')
+
+  const currentPracticeContext = useMemo(() => {
+    if (!isPracticeRoute) return null
+
+    const moduleId = (params.module as string | undefined) ?? pathname.split('/')[2]
+    const practiceModule = practiceModules.find((m) => m.id === moduleId) ?? null
+    const expandedFeature = pathname.split('/')[1] ?? null
+    const expandedModule = pathname.split('/')[2] ?? null
+    const expandedTopic = pathname.split('/')[3] ?? null
+
+    return {
+      module: practiceModule,
+      topics: practiceModule?.topics ?? [],
+      expandedFeature,
+      expandedModule,
+      expandedTopic,
+    }
+  }, [isPracticeRoute, params.module, pathname])
+
+  // save scroll position on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollPositions.current[pathname] = window.scrollY
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [pathname])
+
+  // restore scroll position on route change
+  useEffect(() => {
+    const saved = scrollPositions.current[pathname]
+    if (saved !== undefined) {
+      requestAnimationFrame(() => window.scrollTo(0, saved))
+    }
+  }, [pathname])
 
   const toggleSidebar = useCallback(() => {
     setIsSidebarOpen((prev) => !prev)
@@ -28,17 +66,26 @@ export function useMainLayoutController() {
     setIsSidebarCollapsed((prev) => !prev)
   }, [])
 
-  const handleSidebarNavigate = useCallback(
-    (itemId: string) => {
-      const section = document.getElementById(itemId)
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth' })
-      } else {
-        router.push(itemId === '/' ? '/' : `/${itemId}`)
-      }
+  const handleTopicClick = useCallback(
+    (topicSlug: string) => {
+      const moduleId = (params.module as string | undefined) ?? pathname.split('/')[2]
+      if (!moduleId) return
+      scrollPositions.current[pathname] = window.scrollY
+      router.push(`/practice/${moduleId}/${topicSlug}`)
       setIsSidebarOpen(false)
     },
-    [router],
+    [router, params.module, pathname],
+  )
+
+  const handleSectionClick = useCallback(
+    (topicSlug: string, sectionId: string) => {
+      const moduleId = (params.module as string | undefined) ?? pathname.split('/')[2]
+      if (!moduleId) return
+      scrollPositions.current[pathname] = window.scrollY
+      router.push(`/practice/${moduleId}/${topicSlug}#${topicSlug}-${sectionId}`)
+      setIsSidebarOpen(false)
+    },
+    [router, params.module, pathname],
   )
 
   const handleSettingsClick = useCallback(() => {
@@ -54,11 +101,12 @@ export function useMainLayoutController() {
     user: session?.user,
     isSidebarOpen,
     isSidebarCollapsed,
-    currentPage,
+    currentPracticeContext,
     toggleSidebar,
     closeSidebar,
     toggleSidebarCollapsed,
-    handleSidebarNavigate,
+    handleTopicClick,
+    handleSectionClick,
     handleSettingsClick,
     handleLogout,
   }

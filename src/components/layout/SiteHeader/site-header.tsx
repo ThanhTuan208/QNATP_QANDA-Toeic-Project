@@ -33,7 +33,6 @@ export function SiteHeader({
         ${scrolled ? 'h-16 shadow-sm' : 'h-18'}`}
     >
       <div className='max-w-7xl mx-auto h-full px-12 grid grid-cols-[1fr_auto_1fr] items-center'>
-        {/* Logo + Mobile Menu */}
         <div className='flex items-center gap-3'>
           {showSidebarToggle && (
             <button
@@ -50,7 +49,6 @@ export function SiteHeader({
           </Link>
         </div>
 
-        {/* Navigation */}
         <div className='hidden lg:flex justify-center gap-x-2 mr-10'>
           {navItems.map((item) => (
             <DropdownNavItem key={item.label} item={item} />

@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
-import { TYPE_LABEL_MAP } from '@/lib/utils'
+import { TYPE_LABEL_MAP } from '@/constants/index.constant'
 
 interface Attempt {
   id: string
