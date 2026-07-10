@@ -1,4 +1,4 @@
-import { TYPE_LABEL_MAP_FULL } from '@/features/quiz/constants'
+import { TYPE_LABEL_MAP_VIETNAM } from '@/constants/index.constant'
 import type { Question } from '@/features/quiz/types'
 
 const SAMPLE_QUESTIONS: Record<string, string> = {
@@ -36,7 +36,7 @@ export function generateTemplate(type: string): string {
 }
 
 export function generatePrompt(type: string): string {
-  const typeLabel = TYPE_LABEL_MAP_FULL[type] ?? type
+  const typeLabel = TYPE_LABEL_MAP_VIETNAM[type] ?? type
   return `Bạn là chuyên gia TOEIC. Hãy tạo 5 câu hỏi Part 5 (Incomplete Sentences) dạng "${typeLabel}" cho kỳ thi TOEIC.
 
 YÊU CẦU:

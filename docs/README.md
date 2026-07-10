@@ -17,6 +17,10 @@
 - [Feature Structure](architecture/feature-structure.md) — pattern feature module
 - [Comparison PHF vs TOEIC](architecture/comparison-phf-vs-toeic.md) — so sánh kiến trúc cũ/mới
 
+## Features
+
+- [Header Features](features/header-features.md) — navigation 4 trụ cột, route mapping, implementation notes
+
 ## Content
 
 - [Part 5 Analysis](content/build_part_5.md) — phân tích dạng câu hỏi TOEIC Part 5

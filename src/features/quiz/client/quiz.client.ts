@@ -3,7 +3,6 @@ import type {
   FetchQuestionsResponse,
   StatsData,
   SubmitAttemptResponse,
-  AttemptResult,
 } from '@/features/quiz/types'
 
 export async function fetchQuestions(

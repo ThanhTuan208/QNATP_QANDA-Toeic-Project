@@ -7,24 +7,39 @@ export function RegisterFormSection() {
       <h1 className='text-2xl font-bold text-center text-foreground mb-6'>Đăng ký</h1>
       <form className='space-y-4'>
         <div>
-          <label className='block text-sm font-medium text-foreground mb-1'>Họ tên</label>
+          <label htmlFor='register-name' className='block text-sm font-medium text-foreground mb-1'>
+            Họ tên
+          </label>
           <input
+            id='register-name'
             type='text'
             className='w-full rounded-xl border border-border px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary'
             placeholder='Nguyễn Văn A'
           />
         </div>
         <div>
-          <label className='block text-sm font-medium text-foreground mb-1'>Email</label>
+          <label
+            htmlFor='register-email'
+            className='block text-sm font-medium text-foreground mb-1'
+          >
+            Email
+          </label>
           <input
+            id='register-email'
             type='email'
             className='w-full rounded-xl border border-border px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary'
             placeholder='your@email.com'
           />
         </div>
         <div>
-          <label className='block text-sm font-medium text-foreground mb-1'>Mật khẩu</label>
+          <label
+            htmlFor='register-password'
+            className='block text-sm font-medium text-foreground mb-1'
+          >
+            Mật khẩu
+          </label>
           <input
+            id='register-password'
             type='password'
             className='w-full rounded-xl border border-border px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary'
             placeholder='••••••••'

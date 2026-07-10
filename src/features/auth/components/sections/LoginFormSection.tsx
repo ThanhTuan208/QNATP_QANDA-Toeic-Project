@@ -7,16 +7,25 @@ export function LoginFormSection() {
       <h1 className='text-2xl font-bold text-center text-foreground mb-6'>Đăng nhập</h1>
       <form className='space-y-4'>
         <div>
-          <label className='block text-sm font-medium text-foreground mb-1'>Email</label>
+          <label htmlFor='login-email' className='block text-sm font-medium text-foreground mb-1'>
+            Email
+          </label>
           <input
+            id='login-email'
             type='email'
             className='w-full rounded-xl border border-border px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary'
             placeholder='your@email.com'
           />
         </div>
         <div>
-          <label className='block text-sm font-medium text-foreground mb-1'>Mật khẩu</label>
+          <label
+            htmlFor='login-password'
+            className='block text-sm font-medium text-foreground mb-1'
+          >
+            Mật khẩu
+          </label>
           <input
+            id='login-password'
             type='password'
             className='w-full rounded-xl border border-border px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary'
             placeholder='••••••••'
