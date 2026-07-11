@@ -19,26 +19,13 @@ import {
   LayoutDashboard,
   Library,
   Lightbulb,
-  type LucideIcon,
   Map as MapIcon,
   Newspaper,
   Target,
   TrendingUp,
   XCircle,
 } from 'lucide-react'
-
-export interface NavDropdownItem {
-  label: string
-  description?: string
-  href: string
-  icon: LucideIcon
-}
-
-export interface NavItem {
-  label: string
-  href?: string
-  dropdownItems?: NavDropdownItem[]
-}
+import type { NavItem } from '@/types/header'
 
 export const navItems: NavItem[] = [
   {

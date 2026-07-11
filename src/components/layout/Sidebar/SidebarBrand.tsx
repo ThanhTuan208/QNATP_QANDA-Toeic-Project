@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion'
 import { BookOpen, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/common/Button'
-import { TYPE_SLUG_MAP_ENG } from '@/constants/index.constant'
-import type { PracticeContext } from '@/constants/sidebar.constant'
+import { TYPE_SLUG_MAP_ENG } from '@/constants/index.constants'
+import type { PracticeContext } from '@/types/sidebar'
 
 interface SidebarBrandProps {
   isExpanded: boolean

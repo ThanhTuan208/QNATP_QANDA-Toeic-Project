@@ -1,7 +1,7 @@
 'use client'
 
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '@/components/common/Button/button'
+import { Button } from '@/components/common/Button'
 
 const RESOURCE_CARDS = [
   {

@@ -15,8 +15,8 @@ import {
   Zap,
 } from 'lucide-react'
 import Image from 'next/image'
-import { Button } from '@/components/common/Button/button'
-import { PracticeCardsSection } from './PracticeCardsSection'
+import { Button } from '@/components/common/Button'
+import { PracticeCardsSection } from '../Sections/PracticeCardsSection'
 
 export default function TOEICLanding() {
   return (

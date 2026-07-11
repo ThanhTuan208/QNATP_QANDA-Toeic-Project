@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import Sidebar from '@/components/layout/Sidebar/sidebar'
-import { SiteHeader } from '@/components/layout/SiteHeader/site-header'
+import { Sidebar } from '@/components/layout/Sidebar'
+import { SiteHeader } from '@/components/layout/SiteHeader'
 import { useMainLayoutController } from '@/hooks/useMainLayoutController'
-import { Button } from '../common/Button'
+import { Button } from '../../common/Button'
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const {

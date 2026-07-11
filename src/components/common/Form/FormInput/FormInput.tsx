@@ -7,7 +7,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/common/Form/form'
+} from '@/components/common/Form/Form'
 import { Input } from '@/components/common/Input'
 
 interface FormInputProps<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> {

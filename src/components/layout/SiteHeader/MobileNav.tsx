@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
-import type { NavItem } from '@/constants/header.constant'
+import type { NavItem } from '@/types/header'
 
 interface MobileNavProps {
   isOpen: boolean

@@ -1,1 +1,1 @@
-export { PracticeHeaderSection } from '@/features/quiz/components/sections/PracticeHeaderSection/PracticeHeaderSection'
+export { PracticeHeaderSection } from '@/features/quiz/components/Sections/PracticeHeaderSection/PracticeHeaderSection'

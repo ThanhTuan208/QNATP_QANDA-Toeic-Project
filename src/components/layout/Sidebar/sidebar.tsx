@@ -1,11 +1,11 @@
 'use client'
 
 import { X } from 'lucide-react'
-import type { PracticeContext } from '@/constants/sidebar.constant'
-import SidebarActions from './sidebar-actions'
-import SidebarBrand from './sidebar-brand'
-import SidebarNavigation from './sidebar-navigation'
-import SidebarOverlay from './sidebar-overlay'
+import type { PracticeContext } from '@/types/sidebar'
+import SidebarActions from './SidebarActions'
+import SidebarBrand from './SidebarBrand'
+import SidebarNavigation from './SidebarNavigation'
+import SidebarOverlay from './SidebarOverlay'
 
 interface SidebarProps {
   isOpen: boolean

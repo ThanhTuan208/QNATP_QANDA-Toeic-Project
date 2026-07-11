@@ -5,8 +5,8 @@ import { ChevronDown } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 import { Button } from '@/components/common/Button'
-import type { PracticeContext } from '@/constants/sidebar.constant'
-import { ConvertSlugToNameVietNam, FirstCharOfStringCapitalize } from '@/utils/sidebar.util'
+import type { PracticeContext } from '@/types/sidebar'
+import { ConvertSlugToNameVietNam, FirstCharOfStringCapitalize } from '@/utils/sidebar.utils'
 
 interface SidebarNavigationProps {
   isExpanded: boolean
@@ -103,7 +103,7 @@ export default function SidebarNavigation({
                     {isOpen && isExpanded && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
+                        animate={{ height: 100, opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{
                           type: 'tween',

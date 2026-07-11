@@ -7,4 +7,4 @@ export {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/common/Dialog/dialog'
+} from '@/components/common/Dialog/Dialog'

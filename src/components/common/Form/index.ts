@@ -7,4 +7,4 @@ export {
   FormLabel,
   FormMessage,
   useFormField,
-} from '@/components/common/Form/form'
+} from '@/components/common/Form/Form'

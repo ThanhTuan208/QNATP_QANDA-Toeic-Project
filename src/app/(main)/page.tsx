@@ -1,4 +1,4 @@
-import LandingPage from '@/features/landing/components/sections/toeic-lading'
+import LandingPage from '@/features/landing/components/ToeicLanding'
 
 export default function Home() {
   return <LandingPage />

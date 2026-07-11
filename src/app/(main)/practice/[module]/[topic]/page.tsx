@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
-import { practiceModules } from '@/constants/sidebar.constant'
-import { PracticeTopicView } from '@/features/quiz/components/sections/PracticeTopicView'
+import { practiceModules } from '@/constants/sidebar.constants'
+import { PracticeTopicView } from '@/features/quiz/components/Sections/PracticeTopicView'
 
 interface TopicPageProps {
   params: Promise<{ module: string; topic: string }>

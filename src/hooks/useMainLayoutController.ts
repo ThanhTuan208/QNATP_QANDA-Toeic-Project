@@ -3,7 +3,7 @@
 import { useParams, usePathname, useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { practiceModules } from '@/constants/sidebar.constant'
+import { practiceModules } from '@/constants/sidebar.constants'
 
 export function useMainLayoutController() {
   const { data: session } = useSession()

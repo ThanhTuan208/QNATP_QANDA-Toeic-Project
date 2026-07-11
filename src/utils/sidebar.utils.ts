@@ -1,4 +1,4 @@
-import { TYPE_LABEL_MAP_VIETNAM } from '@/constants/index.constant'
+import { TYPE_LABEL_MAP_VIETNAM } from '@/constants/index.constants'
 
 export function FirstCharOfStringCapitalize(text?: string) {
   if (!text) return

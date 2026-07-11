@@ -1,5 +1,5 @@
 import { notFound, redirect } from 'next/navigation'
-import { practiceModules } from '@/constants/sidebar.constant'
+import { practiceModules } from '@/constants/sidebar.constants'
 
 export default async function PracticeModulePage({
   params,

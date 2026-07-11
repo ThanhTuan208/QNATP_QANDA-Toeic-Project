@@ -2,7 +2,7 @@
 
 import { XIcon } from 'lucide-react'
 import type * as React from 'react'
-import Button from '@/components/common/Button/button'
+import { Button } from '@/components/common/Button'
 import {
   DialogContent,
   DialogDescription,

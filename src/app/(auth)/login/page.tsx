@@ -1,4 +1,4 @@
-import { LoginFormSection } from '@/features/auth/components/sections/LoginFormSection'
+import { LoginFormSection } from '@/features/auth/components/Sections/LoginFormSection'
 
 export default function LoginPage() {
   return <LoginFormSection />

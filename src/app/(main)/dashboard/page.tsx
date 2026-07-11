@@ -1,9 +1,9 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { AttemptHistorySection } from '@/features/dashboard/components/sections/AttemptHistorySection'
-import { DashboardHeaderSection } from '@/features/dashboard/components/sections/DashboardHeaderSection'
-import { DashboardStatsGridSection } from '@/features/dashboard/components/sections/DashboardStatsGridSection'
+import { AttemptHistorySection } from '@/features/dashboard/components/Sections/AttemptHistorySection'
+import { DashboardHeaderSection } from '@/features/dashboard/components/Sections/DashboardHeaderSection'
+import { DashboardStatsGridSection } from '@/features/dashboard/components/Sections/DashboardStatsGridSection'
 import { fetchStats } from '@/features/quiz/client/quiz.client'
 import type { StatsData } from '@/features/quiz/types'
 

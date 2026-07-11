@@ -2,55 +2,18 @@ import {
   ArrowUpRight,
   FileText,
   Layers,
-  type LucideIcon,
   NotebookPen,
   RefreshCw,
   Scale,
 } from 'lucide-react'
-
-export interface SectionItem {
-  id: string
-  label: string
-}
-
-export interface TopicItem {
-  slug: string
-  label: string
-  description: string
-  icon: LucideIcon
-  difficulty: string
-  estimatedMinutes: number
-  sections: SectionItem[]
-}
+import type { PracticeModule, SectionItem, TopicItem } from '@/types/sidebar'
 
 export const vocabularyTopics: TopicItem[] = []
 export const mixedPracticeTopics: TopicItem[] = []
 export const savedQuestionTopics: TopicItem[] = []
 export const wrongAnswerTopics: TopicItem[] = []
 
-export interface PracticeModule {
-  id: string
-  label: string
-  description: string
-  href: string
-  icon: LucideIcon
-  topics: TopicItem[]
-}
-
-export interface PracticeContext {
-  module: {
-    id: string
-    label: string
-    description: string
-    icon: React.ComponentType<{ size?: number; className?: string }>
-  } | null
-  topics: TopicItem[]
-  expandedFeature: string | null
-  expandedModule: string | null
-  expandedTopic: string | null
-}
-
-export const DEFAULT_SECTIONS: SectionItem[] = [
+export const defaultSections: SectionItem[] = [
   { id: 'theory', label: 'Lý thuyết' },
   { id: 'practice', label: 'Luyện tập' },
   { id: 'quiz', label: 'Kiểm tra' },
@@ -64,7 +27,7 @@ export const grammarTopics: TopicItem[] = [
     icon: NotebookPen,
     difficulty: 'beginner',
     estimatedMinutes: 15,
-    sections: DEFAULT_SECTIONS,
+    sections: defaultSections,
   },
   {
     slug: 'word-form',
@@ -73,7 +36,7 @@ export const grammarTopics: TopicItem[] = [
     icon: NotebookPen,
     difficulty: 'beginner',
     estimatedMinutes: 15,
-    sections: DEFAULT_SECTIONS,
+    sections: defaultSections,
   },
   {
     slug: 'verb-tense',
@@ -82,7 +45,7 @@ export const grammarTopics: TopicItem[] = [
     icon: NotebookPen,
     difficulty: 'beginner',
     estimatedMinutes: 15,
-    sections: DEFAULT_SECTIONS,
+    sections: defaultSections,
   },
   {
     slug: 'preposition',
@@ -91,7 +54,7 @@ export const grammarTopics: TopicItem[] = [
     icon: NotebookPen,
     difficulty: 'beginner',
     estimatedMinutes: 15,
-    sections: DEFAULT_SECTIONS,
+    sections: defaultSections,
   },
   {
     slug: 'conjunction',
@@ -100,7 +63,7 @@ export const grammarTopics: TopicItem[] = [
     icon: NotebookPen,
     difficulty: 'beginner',
     estimatedMinutes: 15,
-    sections: DEFAULT_SECTIONS,
+    sections: defaultSections,
   },
   {
     slug: 'participle',
@@ -109,7 +72,7 @@ export const grammarTopics: TopicItem[] = [
     icon: NotebookPen,
     difficulty: 'beginner',
     estimatedMinutes: 15,
-    sections: DEFAULT_SECTIONS,
+    sections: defaultSections,
   },
   {
     slug: 'voice',
@@ -118,7 +81,7 @@ export const grammarTopics: TopicItem[] = [
     icon: NotebookPen,
     difficulty: 'beginner',
     estimatedMinutes: 15,
-    sections: DEFAULT_SECTIONS,
+    sections: defaultSections,
   },
   {
     slug: 'relative-clause',
@@ -127,7 +90,7 @@ export const grammarTopics: TopicItem[] = [
     icon: NotebookPen,
     difficulty: 'beginner',
     estimatedMinutes: 15,
-    sections: DEFAULT_SECTIONS,
+    sections: defaultSections,
   },
   {
     slug: 'agreement',
@@ -136,7 +99,7 @@ export const grammarTopics: TopicItem[] = [
     icon: NotebookPen,
     difficulty: 'beginner',
     estimatedMinutes: 15,
-    sections: DEFAULT_SECTIONS,
+    sections: defaultSections,
   },
 ]
 

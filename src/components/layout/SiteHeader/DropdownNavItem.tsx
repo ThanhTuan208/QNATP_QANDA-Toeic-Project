@@ -2,7 +2,7 @@ import { ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/common/Button'
-import type { NavItem } from '@/constants/header.constant'
+import type { NavItem } from '@/types/header'
 
 export function DropdownNavItem({ item }: { item: NavItem }) {
   const [open, setOpen] = useState(false)

@@ -4,8 +4,8 @@ import { X } from 'lucide-react'
 import { Button } from '@/components/common/Button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/navigation/tabs'
 import { Dialog, DialogContent } from '@/components/ui/overlay/dialog'
-import { LoginForm } from '@/features/auth/components/login/login-form'
-import { RegisterForm } from '@/features/auth/components/register/register-form'
+import { LoginForm } from '@/features/auth/components/LoginForm'
+import { RegisterForm } from '@/features/auth/components/RegisterForm'
 
 interface AuthModalProps {
   isOpen: boolean

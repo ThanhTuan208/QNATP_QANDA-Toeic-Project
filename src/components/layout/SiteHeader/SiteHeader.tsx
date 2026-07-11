@@ -3,9 +3,10 @@
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/common/Button'
-import { DropdownNavItem } from '@/components/layout/SiteHeader/dropdown-nav-item'
-import { MobileNav } from '@/components/layout/SiteHeader/mobile-nav'
-import { navItems as defaultNavItems, type NavItem } from '@/constants/header.constant'
+import { DropdownNavItem } from '@/components/layout/SiteHeader/DropdownNavItem'
+import { MobileNav } from '@/components/layout/SiteHeader/MobileNav'
+import { navItems as defaultNavItems } from '@/constants/header.constants'
+import type { NavItem } from '@/types/header'
 import { useScrollDetection } from '@/hooks/useScrollDetection'
 
 interface SiteHeaderProps {
