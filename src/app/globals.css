@@ -12,7 +12,7 @@
   /* Green Teal */
   --green-teal-default: oklch(0.504 0.125 192.5); /* #008081 */
   --green-teal-80: oklch(0.504 0.125 192.5 / 0.8);
-  --green-teal-60: oklch(0.50\4 0.125 192.5 / 0.6);
+   --green-teal-60: oklch(0.504 0.125 192.5 / 0.6);
   --green-teal-40: oklch(0.504 0.125 192.5 / 0.4);
   --green-teal-20: oklch(0.504 0.125 192.5 / 0.2);
   --green-teal-10: oklch(0.504 0.125 192.5 / 0.1);
@@ -93,7 +93,6 @@
   --warning-default: oklch(0.742 0.141 63.5);   /* #eca458 */
 
   --error-soft: oklch(0.78 0.10 20);
-  --error-default: oklch(0.69 0.17 18);
   --error-hover: oklch(0.63 0.20 20);
   --error-active: oklch(0.57 0.23 24);
   --error-foreground: oklch(0.98 0 0);
@@ -221,7 +220,7 @@
   --color-mint: var(--mint);
 
   /* Pale Teal & Leaf Utilities */
-  --color-mint: var(--pale-teal-default);
+  --color-pale-teal: var(--pale-teal-default);
   --color-pale-teal-80: var(--pale-teal-80);
   --color-pale-teal-60: var(--pale-teal-60);
   --color-pale-teal-40: var(--pale-teal-40);
@@ -437,6 +436,7 @@ body {
 }
  .glass-card {
      background: rgba(255, 255, 255, 0.65);
+     -webkit-backdrop-filter: blur(20px);
      backdrop-filter: blur(20px);
      border: 1px solid rgba(255, 255, 255, 0.4);
      box-shadow: 0 8px 32px rgba(0, 102, 103, 0.08);
