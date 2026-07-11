@@ -111,3 +111,72 @@ export const QUIZ_DATA = {
   explanation:
     'Dấu hiệu \u201cbefore the meeting\u201d chỉ hành động đã hoàn tất trong quá khứ \u2192 Past Simple.',
 } as const
+
+export const resourceCard = [
+  {
+    title: 'Ngữ pháp',
+    badge: 'Part 5',
+    badgeColor: 'bg-primary/10 text-primary',
+    description:
+      'Chinh phục Part 5 TOEIC với hệ thống bài học, ví dụ minh họa và hàng trăm câu luyện tập theo từng chủ điểm.',
+    gradient: 'from-primary to-green-dark',
+    icon: 'BookOpen',
+    buttonLabel: 'Bắt đầu',
+    buttonClass: 'bg-primary hover:bg-green-teal-60 text-primary-foreground',
+  },
+  {
+    title: 'Từ vựng',
+    badge: '600+ Từ thiết yếu',
+    badgeColor: 'bg-secondary/10 text-secondary-foreground',
+    description:
+      'Học từ vựng qua flashcard thông minh, phát âm chuẩn và các ngữ cảnh thực tế thường gặp nhất trong bài thi TOEIC.',
+    gradient: 'from-green-dark to-safety-orange',
+    icon: 'Languages',
+    buttonLabel: 'Học ngay',
+    buttonClass: 'bg-secondary hover:bg-leaf text-secondary-foreground',
+  },
+  {
+    title: 'Luyện đề',
+    badge: 'Full Test',
+    badgeColor: 'bg-error/10 text-error',
+    description:
+      'Trải nghiệm áp lực phòng thi thật với kho đề ETS mới nhất, có bấm giờ và chấm điểm, giải thích chi tiết từng câu.',
+    gradient: 'from-error to-primary',
+    icon: 'ClipboardList',
+    buttonLabel: 'Thi thử',
+    buttonClass: 'bg-error hover:bg-error-hover text-primary-foreground',
+  },
+  {
+    title: 'Video',
+    badge: 'Mẹo & Chiến thuật',
+    badgeColor: 'bg-warning/10 text-warning-foreground',
+    description:
+      'Tổng hợp các video bài giảng chất lượng cao, chia sẻ mẹo tránh bẫy và phương pháp làm bài nhanh từ các chuyên gia.',
+    gradient: 'from-safety-orange to-primary',
+    icon: 'Video',
+    buttonLabel: 'Xem ngay',
+    buttonClass: 'bg-primary text-primary-foreground',
+  },
+  {
+    title: 'Luyện nghe',
+    badge: 'Parts 1 - 4',
+    badgeColor: 'bg-accent text-accent-foreground',
+    description:
+      'Cải thiện kỹ năng nghe với các bài hội thoại, tin nhắn và câu hỏi tình huống thực tế bám sát cấu trúc đề thi.',
+    gradient: 'from-blue-500 to-cyan-500',
+    icon: 'Headphones',
+    buttonLabel: 'Luyện ngay',
+    buttonClass: 'bg-accent text-accent-foreground',
+  },
+  {
+    title: 'Đọc hiểu',
+    badge: 'Parts 6 - 7',
+    badgeColor: 'bg-emerald-500/10 text-emerald-600',
+    description:
+      'Làm chủ kỹ năng đọc với các đoạn văn, thư tín và bài báo học thuật, kèm phân tích chi tiết từng dạng câu hỏi.',
+    gradient: 'from-emerald-500 to-teal-500',
+    icon: 'FileText',
+    buttonLabel: 'Đọc ngay',
+    buttonClass: 'bg-emerald-600 text-white',
+  },
+]

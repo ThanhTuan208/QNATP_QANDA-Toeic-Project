@@ -12,16 +12,16 @@ export default function TOEICLanding() {
     <main className='bg-background text-foreground'>
       <HeroSection />
 
-      <section className='py-32 bg-card'>
-        <div className='max-w-7xl mx-auto px-12'>
+      <section className='py-10 md:py-20 bg-card'>
+        <div className='max-w-7xl mx-auto px-4 lg:px-12'>
           <div className='text-center mb-20'>
-            <div className='inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary/5 text-primary mb-6 text-xs font-medium tracking-wide'>
+            <div className='inline-flex items-center gap-2 px-4 py-1 rounded-full bg-primary/5 text-primary mb-6 text-xs font-bold tracking-wide'>
               LỘ TRÌNH CHUẨN HÓA
             </div>
             <h2 className='text-3xl lg:text-4xl font-bold text-foreground mb-4'>
               Luyện tập theo từng kỹ năng
             </h2>
-            <p className='text-base text-muted-foreground max-w-2xl mx-auto opacity-80'>
+            <p className='text-base text-muted-foreground max-w-3xl mx-auto opacity-80'>
               Hệ thống câu hỏi sát thực tế, được phân loại chi tiết giúp bạn tập trung vào những
               phần còn yếu.
             </p>
