@@ -40,3 +40,4 @@
 ## Plans (tính năng tương lai)
 
 - [AI Prompt Spec](plans/ai_prompt_spec.md) — spec tích hợp AI sinh câu hỏi
+- [Roadmap 2 Skills](plans/roadmap-2skills.md) — lộ trình mở rộng lên Reading + Listening

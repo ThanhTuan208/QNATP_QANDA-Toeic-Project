@@ -1,6 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
+import { AnimatedLoader } from '@/components/common/AnimatedLoader'
 import { AttemptHistorySection } from '@/features/dashboard/components/Sections/AttemptHistorySection'
 import { DashboardHeaderSection } from '@/features/dashboard/components/Sections/DashboardHeaderSection'
 import { DashboardStatsGridSection } from '@/features/dashboard/components/Sections/DashboardStatsGridSection'
@@ -17,11 +18,7 @@ export default function DashboardPage() {
   })
 
   if (isLoading) {
-    return (
-      <div className='flex items-center justify-center min-h-100'>
-        <div className='text-muted-foreground'>Đang tải...</div>
-      </div>
-    )
+    return <AnimatedLoader />
   }
 
   const completed = stats?.totalAttempts ?? 0

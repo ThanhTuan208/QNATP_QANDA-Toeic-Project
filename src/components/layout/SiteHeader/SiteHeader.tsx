@@ -6,8 +6,8 @@ import { Button } from '@/components/common/Button'
 import { DropdownNavItem } from '@/components/layout/SiteHeader/DropdownNavItem'
 import { MobileNav } from '@/components/layout/SiteHeader/MobileNav'
 import { navItems as defaultNavItems } from '@/constants/header.constants'
-import type { NavItem } from '@/types/header'
 import { useScrollDetection } from '@/hooks/useScrollDetection'
+import type { NavItem } from '@/types/header'
 
 interface SiteHeaderProps {
   isMobileNavOpen?: boolean

@@ -1,6 +1,7 @@
 'use client'
 
 import { Loader2 } from 'lucide-react'
+import { AnimatedLoader } from '@/components/common/AnimatedLoader'
 import { ImportDialog } from '@/features/quiz/components/ImportDialog'
 import { QuestionCard } from '@/features/quiz/components/QuestionCard'
 import { RationaleBox } from '@/features/quiz/components/RationaleBox'
@@ -38,11 +39,7 @@ export function QuizEngine(props: QuizEngineProps) {
   } = useQuizEngine(props)
 
   if (isLoading) {
-    return (
-      <div className='flex items-center justify-center py-20'>
-        <Loader2 className='h-8 w-8 animate-spin text-neutral-40' />
-      </div>
-    )
+    return <AnimatedLoader fullScreen={false} />
   }
 
   if (isEmpty) {

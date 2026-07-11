@@ -1,0 +1,140 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.fullScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background-color: var(--background);
+  }
+}
+
+.circ {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 60px auto;
+  border-radius: 0 0 50px 50px;
+  overflow: hidden;
+
+  .load {
+    position: absolute;
+    width: 7ch;
+    height: 32px;
+    text-align: left;
+    line-height: 32px;
+    margin: -10px auto;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--subtext-50);
+    left: 2%;
+    top: 5%;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: fontAnim 3.75s infinite;
+    animation-timing-function: ease-out;
+  }
+
+  .hands {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background-color: var(--neutral-90);
+    border-radius: 20px;
+    box-shadow: -1px -4px 0px 0px #f0dcdc;
+    transform: rotate(45deg);
+    top: 75%;
+    left: 16%;
+    z-index: 1;
+    margin-top: 140px;
+    animation: bodyAnim 1.5s infinite alternate;
+    animation-timing-function: ease-out;
+  }
+
+  .body {
+    position: relative;
+    margin: 90px auto;
+    width: 140px;
+    height: 120px;
+    background-color: var(--neutral-90);
+    border-radius: 50px / 25px;
+    box-shadow: inset -5px 2px 0px 0px #f0dcdc;
+    animation: bodyAnim 1.5s infinite alternate;
+    animation-timing-function: ease-out;
+  }
+
+  .head {
+    backface-visibility: hidden;
+    position: relative;
+    margin: -250px auto;
+    width: 80px;
+    height: 80px;
+    background-color: var(--neutral-90);
+    border-radius: 50px;
+    box-shadow: inset -4px 2px 0px 0px #f0dcdc;
+    animation: headAnim 1.5s infinite alternate;
+    animation-timing-function: ease-out;
+
+    .eye {
+      width: 20px;
+      height: 8px;
+      background-color: #f0dcdc;
+      border-radius: 0 0 20px 20px;
+      position: relative;
+      left: 10px;
+      top: 40px;
+      box-shadow: 40px 0px 0px 0px #f0dcdc;
+    }
+  }
+}
+
+@keyframes headAnim {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 10px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes bodyAnim {
+  0% {
+    top: -5px;
+  }
+  50% {
+    top: 10px;
+  }
+  100% {
+    top: -5px;
+  }
+}
+
+@keyframes fontAnim {
+  0% {
+    width: 7ch;
+  }
+  16% {
+    width: 8ch;
+  }
+  32% {
+    width: 9ch;
+  }
+  48% {
+    width: 10ch;
+  }
+  64% {
+    width: 11ch;
+  }
+  80% {
+    width: 12ch;
+  }
+  100% {
+    width: 13ch;
+  }
+}

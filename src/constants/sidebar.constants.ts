@@ -1,11 +1,4 @@
-import {
-  ArrowUpRight,
-  FileText,
-  Layers,
-  NotebookPen,
-  RefreshCw,
-  Scale,
-} from 'lucide-react'
+import { ArrowUpRight, FileText, Layers, NotebookPen, RefreshCw, Scale } from 'lucide-react'
 import type { PracticeModule, SectionItem, TopicItem } from '@/types/sidebar'
 
 export const vocabularyTopics: TopicItem[] = []

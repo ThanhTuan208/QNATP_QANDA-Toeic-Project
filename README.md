@@ -1,68 +1,140 @@
-# TOEIC Reading — Markdown Documentation
+# LITOEIC — Luyện thi TOEIC 2 Kỹ năng
 
-> Tài liệu dự án luyện thi TOEIC Reading Part 5 & 6 (current)
+> Nền tảng web luyện thi TOEIC **Reading & Listening** — hỗ trợ luyện tập theo từng dạng câu hỏi, chấm điểm, giải thích đáp án chi tiết.
+    
+---
+
+## Tech Stack
+
+| Layer | Công nghệ |
+|-------|-----------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript 5 |
+| Styling | Tailwind CSS v4 + shadcn/ui + SCSS modules |
+| Data Fetching | @tanstack/react-query v5 |
+| Database | PostgreSQL + Prisma 7 |
+| Auth | next-auth v5 (Credentials) |
+| Form | react-hook-form + zod |
+| Animation | framer-motion + CSS keyframes |
+| Charts | recharts |
+| Linting | Biome |
+| Testing | Vitest + Playwright |
 
 ---
 
-## 📂 Cấu trúc docs
+## Features
 
-```
-docs/
-├── README.md                              ← Bạn đang ở đây
-├── content/
-│   └── build_part_5.md                    ← Phân tích 12 dạng câu hỏi Part 5
-├── tech-stack/
-│   └── tech_stack_final.md                ← Stack chính thức & quy trình phát triển
-├── learning/
-│   └── learning_mapping.md                ← Đối chiếu kiến thức tnp-ui-web → TOEIC
-└── ai/
-    └── ai_prompt_spec.md                  ← Spec cho AI generation (chưa implement)
-```
+### Reading (đã có)
+- **12 dạng ngữ pháp**: comparison, word-form, verb-tense, preposition, conjunction, participle, voice, relative-clause, agreement, vocabulary
+- **Lý thuyết + Thực hành + Quiz**: 3 section cho mỗi topic
+- **Chấm điểm tự động**: rationale chi tiết sau mỗi câu
+- **Dashboard**: thống kê tiến độ, lịch sử làm bài
+- **Import câu hỏi**: dán JSON tự tạo đề
+- **Dark mode**: giao diện tối/sáng
+- **Admin**: quản lý câu hỏi
 
----
+### Listening (đang xây dựng)
+- Audio player với speed control
+- Hiển thị ảnh cho Part 1
+- Hỗ trợ group question cho Part 3, 4
+- Timer theo format thi thật
 
-## 📑 Danh sách tài liệu
-
-### 🎯 Content
-
-| Tài liệu | Mô tả |
-|----------|-------|
-| [build_part_5.md](docs/content/build_part_5.md) | 12 dạng câu hỏi Part 5, tần suất ra đề, ma trận đề thi, ví dụ ETS |
-
-### ⚙️ Tech Stack
-
-| Tài liệu | Mô tả |
-|----------|-------|
-| [tech_stack_final.md](docs/tech-stack/tech_stack_final.md) | Stack: Next.js + Prisma + PostgreSQL + Vercel. CLI tools, roadmap 16 ngày, folder structure, deploy checklist |
-| [package_cheatsheet.md](docs/tech-stack/package_cheatsheet.md) | Packages, CLI commands, biome config, env setup, so sánh với tnp-ui-web |
-
-### 📖 Learning
-
-| Tài liệu | Mô tả |
-|----------|-------|
-| [learning_mapping.md](docs/learning/learning_mapping.md) | Đối chiếu từng thư viện tnp-ui-web → TOEIC. Code mẫu EF Core ↔ Prisma, .NET Controller ↔ API Routes, Zustand ↔ NextAuth |
-
-### 🤖 AI (Future)
-
-| Tài liệu | Mô tả |
-|----------|-------|
-| [ai_prompt_spec.md](docs/ai/ai_prompt_spec.md) | Prompt template + format cho AI sinh câu hỏi TOEIC Part 5 |
+Xem chi tiết: [`docs/plans/roadmap-2skills.md`](docs/plans/roadmap-2skills.md)
 
 ---
 
-## 🔗 Liên kết nhanh
+## Kiến trúc
 
-| Project | Đường dẫn |
-|---------|-----------|
-| Data câu hỏi | [`/data/questions.json`](/data/questions.json) — 33 câu mẫu |
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── (auth)/             #   Login / Register
+│   └── (main)/             #   Dashboard / Practice / Admin
+├── components/             # Shared components
+│   ├── common/             #   Button, Dialog, Input, Loading, AnimatedLoader
+│   ├── layout/             #   MainLayout, Sidebar, SiteHeader
+│   └── ui/                 #   shadcn/ui primitives
+├── features/               # Feature modules
+│   ├── auth/               #   Auth forms, hooks, schemas
+│   ├── quiz/               #   Quiz engine, questions (Reading)
+│   ├── listening/          #   Listening components, AudioPlayer (đang xây)
+│   ├── dashboard/          #   Stats, charts, history
+│   └── admin/              #   Question management
+├── constants/              # Sidebar, header, label maps
+├── hooks/                  # Global hooks
+├── api/                    # Service + repository layer
+├── lib/                    # Auth, prisma, response utils
+└── types/                  # Global type definitions
+```
+
+Data flow chính: `practice/[module]/[topic]/page.tsx` → `PracticeTopicView` (load JSON) → `QuizEngine` (client) → `QuestionCard` / `RationaleBox`.
 
 ---
 
-## 🧭 Lộ trình đọc đề xuất
+## Yêu cầu
 
+- Node.js 20+
+- pnpm (khuyến nghị)
+- PostgreSQL database
+
+---
+
+## Cài đặt & chạy
+
+```bash
+git clone <repo-url>
+cd toeic-reading
+pnpm install
+
+cp .env.example .env
+# Điền: DATABASE_URL, NEXTAUTH_SECRET, ...
+
+pnpm db:generate
+pnpm db:migrate
+pnpm db:seed
+
+pnpm dev
 ```
-1. content/build_part_5.md          ← Hiểu Part 5 có những dạng gì
-2. tech-stack/tech_stack_final.md   ← Hiểu stack chọn và cách build
-3. learning/learning_mapping.md     ← Xem kiến thức nào đã biết, nào cần học
-4. ai/ai_prompt_spec.md             ← (Khi cần gen câu hỏi tự động)
-```
+
+Mở `http://localhost:3000`.
+
+---
+
+## Scripts
+
+| Script | Mô tả |
+|--------|-------|
+| `pnpm dev` | Dev server |
+| `pnpm build` | Build production |
+| `pnpm lint` | Biome check + fix |
+| `pnpm format` | Biome format |
+| `pnpm typecheck` | TypeScript check |
+| `pnpm db:studio` | Prisma Studio UI |
+| `pnpm db:seed` | Seed database |
+| `pnpm test` | Vitest (unit) |
+
+---
+
+## Environment
+
+| Variable | Mô tả |
+|----------|-------|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `NEXTAUTH_SECRET` | NextAuth secret |
+| `NEXTAUTH_URL` | App URL (`http://localhost:3000`) |
+
+---
+
+## Coding Conventions
+
+- **Components**: `'use client'` khi cần state/effect, server component khi không
+- **Styling**: Tailwind utilities cho layout/spacing, SCSS module cho animation phức tạp
+- **Data fetching**: React Query `useQuery`/`useMutation` cho client, direct DB cho server
+- **Forms**: react-hook-form + zod validation
+- **Lint**: Biome — chạy `pnpm lint` trước commit
+
+---
+
+## Tài liệu
+
+Chi tiết kiến trúc, database, content tại [`docs/`](docs/README.md).
