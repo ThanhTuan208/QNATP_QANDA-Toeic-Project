@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/common/Button'
 import { resourceCard } from '@/features/landing/constants'
-import { CardIcon } from '@/features/landing/components/Sections/PracticeCardsSection/CardIcon'
+import { CardIcon } from '@/features/landing/components/ToeicLanding/PracticeCardsSection/CardIcon'
 
 export function PracticeCardsSection() {
   const scrollContainer = (direction: 'left' | 'right') => {

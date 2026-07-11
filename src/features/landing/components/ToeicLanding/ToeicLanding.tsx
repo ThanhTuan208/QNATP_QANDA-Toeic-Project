@@ -1,11 +1,11 @@
 'use client'
 
 import { skillGroups } from '@/features/landing/constants'
-import { PracticeCardsSection } from '../Sections/PracticeCardsSection'
+import { PracticeCardsSection } from './PracticeCardsSection'
 import { CTAWithSubscription } from './CTAWithSubscription'
 import { HeroSection } from './HeroSection'
-import { LandingFooter } from './LandingFooter'
-import { SkillGroup } from './SkillGroup'
+import { LandingFooter } from './LandingFooterSection'
+import { SkillGroup } from './SkillGroupSection'
 
 export default function TOEICLanding() {
   return (

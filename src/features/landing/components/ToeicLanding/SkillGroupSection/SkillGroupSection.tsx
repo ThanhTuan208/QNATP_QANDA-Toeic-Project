@@ -1,5 +1,5 @@
 import type { SkillGroupData } from '@/features/landing/types'
-import { SkillCard } from '../SkillCard'
+import { SkillCard } from './SkillCard'
 
 interface SkillGroupProps {
   group: SkillGroupData
