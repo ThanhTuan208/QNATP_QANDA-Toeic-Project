@@ -10,7 +10,7 @@ interface PracticeTopicViewProps {
 }
 
 export default async function PracticeTopicView({ practiceModule, topic }: PracticeTopicViewProps) {
-  const initialQuestions = loadQuestions(topic.slug)
+  const initialQuestions = await loadQuestions(topic.slug)
 
   return (
     <div className='space-y-8'>

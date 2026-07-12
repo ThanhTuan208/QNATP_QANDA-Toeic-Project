@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
 export interface LoadedQuestion {
@@ -14,10 +14,10 @@ export interface LoadedQuestion {
   }>
 }
 
-export function loadQuestions(type: string): LoadedQuestion[] {
+export async function loadQuestions(type: string): Promise<LoadedQuestion[]> {
   try {
     const filePath = join(process.cwd(), 'data', 'questions.json')
-    const raw = readFileSync(filePath, 'utf-8')
+    const raw = await readFile(filePath, 'utf-8')
     const all: Array<{
       question: string
       type: string

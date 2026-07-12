@@ -4,7 +4,7 @@ export const DIFFICULTY_LABELS: Record<string, string> = {
   HARD: 'Khó',
 }
 
-export const TYPE_CONTEXT: Record<string, string> = {
+export const typeContext: Record<string, string> = {
   comparison:
     'Chào mừng bạn đến với môi trường học tập tương tác cao. Tại đây, chúng tôi không chỉ cho bạn biết đúng hay sai, mà còn giúp bạn hiểu rõ logic của từng lựa chọn trong đề thi TOEIC thực tế.',
   'word-form':
