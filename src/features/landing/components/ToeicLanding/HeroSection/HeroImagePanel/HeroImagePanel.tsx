@@ -1,15 +1,15 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Target } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { TIMELINE } from '@/features/landing/components/ToeicLanding/HeroSection/HeroImagePanel/quizTimeline'
-import { QUIZ_DATA } from '@/features/landing/constants'
-import { OptionsList } from '@/features/landing/components/ToeicLanding/HeroSection/HeroImagePanel/OptionsList'
+import { useEffect, useState } from 'react'
 import { AIChatBox } from '@/features/landing/components/ToeicLanding/HeroSection/HeroImagePanel/AIChatBox'
+import { OptionsList } from '@/features/landing/components/ToeicLanding/HeroSection/HeroImagePanel/OptionsList'
 import { ProgressFooter } from '@/features/landing/components/ToeicLanding/HeroSection/HeroImagePanel/ProgressFooter'
 import type { TimelineStep } from '@/features/landing/components/ToeicLanding/HeroSection/HeroImagePanel/quizTimeline'
+import { TIMELINE } from '@/features/landing/components/ToeicLanding/HeroSection/HeroImagePanel/quizTimeline'
+import { QUIZ_DATA } from '@/features/landing/constants'
+import { cn } from '@/lib/utils'
 
 export function HeroImagePanel() {
   const [step, setStep] = useState<TimelineStep>(0)

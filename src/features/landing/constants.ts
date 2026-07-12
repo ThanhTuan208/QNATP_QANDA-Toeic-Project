@@ -16,7 +16,7 @@ const listeningSkills: SkillCardData[] = [
     id: 'part-1',
     part: 'Part 1',
     title: 'Photographs',
-    description: 'Câu hỏi về hình ảnh',
+    description: 'Mô tả hình ảnh, chọn câu trả lời đúng.',
     icon: ImageIcon,
     label: '45 Bài tập',
     variant: 'grid',
@@ -25,7 +25,7 @@ const listeningSkills: SkillCardData[] = [
     id: 'part-2',
     part: 'Part 2',
     title: 'Question-Response',
-    description: 'Câu hỏi phản xạ',
+    description: 'Hỏi-đáp nhanh, rèn phản xạ nghe hiểu.',
     icon: MessageSquare,
     label: '45 Bài tập',
     variant: 'grid',
@@ -34,6 +34,7 @@ const listeningSkills: SkillCardData[] = [
     id: 'part-3',
     part: 'Part 3',
     title: 'Short Conversations',
+    description: 'Hội thoại 2-3 người, luyện nghe hiểu ngữ cảnh.',
     icon: Users,
     badge: 'Luyện tập',
     variant: 'horizontal',
@@ -42,6 +43,7 @@ const listeningSkills: SkillCardData[] = [
     id: 'part-4',
     part: 'Part 4',
     title: 'Short Talks',
+    description: 'Bài nói dài, thông báo — rèn tập trung & ghi nhớ.',
     icon: Mic,
     badge: 'Luyện tập',
     variant: 'horizontal',
@@ -54,7 +56,7 @@ const readingSkills: SkillCardData[] = [
     part: 'Part 5',
     title: 'Incomplete Sentences',
     description:
-      'Tập trung vào ngữ pháp và từ vựng cốt lõi. Hệ thống 1,200+ câu hỏi được cập nhật mới nhất.',
+      'Ngữ pháp & từ vựng cốt lõi với 1,200+ câu hỏi được cập nhật mới nhất.',
     icon: ListChecks,
     buttonLabel: 'Bắt đầu ngay',
     label: '30 câu \u2022 15 phút',
@@ -64,6 +66,7 @@ const readingSkills: SkillCardData[] = [
     id: 'part-6',
     part: 'Part 6',
     title: 'Text Completion',
+    description: 'Điền từ vào đoạn văn, kết hợp ngữ pháp & từ vựng.',
     icon: FileText,
     label: '45 Bài tập',
     variant: 'grid',
@@ -71,10 +74,11 @@ const readingSkills: SkillCardData[] = [
   {
     id: 'part-7',
     part: 'Part 7',
-    title: 'Comprehension',
+    title: 'Reading Comprehension',
+    description: 'Đoạn văn đơn & kép, luyện đọc nhanh bắt ý chính.',
     icon: Brain,
-    badge: 'Thử thách khó',
-    variant: 'dark',
+    label: '28 Bài tập',
+    variant: 'grid',
   },
 ]
 
@@ -180,3 +184,56 @@ export const resourceCard = [
     buttonClass: 'bg-emerald-600 text-white',
   },
 ]
+
+export const faqs = [
+  {
+    value: 'item-1',
+    question: 'Học TOEIC trên nền tảng này có mất phí không?',
+    answer:
+      'Hoàn toàn miễn phí truy cập tất cả bài học ngữ pháp, từ vựng và câu hỏi luyện tập theo từng Part. Bạn chỉ cần đăng ký tài khoản để theo dõi lộ trình và lưu tiến độ học tập cá nhân.',
+  },
+  {
+    value: 'item-2',
+    question: 'Bài tập trên nền tảng có bám sát đề thi thật không?',
+    answer:
+      'Có. Hệ thống câu hỏi được biên soạn dựa trên cấu trúc đề thi TOEIC mới nhất, bao gồm đầy đủ 7 Parts với các dạng câu hỏi thường gặp như Photographs, Question-Response, Short Conversations, Incomplete Sentences, Text Completion và Reading Comprehension.',
+  },
+  {
+    value: 'item-3',
+    question: 'Tôi có thể học trên điện thoại được không?',
+    answer:
+      'Hoàn toàn được. Giao diện được thiết kế responsive, tương thích tốt trên mọi thiết bị từ điện thoại, máy tính bảng đến máy tính để bàn. Bạn có thể học mọi lúc mọi nơi mà không cần tải ứng dụng.',
+  },
+  {
+    value: 'item-4',
+    question: 'Nền tảng có giải thích đáp án chi tiết không?',
+    answer:
+      'Có. Mỗi câu hỏi đều kèm giải thích đáp án chi tiết, chỉ ra dấu hiệu nhận biết ngữ pháp, từ vựng hoặc chiến thuật làm bài giúp bạn hiểu sâu và tránh lặp lại lỗi sai.',
+  },
+  {
+    value: 'item-5',
+    question: 'Làm thế nào để theo dõi tiến độ học tập của tôi?',
+    answer:
+      'Sau khi đăng ký tài khoản, hệ thống sẽ tự động ghi nhận số câu đúng/sai, điểm số theo từng Part và phần trăm hoàn thành lộ trình. Bạn có thể xem lại lịch sử làm bài và các kỹ năng cần cải thiện tại trang Dashboard.',
+  },
+]
+
+export const footerLinks = {
+  routes: [
+    { label: 'Part 1 - 4', href: '#' },
+    { label: 'Part 5 - 7', href: '#' },
+    { label: 'Luyện đề Full Test', href: '#' },
+    // { label: 'Từ vựng 600+', href: '#' },
+  ],
+  support: [
+    { label: 'Trung tâm trợ giúp', href: '#' },
+    { label: 'Liên hệ chúng tôi', href: '#' },
+    { label: 'Câu hỏi thường gặp', href: '#faq' },
+    // { label: 'Báo cáo lỗi', href: '#' },
+  ],
+  // legal: [
+  //   { label: 'Điều khoản dịch vụ', href: '#' },
+  //   { label: 'Chính sách bảo mật', href: '#' },
+  //   { label: 'Quyền riêng tư', href: '#' },
+  // ],
+}

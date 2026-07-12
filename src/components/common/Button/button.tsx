@@ -42,16 +42,20 @@ const Button = ({
   return (
     <ShadcnButton
       variant={variantMap[buttonType]}
-      className={cn(className)}
+      className={cn('group', className)}
       disabled={loading || disabled}
       {...props}
     >
       {loading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
-      {!loading && icon && iconPosition === 'left' && <span className='mr-2'>{icon}</span>}
+      {!loading && icon && iconPosition === 'left' && (
+        <span className='mr-2 transition-transform duration-300 group-hover:-translate-x-1'>{icon}</span>
+      )}
 
       {loading ? loadingText || children : children}
 
-      {!loading && icon && iconPosition === 'right' && <span className='ml-2'>{icon}</span>}
+      {!loading && icon && iconPosition === 'right' && (
+        <span className='ml-2 transition-transform duration-300 group-hover:translate-x-1'>{icon}</span>
+      )}
     </ShadcnButton>
   )
 }

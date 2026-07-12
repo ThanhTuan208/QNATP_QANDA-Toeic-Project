@@ -12,7 +12,7 @@
   /* Green Teal */
   --green-teal-default: oklch(0.504 0.125 192.5); /* #008081 */
   --green-teal-80: oklch(0.504 0.125 192.5 / 0.8);
-   --green-teal-60: oklch(0.504 0.125 192.5 / 0.6);
+  --green-teal-60: oklch(0.504 0.125 192.5 / 0.6);
   --green-teal-40: oklch(0.504 0.125 192.5 / 0.4);
   --green-teal-20: oklch(0.504 0.125 192.5 / 0.2);
   --green-teal-10: oklch(0.504 0.125 192.5 / 0.1);

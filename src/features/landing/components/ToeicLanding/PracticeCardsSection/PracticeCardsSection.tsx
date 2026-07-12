@@ -2,8 +2,8 @@
 
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/common/Button'
-import { resourceCard } from '@/features/landing/constants'
 import { CardIcon } from '@/features/landing/components/ToeicLanding/PracticeCardsSection/CardIcon'
+import { resourceCard } from '@/features/landing/constants'
 
 export function PracticeCardsSection() {
   const scrollContainer = (direction: 'left' | 'right') => {
@@ -57,7 +57,9 @@ export function PracticeCardsSection() {
             <div className='flex flex-1 flex-col p-4 md:p-6'>
               <div className='flex items-center justify-between'>
                 <h4 className='text-lg font-semibold md:text-xl'>{card.title}</h4>
-                <span className={`rounded-full ${card.badgeColor} px-2 py-0.5 text-[11px] font-semibold md:px-3 md:py-1 md:text-xs`}>
+                <span
+                  className={`rounded-full ${card.badgeColor} px-2 py-0.5 text-[11px] font-semibold md:px-3 md:py-1 md:text-xs`}
+                >
                   {card.badge}
                 </span>
               </div>
@@ -67,7 +69,7 @@ export function PracticeCardsSection() {
             </div>
 
             <div className='px-4 pb-4 md:px-6 md:pb-6'>
-              <Button className={`w-full rounded-2xl-md ${card.buttonClass} py-3 hover:opacity-90`}>
+              <Button className={`w-full rounded-2xl-md font-bold ${card.buttonClass} py-3 hover:opacity-90`}>
                 {card.buttonLabel}
               </Button>
             </div>

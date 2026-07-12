@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { MousePointer2 } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { QUIZ_DATA } from '@/features/landing/constants'
 import type { TimelineStep } from '@/features/landing/components/ToeicLanding/HeroSection/HeroImagePanel/quizTimeline'
+import { QUIZ_DATA } from '@/features/landing/constants'
+import { cn } from '@/lib/utils'
 
 interface OptionsListProps {
   step: TimelineStep
@@ -14,7 +14,7 @@ export function OptionsList({ step }: OptionsListProps) {
   const { options, correctIndex } = QUIZ_DATA
 
   return (
-    <div className='relative space-y-2.5'>
+    <div className='relative grid grid-cols-2 gap-2.5'>
       {options.map((opt, idx) => {
         const isCorrect = step >= 4 && idx === correctIndex
         const isSelected = step >= 2 && idx === correctIndex
@@ -24,7 +24,7 @@ export function OptionsList({ step }: OptionsListProps) {
           <div
             key={opt}
             className={cn(
-              'flex items-center gap-3.5 rounded-2xl p-3.5 transition-all duration-500',
+              'flex items-center gap-3.5 rounded-md p-3.5 transition-all duration-500',
               isCorrect
                 ? 'bg-success-soft text-success-foreground ring-1 ring-success/30'
                 : isSelected
@@ -67,10 +67,10 @@ export function OptionsList({ step }: OptionsListProps) {
           step === 0
             ? { top: '100%', left: '80%', opacity: 0 }
             : step === 1
-              ? { top: ['100%', '15%', '42%'], left: ['80%', '20%', '30%'], opacity: 1 }
+              ? { top: ['100%', '5%', '20%'], left: ['20%', '3%', '10%'], opacity: 1 }
               : step === 2
-                ? { top: '42%', left: '30%', scale: 0.85, opacity: 1 }
-                : { top: '80%', left: '80%', opacity: 0, scale: 1 }
+                ? { top: '20%', right: '10%', scale: 0.85, opacity: 1 }
+                : { top: '80%', right: '80%', opacity: 0, scale: 1 }
         }
         transition={
           step === 1 ? { duration: 1.5, ease: 'easeInOut', times: [0, 0.5, 1] } : { duration: 0.2 }

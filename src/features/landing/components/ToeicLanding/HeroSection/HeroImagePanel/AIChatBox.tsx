@@ -2,8 +2,8 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { CheckCircle2, Loader2, Sparkles } from 'lucide-react'
-import { QUIZ_DATA } from '@/features/landing/constants'
 import type { TimelineStep } from '@/features/landing/components/ToeicLanding/HeroSection/HeroImagePanel/quizTimeline'
+import { QUIZ_DATA } from '@/features/landing/constants'
 
 interface AIChatBoxProps {
   step: TimelineStep
