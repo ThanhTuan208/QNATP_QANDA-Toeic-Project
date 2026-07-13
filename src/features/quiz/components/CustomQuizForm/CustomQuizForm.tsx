@@ -56,7 +56,7 @@ export function CustomQuizForm() {
         key={sessionKey}
         type='custom'
         initialQuestions={questions}
-        onStatsUpdate={() => { }}
+        onStatsUpdate={() => {}}
       />
     )
   }
@@ -110,10 +110,11 @@ export function CustomQuizForm() {
                 key={n}
                 type='button'
                 onClick={() => setConfig((prev) => ({ ...prev, limit: n }))}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors ${config.limit === n
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-colors ${
+                  config.limit === n
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-muted text-muted-foreground hover:bg-neutral-5'
-                  }`}
+                }`}
               >
                 {n}
               </button>
@@ -141,10 +142,11 @@ export function CustomQuizForm() {
             {DIFFICULTIES.map((d) => (
               <label
                 key={d}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl border cursor-pointer transition-colors text-sm font-medium ${config.difficulties.includes(d)
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl border cursor-pointer transition-colors text-sm font-medium ${
+                  config.difficulties.includes(d)
                     ? 'border-steel-blue bg-steel-blue-5 text-steel-blue'
                     : 'border-border text-muted-foreground hover:bg-muted/50'
-                  }`}
+                }`}
               >
                 <input
                   type='checkbox'
@@ -197,10 +199,11 @@ export function CustomQuizForm() {
                 key={String(opt.value)}
                 type='button'
                 onClick={() => setConfig((prev) => ({ ...prev, balance: opt.value }))}
-                className={`flex-1 px-4 py-3 rounded-xl border text-left transition-colors ${config.balance === opt.value
+                className={`flex-1 px-4 py-3 rounded-xl border text-left transition-colors ${
+                  config.balance === opt.value
                     ? 'border-steel-blue bg-steel-blue-5'
                     : 'border-border hover:bg-muted/50'
-                  }`}
+                }`}
               >
                 <span className='block text-sm font-medium text-foreground'>{opt.label}</span>
                 <span className='block text-xs text-muted-foreground mt-0.5'>{opt.desc}</span>

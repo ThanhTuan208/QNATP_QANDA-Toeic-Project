@@ -50,7 +50,10 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
       case 'config':
         return state.config.totalQuestions != null && state.config.totalQuestions > 0
       case 'source':
-        return state.source === 'system' || state.importJson.length > 0
+        return (
+          state.source === 'system' ||
+          (state.importJson.length > 0 && state.validationErrors.length === 0)
+        )
       case 'preview':
         return state.validationErrors.length === 0
       case 'practice':

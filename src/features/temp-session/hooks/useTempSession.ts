@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import type { PracticeSession, SessionAttempt } from '@/features/temp-session/types'
-import { UseTempSessionReturn } from '@/features/temp-session/types/hook'
+import type { UseTempSessionReturn } from '@/features/temp-session/types/hook'
 import {
   deleteSession as idbDelete,
   getAllSessions as idbGetAll,

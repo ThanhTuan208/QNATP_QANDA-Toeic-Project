@@ -11,3 +11,8 @@ export {
   updateKnowledgeGroupCount,
 } from './presets'
 export { getNextStep, getPrevStep } from './steps'
+export {
+  parseImportedSessionJSON,
+  processImportedSessionJSON,
+  validateImportedQuestions,
+} from './validation'

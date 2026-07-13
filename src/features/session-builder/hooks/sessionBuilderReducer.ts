@@ -31,6 +31,9 @@ export function sessionBuilderReducer(
     case 'SET_CONFIG':
       return { ...state, config: action.config, validationErrors: [] }
     case 'SET_SOURCE':
+      if (action.source === 'system') {
+        return { ...state, source: action.source, importJson: '', validationErrors: [] }
+      }
       return { ...state, source: action.source }
     case 'SET_IMPORT_JSON':
       return { ...state, importJson: action.importJson }
