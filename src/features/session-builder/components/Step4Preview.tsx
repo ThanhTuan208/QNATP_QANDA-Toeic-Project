@@ -1,6 +1,6 @@
 'use client'
 
-import { CheckCircle2, ChevronDown, ChevronRight, Play } from 'lucide-react'
+import { CheckCircle2, ChevronDown, ChevronRight, Loader2, Play } from 'lucide-react'
 import { useState } from 'react'
 import { DIFFICULTY_LABELS } from '@/features/session-builder/constants/difficulty'
 import { PART_LABELS } from '@/features/session-builder/constants/knowledge-groups'
@@ -15,6 +15,8 @@ interface Step4PreviewProps {
   questions: SessionQuestion[]
   onBack: () => void
   onStart: () => void
+  isGenerating?: boolean
+  generationError?: string
 }
 
 function QuestionItem({ question, index }: { question: SessionQuestion; index: number }) {
@@ -81,10 +83,49 @@ export function Step4Preview({
   questions,
   onBack,
   onStart,
+  isGenerating = false,
+  generationError = '',
 }: Step4PreviewProps) {
   const presetInfo = PRESETS.find((p) => p.id === preset)
   const PresetIcon = presetInfo?.icon
   const total = config.totalQuestions ?? questions.length
+
+  if (isGenerating) {
+    return (
+      <div className='space-y-6'>
+        <div>
+          <h3 className='text-lg font-bold text-foreground mb-1'>Generating Questions</h3>
+          <p className='text-sm text-muted-foreground'>Fetching questions from System Bank...</p>
+        </div>
+        <div className='flex items-center justify-center py-16'>
+          <Loader2 className='size-8 animate-spin text-primary' />
+        </div>
+      </div>
+    )
+  }
+
+  if (generationError) {
+    return (
+      <div className='space-y-6'>
+        <div>
+          <h3 className='text-lg font-bold text-foreground mb-1'>Generation Failed</h3>
+          <p className='text-sm text-muted-foreground'>
+            An error occurred while fetching questions
+          </p>
+        </div>
+        <div className='bg-error-soft text-error rounded-xl p-4 text-sm border border-error/20'>
+          {generationError}
+        </div>
+        <button
+          type='button'
+          onClick={onBack}
+          className='bg-muted text-muted-foreground px-6 py-3 rounded-xl font-bold hover:bg-neutral-5 transition-all'
+        >
+          Back
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className='space-y-6'>

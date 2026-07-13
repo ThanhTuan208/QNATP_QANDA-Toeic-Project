@@ -20,6 +20,8 @@ export async function findQuestions(where: Prisma.QuestionWhereInput) {
           id: true,
           text: true,
           order: true,
+          isCorrect: true,
+          rationale: true,
         },
       },
     },
@@ -37,7 +39,7 @@ export async function findQuestionsPaginated(
       include: {
         options: {
           orderBy: { order: 'asc' },
-          select: { id: true, text: true, order: true },
+          select: { id: true, text: true, order: true, isCorrect: true, rationale: true },
         },
       },
       take,

@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react'
 import { Button } from '@/components/common/Button/Button'
 
 interface StepNavigationProps {
@@ -11,6 +11,7 @@ interface StepNavigationProps {
   canGoBack: boolean
   canGoNext: boolean
   nextLabel?: string
+  loading?: boolean
 }
 
 export function StepNavigation({
@@ -21,6 +22,7 @@ export function StepNavigation({
   canGoBack,
   canGoNext,
   nextLabel = 'Next',
+  loading = false,
 }: StepNavigationProps) {
   return (
     <div className='flex items-center justify-between pt-6 border-t border-border'>
@@ -53,12 +55,18 @@ export function StepNavigation({
 
       {onNext && (
         <Button
-          icon={<ArrowRight className='h-4 w-4' />}
+          icon={
+            loading ? (
+              <Loader2 className='h-4 w-4 animate-spin' />
+            ) : (
+              <ArrowRight className='h-4 w-4' />
+            )
+          }
           iconPosition='right'
           onClick={onNext}
           disabled={!canGoNext}
         >
-          {nextLabel}
+          {loading ? 'Generating...' : nextLabel}
         </Button>
       )}
     </div>

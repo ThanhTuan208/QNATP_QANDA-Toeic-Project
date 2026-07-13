@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback } from 'react'
+import { generateSessionQuestions } from '@/features/session-builder/client/session.client'
 import { Step1Scope } from '@/features/session-builder/components/Step1Scope'
 import { Step2Config } from '@/features/session-builder/components/Step2Config'
 import { Step3Source } from '@/features/session-builder/components/Step3Source'
@@ -59,31 +60,50 @@ export function SessionBuilder() {
     [wizard.setValidationErrors],
   )
 
-  const handleNext = useCallback(() => {
-    if (
-      wizard.state.step === 'source' &&
-      wizard.state.source === 'imported' &&
-      wizard.state.importJson
-    ) {
+  const handleNext = useCallback(async () => {
+    if (wizard.state.step !== 'source') {
+      wizard.nextStep()
+      return
+    }
+
+    if (wizard.state.source === 'imported' && wizard.state.importJson) {
       const result = processImportedSessionJSON(wizard.state.importJson, wizard.state.config)
       if (result.success) {
         wizard.setQuestions(result.questions)
       }
+      wizard.nextStep()
+      return
     }
-    wizard.nextStep()
-  }, [wizard.state.step, wizard.state.source, wizard.state.importJson, wizard.state.config, wizard])
+
+    if (wizard.state.source === 'system') {
+      wizard.setGenerating(true)
+      wizard.setGenerationError('')
+      try {
+        const { scope, config } = wizard.state
+        const { questions } = await generateSessionQuestions({
+          parts: scope.parts,
+          knowledgeGroups: config.knowledgeGroups ?? {},
+          difficulty: config.difficulty ?? ['medium'],
+          totalQuestions: config.totalQuestions ?? 20,
+        })
+        wizard.setQuestions(questions)
+        wizard.setGenerating(false)
+        wizard.nextStep()
+      } catch (e) {
+        wizard.setGenerating(false)
+        wizard.setGenerationError(
+          e instanceof Error ? e.message : 'Unknown error generating questions',
+        )
+      }
+    }
+  }, [wizard])
 
   const handleStartPractice = useCallback(async () => {
-    const result = processImportedSessionJSON(wizard.state.importJson, wizard.state.config)
-    const questions = result.success ? result.questions : wizard.state.questions
-    if (questions.length === 0) return
-
-    wizard.setQuestions(questions)
+    if (wizard.state.questions.length === 0) return
 
     const sessionId = crypto.randomUUID()
     const partial = buildPracticeSession({
       ...wizard.state,
-      questions,
     })
     const session = { ...partial, id: sessionId, userId: 'anonymous' }
     await tempSession.save(session)
@@ -143,6 +163,8 @@ export function SessionBuilder() {
           questions={wizard.state.questions}
           onBack={wizard.prevStep}
           onStart={handleStartPractice}
+          isGenerating={wizard.state.isGenerating}
+          generationError={wizard.state.generationError}
         />
       )}
 
@@ -162,6 +184,7 @@ export function SessionBuilder() {
           canGoNext={wizard.canGoNext()}
           onBack={wizard.prevStep}
           onNext={handleNext}
+          loading={wizard.state.isGenerating}
         />
       )}
     </div>

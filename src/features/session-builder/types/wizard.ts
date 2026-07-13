@@ -14,6 +14,8 @@ export interface SessionBuilderState {
   importJson: string
   validationErrors: string[]
   questions: SessionQuestion[]
+  isGenerating: boolean
+  generationError: string
 }
 
 export type SessionBuilderAction =
@@ -24,6 +26,8 @@ export type SessionBuilderAction =
   | { type: 'SET_IMPORT_JSON'; importJson: string }
   | { type: 'SET_VALIDATION_ERRORS'; errors: string[] }
   | { type: 'SET_QUESTIONS'; questions: SessionQuestion[] }
+  | { type: 'SET_GENERATING'; isGenerating: boolean }
+  | { type: 'SET_GENERATION_ERROR'; error: string }
   | { type: 'NEXT_STEP' }
   | { type: 'PREV_STEP' }
   | { type: 'RESET' }
@@ -37,6 +41,8 @@ export interface UseSessionBuilderReturn {
   setImportJson: (json: string) => void
   setValidationErrors: (errors: string[]) => void
   setQuestions: (questions: SessionQuestion[]) => void
+  setGenerating: (isGenerating: boolean) => void
+  setGenerationError: (error: string) => void
   nextStep: () => void
   prevStep: () => void
   canGoNext: () => boolean

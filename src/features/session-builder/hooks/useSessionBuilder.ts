@@ -39,6 +39,14 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
     dispatch({ type: 'SET_QUESTIONS', questions })
   }, [])
 
+  const setGenerating = useCallback((isGenerating: boolean) => {
+    dispatch({ type: 'SET_GENERATING', isGenerating })
+  }, [])
+
+  const setGenerationError = useCallback((error: string) => {
+    dispatch({ type: 'SET_GENERATION_ERROR', error })
+  }, [])
+
   const nextStep = useCallback(() => {
     dispatch({ type: 'NEXT_STEP' })
   }, [])
@@ -48,6 +56,7 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
   }, [])
 
   const canGoNext = useCallback((): boolean => {
+    if (state.isGenerating) return false
     switch (state.step) {
       case 'scope':
         return state.scope.parts.length > 0
@@ -71,6 +80,7 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
     state.importJson,
     state.validationErrors.length,
     state.questions.length,
+    state.isGenerating,
   ])
 
   const canGoPrev = useCallback((): boolean => {
@@ -98,6 +108,8 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
     setImportJson,
     setValidationErrors,
     setQuestions,
+    setGenerating,
+    setGenerationError,
     nextStep,
     prevStep,
     canGoNext,
