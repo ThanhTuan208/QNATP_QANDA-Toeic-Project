@@ -10,6 +10,10 @@ export default async function PracticeModulePage({
   const practiceModule = practiceModules.find((m) => m.id === moduleId)
   if (!practiceModule) notFound()
 
+  if (practiceModule.id === 'mixed-practice') {
+    redirect('/practice/mixed-practice/create-session')
+  }
+
   if (practiceModule.topics.length > 0) {
     redirect(`/practice/${moduleId}/${practiceModule.topics[0].slug}`)
   }

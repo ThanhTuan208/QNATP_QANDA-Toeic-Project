@@ -1,5 +1,6 @@
 export { CustomConfigForm } from './CustomConfigForm'
 export { PresetCards } from './PresetCards'
+export { SavedTemplates } from './SavedTemplates'
 export { SessionBuilder } from './SessionBuilder'
 export { Step1Scope } from './Step1Scope'
 export { Step2Config } from './Step2Config'
