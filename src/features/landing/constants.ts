@@ -55,8 +55,7 @@ const readingSkills: SkillCardData[] = [
     id: 'part-5',
     part: 'Part 5',
     title: 'Incomplete Sentences',
-    description:
-      'Ngữ pháp & từ vựng cốt lõi với 1,200+ câu hỏi được cập nhật mới nhất.',
+    description: 'Ngữ pháp & từ vựng cốt lõi với 1,200+ câu hỏi được cập nhật mới nhất.',
     icon: ListChecks,
     buttonLabel: 'Bắt đầu ngay',
     label: '30 câu \u2022 15 phút',

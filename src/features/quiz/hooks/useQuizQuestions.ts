@@ -16,13 +16,18 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
 
   const { data, isLoading } = useQuery<FetchQuestionsResponse>({
     enabled: !options.initialQuestions,
-    queryKey: ['questions', options.type, options.difficulty, options.weighted ? 'weighted' : 'random'],
+    queryKey: [
+      'questions',
+      options.type,
+      options.difficulty,
+      options.weighted ? 'weighted' : 'random',
+    ],
     queryFn: () => {
       if (options.weighted) {
         return fetchWeightedQuestions({
           types: options.types,
           difficulties: options.difficulties,
-          limit: options.type === 'full-test' ? 30 : 10,
+          limit: 10,
         })
       }
       return fetchQuestions({ type: options.type, difficulty: options.difficulty })
@@ -35,7 +40,10 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
   const questions = data?.questions ?? []
   const setQuestions = useCallback(
     (questions: Question[]) => {
-      queryClient.setQueryData(['questions', options.type, options.difficulty, options.weighted ? 'weighted' : 'random'], { questions })
+      queryClient.setQueryData(
+        ['questions', options.type, options.difficulty, options.weighted ? 'weighted' : 'random'],
+        { questions },
+      )
     },
     [queryClient, options.type, options.difficulty, options.weighted],
   )

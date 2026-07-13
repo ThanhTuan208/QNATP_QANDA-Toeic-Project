@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { TYPE_LABEL_MAP_VIETNAM } from '@/constants/index.constants'
 import { fetchQuestions } from '@/features/quiz/client/quiz.client'
 import { QuizEngine } from '@/features/quiz/components/QuizEngine'
 import { VALID_QUIZ_TYPES } from '@/features/quiz/constants'
-import { TYPE_LABEL_MAP_VIETNAM } from '@/constants/index.constants'
 import type { Question } from '@/features/quiz/types'
 
 const QUESTION_COUNTS = [5, 10, 15, 20, 25, 30]
@@ -64,9 +64,7 @@ export function CustomQuizForm() {
   const updateTypes = (value: string, checked: boolean) => {
     setConfig((prev) => ({
       ...prev,
-      types: checked
-        ? [...prev.types, value]
-        : prev.types.filter((t) => t !== value),
+      types: checked ? [...prev.types, value] : prev.types.filter((t) => t !== value),
     }))
   }
 
@@ -105,9 +103,7 @@ export function CustomQuizForm() {
 
       <div className='space-y-6 bg-card p-6 rounded-2xl border border-border'>
         <div>
-          <label className='block text-sm font-semibold text-foreground mb-3'>
-            Số câu hỏi
-          </label>
+          <label className='block text-sm font-semibold text-foreground mb-3'>Số câu hỏi</label>
           <div className='flex gap-2 flex-wrap'>
             {QUESTION_COUNTS.map((n) => (
               <button
@@ -193,9 +189,7 @@ export function CustomQuizForm() {
         </div>
 
         <div>
-          <label className='block text-sm font-semibold text-foreground mb-3'>
-            Chế độ phân bổ
-          </label>
+          <label className='block text-sm font-semibold text-foreground mb-3'>Chế độ phân bổ</label>
           <div className='flex gap-2'>
             {[
               { value: true, label: 'Cân bằng', desc: 'Chia đều số câu cho mỗi chủ điểm' },

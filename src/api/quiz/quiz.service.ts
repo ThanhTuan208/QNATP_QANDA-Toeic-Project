@@ -84,9 +84,7 @@ export async function getRandomQuestions(params: {
         } else if (params.difficulty) {
           typeWhere.difficulty = params.difficulty
         }
-        return quizRepo
-          .findQuestions(typeWhere)
-          .then((qs) => shuffle(qs).slice(0, perType))
+        return quizRepo.findQuestions(typeWhere).then((qs) => shuffle(qs).slice(0, perType))
       }),
     )
     const questions = shuffle(allQuestions.flat())
@@ -112,9 +110,16 @@ export async function getWeightedQuestions(
 ) {
   const limit = params.limit ?? 20
   const allTypes = params.types ?? [
-    'word-form', 'comparison', 'vocabulary', 'verb-tense',
-    'preposition', 'conjunction', 'participle', 'voice',
-    'relative-clause', 'agreement',
+    'word-form',
+    'comparison',
+    'vocabulary',
+    'verb-tense',
+    'preposition',
+    'conjunction',
+    'participle',
+    'voice',
+    'relative-clause',
+    'agreement',
   ]
 
   const stats = await quizRepo.findAllAttempts(userId)

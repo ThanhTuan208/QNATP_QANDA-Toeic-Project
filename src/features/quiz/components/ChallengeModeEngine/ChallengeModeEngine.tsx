@@ -1,7 +1,7 @@
 'use client'
 
-import { useCallback, useEffect, useRef } from 'react'
 import { Loader2 } from 'lucide-react'
+import { useCallback, useEffect, useRef } from 'react'
 import { AnimatedLoader } from '@/components/common/AnimatedLoader'
 import { QuestionCard } from '@/features/quiz/components/QuestionCard'
 import { ResultBreakdown } from '@/features/quiz/components/ResultBreakdown'
@@ -112,7 +112,9 @@ export function ChallengeModeEngine({ initialQuestions }: ChallengeModeEnginePro
             {pct >= 80 ? 'Xuất sắc! 🎉' : pct >= 60 ? 'Khá tốt! 👍' : 'Cần cố gắng hơn 💪'}
           </p>
           <div className='mt-4 p-4 bg-card rounded-2xl border border-border inline-block'>
-            <p className='text-xs text-muted-foreground uppercase tracking-wide'>TOEIC Reading ước tính</p>
+            <p className='text-xs text-muted-foreground uppercase tracking-wide'>
+              TOEIC Reading ước tính
+            </p>
             <p className='text-3xl font-bold text-foreground'>{estimatedScore}</p>
             <p className='text-xs text-muted-foreground'>{scoreBand}</p>
           </div>
@@ -174,9 +176,7 @@ export function ChallengeModeEngine({ initialQuestions }: ChallengeModeEnginePro
 
       {result && (
         <div className='text-center py-4'>
-          <p className='text-sm text-muted-foreground'>
-            {result.isCorrect ? 'Đúng!' : 'Sai!'}
-          </p>
+          <p className='text-sm text-muted-foreground'>{result.isCorrect ? 'Đúng!' : 'Sai!'}</p>
         </div>
       )}
     </div>

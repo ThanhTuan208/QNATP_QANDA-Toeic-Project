@@ -12,6 +12,10 @@ export const TYPE_LABEL_MAP: Record<string, string> = {
   'full-test': 'Full Test (30 câu Part 5)',
   custom: 'Custom Practice (Tùy chỉnh)',
   challenge: 'Challenge Mode (30 câu - 15 phút)',
+  'create-session': 'Create Session',
+  sessions: 'My Sessions',
+  library: 'My Library',
+  templates: 'Saved Templates',
 }
 
 export const TYPE_SLUG_MAP_ENG: Record<string, string> = {
@@ -29,6 +33,10 @@ export const TYPE_SLUG_MAP_ENG: Record<string, string> = {
   'full-test': 'FULL TEST',
   custom: 'CUSTOM',
   challenge: 'CHALLENGE',
+  'create-session': 'CREATE SESSION',
+  sessions: 'MY SESSIONS',
+  library: 'MY LIBRARY',
+  templates: 'SAVED TEMPLATES',
 }
 
 export const TYPE_LABEL_MAP_VIETNAM: Record<string, string> = {
@@ -46,4 +54,8 @@ export const TYPE_LABEL_MAP_VIETNAM: Record<string, string> = {
   'full-test': 'Part 5 đầy đủ (30 câu)',
   custom: 'Tùy chỉnh',
   challenge: 'Challenge Mode (15 phút)',
+  'create-session': 'Tạo bài luyện tập',
+  sessions: 'Bài luyện tập của tôi',
+  library: 'Thư viện câu hỏi',
+  templates: 'Mẫu luyện tập',
 }

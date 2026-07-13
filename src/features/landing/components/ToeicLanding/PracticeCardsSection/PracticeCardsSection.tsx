@@ -69,7 +69,9 @@ export function PracticeCardsSection() {
             </div>
 
             <div className='px-4 pb-4 md:px-6 md:pb-6'>
-              <Button className={`w-full rounded-2xl-md font-bold ${card.buttonClass} py-3 hover:opacity-90`}>
+              <Button
+                className={`w-full rounded-2xl-md font-bold ${card.buttonClass} py-3 hover:opacity-90`}
+              >
                 {card.buttonLabel}
               </Button>
             </div>

@@ -1,5 +1,3 @@
-import { ChallengeModeEngine } from '@/features/quiz/components/ChallengeModeEngine/ChallengeModeEngine'
-import { CustomQuizForm } from '@/features/quiz/components/CustomQuizForm/CustomQuizForm'
 import { PracticeHeaderSection } from '@/features/quiz/components/Sections/PracticeHeaderSection'
 import { QuizSection } from '@/features/quiz/components/Sections/QuizSection'
 import { TheorySection } from '@/features/quiz/components/Sections/TheorySection'
@@ -17,36 +15,6 @@ export default async function PracticeTopicView({ practiceModule, topic }: Pract
   const initialQuestions = topic.questionCount
     ? await loadQuestions(questionType, topic.questionCount)
     : []
-
-  if (topic.slug === 'custom') {
-    return (
-      <div className='space-y-8'>
-        <PracticeHeaderSection
-          typeLabel={practiceModule.label}
-          contextDesc={practiceModule.description}
-        />
-        <CustomQuizForm />
-      </div>
-    )
-  }
-
-  if (topic.slug === 'challenge') {
-    return (
-      <div className='space-y-8'>
-        <PracticeHeaderSection
-          typeLabel={practiceModule.label}
-          contextDesc={practiceModule.description}
-        />
-        <section id={topic.slug} className='scroll-mt-24'>
-          <div className='mb-8'>
-            <h2 className='text-2xl font-bold text-foreground'>{topic.label}</h2>
-            <p className='text-muted-foreground'>{topic.description}</p>
-          </div>
-          <ChallengeModeEngine initialQuestions={initialQuestions} />
-        </section>
-      </div>
-    )
-  }
 
   return (
     <div className='space-y-8'>
