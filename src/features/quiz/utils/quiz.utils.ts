@@ -12,6 +12,8 @@ const SAMPLE_QUESTIONS: Record<string, string> = {
   voice: 'Customers will ______ notified by email.',
   'relative-clause': 'The consultant ______ we hired is very experienced.',
   agreement: 'Each employee ______ required to attend the training.',
+  'quick-practice': 'The management team ______ a new strategy to improve sales.',
+  'full-test': 'The company ______ its annual report to shareholders yesterday.',
 }
 
 export function generateTemplate(type: string): string {

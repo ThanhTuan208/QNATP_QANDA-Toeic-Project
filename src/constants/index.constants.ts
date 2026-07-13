@@ -8,6 +8,10 @@ export const TYPE_LABEL_MAP: Record<string, string> = {
   voice: 'Passive Voice & Causative',
   'relative-clause': 'Relative Clauses',
   agreement: 'Subject-Verb Agreement',
+  'quick-practice': 'Quick Practice (10 câu tổng hợp)',
+  'full-test': 'Full Test (30 câu Part 5)',
+  custom: 'Custom Practice (Tùy chỉnh)',
+  challenge: 'Challenge Mode (30 câu - 15 phút)',
 }
 
 export const TYPE_SLUG_MAP_ENG: Record<string, string> = {
@@ -21,11 +25,16 @@ export const TYPE_SLUG_MAP_ENG: Record<string, string> = {
   voice: 'PASSIVE & CAUSATIVE',
   'relative-clause': 'RELATIVE CLAUSE',
   agreement: 'SUBJECT-VERB',
+  'quick-practice': 'QUICK PRACTICE',
+  'full-test': 'FULL TEST',
+  custom: 'CUSTOM',
+  challenge: 'CHALLENGE',
 }
 
 export const TYPE_LABEL_MAP_VIETNAM: Record<string, string> = {
   'word-form': 'Loại từ',
   comparison: 'So sánh',
+  vocabulary: 'Từ vựng',
   'verb-tense': 'Thì',
   preposition: 'Giới từ',
   conjunction: 'Liên từ',
@@ -33,4 +42,8 @@ export const TYPE_LABEL_MAP_VIETNAM: Record<string, string> = {
   voice: 'Câu bị động',
   'relative-clause': 'Mệnh đề quan hệ',
   agreement: 'Sự hòa hợp',
+  'quick-practice': 'Part 5 tổng hợp (10 câu)',
+  'full-test': 'Part 5 đầy đủ (30 câu)',
+  custom: 'Tùy chỉnh',
+  challenge: 'Challenge Mode (15 phút)',
 }

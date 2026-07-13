@@ -25,6 +25,14 @@ export const typeContext: Record<string, string> = {
     'Đại từ quan hệ who/whom/which/that/whose thay thế cho danh từ đứng trước. Xác định danh từ đó là người hay vật, và vai trò trong mệnh đề để chọn đúng.',
   agreement:
     'Hòa hợp chủ ngữ - động từ tưởng dễ nhưng có nhiều bẫy. Chú ý các trường hợp đặc biệt: each/every, a number of/the number of, cùng với as well as/together with.',
+  'quick-practice':
+    'Quick Practice. Luyện 10 câu Part 5 tổng hợp tất cả chủ điểm ngữ pháp, phù hợp ôn nhanh hàng ngày.',
+  'full-test':
+    'Full Test. Làm 30 câu Part 5 mô phỏng đề thi thật, tổng hợp mọi chủ điểm ngữ pháp TOEIC.',
+  custom:
+    'Custom Practice. Tự chọn số câu, chủ điểm, độ khó và chế độ cân bằng — luyện Part 5 theo nhu cầu.',
+  challenge:
+    'Challenge Mode. 30 câu Part 5 trong 15 phút — mô phỏng đề thi thật, không xem đáp án giữa chừng.',
 }
 
 export const OPTION_LABELS = ['A', 'B', 'C', 'D'] as const

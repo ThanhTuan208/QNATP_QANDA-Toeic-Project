@@ -2,7 +2,50 @@ import { ArrowUpRight, FileText, Layers, NotebookPen, RefreshCw, Scale } from 'l
 import type { PracticeModule, SectionItem, TopicItem } from '@/types/sidebar'
 
 export const vocabularyTopics: TopicItem[] = []
-export const mixedPracticeTopics: TopicItem[] = []
+export const mixedPracticeTopics: TopicItem[] = [
+  {
+    slug: 'quick-practice',
+    label: 'Quick Practice',
+    description: '10 câu tổng hợp ngữ pháp nhanh, luyện Part 5 mọi lúc mọi nơi',
+    icon: Layers,
+    difficulty: 'beginner',
+    estimatedMinutes: 7,
+    sections: [{ id: 'practice', label: 'Làm bài' }],
+    questionCount: 10,
+  },
+  {
+    slug: 'full-test',
+    label: 'Full Test',
+    description: '30 câu Part 5 như đề thi thật, trộn tất cả chủ điểm ngữ pháp',
+    icon: Layers,
+    difficulty: 'intermediate',
+    estimatedMinutes: 20,
+    sections: [
+      { id: 'practice', label: 'Luyện tập' },
+      { id: 'quiz', label: 'Kiểm tra' },
+    ],
+    questionCount: 30,
+  },
+  {
+    slug: 'custom',
+    label: 'Custom Practice',
+    description: 'Tự chọn số câu, chủ điểm, độ khó và chế độ cân bằng',
+    icon: Layers,
+    difficulty: 'all',
+    estimatedMinutes: 0,
+    sections: [{ id: 'practice', label: 'Tùy chỉnh' }],
+  },
+  {
+    slug: 'challenge',
+    label: 'Challenge Mode',
+    description: '30 câu Part 5 trong 15 phút — mô phỏng đề thi thật',
+    icon: Layers,
+    difficulty: 'advanced',
+    estimatedMinutes: 15,
+    sections: [{ id: 'practice', label: 'Thi thử' }],
+    questionCount: 30,
+  },
+]
 export const savedQuestionTopics: TopicItem[] = []
 export const wrongAnswerTopics: TopicItem[] = []
 

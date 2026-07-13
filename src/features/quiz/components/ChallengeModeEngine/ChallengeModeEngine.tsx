@@ -1,24 +1,36 @@
 'use client'
 
+import { useCallback, useEffect, useRef } from 'react'
 import { Loader2 } from 'lucide-react'
 import { AnimatedLoader } from '@/components/common/AnimatedLoader'
-import { ImportDialog } from '@/features/quiz/components/ImportDialog'
 import { QuestionCard } from '@/features/quiz/components/QuestionCard'
-import { RationaleBox } from '@/features/quiz/components/RationaleBox'
 import { ResultBreakdown } from '@/features/quiz/components/ResultBreakdown'
 import { ReviewPanel } from '@/features/quiz/components/ReviewPanel'
-import { SaveButton } from '@/features/quiz/components/SaveButton'
 import { useQuizEngine } from '@/features/quiz/hooks/useQuizEngine'
+import { useTimer } from '@/features/quiz/hooks/useTimer'
 import type { Question } from '@/features/quiz/types'
 
-interface QuizEngineProps {
-  type?: string
-  difficulty?: string
-  initialQuestions?: Question[]
-  onStatsUpdate?: (total: number, correct: number) => void
+const CHALLENGE_TIME = 15 * 60
+
+function estimateToeicScore(correct: number, total: number): number {
+  if (total === 0) return 0
+  const pct = correct / total
+  return Math.round(150 + pct * 345)
 }
 
-export function QuizEngine(props: QuizEngineProps) {
+function getScoreBand(score: number): string {
+  if (score >= 400) return 'Xuất sắc'
+  if (score >= 350) return 'Tốt'
+  if (score >= 300) return 'Khá'
+  if (score >= 250) return 'Trung bình'
+  return 'Cần cải thiện'
+}
+
+interface ChallengeModeEngineProps {
+  initialQuestions: Question[]
+}
+
+export function ChallengeModeEngine({ initialQuestions }: ChallengeModeEngineProps) {
   const {
     currentQuestion,
     selectedOptionId,
@@ -32,19 +44,41 @@ export function QuizEngine(props: QuizEngineProps) {
     typeStats,
     questions,
     attemptHistory,
-    showImport,
-    importJson,
-    importError,
     handleSelect,
     handleNext,
-    handleOpenImport,
-    handleSubmitImport,
-    setImportJson,
-    closeImport,
     reset,
     retryIncorrect,
     incorrectCount,
-  } = useQuizEngine(props)
+  } = useQuizEngine({
+    type: 'challenge',
+    initialQuestions,
+  })
+
+  const timer = useTimer({
+    totalSeconds: CHALLENGE_TIME,
+    onExpire: () => {},
+  })
+
+  useEffect(() => {
+    if (!isLoading && !isEmpty && !isComplete) {
+      timer.start()
+    }
+  }, [isLoading, isEmpty, isComplete])
+
+  useEffect(() => {
+    if (timer.isExpired && !isComplete && !isLoading && !isEmpty) {
+      handleNext()
+    }
+  }, [timer.isExpired])
+
+  useEffect(() => {
+    if (result && !isComplete) {
+      const timeout = setTimeout(() => {
+        handleNext()
+      }, 600)
+      return () => clearTimeout(timeout)
+    }
+  }, [result, isComplete, handleNext])
 
   if (isLoading) {
     return <AnimatedLoader fullScreen={false} />
@@ -54,34 +88,22 @@ export function QuizEngine(props: QuizEngineProps) {
     return (
       <div className='py-20 text-center space-y-4'>
         <p className='text-muted-foreground'>Chưa có câu hỏi nào.</p>
-        <button
-          type='button'
-          onClick={handleOpenImport}
-          className='rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90'
-        >
-          + Thêm câu hỏi
-        </button>
-        {showImport && (
-          <ImportDialog
-            type={props.type ?? 'word-form'}
-            importJson={importJson}
-            importError={importError}
-            onImportJsonChange={setImportJson}
-            onSubmitImport={handleSubmitImport}
-            onClose={closeImport}
-          />
-        )}
       </div>
     )
   }
 
-  if (isComplete) {
+  if (isComplete || timer.isExpired) {
     const correctCount = Object.values(typeStats).reduce((sum, s) => sum + s.correct, 0)
     const pct = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0
+    const estimatedScore = estimateToeicScore(correctCount, totalQuestions)
+    const scoreBand = getScoreBand(estimatedScore)
+
     return (
       <div className='space-y-6 py-10'>
         <div className='text-center space-y-2'>
-          <p className='text-lg font-semibold text-foreground'>Hoàn thành!</p>
+          <p className='text-lg font-semibold text-foreground'>
+            {timer.isExpired ? 'Hết giờ!' : 'Hoàn thành!'}
+          </p>
           <p className='text-4xl font-bold text-foreground'>
             {correctCount}
             <span className='text-lg font-normal text-muted-foreground'>/{totalQuestions}</span>
@@ -89,6 +111,11 @@ export function QuizEngine(props: QuizEngineProps) {
           <p className='text-sm text-muted-foreground'>
             {pct >= 80 ? 'Xuất sắc! 🎉' : pct >= 60 ? 'Khá tốt! 👍' : 'Cần cố gắng hơn 💪'}
           </p>
+          <div className='mt-4 p-4 bg-card rounded-2xl border border-border inline-block'>
+            <p className='text-xs text-muted-foreground uppercase tracking-wide'>TOEIC Reading ước tính</p>
+            <p className='text-3xl font-bold text-foreground'>{estimatedScore}</p>
+            <p className='text-xs text-muted-foreground'>{scoreBand}</p>
+          </div>
         </div>
 
         <ResultBreakdown typeStats={typeStats} />
@@ -112,24 +139,7 @@ export function QuizEngine(props: QuizEngineProps) {
           >
             Làm lại
           </button>
-          <button
-            type='button'
-            onClick={handleOpenImport}
-            className='rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90'
-          >
-            + Thay câu hỏi mới
-          </button>
         </div>
-        {showImport && (
-          <ImportDialog
-            type={props.type ?? 'word-form'}
-            importJson={importJson}
-            importError={importError}
-            onImportJsonChange={setImportJson}
-            onSubmitImport={handleSubmitImport}
-            onClose={closeImport}
-          />
-        )}
       </div>
     )
   }
@@ -148,20 +158,10 @@ export function QuizEngine(props: QuizEngineProps) {
             </span>
           )}
         </div>
-        <button
-          type='button'
-          onClick={handleOpenImport}
-          className='text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2'
-        >
-          + Tự nhập câu hỏi
-        </button>
       </div>
 
       {currentQuestion && (
         <div className='space-y-2'>
-          <div className='flex justify-end'>
-            <SaveButton questionId={currentQuestion.id} />
-          </div>
           <QuestionCard
             key={currentQuestion.id}
             question={currentQuestion}
@@ -173,23 +173,11 @@ export function QuizEngine(props: QuizEngineProps) {
       )}
 
       {result && (
-        <RationaleBox
-          isCorrect={result.isCorrect}
-          rationale={result.rationale}
-          onNext={handleNext}
-          hasNext={currentIdx < totalQuestions - 1}
-        />
-      )}
-
-      {showImport && (
-        <ImportDialog
-          type={props.type ?? 'word-form'}
-          importJson={importJson}
-          importError={importError}
-          onImportJsonChange={setImportJson}
-          onSubmitImport={handleSubmitImport}
-          onClose={closeImport}
-        />
+        <div className='text-center py-4'>
+          <p className='text-sm text-muted-foreground'>
+            {result.isCorrect ? 'Đúng!' : 'Sai!'}
+          </p>
+        </div>
       )}
     </div>
   )

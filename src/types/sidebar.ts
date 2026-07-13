@@ -14,6 +14,7 @@ export interface TopicItem {
   difficulty: string
   estimatedMinutes: number
   sections: SectionItem[]
+  questionCount?: number
 }
 
 export interface PracticeModule {

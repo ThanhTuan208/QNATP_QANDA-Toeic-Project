@@ -1,5 +1,6 @@
 import type { NextRequest } from 'next/server'
-import { getRandomQuestions } from '@/api/quiz/quiz.service'
+import { getWeightedQuestions } from '@/api/quiz/quiz.service'
+import { getUserId } from '@/lib/auth-utils'
 import { AppError } from '@/lib/errors/AppError'
 import { error, success } from '@/lib/response'
 
@@ -7,15 +8,13 @@ const MAX_LIMIT = 50
 
 export async function GET(request: NextRequest) {
   try {
+    const userId = await getUserId()
     const { searchParams } = new URL(request.url)
 
-    const result = await getRandomQuestions({
-      type: searchParams.get('type'),
-      difficulty: searchParams.get('difficulty'),
+    const result = await getWeightedQuestions(userId, {
       types: searchParams.getAll('types'),
       difficulties: searchParams.getAll('difficulties'),
       limit: Math.min(Number(searchParams.get('limit')) || 20, MAX_LIMIT),
-      balance: searchParams.get('balance') === 'true',
     })
 
     return success(result)
