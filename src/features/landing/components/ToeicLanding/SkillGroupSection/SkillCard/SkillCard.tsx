@@ -21,9 +21,7 @@ export function SkillCard({ skill }: SkillCardProps) {
               {skill.part}
             </span>
           </div>
-          <h4 className='text-ms md:text-md font-semibold mb-1'>
-            {skill.title}
-          </h4>
+          <h4 className='text-ms md:text-md font-semibold mb-1'>{skill.title}</h4>
 
           {skill.description && (
             <p className='text-xs text-muted-foreground line-clamp-2 sm:line-clamp-none mb-2 md:mb-4'>
@@ -52,7 +50,9 @@ export function SkillCard({ skill }: SkillCardProps) {
               <p className='text-xs font-medium text-primary mb-0.5'>{skill.part}</p>
               <h4 className='text-sm font-semibold'>{skill.title}</h4>
               {skill.description && (
-                <p className='text-xs text-muted-foreground mt-0.5 line-clamp-1 max-w-50 md:max-w-xs'>{skill.description}</p>
+                <p className='text-xs text-muted-foreground mt-0.5 line-clamp-1 max-w-50 md:max-w-xs'>
+                  {skill.description}
+                </p>
               )}
             </div>
           </div>
