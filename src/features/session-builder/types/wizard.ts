@@ -1,5 +1,5 @@
 import type { PresetType, SessionBuilderStep } from '@/features/session-builder/types'
-import type { SessionConfig } from '@/features/temp-session/types'
+import type { SessionConfig, SessionQuestion } from '@/features/temp-session/types'
 
 export interface ScopeConfig {
   parts: number[]
@@ -13,6 +13,7 @@ export interface SessionBuilderState {
   source: 'system' | 'imported'
   importJson: string
   validationErrors: string[]
+  questions: SessionQuestion[]
 }
 
 export type SessionBuilderAction =
@@ -22,6 +23,7 @@ export type SessionBuilderAction =
   | { type: 'SET_SOURCE'; source: 'system' | 'imported' }
   | { type: 'SET_IMPORT_JSON'; importJson: string }
   | { type: 'SET_VALIDATION_ERRORS'; errors: string[] }
+  | { type: 'SET_QUESTIONS'; questions: SessionQuestion[] }
   | { type: 'NEXT_STEP' }
   | { type: 'PREV_STEP' }
   | { type: 'RESET' }
@@ -34,6 +36,7 @@ export interface UseSessionBuilderReturn {
   setSource: (source: 'system' | 'imported') => void
   setImportJson: (json: string) => void
   setValidationErrors: (errors: string[]) => void
+  setQuestions: (questions: SessionQuestion[]) => void
   nextStep: () => void
   prevStep: () => void
   canGoNext: () => boolean

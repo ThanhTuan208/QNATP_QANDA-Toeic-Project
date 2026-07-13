@@ -35,6 +35,10 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
     dispatch({ type: 'SET_VALIDATION_ERRORS', errors })
   }, [])
 
+  const setQuestions = useCallback((questions: (typeof state)['questions']) => {
+    dispatch({ type: 'SET_QUESTIONS', questions })
+  }, [])
+
   const nextStep = useCallback(() => {
     dispatch({ type: 'NEXT_STEP' })
   }, [])
@@ -55,7 +59,7 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
           (state.importJson.length > 0 && state.validationErrors.length === 0)
         )
       case 'preview':
-        return state.validationErrors.length === 0
+        return state.questions.length > 0
       case 'practice':
         return false
     }
@@ -66,6 +70,7 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
     state.source,
     state.importJson,
     state.validationErrors.length,
+    state.questions.length,
   ])
 
   const canGoPrev = useCallback((): boolean => {
@@ -92,6 +97,7 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
     setSource,
     setImportJson,
     setValidationErrors,
+    setQuestions,
     nextStep,
     prevStep,
     canGoNext,

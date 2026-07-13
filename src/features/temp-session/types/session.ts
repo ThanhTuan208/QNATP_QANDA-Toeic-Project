@@ -19,7 +19,12 @@ export interface SessionQuestion {
   type: string
   difficulty: string
   questionText: string
-  options: { id: string; text: string; order: number; isCorrect?: boolean }[]
+  options: {
+    id: string
+    text: string
+    order: number
+    isCorrect?: boolean
+  }[]
   correctOptionId: string
   rationale: string
   originalId?: string

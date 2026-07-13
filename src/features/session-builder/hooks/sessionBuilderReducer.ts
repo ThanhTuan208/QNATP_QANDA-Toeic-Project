@@ -10,6 +10,7 @@ export const INITIAL_WIZARD_STATE: SessionBuilderState = {
   source: 'system',
   importJson: '',
   validationErrors: [],
+  questions: [],
 }
 
 export function sessionBuilderReducer(
@@ -39,6 +40,8 @@ export function sessionBuilderReducer(
       return { ...state, importJson: action.importJson }
     case 'SET_VALIDATION_ERRORS':
       return { ...state, validationErrors: action.errors }
+    case 'SET_QUESTIONS':
+      return { ...state, questions: action.questions }
     case 'NEXT_STEP': {
       const next = getNextStep(state.step)
       if (!next) return state
