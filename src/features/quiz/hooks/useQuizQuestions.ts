@@ -27,7 +27,7 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
         return fetchWeightedQuestions({
           types: options.types,
           difficulties: options.difficulties,
-          limit: options.type === 'full-test' ? 30 : 10,
+          limit: 10,
         })
       }
       return fetchQuestions({ type: options.type, difficulty: options.difficulty })
