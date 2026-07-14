@@ -1,7 +1,8 @@
 'use client'
 
-import { Play } from 'lucide-react'
+import { Eye, Play } from 'lucide-react'
 import { Button } from '@/components/common/Button/Button'
+import { StepHeader } from '@/components/common/StepHeader'
 import {
   LoadingState,
   QuestionItem,
@@ -41,12 +42,11 @@ export function Step4Preview({
 
   return (
     <div className='space-y-6'>
-      <div>
-        <h3 className='text-lg font-bold text-foreground mb-1'>Preview</h3>
-        <p className='text-sm text-muted-foreground'>
-          Review your practice session before starting
-        </p>
-      </div>
+      <StepHeader
+        title='Preview'
+        description='Review your practice session before starting'
+        icon={<Eye className='w-6 h-6' />}
+      />
 
       <SessionSummary preset={preset} config={config} source={source} total={total} />
 

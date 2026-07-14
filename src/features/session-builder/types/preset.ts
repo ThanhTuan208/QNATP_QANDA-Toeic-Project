@@ -1,1 +1,1 @@
-export type PresetType = 'quick' | 'balanced' | 'smart' | 'exam' | 'custom'
+export type PresetType = 'quick' | 'balanced' | 'smart' | 'exam' | 'custom' | null

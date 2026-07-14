@@ -1,6 +1,8 @@
 'use client'
 
+import { Database } from 'lucide-react'
 import { useCallback, useState } from 'react'
+import { StepHeader } from '@/components/common/StepHeader'
 import { JsonImportForm, SourceSelector } from '@/features/session-builder/components/source'
 import { IMPORT_TEMPLATE } from '@/features/session-builder/constants/import-template'
 import { processImportedSessionJSON } from '@/features/session-builder/utils/validation'
@@ -83,12 +85,11 @@ export function Step3Source({
 
   return (
     <div className='space-y-6'>
-      <div>
-        <h3 className='text-lg font-bold text-foreground mb-1'>Chọn nguồn câu hỏi</h3>
-        <p className='text-sm text-muted-foreground'>
-          Chọn cách thức lấy câu hỏi cho bài luyện tập
-        </p>
-      </div>
+      <StepHeader
+        title='Chọn nguồn câu hỏi'
+        description='Chọn cách thức lấy câu hỏi cho bài luyện tập'
+        icon={<Database className='w-6 h-6' />}
+      />
 
       <SourceSelector source={source} onSourceChange={handleSelectSource} />
 

@@ -26,6 +26,25 @@ const Button = ({
   loadingText,
   ...props
 }: ButtonProps) => {
+  // if (buttonType === 'none') {
+  //   return (
+  //     <button className={cn('group', className)} disabled={loading || disabled} {...props}>
+  //       {loading && <Loader2 className='mr-2 h-4 w-4 animate-spin' />}
+  //       {!loading && icon && iconPosition === 'left' && (
+  //         <span className='mr-2 transition-transform duration-300 group-hover:-translate-x-1'>
+  //           {icon}
+  //         </span>
+  //       )}
+  //       {loading ? loadingText || children : children}
+  //       {!loading && icon && iconPosition === 'right' && (
+  //         <span className='ml-2 transition-transform duration-300 group-hover:translate-x-1'>
+  //           {icon}
+  //         </span>
+  //       )}
+  //     </button>
+  //   )
+  // }
+
   const variantMap: Record<
     NonNullable<ButtonProps['buttonType']>,
     VariantProps<typeof buttonVariants>['variant']

@@ -33,7 +33,7 @@ export function buildPracticeSession(
     createdAt: Date.now(),
     expiresAt: Date.now() + TTL_HOURS * 60 * 60 * 1000,
     config: {
-      preset: state.preset,
+      preset: state.preset ?? 'quick',
       parts: state.scope.parts,
       knowledgeGroups: state.config.knowledgeGroups ?? {},
       difficulty: state.config.difficulty ?? ['medium'],

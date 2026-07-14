@@ -16,7 +16,7 @@ export function PartGroup({ title, parts, selectedParts, onToggle, disabled }: P
       <h3 className='text-sm font-semibold text-foreground mb-3 uppercase tracking-wider'>
         {title}
       </h3>
-      <div className='grid gap-2'>
+      <div className='grid gap-3'>
         {parts.map((part) => {
           const selected = selectedParts.includes(part)
           return (

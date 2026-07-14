@@ -18,6 +18,8 @@ export function getPresetConfig(parts: number[], preset: PresetType): Partial<Se
       return getExamConfig(parts)
     case 'custom':
       return {}
+    default:
+      return {}
   }
 }
 
@@ -125,6 +127,24 @@ export function calculateTotalQuestions(
     (sum, groups) => sum + groups.reduce((s, g) => s + g.count, 0),
     0,
   )
+}
+
+export function setKnowledgeGroupCount(
+  knowledgeGroups: Record<number, KnowledgeGroupConfig[]>,
+  part: number,
+  type: string,
+  count: number,
+): { groups: Record<number, KnowledgeGroupConfig[]>; total: number } {
+  const current = knowledgeGroups[part] ?? []
+  const safeCount = Math.max(0, count)
+  const updated: Record<number, KnowledgeGroupConfig[]> = {
+    ...knowledgeGroups,
+    [part]: current.map((g) => (g.type === type ? { ...g, count: safeCount } : g)),
+  }
+  if (!current.some((g) => g.type === type)) {
+    updated[part] = [...current, { type, count: safeCount }]
+  }
+  return { groups: updated, total: calculateTotalQuestions(updated) }
 }
 
 export function updateKnowledgeGroupCount(

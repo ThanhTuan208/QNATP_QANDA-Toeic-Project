@@ -34,7 +34,7 @@ export function ResponsiveSection() {
       <div className='relative overflow-hidden'>
         <motion.div
           className='flex'
-          animate={{ x: -activeIndex * 100 + '%' }}
+          animate={{ x: `${-activeIndex * 100}%` }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           drag='x'
           dragConstraints={{ left: 0, right: 0 }}

@@ -1,5 +1,7 @@
 'use client'
 
+import { AlertTriangle, CheckCircle, ClipboardList } from 'lucide-react'
+import { StepHeader } from '@/components/common/StepHeader'
 import { PartGroup } from '@/features/session-builder/components/scope'
 import { PART_GROUPS } from '@/features/session-builder/constants'
 import type { ScopeConfig } from '@/features/session-builder/types'
@@ -15,21 +17,17 @@ export function Step1Scope({ scope, onScopeChange }: Step1ScopeProps) {
     onScopeChange({ parts: togglePartSelection(scope.parts, part) })
   }
 
+  const hasSelected = scope.parts.length > 0
+
   return (
-    <div className='space-y-6'>
-      <div className='text-center space-y-2'>
-        <h2 className='text-2xl font-bold text-foreground'>Select Parts</h2>
-        <p className='text-muted-foreground'>Choose which TOEIC parts you want to practice</p>
-      </div>
+    <div className='max-w-3xl mx-auto space-y-8 lg:py-2'>
+      <StepHeader
+        title='Select Parts'
+        description='Choose which TOEIC parts you want to practice in this session'
+        icon={<ClipboardList className='w-6 h-6' />}
+      />
 
-      <div className='space-y-4'>
-        <PartGroup
-          title='Reading'
-          parts={PART_GROUPS.reading}
-          selectedParts={scope.parts}
-          onToggle={handleToggle}
-        />
-
+      <div className='grid md:grid-cols-2 gap-8 items-start'>
         <PartGroup
           title='Listening'
           parts={PART_GROUPS.listening}
@@ -37,13 +35,34 @@ export function Step1Scope({ scope, onScopeChange }: Step1ScopeProps) {
           onToggle={() => {}}
           disabled
         />
+
+        <PartGroup
+          title='Reading'
+          parts={PART_GROUPS.reading}
+          selectedParts={scope.parts}
+          onToggle={handleToggle}
+        />
       </div>
 
-      <p className='text-xs text-muted-foreground text-center'>
-        {scope.parts.length > 0
-          ? `${scope.parts.length} part(s) selected`
-          : 'Please select at least one part'}
-      </p>
+      <div className='pt-4 border-t border-border/50'>
+        <div
+          className={`flex items-center justify-center gap-2 text-xs font-medium transition-all duration-200 ${
+            hasSelected ? 'text-steel-blue' : 'text-destructive animate-pulse'
+          }`}
+        >
+          {hasSelected ? (
+            <>
+              <CheckCircle className='w-4 h-4' />
+              <span>{scope.parts.length} part(s) selected</span>
+            </>
+          ) : (
+            <>
+              <AlertTriangle className='w-4 h-4' />
+              <span>Please select at least one part to continue</span>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

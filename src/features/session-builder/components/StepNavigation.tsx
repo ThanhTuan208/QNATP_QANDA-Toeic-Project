@@ -25,7 +25,7 @@ export function StepNavigation({
   loading = false,
 }: StepNavigationProps) {
   return (
-    <div className='flex items-center justify-between pt-6 border-t border-border'>
+    <div className='flex items-center justify-between mt-4 pt-6 border-t border-border'>
       <Button
         buttonType='outline'
         icon={<ArrowLeft className='h-4 w-4' />}

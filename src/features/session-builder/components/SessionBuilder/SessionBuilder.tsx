@@ -1,5 +1,7 @@
 'use client'
 
+import { AnimatePresence, motion } from 'framer-motion'
+import { stepTransition } from '@/components/common/AnimatedStep'
 import { StepNavigation } from '@/features/session-builder/components/StepNavigation'
 import {
   Step1Scope,
@@ -36,53 +38,65 @@ export function SessionBuilder() {
   )
 
   return (
-    <div className='max-w-2xl mx-auto py-6'>
-      {wizard.state.step === 'scope' && (
-        <Step1Scope scope={wizard.state.scope} onScopeChange={wizard.setScope} />
-      )}
+    <div className='max-w-3xl mx-auto py-6'>
+      <AnimatePresence mode='popLayout'>
+        {wizard.state.step === 'scope' && (
+          <motion.div key='scope' {...stepTransition}>
+            <Step1Scope scope={wizard.state.scope} onScopeChange={wizard.setScope} />
+          </motion.div>
+        )}
 
-      {wizard.state.step === 'config' && (
-        <Step2Config
-          parts={wizard.state.scope.parts}
-          preset={wizard.state.preset}
-          config={wizard.state.config}
-          onPresetChange={wizard.setPreset}
-          onConfigChange={wizard.setConfig}
-        />
-      )}
+        {wizard.state.step === 'config' && (
+          <motion.div key='config' {...stepTransition}>
+            <Step2Config
+              parts={wizard.state.scope.parts}
+              preset={wizard.state.preset}
+              config={wizard.state.config}
+              onPresetChange={wizard.setPreset}
+              onConfigChange={wizard.setConfig}
+            />
+          </motion.div>
+        )}
 
-      {wizard.state.step === 'source' && (
-        <Step3Source
-          source={wizard.state.source}
-          config={wizard.state.config}
-          importJson={wizard.state.importJson}
-          validationErrors={wizard.state.validationErrors}
-          onSourceChange={wizard.setSource}
-          onImportJsonChange={wizard.setImportJson}
-          onValidationErrorsChange={wizard.setValidationErrors}
-        />
-      )}
+        {wizard.state.step === 'source' && (
+          <motion.div key='source' {...stepTransition}>
+            <Step3Source
+              source={wizard.state.source}
+              config={wizard.state.config}
+              importJson={wizard.state.importJson}
+              validationErrors={wizard.state.validationErrors}
+              onSourceChange={wizard.setSource}
+              onImportJsonChange={wizard.setImportJson}
+              onValidationErrorsChange={wizard.setValidationErrors}
+            />
+          </motion.div>
+        )}
 
-      {wizard.state.step === 'preview' && (
-        <Step4Preview
-          preset={wizard.state.preset}
-          config={wizard.state.config}
-          source={wizard.state.source}
-          questions={wizard.state.questions}
-          onBack={wizard.prevStep}
-          onStart={handleStartPractice}
-          isGenerating={wizard.state.isGenerating}
-          generationError={wizard.state.generationError}
-        />
-      )}
+        {wizard.state.step === 'preview' && (
+          <motion.div key='preview' {...stepTransition}>
+            <Step4Preview
+              preset={wizard.state.preset}
+              config={wizard.state.config}
+              source={wizard.state.source}
+              questions={wizard.state.questions}
+              onBack={wizard.prevStep}
+              onStart={handleStartPractice}
+              isGenerating={wizard.state.isGenerating}
+              generationError={wizard.state.generationError}
+            />
+          </motion.div>
+        )}
 
-      {wizard.state.step === 'practice' && (
-        <Step5Practice
-          questions={wizard.state.questions}
-          onBack={wizard.prevStep}
-          onComplete={handlePracticeComplete}
-        />
-      )}
+        {wizard.state.step === 'practice' && (
+          <motion.div key='practice' {...stepTransition}>
+            <Step5Practice
+              questions={wizard.state.questions}
+              onBack={wizard.prevStep}
+              onComplete={handlePracticeComplete}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {wizard.state.step !== 'practice' && (
         <StepNavigation

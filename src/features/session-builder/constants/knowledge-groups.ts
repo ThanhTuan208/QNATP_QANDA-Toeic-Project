@@ -37,6 +37,12 @@ export const PART_LABELS: Record<number, string> = {
   7: 'Part 7: Reading Comprehension',
 }
 
+export const PART_MAX_QUESTIONS: Record<number, number> = {
+  5: 30,
+  6: 16,
+  7: 54,
+}
+
 export const PART_GROUPS: Record<string, number[]> = {
   reading: [5, 6, 7],
   listening: [1, 2, 3, 4],
