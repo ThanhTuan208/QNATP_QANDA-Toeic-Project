@@ -1,8 +1,9 @@
 'use client'
 
 import { Loader2 } from 'lucide-react'
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { AnimatedLoader } from '@/components/common/AnimatedLoader'
+import { Button } from '@/components/common/Button/Button'
 import { QuestionCard } from '@/features/quiz/components/QuestionCard'
 import { ResultBreakdown } from '@/features/quiz/components/ResultBreakdown'
 import { ReviewPanel } from '@/features/quiz/components/ReviewPanel'
@@ -63,13 +64,13 @@ export function ChallengeModeEngine({ initialQuestions }: ChallengeModeEnginePro
     if (!isLoading && !isEmpty && !isComplete) {
       timer.start()
     }
-  }, [isLoading, isEmpty, isComplete])
+  }, [isLoading, isEmpty, isComplete, timer.start])
 
   useEffect(() => {
     if (timer.isExpired && !isComplete && !isLoading && !isEmpty) {
       handleNext()
     }
-  }, [timer.isExpired])
+  }, [timer.isExpired, handleNext, isComplete, isLoading, isEmpty])
 
   useEffect(() => {
     if (result && !isComplete) {
@@ -126,21 +127,13 @@ export function ChallengeModeEngine({ initialQuestions }: ChallengeModeEnginePro
 
         <div className='flex justify-center gap-3'>
           {incorrectCount > 0 && (
-            <button
-              type='button'
-              onClick={retryIncorrect}
-              className='rounded-xl bg-amber-100 px-6 py-3 text-sm font-semibold text-amber-800 transition-colors hover:bg-amber-200'
-            >
+            <Button buttonType='fill' onClick={retryIncorrect}>
               Làm lại {incorrectCount} câu sai
-            </button>
+            </Button>
           )}
-          <button
-            type='button'
-            onClick={reset}
-            className='rounded-xl bg-neutral-90 px-6 py-3 text-sm font-semibold text-neutral-0 transition-colors hover:bg-neutral-80'
-          >
+          <Button buttonType='outline' onClick={reset}>
             Làm lại
-          </button>
+          </Button>
         </div>
       </div>
     )

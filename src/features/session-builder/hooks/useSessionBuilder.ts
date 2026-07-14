@@ -1,12 +1,10 @@
 'use client'
 
 import { useCallback, useReducer } from 'react'
-import { WIZARD_STEPS } from '@/features/session-builder/constants'
-import {
-  INITIAL_WIZARD_STATE,
-  sessionBuilderReducer,
-} from '@/features/session-builder/hooks/sessionBuilderReducer'
+import { INITIAL_WIZARD_STATE, WIZARD_STEPS } from '@/features/session-builder/constants'
+import { sessionBuilderReducer } from '@/features/session-builder/hooks/sessionBuilderReducer'
 import type { UseSessionBuilderReturn } from '@/features/session-builder/types'
+import { canAdvanceFromStep } from '@/features/session-builder/utils/steps'
 
 export function useSessionBuilder(): UseSessionBuilderReturn {
   const [state, dispatch] = useReducer(sessionBuilderReducer, INITIAL_WIZARD_STATE)
@@ -56,32 +54,8 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
   }, [])
 
   const canGoNext = useCallback((): boolean => {
-    if (state.isGenerating) return false
-    switch (state.step) {
-      case 'scope':
-        return state.scope.parts.length > 0
-      case 'config':
-        return state.config.totalQuestions != null && state.config.totalQuestions > 0
-      case 'source':
-        return (
-          state.source === 'system' ||
-          (state.importJson.length > 0 && state.validationErrors.length === 0)
-        )
-      case 'preview':
-        return state.questions.length > 0
-      case 'practice':
-        return false
-    }
-  }, [
-    state.step,
-    state.scope.parts,
-    state.config.totalQuestions,
-    state.source,
-    state.importJson,
-    state.validationErrors.length,
-    state.questions.length,
-    state.isGenerating,
-  ])
+    return canAdvanceFromStep(state)
+  }, [state])
 
   const canGoPrev = useCallback((): boolean => {
     return state.step !== 'scope'

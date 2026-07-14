@@ -1,5 +1,6 @@
 import type { Question } from '@/features/quiz/types'
 import type { SessionBuilderState } from '@/features/session-builder/types'
+import { TTL_HOURS } from '@/features/temp-session/constants'
 import type {
   PracticeSession,
   SessionAttempt,
@@ -30,7 +31,7 @@ export function buildPracticeSession(
 ): Omit<PracticeSession, 'id' | 'userId'> {
   return {
     createdAt: Date.now(),
-    expiresAt: Date.now() + 24 * 60 * 60 * 1000,
+    expiresAt: Date.now() + TTL_HOURS * 60 * 60 * 1000,
     config: {
       preset: state.preset,
       parts: state.scope.parts,

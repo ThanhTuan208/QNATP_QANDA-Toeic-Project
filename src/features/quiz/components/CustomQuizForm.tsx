@@ -103,7 +103,7 @@ export function CustomQuizForm() {
 
       <div className='space-y-6 bg-card p-6 rounded-2xl border border-border'>
         <div>
-          <label className='block text-sm font-semibold text-foreground mb-3'>Số câu hỏi</label>
+          <span className='block text-sm font-semibold text-foreground mb-3'>Số câu hỏi</span>
           <div className='flex gap-2 flex-wrap'>
             {QUESTION_COUNTS.map((n) => (
               <button
@@ -124,7 +124,7 @@ export function CustomQuizForm() {
 
         <div>
           <div className='flex items-center justify-between mb-3'>
-            <label className='text-sm font-semibold text-foreground'>Độ khó</label>
+            <span className='text-sm font-semibold text-foreground'>Độ khó</span>
             <button
               type='button'
               onClick={() =>
@@ -162,7 +162,7 @@ export function CustomQuizForm() {
 
         <div>
           <div className='flex items-center justify-between mb-3'>
-            <label className='text-sm font-semibold text-foreground'>Chủ điểm</label>
+            <span className='text-sm font-semibold text-foreground'>Chủ điểm</span>
             <button
               type='button'
               onClick={() =>
@@ -189,7 +189,7 @@ export function CustomQuizForm() {
         </div>
 
         <div>
-          <label className='block text-sm font-semibold text-foreground mb-3'>Chế độ phân bổ</label>
+          <span className='block text-sm font-semibold text-foreground mb-3'>Chế độ phân bổ</span>
           <div className='flex gap-2'>
             {[
               { value: true, label: 'Cân bằng', desc: 'Chia đều số câu cho mỗi chủ điểm' },

@@ -1,6 +1,6 @@
-import { PracticeHeaderSection } from '@/features/quiz/components/Sections/PracticeHeaderSection'
-import { QuizSection } from '@/features/quiz/components/Sections/QuizSection'
-import { TheorySection } from '@/features/quiz/components/Sections/TheorySection'
+import { PracticeHeaderSection } from '@/features/quiz/components/sections/PracticeHeaderSection'
+import { QuizSection } from '@/features/quiz/components/sections/QuizSection'
+import { TheorySection } from '@/features/quiz/components/sections/TheorySection'
 import { loadQuestions } from '@/features/quiz/utils/load-questions.utils'
 import type { PracticeModule, TopicItem } from '@/types/sidebar'
 

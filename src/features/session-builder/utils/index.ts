@@ -16,7 +16,7 @@ export {
   sessionQuestionsToQuizQuestions,
   sessionQuestionToQuizQuestion,
 } from './questions'
-export { getNextStep, getPrevStep } from './steps'
+export { canAdvanceFromStep, getNextStep, getPrevStep } from './steps'
 export {
   parseImportedSessionJSON,
   processImportedSessionJSON,

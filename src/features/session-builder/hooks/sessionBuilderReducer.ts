@@ -1,19 +1,7 @@
+import { INITIAL_WIZARD_STATE } from '@/features/session-builder/constants'
 import type { SessionBuilderAction, SessionBuilderState } from '@/features/session-builder/types'
 import { getPresetConfig } from '@/features/session-builder/utils/presets'
 import { getNextStep, getPrevStep } from '@/features/session-builder/utils/steps'
-
-export const INITIAL_WIZARD_STATE: SessionBuilderState = {
-  step: 'scope',
-  scope: { parts: [5, 6, 7] },
-  preset: 'quick',
-  config: {},
-  source: 'system',
-  importJson: '',
-  validationErrors: [],
-  questions: [],
-  isGenerating: false,
-  generationError: '',
-}
 
 export function sessionBuilderReducer(
   state: SessionBuilderState,
