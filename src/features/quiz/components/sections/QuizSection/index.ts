@@ -1,1 +1,1 @@
-export { QuizSection } from '@/features/quiz/components/Sections/QuizSection/QuizSection'
+export { QuizSection } from './QuizSection'

@@ -2,7 +2,7 @@
 
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useCallback, useState } from 'react'
-import { fetchQuestions } from '@/features/quiz/client/quiz.client'
+import { fetchQuestions, fetchWeightedQuestions } from '@/features/quiz/client/quiz.client'
 import type {
   FetchQuestionsResponse,
   Question,
@@ -16,8 +16,22 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
 
   const { data, isLoading } = useQuery<FetchQuestionsResponse>({
     enabled: !options.initialQuestions,
-    queryKey: ['questions', options.type, options.difficulty],
-    queryFn: () => fetchQuestions({ type: options.type, difficulty: options.difficulty }),
+    queryKey: [
+      'questions',
+      options.type,
+      options.difficulty,
+      options.weighted ? 'weighted' : 'random',
+    ],
+    queryFn: () => {
+      if (options.weighted) {
+        return fetchWeightedQuestions({
+          types: options.types,
+          difficulties: options.difficulties,
+          limit: 10,
+        })
+      }
+      return fetchQuestions({ type: options.type, difficulty: options.difficulty })
+    },
     initialData: options.initialQuestions
       ? { questions: options.initialQuestions, total: options.initialQuestions.length }
       : undefined,
@@ -26,9 +40,12 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
   const questions = data?.questions ?? []
   const setQuestions = useCallback(
     (questions: Question[]) => {
-      queryClient.setQueryData(['questions', options.type, options.difficulty], { questions })
+      queryClient.setQueryData(
+        ['questions', options.type, options.difficulty, options.weighted ? 'weighted' : 'random'],
+        { questions },
+      )
     },
-    [queryClient, options.type, options.difficulty],
+    [queryClient, options.type, options.difficulty, options.weighted],
   )
 
   const advanceQuestion = useCallback(() => {

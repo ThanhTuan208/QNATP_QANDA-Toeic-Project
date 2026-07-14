@@ -103,7 +103,7 @@ export default function SidebarNavigation({
                     {isOpen && isExpanded && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 100, opacity: 1 }}
+                        animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{
                           type: 'tween',

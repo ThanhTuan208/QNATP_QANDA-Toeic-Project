@@ -3,6 +3,8 @@ import { getRandomQuestions } from '@/api/quiz/quiz.service'
 import { AppError } from '@/lib/errors/AppError'
 import { error, success } from '@/lib/response'
 
+const MAX_LIMIT = 50
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
@@ -10,7 +12,10 @@ export async function GET(request: NextRequest) {
     const result = await getRandomQuestions({
       type: searchParams.get('type'),
       difficulty: searchParams.get('difficulty'),
-      limit: Math.min(Number(searchParams.get('limit')) || 20, 50),
+      types: searchParams.getAll('types'),
+      difficulties: searchParams.getAll('difficulties'),
+      limit: Math.min(Number(searchParams.get('limit')) || 20, MAX_LIMIT),
+      balance: searchParams.get('balance') === 'true',
     })
 
     return success(result)

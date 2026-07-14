@@ -5,6 +5,9 @@ import { AnimatedLoader } from '@/components/common/AnimatedLoader'
 import { ImportDialog } from '@/features/quiz/components/ImportDialog'
 import { QuestionCard } from '@/features/quiz/components/QuestionCard'
 import { RationaleBox } from '@/features/quiz/components/RationaleBox'
+import { ResultBreakdown } from '@/features/quiz/components/ResultBreakdown'
+import { ReviewPanel } from '@/features/quiz/components/ReviewPanel'
+import { SaveButton } from '@/features/quiz/components/SaveButton'
 import { useQuizEngine } from '@/features/quiz/hooks/useQuizEngine'
 import type { Question } from '@/features/quiz/types'
 
@@ -26,6 +29,9 @@ export function QuizEngine(props: QuizEngineProps) {
     isLoading,
     isComplete,
     isEmpty,
+    typeStats,
+    questions,
+    attemptHistory,
     showImport,
     importJson,
     importError,
@@ -36,6 +42,8 @@ export function QuizEngine(props: QuizEngineProps) {
     setImportJson,
     closeImport,
     reset,
+    retryIncorrect,
+    incorrectCount,
   } = useQuizEngine(props)
 
   if (isLoading) {
@@ -68,11 +76,35 @@ export function QuizEngine(props: QuizEngineProps) {
   }
 
   if (isComplete) {
+    const correctCount = Object.values(typeStats).reduce((sum, s) => sum + s.correct, 0)
+    const pct = totalQuestions > 0 ? Math.round((correctCount / totalQuestions) * 100) : 0
     return (
-      <div className='space-y-4 py-10 text-center'>
-        <p className='text-lg font-semibold text-foreground'>Hoàn thành!</p>
-        <p className='text-muted-foreground'>Bạn đã trả lời {totalQuestions} câu hỏi.</p>
+      <div className='space-y-6 py-10'>
+        <div className='text-center space-y-2'>
+          <p className='text-lg font-semibold text-foreground'>Hoàn thành!</p>
+          <p className='text-4xl font-bold text-foreground'>
+            {correctCount}
+            <span className='text-lg font-normal text-muted-foreground'>/{totalQuestions}</span>
+          </p>
+          <p className='text-sm text-muted-foreground'>
+            {pct >= 80 ? 'Xuất sắc! 🎉' : pct >= 60 ? 'Khá tốt! 👍' : 'Cần cố gắng hơn 💪'}
+          </p>
+        </div>
+
+        <ResultBreakdown typeStats={typeStats} />
+
+        <ReviewPanel questions={questions} attemptHistory={attemptHistory} />
+
         <div className='flex justify-center gap-3'>
+          {incorrectCount > 0 && (
+            <button
+              type='button'
+              onClick={retryIncorrect}
+              className='rounded-xl bg-amber-100 px-6 py-3 text-sm font-semibold text-amber-800 transition-colors hover:bg-amber-200'
+            >
+              Làm lại {incorrectCount} câu sai
+            </button>
+          )}
           <button
             type='button'
             onClick={reset}
@@ -126,13 +158,18 @@ export function QuizEngine(props: QuizEngineProps) {
       </div>
 
       {currentQuestion && (
-        <QuestionCard
-          key={currentQuestion.id}
-          question={currentQuestion}
-          selectedOptionId={selectedOptionId}
-          correctOptionId={result?.correctOptionId ?? null}
-          onSelect={handleSelect}
-        />
+        <div className='space-y-2'>
+          <div className='flex justify-end'>
+            <SaveButton questionId={currentQuestion.id} />
+          </div>
+          <QuestionCard
+            key={currentQuestion.id}
+            question={currentQuestion}
+            selectedOptionId={selectedOptionId}
+            correctOptionId={result?.correctOptionId ?? null}
+            onSelect={handleSelect}
+          />
+        </div>
       )}
 
       {result && (

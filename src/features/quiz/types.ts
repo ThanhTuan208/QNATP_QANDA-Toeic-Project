@@ -39,6 +39,10 @@ export interface StatsData {
 export interface FetchQuestionsParams {
   type?: string
   difficulty?: string
+  types?: string[]
+  difficulties?: string[]
+  limit?: number
+  balance?: boolean
 }
 
 export interface FetchQuestionsResponse {
@@ -50,6 +54,9 @@ export interface UseQuizQuestionsOptions {
   type?: string
   difficulty?: string
   initialQuestions?: Question[]
+  weighted?: boolean
+  types?: string[]
+  difficulties?: string[]
 }
 
 export interface UseQuizQuestionsReturn {
@@ -65,17 +72,30 @@ export interface UseQuizQuestionsReturn {
   resetIdx: () => void
 }
 
+export type TypeStats = Record<string, { total: number; correct: number }>
+
 export type AttemptPhase = 'idle' | 'submitting' | 'answered'
 
 export type QuizState = 'loading' | 'ready' | 'answered' | 'complete'
 
 export type OptionStatus = 'idle' | 'selected' | 'correct' | 'wrong' | 'disabled'
 
+export interface AttemptRecord {
+  questionId: string
+  questionType: string
+  selectedOptionId: string
+  isCorrect: boolean
+  correctOptionId: string
+  rationale: string
+}
+
 export type AttemptState = {
   phase: AttemptPhase
   selectedOptionId: string | null
   result: AttemptResult | null
   correctCount: number
+  typeStats: TypeStats
+  attemptHistory: AttemptRecord[]
 }
 
 export interface UseQuizAttemptOptions {
@@ -89,6 +109,9 @@ export interface UseQuizAttemptReturn {
   submitting: boolean
   result: AttemptResult | null
   correctCount: number
+  typeStats: TypeStats
+  attemptHistory: AttemptRecord[]
   handleSelect: (optionId: string) => void
   clearAnswer: () => void
+  resetSession: () => void
 }

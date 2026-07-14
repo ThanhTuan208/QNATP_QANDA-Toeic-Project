@@ -1,8 +1,56 @@
-import { ArrowUpRight, FileText, Layers, NotebookPen, RefreshCw, Scale } from 'lucide-react'
+import {
+  ArrowUpRight,
+  BookOpen,
+  FileText,
+  Folder,
+  History,
+  Layers,
+  NotebookPen,
+  PlusCircle,
+  RefreshCw,
+  Scale,
+} from 'lucide-react'
 import type { PracticeModule, SectionItem, TopicItem } from '@/types/sidebar'
 
 export const vocabularyTopics: TopicItem[] = []
-export const mixedPracticeTopics: TopicItem[] = []
+export const mixedPracticeTopics: TopicItem[] = [
+  {
+    slug: 'create-session',
+    label: 'Create Session',
+    description: 'Tạo bài luyện tập mới với Parts 5/6/7',
+    icon: PlusCircle,
+    difficulty: 'all',
+    estimatedMinutes: 0,
+    sections: [],
+  },
+  {
+    slug: 'sessions',
+    label: 'My Sessions',
+    description: 'Xem và tiếp tục các bài luyện tập đã tạo',
+    icon: History,
+    difficulty: 'all',
+    estimatedMinutes: 0,
+    sections: [],
+  },
+  {
+    slug: 'library',
+    label: 'My Library',
+    description: 'Bộ câu hỏi đã lưu',
+    icon: BookOpen,
+    difficulty: 'all',
+    estimatedMinutes: 0,
+    sections: [],
+  },
+  {
+    slug: 'templates',
+    label: 'Saved Templates',
+    description: 'Mẫu cấu hình bài luyện tập',
+    icon: Folder,
+    difficulty: 'all',
+    estimatedMinutes: 0,
+    sections: [],
+  },
+]
 export const savedQuestionTopics: TopicItem[] = []
 export const wrongAnswerTopics: TopicItem[] = []
 

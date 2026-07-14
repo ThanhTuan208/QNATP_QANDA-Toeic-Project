@@ -1,0 +1,75 @@
+'use client'
+
+import { Play } from 'lucide-react'
+import { Button } from '@/components/common/Button/Button'
+import {
+  LoadingState,
+  QuestionItem,
+  SessionSummary,
+} from '@/features/session-builder/components/preview'
+import type { PresetType } from '@/features/session-builder/types'
+import type { SessionConfig, SessionQuestion } from '@/features/temp-session/types'
+
+interface Step4PreviewProps {
+  preset: PresetType
+  config: Partial<SessionConfig>
+  source: 'system' | 'imported'
+  questions: SessionQuestion[]
+  onBack: () => void
+  onStart: () => void
+  isGenerating?: boolean
+  generationError?: string
+}
+
+export function Step4Preview({
+  preset,
+  config,
+  source,
+  questions,
+  onBack,
+  onStart,
+  isGenerating = false,
+  generationError = '',
+}: Step4PreviewProps) {
+  const total = config.totalQuestions ?? questions.length
+
+  if (isGenerating || generationError) {
+    return (
+      <LoadingState isGenerating={isGenerating} generationError={generationError} onBack={onBack} />
+    )
+  }
+
+  return (
+    <div className='space-y-6'>
+      <div>
+        <h3 className='text-lg font-bold text-foreground mb-1'>Preview</h3>
+        <p className='text-sm text-muted-foreground'>
+          Review your practice session before starting
+        </p>
+      </div>
+
+      <SessionSummary preset={preset} config={config} source={source} total={total} />
+
+      <div className='space-y-2'>
+        <h4 className='text-sm font-semibold text-foreground'>Questions ({questions.length})</h4>
+        {questions.map((q, i) => (
+          <QuestionItem key={q.tempId} question={q} index={i} />
+        ))}
+      </div>
+
+      <div className='flex gap-3'>
+        <Button buttonType='outline' onClick={onBack}>
+          Back
+        </Button>
+        <Button
+          buttonType='fill'
+          icon={<Play className='size-4' />}
+          onClick={onStart}
+          disabled={questions.length === 0}
+        >
+          Start Practice
+        </Button>
+      </div>
+    </div>
+  )
+}

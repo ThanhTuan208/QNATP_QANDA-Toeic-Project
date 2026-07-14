@@ -1,6 +1,6 @@
-import { PracticeHeaderSection } from '@/features/quiz/components/Sections/PracticeHeaderSection'
-import { QuizSection } from '@/features/quiz/components/Sections/QuizSection'
-import { TheorySection } from '@/features/quiz/components/Sections/TheorySection'
+import { PracticeHeaderSection } from '@/features/quiz/components/sections/PracticeHeaderSection'
+import { QuizSection } from '@/features/quiz/components/sections/QuizSection'
+import { TheorySection } from '@/features/quiz/components/sections/TheorySection'
 import { loadQuestions } from '@/features/quiz/utils/load-questions.utils'
 import type { PracticeModule, TopicItem } from '@/types/sidebar'
 
@@ -10,7 +10,11 @@ interface PracticeTopicViewProps {
 }
 
 export default async function PracticeTopicView({ practiceModule, topic }: PracticeTopicViewProps) {
-  const initialQuestions = await loadQuestions(topic.slug)
+  const isMixed = practiceModule.id === 'mixed-practice'
+  const questionType = isMixed ? null : topic.slug
+  const initialQuestions = topic.questionCount
+    ? await loadQuestions(questionType, topic.questionCount)
+    : []
 
   return (
     <div className='space-y-8'>
