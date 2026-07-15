@@ -10,7 +10,7 @@ interface PresetCardsProps {
 
 export function PresetCards({ selected, onSelect }: PresetCardsProps) {
   return (
-    <div className='grid grid-cols-2 gap-2'>
+    <div className='grid grid-cols-2 gap-3.5'>
       {PRESETS.map((p) => {
         const Icon = p.icon
         const isSelected = selected === p.id

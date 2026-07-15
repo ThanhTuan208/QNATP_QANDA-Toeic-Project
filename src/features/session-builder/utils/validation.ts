@@ -187,11 +187,35 @@ export function validateImportedQuestions(
     return { valid: false, errors, warnings }
   }
 
+  const selectedDifficulties = config.difficulty ?? []
+  const hasDifficultyFilter = selectedDifficulties.length > 0 && selectedDifficulties.length < 3
+
+  const qUpper = (d: string) => d.toUpperCase()
+  const normSelected = selectedDifficulties.map(qUpper)
+
   for (const question of questions) {
     if (parts.length > 0 && !parts.includes(question.part)) {
       warnings.push({
         field: `question_${question.tempId}`,
         message: `Câu hỏi Part ${question.part} không thuộc Part đã chọn (${parts.join(', ')}).`,
+      })
+    }
+
+    if (hasDifficultyFilter && !normSelected.includes(qUpper(question.difficulty))) {
+      warnings.push({
+        field: `question_${question.tempId}`,
+        message: `Câu hỏi "${question.questionText.slice(0, 40)}..." có độ khó "${question.difficulty}" không nằm trong lựa chọn (${selectedDifficulties.join(', ')}).`,
+      })
+    }
+  }
+
+  if (hasDifficultyFilter) {
+    const importedDifficulties = [...new Set(questions.map((q) => qUpper(q.difficulty)))]
+    const missing = normSelected.filter((d) => !importedDifficulties.includes(d))
+    if (missing.length > 0) {
+      warnings.push({
+        field: 'difficulty',
+        message: `Không có câu hỏi nào cho độ khó: ${missing.join(', ')}. Import chỉ bao gồm: ${importedDifficulties.join(', ')}.`,
       })
     }
   }

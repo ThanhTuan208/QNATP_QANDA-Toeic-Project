@@ -38,62 +38,72 @@ export function SessionBuilder() {
   )
 
   return (
-    <div className='max-w-3xl mx-auto py-6'>
+    <div className='max-w-3xl mx-auto py-6 space-y-6'>
       <AnimatePresence mode='popLayout'>
         {wizard.state.step === 'scope' && (
           <motion.div key='scope' {...stepTransition}>
-            <Step1Scope scope={wizard.state.scope} onScopeChange={wizard.setScope} />
+        <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+              <Step1Scope scope={wizard.state.scope} onScopeChange={wizard.setScope} />
+            </div>
           </motion.div>
         )}
 
         {wizard.state.step === 'config' && (
           <motion.div key='config' {...stepTransition}>
-            <Step2Config
-              parts={wizard.state.scope.parts}
-              preset={wizard.state.preset}
-              config={wizard.state.config}
-              onPresetChange={wizard.setPreset}
-              onConfigChange={wizard.setConfig}
-            />
+            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+              <Step2Config
+                parts={wizard.state.scope.parts}
+                preset={wizard.state.preset}
+                config={wizard.state.config}
+                onPresetChange={wizard.setPreset}
+                onConfigChange={wizard.setConfig}
+              />
+            </div>
           </motion.div>
         )}
 
         {wizard.state.step === 'source' && (
           <motion.div key='source' {...stepTransition}>
-            <Step3Source
-              source={wizard.state.source}
-              config={wizard.state.config}
-              importJson={wizard.state.importJson}
-              validationErrors={wizard.state.validationErrors}
-              onSourceChange={wizard.setSource}
-              onImportJsonChange={wizard.setImportJson}
-              onValidationErrorsChange={wizard.setValidationErrors}
-            />
+            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+              <Step3Source
+                source={wizard.state.source}
+                config={wizard.state.config}
+                importJson={wizard.state.importJson}
+                validationErrors={wizard.state.validationErrors}
+                onSourceChange={wizard.setSource}
+                onImportJsonChange={wizard.setImportJson}
+                onValidationErrorsChange={wizard.setValidationErrors}
+              />
+            </div>
           </motion.div>
         )}
 
         {wizard.state.step === 'preview' && (
           <motion.div key='preview' {...stepTransition}>
-            <Step4Preview
-              preset={wizard.state.preset}
-              config={wizard.state.config}
-              source={wizard.state.source}
-              questions={wizard.state.questions}
-              onBack={wizard.prevStep}
-              onStart={handleStartPractice}
-              isGenerating={wizard.state.isGenerating}
-              generationError={wizard.state.generationError}
-            />
+            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+              <Step4Preview
+                preset={wizard.state.preset}
+                config={wizard.state.config}
+                source={wizard.state.source}
+                questions={wizard.state.questions}
+                onBack={wizard.prevStep}
+                onStart={handleStartPractice}
+                isGenerating={wizard.state.isGenerating}
+                generationError={wizard.state.generationError}
+              />
+            </div>
           </motion.div>
         )}
 
         {wizard.state.step === 'practice' && (
           <motion.div key='practice' {...stepTransition}>
-            <Step5Practice
-              questions={wizard.state.questions}
-              onBack={wizard.prevStep}
-              onComplete={handlePracticeComplete}
-            />
+            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+              <Step5Practice
+                questions={wizard.state.questions}
+                onBack={wizard.prevStep}
+                onComplete={handlePracticeComplete}
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

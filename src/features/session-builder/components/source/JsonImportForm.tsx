@@ -1,5 +1,6 @@
 'use client'
 
+import { AlertTriangle, CheckCircle2, XCircle } from 'lucide-react'
 import { Button } from '@/components/common/Button/Button'
 
 interface JsonImportFormProps {
@@ -58,19 +59,35 @@ export function JsonImportForm({
       </div>
 
       {validationErrors.length > 0 && (
-        <div className='bg-error-soft text-error rounded-xl p-4 text-sm border border-error/20 space-y-1'>
-          <p className='font-semibold mb-1'>{successMessage ? '⚠️ Cảnh báo' : '❌ Lỗi xác thực'}</p>
-          {validationErrors.map((err) => (
-            <p key={err} className='text-xs'>
-              {err}
-            </p>
-          ))}
+        <div className='bg-error-soft/20 rounded-xl border border-error/20 p-4 space-y-2'>
+          <div className='flex items-start gap-2.5'>
+            <div className='mt-0.5 shrink-0'>
+              {successMessage ? (
+                <AlertTriangle className='size-4 text-warning' />
+              ) : (
+                <XCircle className='size-4 text-error' />
+              )}
+            </div>
+            <div className='space-y-1.5 min-w-0'>
+              <p className='text-sm font-semibold text-error'>
+                {successMessage ? 'Import có cảnh báo' : 'Lỗi xác thực'}
+              </p>
+              {validationErrors.map((err) => (
+                <p key={err} className='text-sm text-error/80 leading-relaxed'>
+                  {err}
+                </p>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
       {successMessage && !validationErrors.length && (
-        <div className='bg-success-soft text-success rounded-xl p-3 text-sm border border-success/20'>
-          {successMessage}
+        <div className='bg-success-soft rounded-xl border border-success/20 p-4'>
+          <div className='flex items-start gap-2.5'>
+            <CheckCircle2 className='size-4 text-success shrink-0 mt-0.5' />
+            <p className='text-sm font-medium text-success'>{successMessage}</p>
+          </div>
         </div>
       )}
     </div>

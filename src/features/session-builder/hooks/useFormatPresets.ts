@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import type { KnowledgeGroupConfig } from '@/features/temp-session/types'
+import type { DistributionItem } from '@/features/session-builder/presets'
 
 const STORAGE_KEY = 'qanda-user-format-presets'
 
@@ -9,7 +9,7 @@ export interface UserPreset {
   id: string
   name: string
   part: number
-  groups: KnowledgeGroupConfig[]
+  distribution: DistributionItem<string>[]
 }
 
 function loadPresets(): UserPreset[] {
@@ -34,12 +34,12 @@ export function useFormatPresets() {
     savePresets(presets)
   }, [presets])
 
-  const addPreset = useCallback((name: string, part: number, groups: KnowledgeGroupConfig[]) => {
+  const addPreset = useCallback((name: string, part: number, distribution: DistributionItem<string>[]) => {
     const newPreset: UserPreset = {
       id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
       name,
       part,
-      groups,
+      distribution,
     }
     setPresets((prev) => [...prev, newPreset])
   }, [])

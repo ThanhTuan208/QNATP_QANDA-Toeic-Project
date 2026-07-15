@@ -1,0 +1,138 @@
+import { PART } from '@/features/session-builder/constants/part'
+import { P5_GROUP } from '@/features/session-builder/constants/knowledge-groups'
+import { definePreset } from './preset.utils'
+
+export const P5_BALANCED = definePreset({
+  id: 'p5-balanced',
+  part: PART.P5,
+  title: 'Balanced',
+  description: 'Equal mix of grammar and vocabulary',
+  difficulty: 'medium',
+  icon: 'scale',
+  distribution: [
+    { type: P5_GROUP.WORD_FORM, count: 3 },
+    { type: P5_GROUP.COMPARISON, count: 3 },
+    { type: P5_GROUP.VOCABULARY, count: 3 },
+    { type: P5_GROUP.VERB_TENSE, count: 3 },
+    { type: P5_GROUP.PREPOSITION, count: 3 },
+    { type: P5_GROUP.CONJUNCTION, count: 3 },
+    { type: P5_GROUP.PARTICIPLE, count: 3 },
+    { type: P5_GROUP.VOICE, count: 3 },
+    { type: P5_GROUP.RELATIVE_CLAUSE, count: 3 },
+    { type: P5_GROUP.AGREEMENT, count: 3 },
+  ],
+})
+
+export const P5_GRAMMAR_HEAVY = definePreset({
+  id: 'p5-grammar-heavy',
+  part: PART.P5,
+  title: 'Grammar Heavy',
+  description: 'Focus on grammar structures: verb tense, voice, agreement',
+  difficulty: 'hard',
+  icon: 'sigma',
+  distribution: [
+    { type: P5_GROUP.WORD_FORM, count: 6 },
+    { type: P5_GROUP.COMPARISON, count: 2 },
+    { type: P5_GROUP.VOCABULARY, count: 4 },
+    { type: P5_GROUP.VERB_TENSE, count: 4 },
+    { type: P5_GROUP.PREPOSITION, count: 3 },
+    { type: P5_GROUP.CONJUNCTION, count: 3 },
+    { type: P5_GROUP.PARTICIPLE, count: 2 },
+    { type: P5_GROUP.VOICE, count: 2 },
+    { type: P5_GROUP.RELATIVE_CLAUSE, count: 2 },
+    { type: P5_GROUP.AGREEMENT, count: 2 },
+  ],
+})
+
+export const P5_VOCAB_FOCUSED = definePreset({
+  id: 'p5-vocab-focused',
+  part: PART.P5,
+  title: 'Vocab Focused',
+  description: 'Emphasis on word form and vocabulary',
+  difficulty: 'medium',
+  icon: 'book-open',
+  distribution: [
+    { type: P5_GROUP.WORD_FORM, count: 8 },
+    { type: P5_GROUP.COMPARISON, count: 2 },
+    { type: P5_GROUP.VOCABULARY, count: 8 },
+    { type: P5_GROUP.VERB_TENSE, count: 2 },
+    { type: P5_GROUP.PREPOSITION, count: 3 },
+    { type: P5_GROUP.CONJUNCTION, count: 2 },
+    { type: P5_GROUP.PARTICIPLE, count: 1 },
+    { type: P5_GROUP.VOICE, count: 1 },
+    { type: P5_GROUP.RELATIVE_CLAUSE, count: 1 },
+    { type: P5_GROUP.AGREEMENT, count: 2 },
+  ],
+})
+
+export const P5_SPEED = definePreset({
+  id: 'p5-speed',
+  part: PART.P5,
+  title: 'Speed',
+  description: 'Quick practice with fewer questions, covers core types',
+  difficulty: 'easy',
+  icon: 'zap',
+  distribution: [
+    { type: P5_GROUP.WORD_FORM, count: 3 },
+    { type: P5_GROUP.COMPARISON, count: 2 },
+    { type: P5_GROUP.VOCABULARY, count: 3 },
+    { type: P5_GROUP.VERB_TENSE, count: 2 },
+    { type: P5_GROUP.PREPOSITION, count: 3 },
+    { type: P5_GROUP.CONJUNCTION, count: 2 },
+    { type: P5_GROUP.PARTICIPLE, count: 1 },
+    { type: P5_GROUP.VOICE, count: 1 },
+    { type: P5_GROUP.RELATIVE_CLAUSE, count: 1 },
+    { type: P5_GROUP.AGREEMENT, count: 2 },
+  ],
+})
+
+export const P5_CHALLENGE = definePreset({
+  id: 'p5-challenge',
+  part: PART.P5,
+  title: 'Challenge',
+  description: 'Tough grammar: participles, clauses, agreement',
+  difficulty: 'hard',
+  icon: 'target',
+  distribution: [
+    { type: P5_GROUP.WORD_FORM, count: 1 },
+    { type: P5_GROUP.COMPARISON, count: 1 },
+    { type: P5_GROUP.VOCABULARY, count: 1 },
+    { type: P5_GROUP.VERB_TENSE, count: 4 },
+    { type: P5_GROUP.PREPOSITION, count: 2 },
+    { type: P5_GROUP.CONJUNCTION, count: 3 },
+    { type: P5_GROUP.PARTICIPLE, count: 5 },
+    { type: P5_GROUP.VOICE, count: 4 },
+    { type: P5_GROUP.RELATIVE_CLAUSE, count: 5 },
+    { type: P5_GROUP.AGREEMENT, count: 4 },
+  ],
+})
+
+export const P5_PREPOSITION_MASTER = definePreset({
+  id: 'p5-preposition-master',
+  part: PART.P5,
+  title: 'Preposition Master',
+  description: 'Deep focus on prepositions and conjunctions',
+  difficulty: 'medium',
+  icon: 'between-horiz-end',
+  distribution: [
+    { type: P5_GROUP.WORD_FORM, count: 3 },
+    { type: P5_GROUP.COMPARISON, count: 1 },
+    { type: P5_GROUP.VOCABULARY, count: 3 },
+    { type: P5_GROUP.VERB_TENSE, count: 2 },
+    { type: P5_GROUP.PREPOSITION, count: 6 },
+    { type: P5_GROUP.CONJUNCTION, count: 5 },
+    { type: P5_GROUP.PARTICIPLE, count: 1 },
+    { type: P5_GROUP.VOICE, count: 1 },
+    { type: P5_GROUP.RELATIVE_CLAUSE, count: 1 },
+    { type: P5_GROUP.AGREEMENT, count: 2 },
+  ],
+})
+
+export const PART5_PRESETS = [
+  P5_BALANCED,
+  P5_GRAMMAR_HEAVY,
+  P5_VOCAB_FOCUSED,
+  P5_SPEED,
+  P5_CHALLENGE,
+  P5_PREPOSITION_MASTER,
+] as const
