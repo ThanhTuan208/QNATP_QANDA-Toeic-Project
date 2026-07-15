@@ -7,10 +7,13 @@ import type { SessionQuestion } from '@/features/temp-session/types'
 interface QuestionItemProps {
   question: SessionQuestion
   index: number
+  showAnswers?: boolean
+  showCorrect?: boolean
 }
 
-export function QuestionItem({ question, index }: QuestionItemProps) {
+export function QuestionItem({ question, index, showAnswers = false, showCorrect = false }: QuestionItemProps) {
   const [expanded, setExpanded] = useState(false)
+  const isExpanded = expanded || showAnswers
 
   return (
     <div className='border border-border rounded-xl overflow-hidden'>
@@ -19,7 +22,7 @@ export function QuestionItem({ question, index }: QuestionItemProps) {
         onClick={() => setExpanded((p) => !p)}
         className='w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-muted/30 transition-colors'
       >
-        {expanded ? (
+        {isExpanded ? (
           <ChevronDown className='size-4 shrink-0 text-muted-foreground' />
         ) : (
           <ChevronRight className='size-4 shrink-0 text-muted-foreground' />
@@ -32,23 +35,24 @@ export function QuestionItem({ question, index }: QuestionItemProps) {
           Part {question.part}
         </span>
       </button>
-      {expanded && (
+      {isExpanded && (
         <div className='px-4 pb-4 space-y-3 border-t border-border pt-3'>
           <p className='text-sm text-foreground'>{question.questionText}</p>
           <div className='space-y-1.5'>
             {question.options.map((opt) => {
               const isCorrect = opt.id === question.correctOptionId
+              const showAsCorrect = showCorrect && isCorrect
               return (
                 <div
                   key={opt.id}
                   className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${
-                    isCorrect
+                    showAsCorrect
                       ? 'bg-success-soft text-success border border-success/30'
                       : 'bg-muted/30 text-muted-foreground border border-border'
                   }`}
                 >
-                  {isCorrect && <CheckCircle2 className='size-4 shrink-0' />}
-                  <span className={isCorrect ? 'font-medium' : ''}>
+                  {showAsCorrect && <CheckCircle2 className='size-4 shrink-0' />}
+                  <span className={showAsCorrect ? 'font-medium' : ''}>
                     {opt.id}. {opt.text}
                   </span>
                 </div>

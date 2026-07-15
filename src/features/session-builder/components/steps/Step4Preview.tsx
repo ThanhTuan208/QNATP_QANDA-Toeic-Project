@@ -1,8 +1,10 @@
 'use client'
 
 import { Eye, Play } from 'lucide-react'
+import { useState } from 'react'
 import { Button } from '@/components/common/Button/Button'
 import { StepHeader } from '@/components/common/StepHeader'
+import { Switch } from '@/components/common/Switch/Switch'
 import {
   LoadingState,
   QuestionItem,
@@ -33,6 +35,8 @@ export function Step4Preview({
   generationError = '',
 }: Step4PreviewProps) {
   const total = config.totalQuestions ?? questions.length
+  const [showAnswers, setShowAnswers] = useState(false)
+  const [showCorrect, setShowCorrect] = useState(false)
 
   if (isGenerating || generationError) {
     return (
@@ -51,9 +55,21 @@ export function Step4Preview({
       <SessionSummary preset={preset} config={config} source={source} total={total} />
 
       <div className='space-y-2'>
-        <h4 className='text-sm font-semibold text-foreground'>Questions ({questions.length})</h4>
+        <div className='flex items-center justify-between'>
+          <h4 className='text-sm font-semibold text-foreground'>Questions ({questions.length})</h4>
+          <div className='flex items-center gap-4'>
+            <label className='flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none'>
+              <Switch checked={showAnswers} onCheckedChange={setShowAnswers} />
+              Show Answers
+            </label>
+            <label className='flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none'>
+              <Switch checked={showCorrect} onCheckedChange={setShowCorrect} />
+              Show Correct
+            </label>
+          </div>
+        </div>
         {questions.map((q, i) => (
-          <QuestionItem key={q.tempId} question={q} index={i} />
+          <QuestionItem key={q.tempId} question={q} index={i} showAnswers={showAnswers} showCorrect={showCorrect} />
         ))}
       </div>
 

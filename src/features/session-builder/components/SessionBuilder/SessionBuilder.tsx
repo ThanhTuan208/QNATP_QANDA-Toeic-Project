@@ -38,7 +38,7 @@ export function SessionBuilder() {
   )
 
   return (
-    <div className='max-w-3xl mx-auto py-6 space-y-6'>
+    <div className='max-w-4xl mx-auto py-6 space-y-6'>
       <AnimatePresence mode='popLayout'>
         {wizard.state.step === 'scope' && (
           <motion.div key='scope' {...stepTransition}>
