@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Label } from '@/components/common/Label'
 import { Button } from '@/components/ui/actions/button'
 
 export function RegisterFormSection() {
@@ -7,9 +8,9 @@ export function RegisterFormSection() {
       <h1 className='text-2xl font-bold text-center text-foreground mb-6'>Đăng ký</h1>
       <form className='space-y-4'>
         <div>
-          <label htmlFor='register-name' className='block text-sm font-medium text-foreground mb-1'>
+          <Label htmlFor='register-name' className='block text-sm font-medium text-foreground mb-1'>
             Họ tên
-          </label>
+          </Label>
           <input
             id='register-name'
             type='text'
@@ -18,12 +19,12 @@ export function RegisterFormSection() {
           />
         </div>
         <div>
-          <label
+          <Label
             htmlFor='register-email'
             className='block text-sm font-medium text-foreground mb-1'
           >
             Email
-          </label>
+          </Label>
           <input
             id='register-email'
             type='email'
@@ -32,12 +33,12 @@ export function RegisterFormSection() {
           />
         </div>
         <div>
-          <label
+          <Label
             htmlFor='register-password'
             className='block text-sm font-medium text-foreground mb-1'
           >
             Mật khẩu
-          </label>
+          </Label>
           <input
             id='register-password'
             type='password'

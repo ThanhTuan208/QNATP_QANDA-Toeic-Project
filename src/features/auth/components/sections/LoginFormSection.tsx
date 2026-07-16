@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Label } from '@/components/common/Label'
 import { Button } from '@/components/ui/actions/button'
 
 export function LoginFormSection() {
@@ -7,9 +8,9 @@ export function LoginFormSection() {
       <h1 className='text-2xl font-bold text-center text-foreground mb-6'>Đăng nhập</h1>
       <form className='space-y-4'>
         <div>
-          <label htmlFor='login-email' className='block text-sm font-medium text-foreground mb-1'>
+          <Label htmlFor='login-email' className='block text-sm font-medium text-foreground mb-1'>
             Email
-          </label>
+          </Label>
           <input
             id='login-email'
             type='email'
@@ -18,12 +19,12 @@ export function LoginFormSection() {
           />
         </div>
         <div>
-          <label
+          <Label
             htmlFor='login-password'
             className='block text-sm font-medium text-foreground mb-1'
           >
             Mật khẩu
-          </label>
+          </Label>
           <input
             id='login-password'
             type='password'

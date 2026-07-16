@@ -1,5 +1,6 @@
 'use client'
 
+import { Label } from '@/components/common/Label'
 import { generatePrompt, generateTemplate } from '@/features/quiz/utils/quiz.utils'
 
 interface ImportDialogProps {
@@ -51,9 +52,9 @@ export function ImportDialog({
           </div>
 
           <div>
-            <label htmlFor='import-json' className='block text-sm font-medium text-foreground mb-1'>
+            <Label htmlFor='import-json' className='block text-sm font-medium text-foreground mb-1'>
               Template JSON
-            </label>
+            </Label>
             <textarea
               id='import-json'
               value={importJson}

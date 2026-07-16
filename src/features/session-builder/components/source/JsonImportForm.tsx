@@ -2,6 +2,7 @@
 
 import { AlertTriangle, CheckCircle2, XCircle } from 'lucide-react'
 import { Button } from '@/components/common/Button/Button'
+import { Label } from '@/components/common/Label'
 
 interface JsonImportFormProps {
   localText: string
@@ -25,9 +26,9 @@ export function JsonImportForm({
   return (
     <div className='space-y-4'>
       <div>
-        <label htmlFor='import-json' className='block text-sm font-medium text-foreground mb-1'>
+        <Label htmlFor='import-json' className='block text-sm font-medium text-foreground mb-1'>
           Nhập dữ liệu JSON
-        </label>
+        </Label>
         <p className='text-xs text-muted-foreground mb-3'>
           Paste JSON array of questions hoặc object có trường &quot;questions&quot;. Click &quot;Đặt
           lại mẫu&quot; để xem format.

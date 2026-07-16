@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/common/Dialog'
+import { Label } from '@/components/common/Label'
 
 interface QuestionImport {
   question: string
@@ -96,10 +97,10 @@ export function JsonImporter() {
             >
               Load câu hỏi
             </Button>
-            <label className='bg-muted text-muted-foreground px-6 py-3 rounded-xl font-bold hover:bg-neutral-5 cursor-pointer text-center'>
+            <Label className='bg-muted text-muted-foreground px-6 py-3 rounded-xl font-bold hover:bg-neutral-5 cursor-pointer text-center'>
               Chọn file .json
               <input type='file' accept='.json' className='hidden' onChange={handleFileSelect} />
-            </label>
+            </Label>
           </div>
           {status && (
             <div

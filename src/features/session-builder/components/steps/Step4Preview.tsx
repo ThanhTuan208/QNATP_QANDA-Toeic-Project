@@ -3,6 +3,7 @@
 import { Eye, Play } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/common/Button/Button'
+import { Label } from '@/components/common/Label'
 import { StepHeader } from '@/components/common/StepHeader'
 import { Switch } from '@/components/common/Switch/Switch'
 import {
@@ -58,14 +59,14 @@ export function Step4Preview({
         <div className='flex items-center justify-between'>
           <h4 className='text-sm font-semibold text-foreground'>Questions ({questions.length})</h4>
           <div className='flex items-center gap-4'>
-            <label className='flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none'>
+            <Label htmlFor='login-email' className='flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none'>
               <Switch checked={showAnswers} onCheckedChange={setShowAnswers} />
               Show Answers
-            </label>
-            <label className='flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none'>
+            </Label>
+            <Label className='flex items-center gap-2 text-xs text-muted-foreground cursor-pointer select-none'>
               <Switch checked={showCorrect} onCheckedChange={setShowCorrect} />
               Show Correct
-            </label>
+            </Label>
           </div>
         </div>
         {questions.map((q, i) => (

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Label } from '@/components/common/Label'
 import { TYPE_LABEL_MAP_VIETNAM } from '@/constants/index.constants'
 import { fetchQuestions } from '@/features/quiz/client/quiz.client'
 import { QuizEngine } from '@/features/quiz/components/QuizEngine'
@@ -28,7 +29,7 @@ function TopicCheckbox({
   onChange: (v: string, checked: boolean) => void
 }) {
   return (
-    <label className='flex items-center gap-2 px-3 py-2 rounded-lg border border-border cursor-pointer hover:bg-muted/50 transition-colors has-[:checked]:border-steel-blue has-[:checked]:bg-steel-blue-5'>
+    <Label className='flex items-center gap-2 px-3 py-2 rounded-lg border border-border cursor-pointer hover:bg-muted/50 transition-colors has-[:checked]:border-steel-blue has-[:checked]:bg-steel-blue-5'>
       <input
         type='checkbox'
         checked={checked}
@@ -36,7 +37,7 @@ function TopicCheckbox({
         className='accent-steel-blue'
       />
       <span className='text-sm text-foreground'>{TYPE_LABEL_MAP_VIETNAM[value] ?? value}</span>
-    </label>
+    </Label>
   )
 }
 
@@ -140,7 +141,7 @@ export function CustomQuizForm() {
           </div>
           <div className='flex gap-2 flex-wrap'>
             {DIFFICULTIES.map((d) => (
-              <label
+              <Label
                 key={d}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl border cursor-pointer transition-colors text-sm font-medium ${
                   config.difficulties.includes(d)
@@ -155,7 +156,7 @@ export function CustomQuizForm() {
                   className='sr-only'
                 />
                 {d === 'EASY' ? 'Dễ' : d === 'MEDIUM' ? 'Trung bình' : 'Khó'}
-              </label>
+              </Label>
             ))}
           </div>
         </div>
