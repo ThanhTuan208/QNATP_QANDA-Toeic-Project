@@ -16,9 +16,11 @@ interface QuizEngineProps {
   difficulty?: string
   initialQuestions?: Question[]
   onStatsUpdate?: (total: number, correct: number) => void
+  hideImport?: boolean
 }
 
 export function QuizEngine(props: QuizEngineProps) {
+  const { hideImport = false, ...engineProps } = props
   const {
     currentQuestion,
     selectedOptionId,
@@ -44,7 +46,7 @@ export function QuizEngine(props: QuizEngineProps) {
     reset,
     retryIncorrect,
     incorrectCount,
-  } = useQuizEngine(props)
+  } = useQuizEngine(engineProps)
 
   if (isLoading) {
     return <AnimatedLoader fullScreen={false} />
@@ -54,22 +56,26 @@ export function QuizEngine(props: QuizEngineProps) {
     return (
       <div className='py-20 text-center space-y-4'>
         <p className='text-muted-foreground'>Chưa có câu hỏi nào.</p>
-        <button
-          type='button'
-          onClick={handleOpenImport}
-          className='rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90'
-        >
-          + Thêm câu hỏi
-        </button>
-        {showImport && (
-          <ImportDialog
-            type={props.type ?? 'word-form'}
-            importJson={importJson}
-            importError={importError}
-            onImportJsonChange={setImportJson}
-            onSubmitImport={handleSubmitImport}
-            onClose={closeImport}
-          />
+        {!hideImport && (
+          <>
+            <button
+              type='button'
+              onClick={handleOpenImport}
+              className='rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90'
+            >
+              + Thêm câu hỏi
+            </button>
+            {showImport && (
+              <ImportDialog
+                type={engineProps.type ?? 'word-form'}
+                importJson={importJson}
+                importError={importError}
+                onImportJsonChange={setImportJson}
+                onSubmitImport={handleSubmitImport}
+                onClose={closeImport}
+              />
+            )}
+          </>
         )}
       </div>
     )
@@ -112,24 +118,28 @@ export function QuizEngine(props: QuizEngineProps) {
           >
             Làm lại
           </button>
-          <button
-            type='button'
-            onClick={handleOpenImport}
-            className='rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90'
-          >
-            + Thay câu hỏi mới
-          </button>
+          {!hideImport && (
+            <>
+              <button
+                type='button'
+                onClick={handleOpenImport}
+                className='rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:opacity-90'
+              >
+                + Thay câu hỏi mới
+              </button>
+              {showImport && (
+                <ImportDialog
+                  type={engineProps.type ?? 'word-form'}
+                  importJson={importJson}
+                  importError={importError}
+                  onImportJsonChange={setImportJson}
+                  onSubmitImport={handleSubmitImport}
+                  onClose={closeImport}
+                />
+              )}
+            </>
+          )}
         </div>
-        {showImport && (
-          <ImportDialog
-            type={props.type ?? 'word-form'}
-            importJson={importJson}
-            importError={importError}
-            onImportJsonChange={setImportJson}
-            onSubmitImport={handleSubmitImport}
-            onClose={closeImport}
-          />
-        )}
       </div>
     )
   }
@@ -148,13 +158,15 @@ export function QuizEngine(props: QuizEngineProps) {
             </span>
           )}
         </div>
-        <button
-          type='button'
-          onClick={handleOpenImport}
-          className='text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2'
-        >
-          + Tự nhập câu hỏi
-        </button>
+        {!hideImport && (
+          <button
+            type='button'
+            onClick={handleOpenImport}
+            className='text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2'
+          >
+            + Tự nhập câu hỏi
+          </button>
+        )}
       </div>
 
       {currentQuestion && (
@@ -183,7 +195,7 @@ export function QuizEngine(props: QuizEngineProps) {
 
       {showImport && (
         <ImportDialog
-          type={props.type ?? 'word-form'}
+          type={engineProps.type ?? 'word-form'}
           importJson={importJson}
           importError={importError}
           onImportJsonChange={setImportJson}

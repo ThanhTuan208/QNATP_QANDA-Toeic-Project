@@ -2,24 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useCallback } from 'react'
-
-async function fetchSavedQuestionIds(): Promise<string[]> {
-  const res = await fetch('/api/saved-questions')
-  if (!res.ok) throw new Error('Failed to fetch saved questions')
-  const json = await res.json()
-  return json.data ?? []
-}
-
-async function toggleSaveQuestion(questionId: string): Promise<{ saved: boolean }> {
-  const res = await fetch('/api/saved-questions', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ questionId }),
-  })
-  if (!res.ok) throw new Error('Failed to toggle save')
-  const json = await res.json()
-  return json.data
-}
+import { fetchSavedQuestionIds, toggleSaveQuestion } from '@/features/quiz/client/quiz.client'
 
 export function useSavedQuestionIds() {
   return useQuery({
