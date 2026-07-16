@@ -10,6 +10,8 @@ export {
   toggleDifficulty,
   updateKnowledgeGroupCount,
 } from './presets'
+export type { QuestionStats } from './question-stats'
+export { computeQuestionStats } from './question-stats'
 export {
   attemptRecordToSessionAttempt,
   buildPracticeSession,
@@ -22,4 +24,3 @@ export {
   processImportedSessionJSON,
   validateImportedQuestions,
 } from './validation'
-
