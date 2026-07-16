@@ -961,10 +961,22 @@
     "type": "vocabulary",
     "difficulty": "easy",
     "options": [
-      { "text": "fluent", "isCorrect": true, "rationale": "Chính xác. 'Fluent in' = thông thạo (ngôn ngữ)." },
-      { "text": "smooth", "isCorrect": false, "rationale": "'Smooth' = trơn tru, không dùng cho ngôn ngữ." },
+      {
+        "text": "fluent",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Fluent in' = thông thạo (ngôn ngữ)."
+      },
+      {
+        "text": "smooth",
+        "isCorrect": false,
+        "rationale": "'Smooth' = trơn tru, không dùng cho ngôn ngữ."
+      },
       { "text": "easy", "isCorrect": false, "rationale": "'Easy' = dễ dàng, không phù hợp." },
-      { "text": "liquid", "isCorrect": false, "rationale": "'Liquid' = chất lỏng, không liên quan." }
+      {
+        "text": "liquid",
+        "isCorrect": false,
+        "rationale": "'Liquid' = chất lỏng, không liên quan."
+      }
     ],
     "hint": "Từ nào chỉ sự thông thạo ngôn ngữ?",
     "code": "P5_034"
@@ -987,8 +999,16 @@
     "type": "verb-tense",
     "difficulty": "medium",
     "options": [
-      { "text": "submit", "isCorrect": false, "rationale": "Động từ nguyên mẫu, không phù hợp thể bị động." },
-      { "text": "submitted", "isCorrect": false, "rationale": "Thiếu trợ động từ 'be' cho bị động." },
+      {
+        "text": "submit",
+        "isCorrect": false,
+        "rationale": "Động từ nguyên mẫu, không phù hợp thể bị động."
+      },
+      {
+        "text": "submitted",
+        "isCorrect": false,
+        "rationale": "Thiếu trợ động từ 'be' cho bị động."
+      },
       { "text": "submitting", "isCorrect": false, "rationale": "V-ing, không phù hợp." },
       { "text": "submits", "isCorrect": false, "rationale": "Chủ động số ít, không phù hợp." }
     ],
@@ -1000,10 +1020,22 @@
     "type": "conjunction",
     "difficulty": "medium",
     "options": [
-      { "text": "According to", "isCorrect": true, "rationale": "Chính xác. 'According to' = theo như." },
-      { "text": "Because", "isCorrect": false, "rationale": "'Because + clause', không dùng trước danh từ." },
+      {
+        "text": "According to",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'According to' = theo như."
+      },
+      {
+        "text": "Because",
+        "isCorrect": false,
+        "rationale": "'Because + clause', không dùng trước danh từ."
+      },
       { "text": "Despite", "isCorrect": false, "rationale": "Mang nghĩa đối lập, không phù hợp." },
-      { "text": "In spite of", "isCorrect": false, "rationale": "Mang nghĩa đối lập, không phù hợp." }
+      {
+        "text": "In spite of",
+        "isCorrect": false,
+        "rationale": "Mang nghĩa đối lập, không phù hợp."
+      }
     ],
     "hint": "Từ nối mang nghĩa 'theo như, dựa trên'.",
     "code": "P5_037"
@@ -1014,8 +1046,16 @@
     "difficulty": "medium",
     "options": [
       { "text": "auditing", "isCorrect": false, "rationale": "V-ing chủ động, không phù hợp." },
-      { "text": "audited", "isCorrect": true, "rationale": "Chính xác. 'The report which was audited' → 'the audited report'." },
-      { "text": "audit", "isCorrect": false, "rationale": "Danh từ, không thể bổ nghĩa cho 'report'." },
+      {
+        "text": "audited",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'The report which was audited' → 'the audited report'."
+      },
+      {
+        "text": "audit",
+        "isCorrect": false,
+        "rationale": "Danh từ, không thể bổ nghĩa cho 'report'."
+      },
       { "text": "audits", "isCorrect": false, "rationale": "Động từ chia ngôi, không phù hợp." }
     ],
     "hint": "Báo cáo được kiểm toán → phân từ bị động.",
@@ -1026,10 +1066,22 @@
     "type": "voice",
     "difficulty": "medium",
     "options": [
-      { "text": "sent", "isCorrect": true, "rationale": "Chính xác. 'The email which was sent' → rút gọn 'the email sent'." },
+      {
+        "text": "sent",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'The email which was sent' → rút gọn 'the email sent'."
+      },
       { "text": "sending", "isCorrect": false, "rationale": "V-ing chủ động, không hợp lý." },
-      { "text": "sends", "isCorrect": false, "rationale": "Động từ chia ngôi, không phù hợp bổ nghĩa." },
-      { "text": "was sent", "isCorrect": false, "rationale": "Đã có động từ 'contained' → không thể thêm 'was sent'." }
+      {
+        "text": "sends",
+        "isCorrect": false,
+        "rationale": "Động từ chia ngôi, không phù hợp bổ nghĩa."
+      },
+      {
+        "text": "was sent",
+        "isCorrect": false,
+        "rationale": "Đã có động từ 'contained' → không thể thêm 'was sent'."
+      }
     ],
     "hint": "Email được gửi → cần phân từ bị động.",
     "code": "P5_039"
@@ -1039,8 +1091,16 @@
     "type": "relative-clause",
     "difficulty": "medium",
     "options": [
-      { "text": "who", "isCorrect": false, "rationale": "'Who' dùng cho người, không dùng cho vật." },
-      { "text": "which", "isCorrect": true, "rationale": "Chính xác. 'Which' thay thế 'the building' làm chủ ngữ." },
+      {
+        "text": "who",
+        "isCorrect": false,
+        "rationale": "'Who' dùng cho người, không dùng cho vật."
+      },
+      {
+        "text": "which",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Which' thay thế 'the building' làm chủ ngữ."
+      },
       { "text": "whose", "isCorrect": false, "rationale": "Chỉ sở hữu, không phù hợp." },
       { "text": "whom", "isCorrect": false, "rationale": "Tân ngữ chỉ người, không phù hợp." }
     ],
@@ -1052,8 +1112,16 @@
     "type": "agreement",
     "difficulty": "hard",
     "options": [
-      { "text": "is", "isCorrect": false, "rationale": "Động từ chia theo chủ ngữ gần nhất 'his assistants' (số nhiều)." },
-      { "text": "are", "isCorrect": true, "rationale": "Chính xác. 'Neither... nor' chia theo chủ ngữ gần nhất → 'assistants' số nhiều." },
+      {
+        "text": "is",
+        "isCorrect": false,
+        "rationale": "Động từ chia theo chủ ngữ gần nhất 'his assistants' (số nhiều)."
+      },
+      {
+        "text": "are",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Neither... nor' chia theo chủ ngữ gần nhất → 'assistants' số nhiều."
+      },
       { "text": "was", "isCorrect": false, "rationale": "Số ít, không phù hợp." },
       { "text": "has been", "isCorrect": false, "rationale": "Số ít, không phù hợp." }
     ],
@@ -1065,10 +1133,26 @@
     "type": "word-form",
     "difficulty": "easy",
     "options": [
-      { "text": "comprehensiveness", "isCorrect": false, "rationale": "Danh từ, không thể bổ nghĩa cho 'analysis'." },
-      { "text": "comprehensive", "isCorrect": true, "rationale": "Chính xác. Tính từ bổ nghĩa cho danh từ 'analysis'." },
-      { "text": "comprehensively", "isCorrect": false, "rationale": "Trạng từ, không bổ nghĩa cho danh từ." },
-      { "text": "comprehend", "isCorrect": false, "rationale": "Động từ, không thể đứng trước danh từ." }
+      {
+        "text": "comprehensiveness",
+        "isCorrect": false,
+        "rationale": "Danh từ, không thể bổ nghĩa cho 'analysis'."
+      },
+      {
+        "text": "comprehensive",
+        "isCorrect": true,
+        "rationale": "Chính xác. Tính từ bổ nghĩa cho danh từ 'analysis'."
+      },
+      {
+        "text": "comprehensively",
+        "isCorrect": false,
+        "rationale": "Trạng từ, không bổ nghĩa cho danh từ."
+      },
+      {
+        "text": "comprehend",
+        "isCorrect": false,
+        "rationale": "Động từ, không thể đứng trước danh từ."
+      }
     ],
     "hint": "Cần loại từ gì bổ nghĩa cho danh từ 'analysis'?",
     "code": "P5_042"
@@ -1078,10 +1162,26 @@
     "type": "comparison",
     "difficulty": "easy",
     "options": [
-      { "text": "efficient", "isCorrect": false, "rationale": "Thiếu dạng so sánh hơn với 'than'." },
-      { "text": "more efficient", "isCorrect": true, "rationale": "Chính xác. 'More efficient than' = hiệu quả hơn." },
-      { "text": "most efficient", "isCorrect": false, "rationale": "So sánh nhất, không phù hợp với 'than'." },
-      { "text": "efficiently", "isCorrect": false, "rationale": "Trạng từ, 'be' là linking verb cần tính từ." }
+      {
+        "text": "efficient",
+        "isCorrect": false,
+        "rationale": "Thiếu dạng so sánh hơn với 'than'."
+      },
+      {
+        "text": "more efficient",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'More efficient than' = hiệu quả hơn."
+      },
+      {
+        "text": "most efficient",
+        "isCorrect": false,
+        "rationale": "So sánh nhất, không phù hợp với 'than'."
+      },
+      {
+        "text": "efficiently",
+        "isCorrect": false,
+        "rationale": "Trạng từ, 'be' là linking verb cần tính từ."
+      }
     ],
     "hint": "'Far' là intensifier + so sánh hơn.",
     "code": "P5_043"
@@ -1091,10 +1191,26 @@
     "type": "verb-tense",
     "difficulty": "easy",
     "options": [
-      { "text": "in", "isCorrect": true, "rationale": "Chính xác. 'In the past few months' dùng với thì hoàn thành." },
-      { "text": "since", "isCorrect": false, "rationale": "'Since + mốc thời gian', không dùng với khoảng thời gian." },
-      { "text": "for", "isCorrect": false, "rationale": "'For + khoảng thời gian' nhưng cần thì hoàn thành." },
-      { "text": "during", "isCorrect": false, "rationale": "'During' không phải dấu hiệu của thì hoàn thành." }
+      {
+        "text": "in",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'In the past few months' dùng với thì hoàn thành."
+      },
+      {
+        "text": "since",
+        "isCorrect": false,
+        "rationale": "'Since + mốc thời gian', không dùng với khoảng thời gian."
+      },
+      {
+        "text": "for",
+        "isCorrect": false,
+        "rationale": "'For + khoảng thời gian' nhưng cần thì hoàn thành."
+      },
+      {
+        "text": "during",
+        "isCorrect": false,
+        "rationale": "'During' không phải dấu hiệu của thì hoàn thành."
+      }
     ],
     "hint": "Cụm từ nào đi với Present Perfect?",
     "code": "P5_044"
@@ -1105,7 +1221,11 @@
     "difficulty": "easy",
     "options": [
       { "text": "to", "isCorrect": false, "rationale": "'Come to' = đi đến, không phù hợp." },
-      { "text": "with", "isCorrect": true, "rationale": "Chính xác. 'Come up with' = nghĩ ra, tìm ra (giải pháp)." },
+      {
+        "text": "with",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Come up with' = nghĩ ra, tìm ra (giải pháp)."
+      },
       { "text": "for", "isCorrect": false, "rationale": "Không phải collocation của 'come up'." },
       { "text": "on", "isCorrect": false, "rationale": "'Come on' = thôi nào, không liên quan." }
     ],
@@ -1117,9 +1237,21 @@
     "type": "word-form",
     "difficulty": "medium",
     "options": [
-      { "text": "thoroughly", "isCorrect": false, "rationale": "Trạng từ, không bổ nghĩa cho danh từ 'understanding'." },
-      { "text": "thorough", "isCorrect": true, "rationale": "Chính xác. Tính từ bổ nghĩa cho danh từ." },
-      { "text": "thoroughness", "isCorrect": false, "rationale": "Danh từ, không thể đứng trước danh từ khác." },
+      {
+        "text": "thoroughly",
+        "isCorrect": false,
+        "rationale": "Trạng từ, không bổ nghĩa cho danh từ 'understanding'."
+      },
+      {
+        "text": "thorough",
+        "isCorrect": true,
+        "rationale": "Chính xác. Tính từ bổ nghĩa cho danh từ."
+      },
+      {
+        "text": "thoroughness",
+        "isCorrect": false,
+        "rationale": "Danh từ, không thể đứng trước danh từ khác."
+      },
       { "text": "thoroughs", "isCorrect": false, "rationale": "Không phải từ tiếng Anh chuẩn." }
     ],
     "hint": "Vị trí trước danh từ cần loại từ gì?",
@@ -1132,8 +1264,16 @@
     "options": [
       { "text": "in", "isCorrect": false, "rationale": "'In Friday' không đúng." },
       { "text": "at", "isCorrect": false, "rationale": "'At' dùng cho giờ/địa điểm." },
-      { "text": "by", "isCorrect": true, "rationale": "Chính xác. 'By Friday' = trước hoặc chậm nhất thứ Sáu." },
-      { "text": "on", "isCorrect": false, "rationale": "'On Friday' = vào thứ Sáu, không có nghĩa hạn chót." }
+      {
+        "text": "by",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'By Friday' = trước hoặc chậm nhất thứ Sáu."
+      },
+      {
+        "text": "on",
+        "isCorrect": false,
+        "rationale": "'On Friday' = vào thứ Sáu, không có nghĩa hạn chót."
+      }
     ],
     "hint": "Giới từ nào mang nghĩa 'trước thời điểm'?",
     "code": "P5_047"
@@ -1143,10 +1283,26 @@
     "type": "vocabulary",
     "difficulty": "medium",
     "options": [
-      { "text": "extend", "isCorrect": true, "rationale": "Chính xác. 'Extend operations to' = mở rộng hoạt động đến." },
-      { "text": "expand", "isCorrect": false, "rationale": "'Expand' thường dùng nội động từ hoặc 'expand into'." },
-      { "text": "enlarge", "isCorrect": false, "rationale": "'Enlarge' = làm to hơn về kích thước, ít dùng với operations." },
-      { "text": "widen", "isCorrect": false, "rationale": "'Widen' = mở rộng bề ngang, không phù hợp." }
+      {
+        "text": "extend",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Extend operations to' = mở rộng hoạt động đến."
+      },
+      {
+        "text": "expand",
+        "isCorrect": false,
+        "rationale": "'Expand' thường dùng nội động từ hoặc 'expand into'."
+      },
+      {
+        "text": "enlarge",
+        "isCorrect": false,
+        "rationale": "'Enlarge' = làm to hơn về kích thước, ít dùng với operations."
+      },
+      {
+        "text": "widen",
+        "isCorrect": false,
+        "rationale": "'Widen' = mở rộng bề ngang, không phù hợp."
+      }
     ],
     "hint": "Động từ nào phù hợp với 'operations to'?",
     "code": "P5_048"
@@ -1156,10 +1312,26 @@
     "type": "verb-tense",
     "difficulty": "medium",
     "options": [
-      { "text": "for", "isCorrect": false, "rationale": "'For + khoảng thời gian', không dùng với mốc." },
-      { "text": "since", "isCorrect": true, "rationale": "Chính xác. 'Since + mốc thời gian' → Present Perfect." },
-      { "text": "from", "isCorrect": false, "rationale": "'From... to...' không dùng với thì hoàn thành." },
-      { "text": "during", "isCorrect": false, "rationale": "'During' không phải dấu hiệu của thì hoàn thành." }
+      {
+        "text": "for",
+        "isCorrect": false,
+        "rationale": "'For + khoảng thời gian', không dùng với mốc."
+      },
+      {
+        "text": "since",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Since + mốc thời gian' → Present Perfect."
+      },
+      {
+        "text": "from",
+        "isCorrect": false,
+        "rationale": "'From... to...' không dùng với thì hoàn thành."
+      },
+      {
+        "text": "during",
+        "isCorrect": false,
+        "rationale": "'During' không phải dấu hiệu của thì hoàn thành."
+      }
     ],
     "hint": "Dấu hiệu 'she graduated' là mốc thời gian → chọn từ gì?",
     "code": "P5_049"
@@ -1169,10 +1341,26 @@
     "type": "word-form",
     "difficulty": "medium",
     "options": [
-      { "text": "vary", "isCorrect": false, "rationale": "Động từ, không thể đứng sau tính từ 'wide'." },
-      { "text": "variety", "isCorrect": true, "rationale": "Chính xác. 'A wide variety of' = nhiều loại." },
-      { "text": "various", "isCorrect": false, "rationale": "Tính từ, không thể đứng sau mạo từ 'a'." },
-      { "text": "varied", "isCorrect": false, "rationale": "Tính từ/phân từ, không phù hợp cấu trúc." }
+      {
+        "text": "vary",
+        "isCorrect": false,
+        "rationale": "Động từ, không thể đứng sau tính từ 'wide'."
+      },
+      {
+        "text": "variety",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'A wide variety of' = nhiều loại."
+      },
+      {
+        "text": "various",
+        "isCorrect": false,
+        "rationale": "Tính từ, không thể đứng sau mạo từ 'a'."
+      },
+      {
+        "text": "varied",
+        "isCorrect": false,
+        "rationale": "Tính từ/phân từ, không phù hợp cấu trúc."
+      }
     ],
     "hint": "'A wide + ___ + of' → cần danh từ.",
     "code": "P5_050"
@@ -1182,8 +1370,16 @@
     "type": "agreement",
     "difficulty": "medium",
     "options": [
-      { "text": "require", "isCorrect": false, "rationale": "Chủ ngữ 'Handling' (V-ing) là số ít → động từ số ít." },
-      { "text": "requires", "isCorrect": true, "rationale": "Chính xác. V-ing làm chủ ngữ → động từ số ít." },
+      {
+        "text": "require",
+        "isCorrect": false,
+        "rationale": "Chủ ngữ 'Handling' (V-ing) là số ít → động từ số ít."
+      },
+      {
+        "text": "requires",
+        "isCorrect": true,
+        "rationale": "Chính xác. V-ing làm chủ ngữ → động từ số ít."
+      },
       { "text": "are requiring", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." },
       { "text": "have required", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." }
     ],
@@ -1195,10 +1391,22 @@
     "type": "preposition",
     "difficulty": "easy",
     "options": [
-      { "text": "to", "isCorrect": false, "rationale": "'Satisfied to' không phải collocation chuẩn." },
+      {
+        "text": "to",
+        "isCorrect": false,
+        "rationale": "'Satisfied to' không phải collocation chuẩn."
+      },
       { "text": "for", "isCorrect": false, "rationale": "Không phù hợp." },
-      { "text": "with", "isCorrect": true, "rationale": "Chính xác. 'Satisfied with' = hài lòng với." },
-      { "text": "about", "isCorrect": false, "rationale": "Không phải collocation của 'satisfied'." }
+      {
+        "text": "with",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Satisfied with' = hài lòng với."
+      },
+      {
+        "text": "about",
+        "isCorrect": false,
+        "rationale": "Không phải collocation của 'satisfied'."
+      }
     ],
     "hint": "Collocation của tính từ 'satisfied'.",
     "code": "P5_052"
@@ -1208,8 +1416,16 @@
     "type": "agreement",
     "difficulty": "hard",
     "options": [
-      { "text": "are", "isCorrect": false, "rationale": "'Together with' không làm thay đổi số của chủ ngữ chính." },
-      { "text": "is", "isCorrect": true, "rationale": "Chính xác. Chủ ngữ chính 'The finance department' số ít." },
+      {
+        "text": "are",
+        "isCorrect": false,
+        "rationale": "'Together with' không làm thay đổi số của chủ ngữ chính."
+      },
+      {
+        "text": "is",
+        "isCorrect": true,
+        "rationale": "Chính xác. Chủ ngữ chính 'The finance department' số ít."
+      },
       { "text": "were", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." },
       { "text": "have been", "isCorrect": false, "rationale": "Số nhiều, không phù hợp." }
     ],
@@ -1221,7 +1437,11 @@
     "type": "vocabulary",
     "difficulty": "medium",
     "options": [
-      { "text": "discontinue", "isCorrect": true, "rationale": "Chính xác. 'Discontinue production' = ngừng sản xuất." },
+      {
+        "text": "discontinue",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Discontinue production' = ngừng sản xuất."
+      },
       { "text": "uncontinue", "isCorrect": false, "rationale": "Không phải từ tiếng Anh chuẩn." },
       { "text": "incontinue", "isCorrect": false, "rationale": "Không phải từ tiếng Anh chuẩn." },
       { "text": "miscontinue", "isCorrect": false, "rationale": "Không phải từ tiếng Anh chuẩn." }
@@ -1234,10 +1454,22 @@
     "type": "voice",
     "difficulty": "medium",
     "options": [
-      { "text": "being", "isCorrect": true, "rationale": "Chính xác. 'Is being renovated' = đang được cải tạo (bị động tiếp diễn)." },
-      { "text": "been", "isCorrect": false, "rationale": "Thiếu 'being' để tạo thể bị động tiếp diễn." },
+      {
+        "text": "being",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Is being renovated' = đang được cải tạo (bị động tiếp diễn)."
+      },
+      {
+        "text": "been",
+        "isCorrect": false,
+        "rationale": "Thiếu 'being' để tạo thể bị động tiếp diễn."
+      },
       { "text": "having", "isCorrect": false, "rationale": "Không phù hợp cấu trúc này." },
-      { "text": "had", "isCorrect": false, "rationale": "Quá khứ hoàn thành, không phù hợp với 'currently'." }
+      {
+        "text": "had",
+        "isCorrect": false,
+        "rationale": "Quá khứ hoàn thành, không phù hợp với 'currently'."
+      }
     ],
     "hint": "'Currently' → hiện tại + 'renovated' → thể gì?",
     "code": "P5_055"
@@ -1247,10 +1479,22 @@
     "type": "relative-clause",
     "difficulty": "easy",
     "options": [
-      { "text": "which", "isCorrect": false, "rationale": "'Which' dùng cho vật, không dùng cho người." },
-      { "text": "who", "isCorrect": true, "rationale": "Chính xác. 'Who' thay thế 'the accountant' làm chủ ngữ." },
+      {
+        "text": "which",
+        "isCorrect": false,
+        "rationale": "'Which' dùng cho vật, không dùng cho người."
+      },
+      {
+        "text": "who",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Who' thay thế 'the accountant' làm chủ ngữ."
+      },
       { "text": "whose", "isCorrect": false, "rationale": "Chỉ sở hữu, không phù hợp." },
-      { "text": "whom", "isCorrect": false, "rationale": "Tân ngữ, không thể làm chủ ngữ của 'was hired'." }
+      {
+        "text": "whom",
+        "isCorrect": false,
+        "rationale": "Tân ngữ, không thể làm chủ ngữ của 'was hired'."
+      }
     ],
     "hint": "Cần đại từ quan hệ làm chủ ngữ chỉ người.",
     "code": "P5_056"
@@ -1261,8 +1505,16 @@
     "difficulty": "easy",
     "options": [
       { "text": "qualifying", "isCorrect": false, "rationale": "V-ing chủ động, không phù hợp." },
-      { "text": "qualified", "isCorrect": true, "rationale": "Chính xác. 'Employees who are qualified' → 'the qualified employees'." },
-      { "text": "qualification", "isCorrect": false, "rationale": "Danh từ, không thể bổ nghĩa cho 'employees'." },
+      {
+        "text": "qualified",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Employees who are qualified' → 'the qualified employees'."
+      },
+      {
+        "text": "qualification",
+        "isCorrect": false,
+        "rationale": "Danh từ, không thể bổ nghĩa cho 'employees'."
+      },
       { "text": "qualifies", "isCorrect": false, "rationale": "Động từ chia ngôi, không phù hợp." }
     ],
     "hint": "Nhân viên có đủ điều kiện → phân từ bị động.",
@@ -1273,10 +1525,26 @@
     "type": "word-form",
     "difficulty": "medium",
     "options": [
-      { "text": "discounting", "isCorrect": false, "rationale": "V-ing, không thể đứng sau mạo từ." },
-      { "text": "discounted", "isCorrect": false, "rationale": "Tính từ/phân từ, không thể làm tân ngữ." },
-      { "text": "discount", "isCorrect": true, "rationale": "Chính xác. 'Receive a discount' = nhận chiết khấu, danh từ." },
-      { "text": "discounts", "isCorrect": false, "rationale": "Danh từ số nhiều, không phù hợp với 'a'." }
+      {
+        "text": "discounting",
+        "isCorrect": false,
+        "rationale": "V-ing, không thể đứng sau mạo từ."
+      },
+      {
+        "text": "discounted",
+        "isCorrect": false,
+        "rationale": "Tính từ/phân từ, không thể làm tân ngữ."
+      },
+      {
+        "text": "discount",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Receive a discount' = nhận chiết khấu, danh từ."
+      },
+      {
+        "text": "discounts",
+        "isCorrect": false,
+        "rationale": "Danh từ số nhiều, không phù hợp với 'a'."
+      }
     ],
     "hint": "Sau mạo từ 'a' cần loại từ gì?",
     "code": "P5_058"
@@ -1287,9 +1555,17 @@
     "difficulty": "easy",
     "options": [
       { "text": "If", "isCorrect": true, "rationale": "Chính xác. 'If' chỉ điều kiện." },
-      { "text": "Unless", "isCorrect": false, "rationale": "'Unless' = nếu không, mang nghĩa phủ định." },
+      {
+        "text": "Unless",
+        "isCorrect": false,
+        "rationale": "'Unless' = nếu không, mang nghĩa phủ định."
+      },
       { "text": "Although", "isCorrect": false, "rationale": "Mang nghĩa đối lập, không phù hợp." },
-      { "text": "Because", "isCorrect": false, "rationale": "Mang nghĩa nguyên nhân, không phù hợp." }
+      {
+        "text": "Because",
+        "isCorrect": false,
+        "rationale": "Mang nghĩa nguyên nhân, không phù hợp."
+      }
     ],
     "hint": "Liên từ chỉ điều kiện.",
     "code": "P5_059"
@@ -1299,10 +1575,26 @@
     "type": "verb-tense",
     "difficulty": "medium",
     "options": [
-      { "text": "complete", "isCorrect": false, "rationale": "Động từ nguyên mẫu chủ động, không phù hợp." },
-      { "text": "will be completed", "isCorrect": true, "rationale": "Chính xác. Bị động tương lai: 'will be completed'." },
-      { "text": "is completing", "isCorrect": false, "rationale": "Chủ động tiếp diễn, không phù hợp." },
-      { "text": "completed", "isCorrect": false, "rationale": "Quá khứ, không phù hợp với 'next month'." }
+      {
+        "text": "complete",
+        "isCorrect": false,
+        "rationale": "Động từ nguyên mẫu chủ động, không phù hợp."
+      },
+      {
+        "text": "will be completed",
+        "isCorrect": true,
+        "rationale": "Chính xác. Bị động tương lai: 'will be completed'."
+      },
+      {
+        "text": "is completing",
+        "isCorrect": false,
+        "rationale": "Chủ động tiếp diễn, không phù hợp."
+      },
+      {
+        "text": "completed",
+        "isCorrect": false,
+        "rationale": "Quá khứ, không phù hợp với 'next month'."
+      }
     ],
     "hint": "'Next month' + 'construction... building' → cần thể gì?",
     "code": "P5_060"
@@ -1312,9 +1604,17 @@
     "type": "preposition",
     "difficulty": "easy",
     "options": [
-      { "text": "about", "isCorrect": false, "rationale": "'Apologize about' không phải collocation chuẩn." },
+      {
+        "text": "about",
+        "isCorrect": false,
+        "rationale": "'Apologize about' không phải collocation chuẩn."
+      },
       { "text": "for", "isCorrect": true, "rationale": "Chính xác. 'Apologize for' = xin lỗi về." },
-      { "text": "to", "isCorrect": false, "rationale": "'Apologize to someone' = xin lỗi ai, không dùng với lý do." },
+      {
+        "text": "to",
+        "isCorrect": false,
+        "rationale": "'Apologize to someone' = xin lỗi ai, không dùng với lý do."
+      },
       { "text": "with", "isCorrect": false, "rationale": "Không phải collocation của 'apologize'." }
     ],
     "hint": "Động từ 'apologize' đi với giới từ gì?",
@@ -1325,9 +1625,21 @@
     "type": "relative-clause",
     "difficulty": "medium",
     "options": [
-      { "text": "who", "isCorrect": false, "rationale": "'Who' là chủ ngữ, không thể hiện sở hữu." },
-      { "text": "whose", "isCorrect": true, "rationale": "Chính xác. 'Whose application' = đơn của ứng viên đó." },
-      { "text": "which", "isCorrect": false, "rationale": "'Which' dùng cho vật, không dùng cho người." },
+      {
+        "text": "who",
+        "isCorrect": false,
+        "rationale": "'Who' là chủ ngữ, không thể hiện sở hữu."
+      },
+      {
+        "text": "whose",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'Whose application' = đơn của ứng viên đó."
+      },
+      {
+        "text": "which",
+        "isCorrect": false,
+        "rationale": "'Which' dùng cho vật, không dùng cho người."
+      },
       { "text": "that", "isCorrect": false, "rationale": "'That' không thể hiện sở hữu." }
     ],
     "hint": "Đại từ quan hệ chỉ sở hữu cho người.",
@@ -1339,7 +1651,11 @@
     "difficulty": "medium",
     "options": [
       { "text": "has been", "isCorrect": false, "rationale": "'A number of + N' → số nhiều." },
-      { "text": "have been", "isCorrect": true, "rationale": "Chính xác. 'A number of employees' → số nhiều." },
+      {
+        "text": "have been",
+        "isCorrect": true,
+        "rationale": "Chính xác. 'A number of employees' → số nhiều."
+      },
       { "text": "is", "isCorrect": false, "rationale": "Số ít, không phù hợp." },
       { "text": "was", "isCorrect": false, "rationale": "Số ít quá khứ, không phù hợp." }
     ],

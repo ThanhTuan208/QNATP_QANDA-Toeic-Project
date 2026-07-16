@@ -1,29 +1,29 @@
 {
-	"files.watcherExclude": {
-		"**/.next/**": true,
-		"**/node_modules/**": true,
-		"**/.git/**": true
-	},
-	"search.exclude": {
-		"**/.next": true,
-		"**/node_modules": true,
-		"**/pnpm-lock.yaml": true
-	},
-	"files.exclude": {
-		"**/.next": true
-	},
-	"typescript.tsdk": "node_modules\\typescript\\lib",
-	"typescript.enablePromptUseWorkspaceTsdk": true,
-	"typescript.tsserver.maxTsServerMemory": 4096,
-	"typescript.disableAutomaticTypeAcquisition": true,
-	"biome.enabled": true,
-	"biome.lspBin": "node_modules\\@biomejs\\cli-win32-x64\\bin\\biome.exe",
-	"[typescript]": {
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-	},
-	"editor.formatOnSave": true,
-	"css.lint.unknownAtRules": "ignore"
+  "files.watcherExclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true,
+    "**/.git/**": true
+  },
+  "search.exclude": {
+    "**/.next": true,
+    "**/node_modules": true,
+    "**/pnpm-lock.yaml": true
+  },
+  "files.exclude": {
+    "**/.next": true
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsserver.maxTsServerMemory": 4096,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "biome.enabled": true,
+  "biome.lspBin": "node_modules\\@biomejs\\cli-win32-x64\\bin\\biome.exe",
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "editor.formatOnSave": true,
+  "css.lint.unknownAtRules": "ignore"
 }
