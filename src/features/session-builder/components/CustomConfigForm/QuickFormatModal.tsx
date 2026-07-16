@@ -20,7 +20,13 @@ interface QuickFormatModalProps {
   trigger: React.ReactNode
 }
 
-export function QuickFormatModal({ parts, knowledgeGroups, onApply, onApplyAll, trigger }: QuickFormatModalProps) {
+export function QuickFormatModal({
+  parts,
+  knowledgeGroups,
+  onApply,
+  onApplyAll,
+  trigger,
+}: QuickFormatModalProps) {
   const [open, setOpen] = useState(false)
 
   const hook = useQuickFormat({ parts, knowledgeGroups, onApply, onApplyAll })
@@ -30,11 +36,14 @@ export function QuickFormatModal({ parts, knowledgeGroups, onApply, onApplyAll, 
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent
         size='sm'
-        className='rounded-2xl border border-green-teal-10 dark:border-neutral-80/20 bg-background text-foreground shadow-2xl shadow-green-teal-20/20 dark:shadow-black/60 duration-700 data-[state=closed]:slide-out-to-bottom-full data-[state=open]:slide-in-from-bottom-full data-[state=closed]:zoom-out-100 data-[state=open]:zoom-in-100'
+        className='rounded-2xl border border-green-teal-10 dark:border-neutral-80/20 bg-background text-foreground shadow-2xl shadow-green-teal-20/20 dark:shadow-black/60 duration-300 data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-105 data-[state=open]:zoom-in-95'
       >
-        <DialogHeader showDivider className="border-b border-green-teal-10 dark:border-neutral-80/20">
+        <DialogHeader
+          showDivider
+          className='border-b border-green-teal-10 dark:border-neutral-80/20'
+        >
           <DialogTitle
-            className="text-primary-teal dark:text-pale-light font-bold"
+            className='text-primary-teal dark:text-pale-light font-bold'
             subtitle='Chọn preset cho các part, sau đó áp dụng cùng lúc'
           >
             Định dạng nhanh

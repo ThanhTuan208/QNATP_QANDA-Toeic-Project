@@ -34,15 +34,18 @@ export function useFormatPresets() {
     savePresets(presets)
   }, [presets])
 
-  const addPreset = useCallback((name: string, part: number, distribution: DistributionItem<string>[]) => {
-    const newPreset: UserPreset = {
-      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
-      name,
-      part,
-      distribution,
-    }
-    setPresets((prev) => [...prev, newPreset])
-  }, [])
+  const addPreset = useCallback(
+    (name: string, part: number, distribution: DistributionItem<string>[]) => {
+      const newPreset: UserPreset = {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        name,
+        part,
+        distribution,
+      }
+      setPresets((prev) => [...prev, newPreset])
+    },
+    [],
+  )
 
   const deletePreset = useCallback((id: string) => {
     setPresets((prev) => prev.filter((p) => p.id !== id))

@@ -12,7 +12,7 @@ export function StepHeader({ title, description, icon }: StepHeaderProps) {
   return (
     <div className='text-center space-y-2'>
       {icon && (
-        <div className='inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-steel-blue/10 text-steel-blue mb-2'>
+        <div className='inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-green-teal-5 text-green-teal mb-2'>
           {icon}
         </div>
       )}

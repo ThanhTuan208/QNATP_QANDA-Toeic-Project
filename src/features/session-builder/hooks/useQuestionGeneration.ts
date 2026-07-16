@@ -2,8 +2,8 @@
 
 import { useCallback } from 'react'
 import { toast } from 'sonner'
-import { KNOWLEDGE_GROUPS } from '@/features/session-builder/constants'
 import { generateSessionQuestions } from '@/features/session-builder/client/session.client'
+import { KNOWLEDGE_GROUPS } from '@/features/session-builder/constants'
 import type { SessionBuilderState } from '@/features/session-builder/types'
 import { processImportedSessionJSON } from '@/features/session-builder/utils/validation'
 
@@ -44,7 +44,18 @@ export function useQuestionGeneration(
     if (state.source === 'imported' && state.importJson) {
       const result = processImportedSessionJSON(state.importJson, state.config)
       if (result.success) {
-        actions.setQuestions(result.questions)
+        const selectedDifficulties = state.config.difficulty ?? []
+        const hasDifficultyFilter =
+          selectedDifficulties.length > 0 && selectedDifficulties.length < 3
+        const normSelected = selectedDifficulties.map((d) => d.toUpperCase())
+        const filtered = result.questions.filter((q) => {
+          if (!state.scope.parts.includes(q.part)) return false
+          if (hasDifficultyFilter && !normSelected.includes(q.difficulty.toUpperCase())) {
+            return false
+          }
+          return true
+        })
+        actions.setQuestions(filtered)
       }
       actions.nextStep()
       return

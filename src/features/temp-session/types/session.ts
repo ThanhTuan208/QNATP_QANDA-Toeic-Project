@@ -6,6 +6,7 @@ export interface SessionConfig {
   source: 'system' | 'imported'
   importJson?: string
   totalQuestions: number
+  timeLimit?: number
 }
 
 export interface KnowledgeGroupConfig {

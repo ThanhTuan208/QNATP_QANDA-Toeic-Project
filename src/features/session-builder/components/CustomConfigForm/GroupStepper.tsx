@@ -46,7 +46,7 @@ export function GroupStepper({
         value={count === 0 ? '' : count}
         placeholder='0'
         onChange={handleInput}
-        className={`w-10 h-7 text-center text-sm lg:text-base font-bold tabular-nums rounded bg-transparent border border-transparent hover:border-border focus:border-steel-blue focus:bg-background focus:ring-1 focus:ring-steel-blue/20 outline-none transition-all ${isPositive ? 'text-steel-blue' : 'text-muted-foreground'}`}
+        className={`w-10 h-7 text-center text-sm lg:text-base font-bold tabular-nums rounded bg-transparent border border-transparent hover:border-border focus:border-green-teal focus:bg-background focus:ring-1 focus:ring-green-teal/20 outline-none transition-all ${isPositive ? 'text-green-teal' : 'text-muted-foreground'}`}
       />
 
       <button

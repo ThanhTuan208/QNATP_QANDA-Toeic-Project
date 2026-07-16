@@ -1,7 +1,10 @@
 'use client'
 
+import { useEffect } from 'react'
 import { PracticeSession } from '@/features/session-builder/components/practice/PracticeSession'
 import type { SessionAttempt, SessionQuestion } from '@/features/temp-session/types'
+
+const MAX_QUESTIONS = 10
 
 interface Step5PracticeProps {
   questions: SessionQuestion[]
@@ -10,6 +13,10 @@ interface Step5PracticeProps {
 }
 
 export function Step5Practice({ questions, onBack, onComplete }: Step5PracticeProps) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   if (questions.length === 0) {
     return (
       <div className='text-center py-12 text-muted-foreground'>
@@ -18,5 +25,6 @@ export function Step5Practice({ questions, onBack, onComplete }: Step5PracticePr
     )
   }
 
-  return <PracticeSession questions={questions} onComplete={onComplete} onBack={onBack} />
+  const limited = questions.slice(0, MAX_QUESTIONS)
+  return <PracticeSession questions={limited} onComplete={onComplete} onBack={onBack} />
 }

@@ -28,7 +28,7 @@ export function SiteHeader({
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-border transition-all duration-300
+      className={`sticky top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-border transition-all duration-300
         ${scrolled ? 'h-16 shadow-sm' : 'h-18'}`}
     >
       <div className='max-w-7xl mx-auto h-full px-4 sm:px-8 lg:px-12 flex items-center justify-between'>

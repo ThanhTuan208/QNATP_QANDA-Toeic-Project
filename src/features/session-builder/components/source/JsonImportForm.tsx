@@ -1,6 +1,6 @@
 'use client'
 
-import { AlertTriangle, CheckCircle2, XCircle } from 'lucide-react'
+import { AlertTriangle, CheckCircle2, Eraser, XCircle } from 'lucide-react'
 import { Button } from '@/components/common/Button/Button'
 import { Label } from '@/components/common/Label'
 
@@ -9,6 +9,8 @@ interface JsonImportFormProps {
   onTextChange: (value: string) => void
   onValidate: () => void
   onReset: () => void
+  onClearRemoved?: () => void
+  hasExtraneousParts?: boolean
   isValidating: boolean
   validationErrors: string[]
   successMessage: string
@@ -19,6 +21,8 @@ export function JsonImportForm({
   onTextChange,
   onValidate,
   onReset,
+  onClearRemoved,
+  hasExtraneousParts = false,
   isValidating,
   validationErrors,
   successMessage,
@@ -57,6 +61,16 @@ export function JsonImportForm({
         <Button buttonType='outline' onClick={onReset}>
           Đặt lại mẫu
         </Button>
+        <div className='ml-auto'>
+          <Button
+            buttonType='outline'
+            icon={<Eraser className='size-4' />}
+            onClick={onClearRemoved}
+            disabled={!hasExtraneousParts}
+          >
+            Xóa part đã hủy
+          </Button>
+        </div>
       </div>
 
       {validationErrors.length > 0 && (

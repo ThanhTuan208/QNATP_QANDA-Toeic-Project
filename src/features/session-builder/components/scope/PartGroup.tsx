@@ -26,8 +26,8 @@ export function PartGroup({ title, parts, selectedParts, onToggle, disabled }: P
                 disabled
                   ? 'border-border cursor-not-allowed bg-muted/30'
                   : selected
-                    ? 'border-steel-blue bg-steel-blue-5 cursor-pointer'
-                    : 'border-border hover:bg-muted/50 cursor-pointer'
+                    ? 'border-green-teal bg-green-teal-5 shadow-sm shadow-green-teal/10 cursor-pointer'
+                    : 'border-border hover:bg-muted/50 hover:border-green-teal-20 cursor-pointer transition-all duration-200'
               }`}
             >
               <input
@@ -35,7 +35,7 @@ export function PartGroup({ title, parts, selectedParts, onToggle, disabled }: P
                 checked={selected}
                 onChange={() => onToggle(part)}
                 disabled={disabled}
-                className='accent-steel-blue w-4 h-4'
+                className='accent-green-teal w-4 h-4'
               />
               <span
                 className={`text-sm font-medium ${disabled ? 'text-muted-foreground' : 'text-foreground'}`}

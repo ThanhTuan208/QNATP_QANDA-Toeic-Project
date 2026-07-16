@@ -39,7 +39,7 @@ export function buildPracticeSession(
       difficulty: state.config.difficulty ?? ['medium'],
       source: state.source,
       importJson: state.importJson || undefined,
-      totalQuestions: state.config.totalQuestions ?? state.questions.length,
+      totalQuestions: state.questions.length,
     },
     questions: state.questions,
     attempts: [],

@@ -194,14 +194,20 @@ export function validateImportedQuestions(
   const normSelected = selectedDifficulties.map(qUpper)
 
   for (const question of questions) {
-    if (parts.length > 0 && !parts.includes(question.part)) {
+    const isPartSelected = parts.length === 0 || parts.includes(question.part)
+
+    if (!isPartSelected) {
       warnings.push({
         field: `question_${question.tempId}`,
         message: `Câu hỏi Part ${question.part} không thuộc Part đã chọn (${parts.join(', ')}).`,
       })
     }
 
-    if (hasDifficultyFilter && !normSelected.includes(qUpper(question.difficulty))) {
+    if (
+      isPartSelected &&
+      hasDifficultyFilter &&
+      !normSelected.includes(qUpper(question.difficulty))
+    ) {
       warnings.push({
         field: `question_${question.tempId}`,
         message: `Câu hỏi "${question.questionText.slice(0, 40)}..." có độ khó "${question.difficulty}" không nằm trong lựa chọn (${selectedDifficulties.join(', ')}).`,
@@ -210,7 +216,9 @@ export function validateImportedQuestions(
   }
 
   if (hasDifficultyFilter) {
-    const importedDifficulties = [...new Set(questions.map((q) => qUpper(q.difficulty)))]
+    const selectedQuestions =
+      parts.length > 0 ? questions.filter((q) => parts.includes(q.part)) : questions
+    const importedDifficulties = [...new Set(selectedQuestions.map((q) => qUpper(q.difficulty)))]
     const missing = normSelected.filter((d) => !importedDifficulties.includes(d))
     if (missing.length > 0) {
       warnings.push({
@@ -222,6 +230,7 @@ export function validateImportedQuestions(
 
   for (const [partStr, groups] of Object.entries(knowledgeGroups)) {
     const partNum = Number(partStr)
+    if (parts.length > 0 && !parts.includes(partNum)) continue
     for (const group of groups as KnowledgeGroupConfig[]) {
       if (group.count === 0) continue
       const actualCount = questions.filter(
@@ -241,16 +250,18 @@ export function validateImportedQuestions(
     }
   }
 
+  const selectedQuestions =
+    parts.length > 0 ? questions.filter((q) => parts.includes(q.part)) : questions
   const totalExpected = config.totalQuestions ?? 0
-  if (totalExpected > 0 && questions.length > totalExpected) {
+  if (totalExpected > 0 && selectedQuestions.length > totalExpected) {
     warnings.push({
       field: 'questions',
-      message: `Tổng số câu hỏi (${questions.length}) vượt quá cấu hình (${totalExpected}). Chỉ lấy ${totalExpected} câu đầu.`,
+      message: `Tổng số câu hỏi (${selectedQuestions.length}) vượt quá cấu hình (${totalExpected}). Chỉ lấy ${totalExpected} câu đầu.`,
     })
-  } else if (totalExpected > 0 && questions.length < totalExpected) {
+  } else if (totalExpected > 0 && selectedQuestions.length < totalExpected) {
     warnings.push({
       field: 'questions',
-      message: `Tổng số câu hỏi (${questions.length}) ít hơn cấu hình (${totalExpected}).`,
+      message: `Tổng số câu hỏi (${selectedQuestions.length}) ít hơn cấu hình (${totalExpected}).`,
     })
   }
 

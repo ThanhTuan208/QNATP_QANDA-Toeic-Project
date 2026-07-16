@@ -79,7 +79,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         children
       ) : (
         <main
-          className={`pt-20 p-4 md:px-18 mt-2 min-h-screen transition-all duration-300 flex justify-center
+          className={`p-4 md:px-18 mt-2 min-h-screen transition-all duration-300 flex justify-center
             ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}
         >
           <div className='w-full max-w-6xl'>{children}</div>

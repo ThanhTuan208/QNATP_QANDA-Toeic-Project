@@ -1,12 +1,11 @@
 'use client'
 
 import { Database } from 'lucide-react'
-import { useCallback, useState } from 'react'
+import { useEffect } from 'react'
 import { StepHeader } from '@/components/common/StepHeader'
 import { JsonImportForm, SourceSelector } from '@/features/session-builder/components/source'
-import { IMPORT_TEMPLATE } from '@/features/session-builder/constants/import-template'
-import { processImportedSessionJSON } from '@/features/session-builder/utils/validation'
-import type { SessionConfig } from '@/features/temp-session/types'
+import { useStep3Source } from '@/features/session-builder/hooks/useStep3Source'
+import type { SessionConfig, SessionQuestion } from '@/features/temp-session/types'
 
 interface Step3SourceProps {
   source: 'system' | 'imported'
@@ -16,6 +15,7 @@ interface Step3SourceProps {
   onSourceChange: (source: 'system' | 'imported') => void
   onImportJsonChange: (json: string) => void
   onValidationErrorsChange: (errors: string[]) => void
+  onQuestionsChange?: (questions: SessionQuestion[]) => void
 }
 
 export function Step3Source({
@@ -26,62 +26,32 @@ export function Step3Source({
   onSourceChange,
   onImportJsonChange,
   onValidationErrorsChange,
+  onQuestionsChange,
 }: Step3SourceProps) {
-  const [localText, setLocalText] = useState(importJson)
-  const [isValidating, setIsValidating] = useState(false)
-  const [successMessage, setSuccessMessage] = useState('')
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
-  const handleSelectSource = useCallback(
-    (newSource: 'system' | 'imported') => {
-      onSourceChange(newSource)
-      if (newSource === 'system') {
-        setSuccessMessage('')
-      }
-    },
-    [onSourceChange],
+  const {
+    localText,
+    isValidating,
+    successMessage,
+    hasExtraneousParts,
+    handleSelectSource,
+    handleTextChange,
+    handleValidate,
+    handleResetTemplate,
+    handleClearRemoved,
+  } = useStep3Source(
+    source,
+    config,
+    importJson,
+    validationErrors,
+    onSourceChange,
+    onImportJsonChange,
+    onValidationErrorsChange,
+    onQuestionsChange,
   )
-
-  const handleTextChange = useCallback(
-    (value: string) => {
-      setLocalText(value)
-      onImportJsonChange('')
-      onValidationErrorsChange([])
-      setSuccessMessage('')
-    },
-    [onImportJsonChange, onValidationErrorsChange],
-  )
-
-  const handleValidate = useCallback(() => {
-    setIsValidating(true)
-    setSuccessMessage('')
-
-    const result = processImportedSessionJSON(localText, config)
-
-    if (!result.success) {
-      onImportJsonChange('')
-      onValidationErrorsChange(result.errors)
-      setIsValidating(false)
-      return
-    }
-
-    onImportJsonChange(result.importJson)
-    onValidationErrorsChange(result.warnings)
-
-    const countLabel = `${result.questions.length} câu hỏi`
-    setSuccessMessage(
-      result.warnings.length > 0
-        ? `✓ Import thành công ${countLabel} (có cảnh báo)`
-        : `✓ Import thành công ${countLabel}`,
-    )
-    setIsValidating(false)
-  }, [localText, onImportJsonChange, onValidationErrorsChange, config])
-
-  const handleResetTemplate = useCallback(() => {
-    setLocalText(IMPORT_TEMPLATE)
-    onImportJsonChange('')
-    onValidationErrorsChange([])
-    setSuccessMessage('')
-  }, [onImportJsonChange, onValidationErrorsChange])
 
   return (
     <div className='space-y-6'>
@@ -99,6 +69,8 @@ export function Step3Source({
           onTextChange={handleTextChange}
           onValidate={handleValidate}
           onReset={handleResetTemplate}
+          onClearRemoved={handleClearRemoved}
+          hasExtraneousParts={hasExtraneousParts}
           isValidating={isValidating}
           validationErrors={validationErrors}
           successMessage={successMessage}

@@ -1,5 +1,5 @@
-import { PART } from '@/features/session-builder/constants/part'
 import { P5_GROUP } from '@/features/session-builder/constants/knowledge-groups'
+import { PART } from '@/features/session-builder/constants/part'
 import { definePreset } from './preset.utils'
 
 export const P5_BALANCED = definePreset({

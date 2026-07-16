@@ -13,7 +13,14 @@ interface PresetCardProps {
   onDelete?: () => void
 }
 
-export function PresetCard({ name, part, distribution, isSelected, onSelect, onDelete }: PresetCardProps) {
+export function PresetCard({
+  name,
+  part,
+  distribution,
+  isSelected,
+  onSelect,
+  onDelete,
+}: PresetCardProps) {
   return (
     <div
       className={`p-3.5 rounded-xl border backdrop-blur-xs space-y-2.5 transition-all duration-300 cursor-pointer ${
@@ -26,7 +33,9 @@ export function PresetCard({ name, part, distribution, isSelected, onSelect, onD
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-2'>
           {isSelected && <Check className='size-4 text-green-teal' />}
-          <span className='text-sm lg:text-base font-bold text-primary-teal dark:text-pale-light'>{name}</span>
+          <span className='text-sm lg:text-base font-bold text-primary-teal dark:text-pale-light'>
+            {name}
+          </span>
         </div>
         <div className='flex gap-1.5 items-center'>
           <Button
@@ -64,8 +73,11 @@ export function PresetCard({ name, part, distribution, isSelected, onSelect, onD
           const label =
             getKnowledgeGroupsForPart(part).find((kg) => kg.type === d.type)?.label ?? d.type
           return (
-            <span key={d.type} className='text-[10px] sm:text-xs text-subtext-90 dark:text-neutral-30 flex justify-between items-center pr-2'>
-              <span className="opacity-80">{label}:</span>
+            <span
+              key={d.type}
+              className='text-[10px] sm:text-xs text-subtext-90 dark:text-neutral-30 flex justify-between items-center pr-2'
+            >
+              <span className='opacity-80'>{label}:</span>
               <strong className='text-primary-teal dark:text-pale-teal font-bold'>{d.count}</strong>
             </span>
           )

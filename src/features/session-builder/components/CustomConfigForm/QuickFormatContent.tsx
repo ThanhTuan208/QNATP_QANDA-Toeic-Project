@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { Check, Info, X } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Check, Info, X } from 'lucide-react'
+import { useState } from 'react'
 import { Button } from '@/components/common/Button'
 import type { KnowledgeGroupConfig } from '@/features/temp-session/types'
 import { PresetCard } from './PresetCard'
@@ -17,8 +17,18 @@ interface QuickFormatContentProps {
   setSelectedPart: (part: number) => void
   activeParts: number[]
   selectedPresets: Record<number, KnowledgeGroupConfig[]>
-  systemPresetsForPart: Array<{ id: string; title: string; part: number; distribution: KnowledgeGroupConfig[] }>
-  userPresetsForPart: Array<{ id: string; name: string; part: number; distribution: KnowledgeGroupConfig[] }>
+  systemPresetsForPart: Array<{
+    id: string
+    title: string
+    part: number
+    distribution: KnowledgeGroupConfig[]
+  }>
+  userPresetsForPart: Array<{
+    id: string
+    name: string
+    part: number
+    distribution: KnowledgeGroupConfig[]
+  }>
   saveName: string
   setSaveName: (name: string) => void
   selectPreset: (part: number, groups: KnowledgeGroupConfig[]) => void
@@ -43,24 +53,24 @@ function MyPresetsTutorial() {
   }
 
   return (
-    <div className='relative bg-steel-blue-5 dark:bg-steel-blue-20/15 border border-steel-blue/20 dark:border-steel-blue/30 rounded-xl p-3 pr-8 mb-3'>
+    <div className='relative bg-green-teal-5 dark:bg-green-teal-20/15 border border-green-teal/20 dark:border-green-teal/30 rounded-xl p-3 pr-8 mb-3'>
       <button
         type='button'
         onClick={handleDismiss}
-        className='absolute top-2 right-2 rounded-full p-0.5 text-steel-blue/60 hover:text-steel-blue hover:bg-steel-blue-10 dark:hover:bg-steel-blue-20/30 transition-all'
+        className='absolute top-2 right-2 rounded-full p-0.5 text-green-teal/60 hover:text-green-teal hover:bg-green-teal-10 dark:hover:bg-green-teal-20/30 transition-all'
       >
         <X className='size-3.5' />
       </button>
       <div className='flex gap-2.5'>
-        <Info className='size-4 text-steel-blue shrink-0 mt-0.5' />
+        <Info className='size-4 text-green-teal shrink-0 mt-0.5' />
         <div className='space-y-1.5 text-xs sm:text-sm'>
-          <p className='font-semibold text-steel-blue dark:text-pale-teal'>
-            Hướng dẫn sử dụng
-          </p>
-          <ol className='text-subtext-90 dark:text-neutral-30 space-y-1 list-decimal list-inside marker:text-steel-blue/60'>
+          <p className='font-semibold text-green-teal dark:text-pale-teal'>Hướng dẫn sử dụng</p>
+          <ol className='text-subtext-90 dark:text-neutral-30 space-y-1 list-decimal list-inside marker:text-green-teal/60'>
             <li>Cấu hình từng part trong form, sau đó lưu lại thành preset tại đây</li>
             <li>Chọn preset cho tất cả các part (5, 6, 7) trong panel này</li>
-            <li>Nhấn <strong>Apply All</strong> để áp dụng toàn bộ cùng lúc</li>
+            <li>
+              Nhấn <strong>Apply All</strong> để áp dụng toàn bộ cùng lúc
+            </li>
           </ol>
         </div>
       </div>
@@ -94,18 +104,18 @@ export function QuickFormatContent({
             key={t}
             type='button'
             onClick={() => setTab(t)}
-            className={`pb-2 text-xs sm:text-sm font-bold relative transition-colors duration-500 ease-in-out ${tab === t
-              ? 'text-primary-teal dark:text-pale-teal'
-              : 'text-subtext-50 dark:text-neutral-40 hover:text-primary-teal dark:hover:text-pale-teal'
-              }`} 
+            className={`pb-2 text-xs sm:text-sm font-bold relative transition-colors duration-500 ease-in-out ${
+              tab === t
+                ? 'text-primary-teal dark:text-pale-teal'
+                : 'text-subtext-50 dark:text-neutral-40 hover:text-primary-teal dark:hover:text-pale-teal'
+            }`}
           >
             {t === 'system' ? 'Hệ thống' : 'Của tôi'}
 
             <span
-              className={`absolute bottom-0 left-0 right-0 h-0.5 bg-green-teal transition-all duration-500 ease-in-out ${tab === t
-                ? 'opacity-100 scale-x-100'
-                : 'opacity-0 scale-x-0 pointer-events-none'
-                }`}
+              className={`absolute bottom-0 left-0 right-0 h-0.5 bg-green-teal transition-all duration-500 ease-in-out ${
+                tab === t ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 pointer-events-none'
+              }`}
             />
           </button>
         ))}
@@ -120,14 +130,17 @@ export function QuickFormatContent({
               key={p}
               type='button'
               onClick={() => setSelectedPart(p)}
-              className={`flex-1 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-1.5 ${selectedPart === p
-                ? 'bg-primary text-primary-foreground shadow-sm'
-                : 'text-subtext-90 dark:text-neutral-30 hover:bg-green-teal-5 dark:hover:bg-neutral-80/10'
-                }`}
+              className={`flex-1 py-1.5 text-xs sm:text-sm font-semibold rounded-lg transition-all duration-200 flex items-center justify-center gap-1.5 ${
+                selectedPart === p
+                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  : 'text-subtext-90 dark:text-neutral-30 hover:bg-green-teal-5 dark:hover:bg-neutral-80/10'
+              }`}
             >
               Part {p}
               {hasPartSelection && (
-                <Check className={`size-3 ${selectedPart === p ? 'text-primary-foreground' : 'text-green-teal'}`} />
+                <Check
+                  className={`size-3 ${selectedPart === p ? 'text-primary-foreground' : 'text-green-teal'}`}
+                />
               )}
             </button>
           )
@@ -159,7 +172,8 @@ export function QuickFormatContent({
                       distribution={preset.distribution}
                       isSelected={
                         !!selectedPresets[preset.part] &&
-                        JSON.stringify(selectedPresets[preset.part]) === JSON.stringify(preset.distribution)
+                        JSON.stringify(selectedPresets[preset.part]) ===
+                          JSON.stringify(preset.distribution)
                       }
                       onSelect={() => selectPreset(preset.part, preset.distribution)}
                     />
@@ -183,7 +197,8 @@ export function QuickFormatContent({
                       distribution={preset.distribution}
                       isSelected={
                         !!selectedPresets[preset.part] &&
-                        JSON.stringify(selectedPresets[preset.part]) === JSON.stringify(preset.distribution)
+                        JSON.stringify(selectedPresets[preset.part]) ===
+                          JSON.stringify(preset.distribution)
                       }
                       onSelect={() => selectPreset(preset.part, [...preset.distribution])}
                       onDelete={() => deletePreset(preset.id)}
@@ -202,7 +217,7 @@ export function QuickFormatContent({
           buttonType='fill'
           disabled={!hasSelection}
           onClick={handleApplyAll}
-            className='w-full text-sm lg:text-base h-9 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all'
+          className='w-full text-sm lg:text-base h-9 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all'
         >
           <span className='flex items-center gap-2'>
             <Check className='size-4' />

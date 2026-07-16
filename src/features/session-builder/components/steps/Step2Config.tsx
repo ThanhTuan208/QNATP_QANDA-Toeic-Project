@@ -1,7 +1,7 @@
 'use client'
 
 import { Settings2, SlidersHorizontal, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/common/Button'
 import {
   Dialog,
@@ -31,6 +31,10 @@ export function Step2Config({
   onPresetChange,
   onConfigChange,
 }: Step2ConfigProps) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   const [open, setOpen] = useState(false)
   const showAutoPreset = preset != null && preset !== 'custom'
 
@@ -60,7 +64,7 @@ export function Step2Config({
           <DialogContent
             size='full'
             showCloseButton={false}
-            className='max-h-[90vh] lg:max-w-5xl xl:max-w-6xl overflow-y-auto [&::-webkit-scrollbar]:hidden p-0 gap-0 rounded-2xl border border-green-teal-10 dark:border-neutral-80/20 bg-background text-foreground shadow-2xl shadow-green-teal-20/20 dark:shadow-neutral-100/40 duration-700 data-[state=closed]:slide-out-to-bottom-full data-[state=open]:slide-in-from-bottom-full data-[state=closed]:zoom-out-100 data-[state=open]:zoom-in-100 data-[state=closed]:slide-out-to-left-0 data-[state=open]:slide-in-from-left-0 data-[state=closed]:slide-out-to-top-0 data-[state=open]:slide-in-from-top-0'
+            className='max-h-[90vh] lg:max-w-5xl xl:max-w-6xl overflow-y-auto [&::-webkit-scrollbar]:hidden p-0 gap-0 rounded-2xl border border-green-teal-10 dark:border-neutral-80/20 bg-background text-foreground shadow-2xl shadow-green-teal-20/20 dark:shadow-neutral-100/40 duration-300 data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-105 data-[state=open]:zoom-in-95'
           >
             <DialogHeader
               showDivider

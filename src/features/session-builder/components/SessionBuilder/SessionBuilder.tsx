@@ -38,12 +38,16 @@ export function SessionBuilder() {
   )
 
   return (
-    <div className='max-w-4xl mx-auto py-6 space-y-6'>
+    <div className='max-w-4xl mx-auto py-2 space-y-4'>
       <AnimatePresence mode='popLayout'>
         {wizard.state.step === 'scope' && (
           <motion.div key='scope' {...stepTransition}>
-        <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
-              <Step1Scope scope={wizard.state.scope} onScopeChange={wizard.setScope} />
+            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+              <Step1Scope
+                scope={wizard.state.scope}
+                onScopeChange={wizard.setScope}
+                questions={wizard.state.questions}
+              />
             </div>
           </motion.div>
         )}
@@ -73,6 +77,7 @@ export function SessionBuilder() {
                 onSourceChange={wizard.setSource}
                 onImportJsonChange={wizard.setImportJson}
                 onValidationErrorsChange={wizard.setValidationErrors}
+                onQuestionsChange={wizard.setQuestions}
               />
             </div>
           </motion.div>
@@ -87,7 +92,8 @@ export function SessionBuilder() {
                 source={wizard.state.source}
                 questions={wizard.state.questions}
                 onBack={wizard.prevStep}
-                onStart={handleStartPractice}
+                onConfigChange={wizard.setConfig}
+                onQuestionsChange={wizard.setQuestions}
                 isGenerating={wizard.state.isGenerating}
                 generationError={wizard.state.generationError}
               />
@@ -115,7 +121,8 @@ export function SessionBuilder() {
           canGoBack={wizard.canGoPrev()}
           canGoNext={wizard.canGoNext()}
           onBack={wizard.prevStep}
-          onNext={handleNext}
+          onNext={wizard.state.step === 'preview' ? handleStartPractice : handleNext}
+          nextLabel={wizard.state.step === 'preview' ? 'Start Practice' : undefined}
           loading={wizard.state.isGenerating}
         />
       )}

@@ -23,8 +23,8 @@ export function DifficultySection({ difficulties, onToggle }: DifficultySectionP
               onClick={() => onToggle(diff)}
               className={`flex-1 px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-bold transition-all duration-200 select-none cursor-pointer ${
                 isSelected
-                  ? 'border-steel-blue bg-steel-blue-5 text-steel-blue shadow-sm shadow-steel-blue/5 -translate-y-px'
-                  : 'border-border bg-card text-muted-foreground hover:border-border-hover hover:bg-muted/40 -hover:translate-y-px active:scale-[0.98]'
+                  ? 'border-green-teal bg-green-teal-5 text-green-teal shadow-sm shadow-green-teal/10 -translate-y-px'
+                  : 'border-border bg-card text-muted-foreground hover:border-green-teal-20 hover:bg-green-teal-5/20 hover:text-green-teal active:scale-[0.98] transition-all duration-200'
               }`}
             >
               {DIFFICULTY_LABELS[diff]}

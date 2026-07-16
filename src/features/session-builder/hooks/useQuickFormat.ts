@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useCallback, useMemo } from 'react'
-import { SYSTEM_PRESETS } from '@/features/session-builder/presets'
+import { useCallback, useMemo, useState } from 'react'
 import { useFormatPresets } from '@/features/session-builder/hooks/useFormatPresets'
+import { SYSTEM_PRESETS } from '@/features/session-builder/presets'
 import { getKnowledgeGroupsForPart } from '@/features/session-builder/utils/knowledge-groups'
 import type { KnowledgeGroupConfig } from '@/features/temp-session/types'
 
@@ -15,7 +15,12 @@ interface UseQuickFormatOptions {
 
 export type Tab = 'system' | 'mine'
 
-export function useQuickFormat({ parts, knowledgeGroups, onApply, onApplyAll }: UseQuickFormatOptions) {
+export function useQuickFormat({
+  parts,
+  knowledgeGroups,
+  onApply,
+  onApplyAll,
+}: UseQuickFormatOptions) {
   const [tab, setTab] = useState<Tab>('system')
   const [selectedPart, setSelectedPart] = useState<number>(parts[0] ?? 5)
   const [saveName, setSaveName] = useState('')
@@ -37,10 +42,7 @@ export function useQuickFormat({ parts, knowledgeGroups, onApply, onApplyAll }: 
     [presets, selectedPart],
   )
 
-  const hasSelection = useMemo(
-    () => Object.keys(selectedPresets).length > 0,
-    [selectedPresets],
-  )
+  const hasSelection = useMemo(() => Object.keys(selectedPresets).length > 0, [selectedPresets])
 
   const selectPreset = useCallback((part: number, groups: KnowledgeGroupConfig[]) => {
     setSelectedPresets((prev) => {

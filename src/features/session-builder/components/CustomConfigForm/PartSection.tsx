@@ -1,8 +1,8 @@
 'use client'
 
 import { AlertTriangle, RotateCcw } from 'lucide-react'
-import { getKnowledgeGroupsForPart } from '@/features/session-builder/utils/knowledge-groups'
 import { PART_MAX_QUESTIONS } from '@/features/session-builder/constants'
+import { getKnowledgeGroupsForPart } from '@/features/session-builder/utils/knowledge-groups'
 import type { KnowledgeGroupConfig } from '@/features/temp-session/types'
 import { GroupStepper } from './GroupStepper'
 
@@ -37,7 +37,7 @@ export function PartSection({
     >
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-2'>
-          <h4 className='text-xs sm:text-sm font-extrabold text-steel-blue tracking-widest uppercase'>
+          <h4 className='text-xs sm:text-sm font-extrabold text-green-teal tracking-widest uppercase'>
             Part {part}
           </h4>
           {underMin && (
@@ -72,7 +72,7 @@ export function PartSection({
               key={group.type}
               className={`flex items-center justify-between px-3 py-2 rounded-lg border transition-all duration-150 ${
                 isPositive
-                  ? 'border-steel-blue/20 bg-steel-blue-5'
+                  ? 'border-green-teal/20 bg-green-teal-5'
                   : 'border-transparent bg-muted/30'
               }`}
             >

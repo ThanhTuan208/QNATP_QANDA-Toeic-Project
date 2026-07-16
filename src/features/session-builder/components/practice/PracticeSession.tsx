@@ -49,7 +49,7 @@ export function PracticeSession({ questions, onComplete, onBack }: PracticeSessi
         <ArrowLeft className='size-4' />
         Back
       </button>
-      <QuizEngine initialQuestions={quizQuestions} />
+      <QuizEngine initialQuestions={quizQuestions} hideImport />
     </div>
   )
 }
