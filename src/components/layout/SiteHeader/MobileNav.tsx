@@ -15,7 +15,7 @@ export function MobileNav({ isOpen, navItems, onClose }: MobileNavProps) {
     <AnimatePresence>
       {isOpen && (
         <>
-      <motion.div
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

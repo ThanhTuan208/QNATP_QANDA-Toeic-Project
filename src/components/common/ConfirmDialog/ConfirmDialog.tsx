@@ -61,10 +61,7 @@ export function ConfirmDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        className={cn('sm:max-w-md', className)}
-        showCloseButton={false}
-      >
+      <DialogContent className={cn('sm:max-w-md', className)} showCloseButton={false}>
         <DialogHeader className={headerClassName}>
           <DialogTitle className={titleClassName}>{title}</DialogTitle>
           {description && (
@@ -86,9 +83,7 @@ export function ConfirmDialog({
             {cancelLabel}
           </Button>
           <Button
-            buttonType={
-              confirmButtonType ?? (variant === 'destructive' ? 'danger' : 'fill')
-            }
+            buttonType={confirmButtonType ?? (variant === 'destructive' ? 'danger' : 'fill')}
             onClick={handleConfirm}
             loading={loading}
             className={confirmClassName}

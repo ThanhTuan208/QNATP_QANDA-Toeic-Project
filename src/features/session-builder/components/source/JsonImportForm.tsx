@@ -1,9 +1,9 @@
 'use client'
 
 import { AlertTriangle, CheckCircle2, Eraser, XCircle } from 'lucide-react'
-import { JsonSchemaHelp } from '@/features/session-builder/components/source/JsonSchemaHelp'
 import { Button } from '@/components/common/Button/Button'
 import { Label } from '@/components/common/Label'
+import { JsonSchemaHelp } from '@/features/session-builder/components/source/JsonSchemaHelp'
 
 interface JsonImportFormProps {
   localText: string

@@ -2,13 +2,13 @@
 
 import { useCallback, useMemo } from 'react'
 import { DEFAULT_DIFFICULTY, PART_MAX_QUESTIONS } from '@/features/session-builder/constants'
+import { getKnowledgeGroupsForPart } from '@/features/session-builder/utils/knowledge-groups'
 import {
   calculateTotalQuestions,
   setKnowledgeGroupCount,
   toggleDifficulty,
 } from '@/features/session-builder/utils/presets'
 import type { KnowledgeGroupConfig, SessionConfig } from '@/features/temp-session/types'
-import { getKnowledgeGroupsForPart } from '@/features/session-builder/utils/knowledge-groups'
 
 export function useCustomConfig(
   parts: number[],

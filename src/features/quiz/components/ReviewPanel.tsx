@@ -59,7 +59,8 @@ function ReviewItem({
             {question.options.map((opt, idx) => {
               const isSelected = opt.id === record.selectedOptionId
               const isCorrectOpt = opt.id === record.correctOptionId
-              let className = 'rounded-xl border px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm flex items-center gap-2'
+              let className =
+                'rounded-xl border px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm flex items-center gap-2'
               if (isSelected && isCorrectOpt) {
                 className += ' border-green-teal-20 bg-green-teal-5 text-green-dark'
               } else if (isSelected && !isCorrectOpt) {

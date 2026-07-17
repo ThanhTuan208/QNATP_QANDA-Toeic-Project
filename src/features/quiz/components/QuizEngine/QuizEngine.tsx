@@ -90,7 +90,9 @@ export function QuizEngine(props: QuizEngineProps) {
           <p className='text-base sm:text-lg font-semibold text-foreground'>Hoàn thành!</p>
           <p className='text-3xl sm:text-4xl font-bold text-foreground'>
             {correctCount}
-            <span className='text-base sm:text-lg font-normal text-muted-foreground'>/{totalQuestions}</span>
+            <span className='text-base sm:text-lg font-normal text-muted-foreground'>
+              /{totalQuestions}
+            </span>
           </p>
           <p className='text-xs sm:text-sm text-muted-foreground'>
             {pct >= 80 ? 'Xuất sắc! 🎉' : pct >= 60 ? 'Khá tốt! 👍' : 'Cần cố gắng hơn 💪'}

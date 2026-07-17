@@ -2,12 +2,7 @@
 
 import { HelpCircle, X } from 'lucide-react'
 import { useState } from 'react'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/overlay/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/overlay/dialog'
 import { IMPORT_SCHEMA_FIELDS } from '@/features/session-builder/constants'
 
 export function JsonSchemaHelp() {
@@ -48,7 +43,8 @@ export function JsonSchemaHelp() {
               Học kiến thức IT cùng cậu em dev 🧑‍💻
             </h3>
             <p className='text-xs md:text-sm text-subtext-90 dark:text-neutral-30 leading-relaxed opacity-80'>
-              Vui lòng chuẩn bị file dữ liệu khớp chính xác với các thuộc tính bên dưới để hệ thống phân tách và import câu hỏi tự động.
+              Vui lòng chuẩn bị file dữ liệu khớp chính xác với các thuộc tính bên dưới để hệ thống
+              phân tách và import câu hỏi tự động.
             </p>
           </div>
 
@@ -63,9 +59,7 @@ export function JsonSchemaHelp() {
                     {field.key}
                   </code>
                   <span className='ml-1.5 text-[10px] text-muted-foreground'>{field.type}</span>
-                  {field.required && (
-                    <span className='ml-1 text-[10px] text-error'>*bắt buộc</span>
-                  )}
+                  {field.required && <span className='ml-1 text-[10px] text-error'>*bắt buộc</span>}
                 </div>
                 <div className='space-y-0.5'>
                   <p className='text-xs text-foreground leading-relaxed'>{field.desc}</p>
@@ -78,10 +72,23 @@ export function JsonSchemaHelp() {
           <div className='bg-amber-50 dark:bg-amber-900/20 border border-amber-200/40 dark:border-amber-700/30 rounded-xl p-3.5 text-xs text-amber-800 dark:text-amber-200 space-y-1'>
             <p className='font-semibold'>⚠️ Lưu ý quan trọng:</p>
             <ul className='list-disc list-inside space-y-0.5 opacity-80'>
-              <li>File JSON có thể là một mảng các câu hỏi, hoặc một đối tượng có trường <code className='text-xs font-mono'>questions</code> chứa mảng câu hỏi.</li>
-              <li>Độ khó của câu hỏi nên đặt theo đúng level bạn đã chọn ở bước trước, nếu không câu hỏi sẽ bị loại hoặc báo lỗi.</li>
-              <li>Mỗi câu chỉ có duy nhất một đáp án đúng. Hãy đảm bảo chỉ một lựa chọn có <code className='text-xs font-mono'>isCorrect: true</code> hoặc <code className='text-xs font-mono'>correctOptionId</code> trỏ đúng.</li>
-              <li>Các trường không nằm trong danh sách trên (ví dụ <code className='text-xs font-mono'>_prompt</code>) sẽ được bỏ qua khi xử lý.</li>
+              <li>
+                File JSON có thể là một mảng các câu hỏi, hoặc một đối tượng có trường{' '}
+                <code className='text-xs font-mono'>questions</code> chứa mảng câu hỏi.
+              </li>
+              <li>
+                Độ khó của câu hỏi nên đặt theo đúng level bạn đã chọn ở bước trước, nếu không câu
+                hỏi sẽ bị loại hoặc báo lỗi.
+              </li>
+              <li>
+                Mỗi câu chỉ có duy nhất một đáp án đúng. Hãy đảm bảo chỉ một lựa chọn có{' '}
+                <code className='text-xs font-mono'>isCorrect: true</code> hoặc{' '}
+                <code className='text-xs font-mono'>correctOptionId</code> trỏ đúng.
+              </li>
+              <li>
+                Các trường không nằm trong danh sách trên (ví dụ{' '}
+                <code className='text-xs font-mono'>_prompt</code>) sẽ được bỏ qua khi xử lý.
+              </li>
             </ul>
           </div>
         </div>

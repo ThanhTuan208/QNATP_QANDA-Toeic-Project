@@ -62,9 +62,7 @@ export function OptionButton({ text, label, status, rationale, onSelect }: Optio
         {status === 'correct' && (
           <CheckCircle2 className='shrink-0 h-4 sm:h-5 w-4 sm:w-5 text-green-teal' />
         )}
-        {status === 'wrong' && (
-          <XCircle className='shrink-0 h-4 sm:h-5 w-4 sm:w-5 text-error' />
-        )}
+        {status === 'wrong' && <XCircle className='shrink-0 h-4 sm:h-5 w-4 sm:w-5 text-error' />}
       </div>
 
       {isRevealed && rationale && (

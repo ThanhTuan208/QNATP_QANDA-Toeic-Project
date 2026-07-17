@@ -84,7 +84,9 @@ export function SourceSelector({ source, onSourceChange }: SourceSelectorProps) 
               Coming soon
             </span>
           </div>
-          <p className='mt-0.5 text-xs sm:text-sm text-muted-foreground'>Chọn từ bộ câu hỏi đã lưu trước đó</p>
+          <p className='mt-0.5 text-xs sm:text-sm text-muted-foreground'>
+            Chọn từ bộ câu hỏi đã lưu trước đó
+          </p>
         </div>
       </button>
     </div>

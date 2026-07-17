@@ -28,9 +28,8 @@ export function CustomConfigForm({ parts, config, onConfigChange }: CustomConfig
     handleCountChange,
     applyPreset,
     handleDifficultyToggle,
-    applyAllPresets
+    applyAllPresets,
   } = useCustomConfig(parts, config, onConfigChange)
-
 
   const quickFormatButton = (
     <Button

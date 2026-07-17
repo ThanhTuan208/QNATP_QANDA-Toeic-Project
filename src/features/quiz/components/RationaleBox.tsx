@@ -32,7 +32,12 @@ export function RationaleBox({ isCorrect, rationale, onNext, hasNext }: Rational
             </>
           )}
         </div>
-        <p className={cn('text-xs sm:text-sm leading-5 sm:leading-6', isCorrect ? 'text-green-dark' : 'text-error')}>
+        <p
+          className={cn(
+            'text-xs sm:text-sm leading-5 sm:leading-6',
+            isCorrect ? 'text-green-dark' : 'text-error',
+          )}
+        >
           {rationale}
         </p>
       </div>

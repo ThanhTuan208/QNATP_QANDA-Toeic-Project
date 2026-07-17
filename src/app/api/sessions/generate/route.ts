@@ -52,13 +52,21 @@ export async function POST(request: NextRequest) {
         type: q.type.toLowerCase(),
         difficulty: q.difficulty.toLowerCase(),
         questionText: q.questionText,
-        options: q.options.map((o: { id: string; text: string; order: number; rationale?: string; isCorrect: boolean }) => ({
-          id: o.id,
-          text: o.text,
-          order: o.order,
-          rationale: o.rationale ?? '',
-          isCorrect: o.isCorrect,
-        })),
+        options: q.options.map(
+          (o: {
+            id: string
+            text: string
+            order: number
+            rationale?: string
+            isCorrect: boolean
+          }) => ({
+            id: o.id,
+            text: o.text,
+            order: o.order,
+            rationale: o.rationale ?? '',
+            isCorrect: o.isCorrect,
+          }),
+        ),
         correctOptionId: correctOption?.id ?? '',
         rationale: correctOption?.rationale ?? '',
         originalId: q.id,

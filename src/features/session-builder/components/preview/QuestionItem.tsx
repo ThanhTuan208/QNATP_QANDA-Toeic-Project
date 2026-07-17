@@ -110,7 +110,9 @@ export function QuestionItem({
             className='overflow-hidden'
           >
             <div className='px-3 sm:px-4 pb-3 sm:pb-4 space-y-3 border-t border-green-teal-10/30 dark:border-neutral-80/10 pt-3 bg-neutral-0/30 dark:bg-neutral-90/10'>
-              <p className='text-xs sm:text-sm font-medium text-foreground'>{question.questionText}</p>
+              <p className='text-xs sm:text-sm font-medium text-foreground'>
+                {question.questionText}
+              </p>
 
               <div className='space-y-1.5'>
                 {question.options.map((opt) => {
@@ -120,21 +122,29 @@ export function QuestionItem({
                   return (
                     <div
                       key={opt.id}
-                      className={`flex items-start gap-2 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl text-xs sm:text-sm transition-all duration-300 ${showAsCorrect
-                        ? 'bg-success-soft/20 text-success border border-success/30 shadow-xs'
-                        : showExplanation
-                          ? 'bg-safety-orange-5 text-error border border-safety-orange-20'
-                          : 'text-subtext-90 dark:text-neutral-30 border border-green-teal-10/10 bg-neutral-5/40 dark:bg-neutral-90/40'
-                        }`}
+                      className={`flex items-start gap-2 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl text-xs sm:text-sm transition-all duration-300 ${
+                        showAsCorrect
+                          ? 'bg-success-soft/20 text-success border border-success/30 shadow-xs'
+                          : showExplanation
+                            ? 'bg-safety-orange-5 text-error border border-safety-orange-20'
+                            : 'text-subtext-90 dark:text-neutral-30 border border-green-teal-10/10 bg-neutral-5/40 dark:bg-neutral-90/40'
+                      }`}
                     >
-                      {showAsCorrect && <CheckCircle2 className='size-3.5 sm:size-4.5 shrink-0 text-success' />}
+                      {showAsCorrect && (
+                        <CheckCircle2 className='size-3.5 sm:size-4.5 shrink-0 text-success' />
+                      )}
                       <span className='flex-1 min-w-0'>
                         <span className='font-bold'>
                           {opt.id}. {opt.text}
                         </span>
                         {showExplanation && (
-                          <span className={showAsCorrect ? 'text-success' : 'text-error dark:text-error/60'}>
-                            {' '}→ {opt.rationale}
+                          <span
+                            className={
+                              showAsCorrect ? 'text-success' : 'text-error dark:text-error/60'
+                            }
+                          >
+                            {' '}
+                            → {opt.rationale}
                           </span>
                         )}
                       </span>

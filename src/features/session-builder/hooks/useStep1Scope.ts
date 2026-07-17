@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { togglePartSelection } from '@/features/session-builder/utils/knowledge-groups'
+import { useEffect, useState } from 'react'
 import type { ScopeConfig } from '@/features/session-builder/types'
+import { togglePartSelection } from '@/features/session-builder/utils/knowledge-groups'
 import type { SessionQuestion } from '@/features/temp-session/types'
 
 export function useStep1Scope(
@@ -11,6 +11,10 @@ export function useStep1Scope(
   onScopeChange: (scope: ScopeConfig) => void,
 ) {
   const [pendingPart, setPendingPart] = useState<number | null>(null)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   const handleToggle = (part: number) => {
     const isRemoving = scope.parts.includes(part)

@@ -50,11 +50,11 @@ export function QuestionCard({
               {question.type}
             </span>
           </div>
-          {headerRight && (
-            <div className='shrink-0'>{headerRight}</div>
-          )}
+          {headerRight && <div className='shrink-0'>{headerRight}</div>}
         </div>
-        <p className='text-base sm:text-lg leading-6 sm:leading-7 text-foreground'>{question.questionText}</p>
+        <p className='text-base sm:text-lg leading-6 sm:leading-7 text-foreground'>
+          {question.questionText}
+        </p>
       </div>
 
       <div className='space-y-2 sm:space-y-3'>

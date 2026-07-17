@@ -55,7 +55,11 @@ export function CompletionScreen({
         >
           Retry Incorrect
         </Button>
-        <Button buttonType='outline' onClick={onBack} className='w-full sm:w-auto text-xs sm:text-sm'>
+        <Button
+          buttonType='outline'
+          onClick={onBack}
+          className='w-full sm:w-auto text-xs sm:text-sm'
+        >
           Back to Preview
         </Button>
       </div>

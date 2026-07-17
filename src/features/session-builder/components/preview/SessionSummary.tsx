@@ -1,5 +1,6 @@
 'use client'
 
+import { Clock, HelpCircle, Layers, Sparkles } from 'lucide-react'
 import { useMemo } from 'react'
 import { DIFFICULTY_LABELS, PART_LABELS } from '@/features/session-builder/constants'
 import { PRESETS } from '@/features/session-builder/constants/presets-data'
@@ -8,7 +9,6 @@ import type { PresetType } from '@/features/session-builder/types'
 import { estimateTime } from '@/features/session-builder/utils/estimate-time'
 import { computeQuestionStats } from '@/features/session-builder/utils/question-stats'
 import type { SessionQuestion } from '@/features/temp-session/types'
-import { Clock, HelpCircle, Layers, Sparkles } from 'lucide-react'
 
 interface SessionSummaryProps {
   preset: PresetType
@@ -34,7 +34,6 @@ export function SessionSummary({
 
   return (
     <div className='relative overflow-hidden bg-linear-to-r from-steel-blue/15 via-pale-teal/10 to-transparent dark:from-neutral-90 dark:bg-neutral-95 dark:border-neutral-90/40 rounded-3xl p-6 shadow-xl dark:shadow-none space-y-6 transition-all duration-300'>
-
       <div className='absolute top-0 left-1/4 -translate-x-1/2 w-48 h-48 bg-green-teal-5 blur-3xl rounded-full pointer-events-none' />
       <div className='relative flex items-center justify-between gap-4 bg-linear-to-r from-green-teal-5 to-transparent dark:from-green-teal-10 dark:to-transparent p-3.5 rounded-2xl'>
         <div className='flex items-center gap-3 min-w-0'>
@@ -51,10 +50,13 @@ export function SessionSummary({
           </div>
         </div>
 
-        <span className={`text-[10px] font-black tracking-wider uppercase px-3 py-1.5 rounded-xl border-2 transition-all shadow-sm ${source === 'system'
-          ? 'bg-green-teal-10 text-green-teal border-green-teal-20 dark:bg-green-teal-10 dark:text-pale-teal dark:border-green-teal-20'
-          : 'bg-green-teal-10 text-green-teal border-green-teal-20 dark:bg-green-teal-10 dark:text-pale-teal dark:border-green-teal-20'
-          }`}>
+        <span
+          className={`text-[10px] font-black tracking-wider uppercase px-3 py-1.5 rounded-xl border-2 transition-all shadow-sm ${
+            source === 'system'
+              ? 'bg-green-teal-10 text-green-teal border-green-teal-20 dark:bg-green-teal-10 dark:text-pale-teal dark:border-green-teal-20'
+              : 'bg-green-teal-10 text-green-teal border-green-teal-20 dark:bg-green-teal-10 dark:text-pale-teal dark:border-green-teal-20'
+          }`}
+        >
           {source === 'system' ? 'Hệ thống' : 'Tự luyện'}
         </span>
       </div>
@@ -72,43 +74,67 @@ export function SessionSummary({
             <span className='text-3xl font-black tracking-tight text-purple dark:text-purple-60'>
               {total}
             </span>
-            <span className='text-xs font-bold text-purple/60 dark:text-purple-80/60'>
-              câu
-            </span>
+            <span className='text-xs font-bold text-purple/60 dark:text-purple-80/60'>câu</span>
           </div>
         </div>
 
         {/* CARD 2: THỜI LƯỢNG DỰ TÍNH (Safety Orange nếu vượt hạn / Green Teal nếu an toàn) */}
-        <div className={`relative overflow-hidden border-2 p-4 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${isOverTime
-          ? 'bg-gradient-to-br from-safety-orange-5 to-transparent dark:from-safety-orange-10 dark:to-transparent border-safety-orange-20 dark:border-safety-orange-20 hover:shadow-safety-orange/10'
-          : 'bg-gradient-to-br from-green-teal-5 to-transparent dark:from-green-teal-10 dark:to-transparent border-green-teal-20 dark:border-green-teal-20 hover:shadow-green-teal/10'
-          }`}>
+        <div
+          className={`relative overflow-hidden border-2 p-4 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
+            isOverTime
+              ? 'bg-gradient-to-br from-safety-orange-5 to-transparent dark:from-safety-orange-10 dark:to-transparent border-safety-orange-20 dark:border-safety-orange-20 hover:shadow-safety-orange/10'
+              : 'bg-gradient-to-br from-green-teal-5 to-transparent dark:from-green-teal-10 dark:to-transparent border-green-teal-20 dark:border-green-teal-20 hover:shadow-green-teal/10'
+          }`}
+        >
           <div className='flex items-center justify-between w-full'>
-            <span className={`text-[10px] font-extrabold uppercase tracking-widest ${isOverTime ? 'text-safety-orange dark:text-safety-orange-80' : 'text-green-teal dark:text-green-teal-80'
-              }`}>
+            <span
+              className={`text-[10px] font-extrabold uppercase tracking-widest ${
+                isOverTime
+                  ? 'text-safety-orange dark:text-safety-orange-80'
+                  : 'text-green-teal dark:text-green-teal-80'
+              }`}
+            >
               Thời lượng dự tính
             </span>
-            <Clock className={`size-4 ${isOverTime ? 'text-safety-orange dark:text-safety-orange-80' : 'text-green-teal dark:text-green-teal-80'
-              }`} />
+            <Clock
+              className={`size-4 ${
+                isOverTime
+                  ? 'text-safety-orange dark:text-safety-orange-80'
+                  : 'text-green-teal dark:text-green-teal-80'
+              }`}
+            />
           </div>
 
           <div className='flex items-baseline justify-between gap-1 mt-4'>
             <div className='flex items-baseline gap-1'>
-              <span className={`text-3xl font-black tracking-tight ${isOverTime ? 'text-safety-orange dark:text-safety-orange-60' : 'text-green-dark dark:text-green-teal-60'
-                }`}>
+              <span
+                className={`text-3xl font-black tracking-tight ${
+                  isOverTime
+                    ? 'text-safety-orange dark:text-safety-orange-60'
+                    : 'text-green-dark dark:text-green-teal-60'
+                }`}
+              >
                 ~{estimated}
               </span>
-              <span className={`text-xs font-bold ${isOverTime ? 'text-safety-orange/60 dark:text-safety-orange-80/60' : 'text-green-teal/60 dark:text-green-teal-80/60'
-                }`}>
+              <span
+                className={`text-xs font-bold ${
+                  isOverTime
+                    ? 'text-safety-orange/60 dark:text-safety-orange-80/60'
+                    : 'text-green-teal/60 dark:text-green-teal-80/60'
+                }`}
+              >
                 phút
               </span>
             </div>
 
             {timeLimit != null && (
-              <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-lg border shadow-xs ${isOverTime
-                ? 'text-safety-orange bg-safety-orange-10 border-safety-orange-20 dark:text-safety-orange-80 dark:bg-safety-orange-5 dark:border-safety-orange-10'
-                : 'text-green-teal bg-green-teal-10 border-green-teal-20 dark:text-green-teal-80 dark:bg-green-teal-5 dark:border-green-teal-10'
-                }`}>
+              <span
+                className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-lg border shadow-xs ${
+                  isOverTime
+                    ? 'text-safety-orange bg-safety-orange-10 border-safety-orange-20 dark:text-safety-orange-80 dark:bg-safety-orange-5 dark:border-safety-orange-10'
+                    : 'text-green-teal bg-green-teal-10 border-green-teal-20 dark:text-green-teal-80 dark:bg-green-teal-5 dark:border-green-teal-10'
+                }`}
+              >
                 {isOverTime ? 'Tuyệt vời' : 'Cố lên'}
               </span>
             )}
@@ -119,21 +145,19 @@ export function SessionSummary({
       <div className='border-t-2 border-dashed border-neutral-100 dark:border-neutral-90/30' />
 
       <div className='space-y-4 text-sm relative z-10'>
-
         <div className='flex flex-col gap-2'>
           <div className='flex items-center gap-1.5 text-neutral-400 dark:text-neutral-500'>
             <Layers className='size-3.5' />
-            <span className='text-[10px] font-black uppercase tracking-widest'>
-              Độ khó phân bổ
-            </span>
+            <span className='text-[10px] font-black uppercase tracking-widest'>Độ khó phân bổ</span>
           </div>
 
           <div className='flex flex-wrap gap-2'>
             {DIFFICULTY_ORDER.filter((d) => stats.byDifficulty[d]).length === 0 ? (
-              <span className='text-xs text-neutral-400 dark:text-neutral-500 italic pl-1'>Mặc định</span>
+              <span className='text-xs text-neutral-400 dark:text-neutral-500 italic pl-1'>
+                Mặc định
+              </span>
             ) : (
               DIFFICULTY_ORDER.filter((d) => stats.byDifficulty[d]).map((d) => {
-
                 return (
                   <span
                     key={d}
@@ -145,7 +169,7 @@ export function SessionSummary({
                       {stats.byDifficulty[d]}
                     </span>
                   </span>
-                );
+                )
               })
             )}
           </div>
@@ -161,7 +185,9 @@ export function SessionSummary({
 
           <div className='flex flex-wrap gap-2'>
             {PART_ORDER.filter((p) => stats.byPart[p]).length === 0 ? (
-              <span className='text-xs text-neutral-400 dark:text-neutral-500 italic pl-1'>Chưa chọn phần</span>
+              <span className='text-xs text-neutral-400 dark:text-neutral-500 italic pl-1'>
+                Chưa chọn phần
+              </span>
             ) : (
               PART_ORDER.filter((p) => stats.byPart[p]).map((p) => (
                 <span
@@ -178,7 +204,6 @@ export function SessionSummary({
           </div>
         </div>
       </div>
-
     </div>
   )
 }

@@ -184,7 +184,14 @@ ${countSection}4. YÊU CẦU CHI TIẾT THEO TỪNG PART:
     onImportJsonChange('')
     onValidationErrorsChange([])
     setSuccessMessage('')
-  }, [onImportJsonChange, onValidationErrorsChange, config.difficulty, config.parts, config.knowledgeGroups, config.totalQuestions])
+  }, [
+    onImportJsonChange,
+    onValidationErrorsChange,
+    config.difficulty,
+    config.parts,
+    config.knowledgeGroups,
+    config.totalQuestions,
+  ])
 
   const handleClearRemoved = useCallback(() => {
     try {
