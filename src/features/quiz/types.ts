@@ -2,6 +2,7 @@ export interface Option {
   id: string
   text: string
   order: number
+  rationale?: string
 }
 
 export interface Question {

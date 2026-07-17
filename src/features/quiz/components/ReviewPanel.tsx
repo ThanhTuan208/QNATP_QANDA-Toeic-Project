@@ -27,12 +27,12 @@ function ReviewItem({
       <button
         type='button'
         onClick={() => setOpen(!open)}
-        className='w-full flex items-center gap-3 p-4 text-left hover:bg-muted/50 transition-colors'
+        className='w-full flex items-center gap-2 sm:gap-3 p-3 sm:p-4 text-left hover:bg-muted/50 transition-colors'
       >
-        <span className='w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 bg-muted'>
+        <span className='w-7 sm:w-8 h-7 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold shrink-0 bg-muted'>
           {index + 1}
         </span>
-        <span className='inline-block rounded-full bg-steel-blue-10 px-2 py-0.5 text-xs font-medium text-steel-blue shrink-0'>
+        <span className='inline-block rounded-full bg-green-teal-10 px-1.5 sm:px-2 py-0.5 text-[10px] sm:text-xs font-medium text-green-teal shrink-0'>
           {TYPE_LABEL_MAP_VIETNAM[question.type] ?? question.type}
         </span>
         <span className='text-sm font-medium text-foreground truncate flex-1'>
@@ -53,13 +53,13 @@ function ReviewItem({
       </button>
 
       {open && (
-        <div className='px-4 pb-4 space-y-3 border-t border-border'>
-          <p className='pt-3 text-sm text-foreground'>{question.questionText}</p>
-          <div className='space-y-2'>
+        <div className='px-3 sm:px-4 pb-3 sm:pb-4 space-y-2 sm:space-y-3 border-t border-border'>
+          <p className='pt-3 text-xs sm:text-sm text-foreground'>{question.questionText}</p>
+          <div className='space-y-1.5 sm:space-y-2'>
             {question.options.map((opt, idx) => {
               const isSelected = opt.id === record.selectedOptionId
               const isCorrectOpt = opt.id === record.correctOptionId
-              let className = 'rounded-xl border px-3 py-2 text-sm flex items-center gap-2'
+              let className = 'rounded-xl border px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm flex items-center gap-2'
               if (isSelected && isCorrectOpt) {
                 className += ' border-green-teal-20 bg-green-teal-5 text-green-dark'
               } else if (isSelected && !isCorrectOpt) {
@@ -80,7 +80,7 @@ function ReviewItem({
               )
             })}
           </div>
-          <div className='rounded-xl bg-muted p-3 text-sm text-muted-foreground'>
+          <div className='rounded-xl bg-muted p-2.5 sm:p-3 text-xs sm:text-sm text-muted-foreground'>
             <span className='font-medium text-foreground'>Giải thích: </span>
             {record.rationale}
           </div>
@@ -105,8 +105,8 @@ export function ReviewPanel({ questions, attemptHistory }: ReviewPanelProps) {
   if (sorted.length === 0) return null
 
   return (
-    <div className='space-y-3 p-6 bg-card rounded-2xl border border-border'>
-      <h3 className='text-sm font-semibold text-foreground'>Xem lại câu trả lời</h3>
+    <div className='space-y-3 p-4 sm:p-6 bg-card rounded-2xl border border-border'>
+      <h3 className='text-xs sm:text-sm font-semibold text-foreground'>Xem lại câu trả lời</h3>
       <div className='space-y-2'>
         {sorted.map(({ record, question }, i) => (
           <ReviewItem key={record.questionId} question={question} record={record} index={i} />
