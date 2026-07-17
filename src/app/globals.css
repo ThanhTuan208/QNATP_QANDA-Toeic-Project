@@ -51,6 +51,15 @@
   --steel-blue-10: oklch(0.732 0.072 254.2 / 0.1);
   --steel-blue-5: oklch(0.732 0.072 254.2 / 0.05);
 
+  /* Purple */
+  --purple-default: oklch(0.6 0.14 280);
+  --purple-80: oklch(0.6 0.14 280 / 0.8);
+  --purple-60: oklch(0.6 0.14 280 / 0.6);
+  --purple-40: oklch(0.6 0.14 280 / 0.4);
+  --purple-20: oklch(0.6 0.14 280 / 0.2);
+  --purple-10: oklch(0.6 0.14 280 / 0.1);
+  --purple-5: oklch(0.6 0.14 280 / 0.05);
+
   /* Sand */
   --sand-default: oklch(0.859 0.046 84.8); /* #e3d3b2 */
   --sand-80: oklch(0.859 0.046 84.8 / 0.8);
@@ -248,6 +257,15 @@
   --color-steel-blue-10: var(--steel-blue-10);
   --color-steel-blue-5: var(--steel-blue-5);
 
+  /* Purple Utilities */
+  --color-purple: var(--purple-default);
+  --color-purple-80: var(--purple-80);
+  --color-purple-60: var(--purple-60);
+  --color-purple-40: var(--purple-40);
+  --color-purple-20: var(--purple-20);
+  --color-purple-10: var(--purple-10);
+  --color-purple-5: var(--purple-5);
+
   /* Sand Utilities */
   --color-sand: var(--sand-default);
   --color-sand-80: var(--sand-80);
@@ -364,6 +382,7 @@
   --color-popover: var(--popover);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
 }
 
 @layer base {
