@@ -36,7 +36,7 @@ export function QuickFormatModal({
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent
         size='sm'
-        className='rounded-2xl border border-green-teal-10 dark:border-neutral-80/20 bg-background text-foreground shadow-2xl shadow-green-teal-20/20 dark:shadow-black/60 duration-300 data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-105 data-[state=open]:zoom-in-95'
+        className='rounded-2xl px-6 pt-6 pb-2 border border-green-teal-10 dark:border-neutral-80/20 bg-background text-foreground shadow-2xl shadow-green-teal-20/20 dark:shadow-black/60 duration-300 data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-105 data-[state=open]:zoom-in-95'
       >
         <DialogHeader
           showDivider

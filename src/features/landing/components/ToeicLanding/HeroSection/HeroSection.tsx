@@ -8,7 +8,7 @@ import { ResponsiveSection } from '@/features/landing/components/ToeicLanding/He
 
 export function HeroSection() {
   return (
-    <section className='relative overflow-hidden bg-linear-to-b from-green-teal-10 via-green-bright to-green-bright pb-16 pt-16 md:pb-20 md:pt-20 lg:pb-24'>
+    <section className='relative overflow-hidden bg-linear-to-b from-green-teal-10 via-green-bright to-green-bright py-4 md:pb-20 md:pt-20 lg:pb-24'>
       <div className='relative z-10 mx-auto max-w-7xl px-2 sm:px-6 md:px-8 lg:hidden'>
         <ResponsiveSection />
       </div>

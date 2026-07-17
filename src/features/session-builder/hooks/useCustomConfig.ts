@@ -8,8 +8,10 @@ import {
   toggleDifficulty,
 } from '@/features/session-builder/utils/presets'
 import type { KnowledgeGroupConfig, SessionConfig } from '@/features/temp-session/types'
+import { getKnowledgeGroupsForPart } from '@/features/session-builder/utils/knowledge-groups'
 
 export function useCustomConfig(
+  parts: number[],
   config: Partial<SessionConfig>,
   onConfigChange: (config: Partial<SessionConfig>) => void,
 ) {
@@ -79,9 +81,33 @@ export function useCustomConfig(
     [difficulties, config, onConfigChange],
   )
 
+  const configIssues = useMemo(() => {
+    const issues: { part: number; total: number }[] = []
+    for (const part of parts) {
+      const hasGroups = getKnowledgeGroupsForPart(part).length > 0
+      if (!hasGroups) continue
+      const total = (knowledgeGroups[part] ?? []).reduce((s, g) => s + g.count, 0)
+      if (total < 5) issues.push({ part, total })
+    }
+    return issues
+  }, [parts, knowledgeGroups])
+
+  const applyAllPresets = useCallback(
+    (allGroups: Record<number, KnowledgeGroupConfig[]>) => {
+      const merged = { ...knowledgeGroups, ...allGroups }
+      onConfigChange({
+        ...config,
+        knowledgeGroups: merged,
+        totalQuestions: calculateTotalQuestions(merged),
+      })
+    },
+    [knowledgeGroups, config, onConfigChange],
+  )
+
   const total = useMemo(() => calculateTotalQuestions(knowledgeGroups), [knowledgeGroups])
 
   return {
+    configIssues,
     knowledgeGroups,
     difficulties,
     total,
@@ -90,5 +116,6 @@ export function useCustomConfig(
     handleCountChange,
     applyPreset,
     handleDifficultyToggle,
+    applyAllPresets,
   }
 }

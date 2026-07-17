@@ -1,12 +1,10 @@
 'use client'
 
 import { AlertTriangle, Zap } from 'lucide-react'
-import { useCallback, useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/common/Button'
 import { useCustomConfig } from '@/features/session-builder/hooks/useCustomConfig'
-import { getKnowledgeGroupsForPart } from '@/features/session-builder/utils/knowledge-groups'
-import { calculateTotalQuestions } from '@/features/session-builder/utils/presets'
-import type { KnowledgeGroupConfig, SessionConfig } from '@/features/temp-session/types'
+import type { SessionConfig } from '@/features/temp-session/types'
 import { DifficultySection } from './DifficultySection'
 import { PartSection } from './PartSection'
 import { QuickFormat } from './QuickFormat'
@@ -22,6 +20,7 @@ interface CustomConfigFormProps {
 export function CustomConfigForm({ parts, config, onConfigChange }: CustomConfigFormProps) {
   const [showQuickFormat, setShowQuickFormat] = useState(false)
   const {
+    configIssues,
     knowledgeGroups,
     difficulties,
     total,
@@ -29,30 +28,9 @@ export function CustomConfigForm({ parts, config, onConfigChange }: CustomConfig
     handleCountChange,
     applyPreset,
     handleDifficultyToggle,
-  } = useCustomConfig(config, onConfigChange)
+    applyAllPresets
+  } = useCustomConfig(parts, config, onConfigChange)
 
-  const configIssues = useMemo(() => {
-    const issues: { part: number; total: number }[] = []
-    for (const part of parts) {
-      const hasGroups = getKnowledgeGroupsForPart(part).length > 0
-      if (!hasGroups) continue
-      const total = (knowledgeGroups[part] ?? []).reduce((s, g) => s + g.count, 0)
-      if (total < 5) issues.push({ part, total })
-    }
-    return issues
-  }, [parts, knowledgeGroups])
-
-  const applyAllPresets = useCallback(
-    (allGroups: Record<number, KnowledgeGroupConfig[]>) => {
-      const merged = { ...knowledgeGroups, ...allGroups }
-      onConfigChange({
-        ...config,
-        knowledgeGroups: merged,
-        totalQuestions: calculateTotalQuestions(merged),
-      })
-    },
-    [knowledgeGroups, config, onConfigChange],
-  )
 
   const quickFormatButton = (
     <Button

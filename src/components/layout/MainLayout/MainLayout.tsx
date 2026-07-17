@@ -26,7 +26,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   } = useMainLayoutController()
 
   return (
-    <div className='min-h-screen w-full bg-background'>
+    <div className='min-h-screen w-full bg-background flex flex-col'>
       <SiteHeader
         isMobileNavOpen={isMobileNavOpen}
         onMobileNavToggle={handleMobileNavToggle}
@@ -79,7 +79,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         children
       ) : (
         <main
-          className={`p-4 md:px-18 mt-2 min-h-screen transition-all duration-300 flex justify-center
+          className={`flex-1 py-6 md:px-18 transition-[margin-left] duration-300 flex justify-center items-center
             ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}
         >
           <div className='w-full max-w-6xl'>{children}</div>

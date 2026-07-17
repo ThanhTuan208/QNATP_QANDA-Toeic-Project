@@ -1,6 +1,7 @@
 'use client'
 
 import { AlertTriangle, CheckCircle2, Eraser, XCircle } from 'lucide-react'
+import { JsonSchemaHelp } from '@/features/session-builder/components/source/JsonSchemaHelp'
 import { Button } from '@/components/common/Button/Button'
 import { Label } from '@/components/common/Label'
 
@@ -30,9 +31,12 @@ export function JsonImportForm({
   return (
     <div className='space-y-4'>
       <div>
-        <Label htmlFor='import-json' className='block text-sm font-medium text-foreground mb-1'>
-          Nhập dữ liệu JSON
-        </Label>
+        <div className='flex items-center gap-1.5 mb-1'>
+          <Label htmlFor='import-json' className='text-sm font-medium text-foreground'>
+            Nhập dữ liệu JSON
+          </Label>
+          <JsonSchemaHelp />
+        </div>
         <p className='text-xs text-muted-foreground mb-3'>
           Paste JSON array of questions hoặc object có trường &quot;questions&quot;. Click &quot;Đặt
           lại mẫu&quot; để xem format.
@@ -43,30 +47,32 @@ export function JsonImportForm({
           onChange={(e) => {
             onTextChange(e.target.value)
           }}
-          className='w-full h-64 border border-border rounded-xl p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-primary bg-muted/50'
+          className='w-full h-40 sm:h-52 md:h-64 border border-border rounded-xl p-3 sm:p-4 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-primary bg-muted/50'
           placeholder='Paste JSON vào đây...'
         />
       </div>
 
-      <div className='flex gap-3'>
+      <div className='flex flex-col sm:flex-row gap-2 sm:gap-3'>
         <Button
           buttonType='fill'
           onClick={onValidate}
           disabled={!localText.trim() || isValidating}
           loading={isValidating}
           loadingText='Đang kiểm tra...'
+          className='w-full sm:w-auto'
         >
           Xác thực & Sử dụng
         </Button>
-        <Button buttonType='outline' onClick={onReset}>
+        <Button buttonType='outline' onClick={onReset} className='w-full sm:w-auto'>
           Đặt lại mẫu
         </Button>
-        <div className='ml-auto'>
+        <div className='sm:ml-auto'>
           <Button
             buttonType='outline'
             icon={<Eraser className='size-4' />}
             onClick={onClearRemoved}
             disabled={!hasExtraneousParts}
+            className='w-full sm:w-auto'
           >
             Xóa part đã hủy
           </Button>

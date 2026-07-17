@@ -25,6 +25,7 @@ export interface SessionQuestion {
     text: string
     order: number
     isCorrect?: boolean
+    rationale?: string
   }[]
   correctOptionId: string
   rationale: string

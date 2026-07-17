@@ -38,11 +38,11 @@ export function SessionBuilder() {
   )
 
   return (
-    <div className='max-w-4xl mx-auto py-2 space-y-4'>
+    <div className='max-w-5xl mx-auto px-10 md:py-4 space-y-4'>
       <AnimatePresence mode='popLayout'>
         {wizard.state.step === 'scope' && (
           <motion.div key='scope' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+            <div className='bg-card rounded-2xl border border-border/50 -mx-6 p-4 md:px-14 md:py-8 shadow-sm min-h-112'>
               <Step1Scope
                 scope={wizard.state.scope}
                 onScopeChange={wizard.setScope}
@@ -54,7 +54,7 @@ export function SessionBuilder() {
 
         {wizard.state.step === 'config' && (
           <motion.div key='config' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+            <div className='bg-card rounded-2xl border border-border/50 -mx-6 p-4 md:px-14 md:py-8 shadow-sm min-h-112'>
               <Step2Config
                 parts={wizard.state.scope.parts}
                 preset={wizard.state.preset}
@@ -68,7 +68,7 @@ export function SessionBuilder() {
 
         {wizard.state.step === 'source' && (
           <motion.div key='source' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+            <div className='bg-card rounded-2xl border border-border/50 -mx-6 p-6 md:px-14 md:py-8 shadow-sm'>
               <Step3Source
                 source={wizard.state.source}
                 config={wizard.state.config}
@@ -85,7 +85,7 @@ export function SessionBuilder() {
 
         {wizard.state.step === 'preview' && (
           <motion.div key='preview' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+            <div className='bg-card rounded-2xl border border-border/50 -mx-6 p-6 md:px-14 md:py-8 shadow-sm'>
               <Step4Preview
                 preset={wizard.state.preset}
                 config={wizard.state.config}
@@ -103,7 +103,7 @@ export function SessionBuilder() {
 
         {wizard.state.step === 'practice' && (
           <motion.div key='practice' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 px-10 -mx-10 py-6 shadow-sm'>
+            <div className='bg-card rounded-2xl border border-border/50 -mx-6 md:-mx-20 md:px-12 md:py-8 p-6 shadow-sm'>
               <Step5Practice
                 questions={wizard.state.questions}
                 onBack={wizard.prevStep}

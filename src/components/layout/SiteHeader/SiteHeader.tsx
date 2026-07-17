@@ -58,7 +58,7 @@ export function SiteHeader({
       <MobileNav
         isOpen={isMobileNavOpen}
         navItems={navItems}
-        onClose={onMobileNavClose ?? (() => {})}
+        onClose={onMobileNavClose ?? (() => { })}
       />
     </nav>
   )

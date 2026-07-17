@@ -28,6 +28,7 @@ interface RawOption {
   text?: unknown
   order?: unknown
   isCorrect?: unknown
+  rationale?: unknown
 }
 
 function isValidOption(value: unknown): value is RawOption {
@@ -136,6 +137,7 @@ export function parseImportedSessionJSON(raw: string): ParseResult {
         text: String(rOpt.text),
         order: Number(rOpt.order),
         isCorrect: Boolean(rOpt.isCorrect),
+        rationale: isValidString(rOpt.rationale) ? String(rOpt.rationale) : '',
       })
       if (rOpt.isCorrect) hasCorrectOption = true
     }

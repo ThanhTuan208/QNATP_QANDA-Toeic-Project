@@ -8,6 +8,7 @@ import type { PresetType } from '@/features/session-builder/types'
 import { estimateTime } from '@/features/session-builder/utils/estimate-time'
 import { computeQuestionStats } from '@/features/session-builder/utils/question-stats'
 import type { SessionQuestion } from '@/features/temp-session/types'
+import { Clock, HelpCircle, Layers, Sparkles } from 'lucide-react'
 
 interface SessionSummaryProps {
   preset: PresetType
@@ -29,116 +30,152 @@ export function SessionSummary({
   const stats = useMemo(() => computeQuestionStats(questions), [questions])
   const estimated = useMemo(() => estimateTime(stats.byPart), [stats])
 
-  return (
-    <div className='bg-card border border-green-teal-10/40 dark:border-neutral-80/10 rounded-2xl p-5 md:p-6 space-y-5 shadow-sm shadow-green-teal-5/5'>
+  const isOverTime = timeLimit != null && timeLimit < estimated
 
-      {/* 1. TOP HEADER: Thông tin Preset cốt lõi */}
-      <div className='flex items-center justify-between gap-4'>
+  return (
+    <div className='relative overflow-hidden bg-linear-to-r from-steel-blue/15 via-pale-teal/10 to-transparent dark:from-neutral-90 dark:bg-neutral-95 dark:border-neutral-90/40 rounded-3xl p-6 shadow-xl dark:shadow-none space-y-6 transition-all duration-300'>
+
+      <div className='absolute top-0 left-1/4 -translate-x-1/2 w-48 h-48 bg-green-teal-5 blur-3xl rounded-full pointer-events-none' />
+      <div className='relative flex items-center justify-between gap-4 bg-linear-to-r from-green-teal-5 to-transparent dark:from-green-teal-10 dark:to-transparent p-3.5 rounded-2xl'>
         <div className='flex items-center gap-3 min-w-0'>
-          <div className='p-2 rounded-xl bg-green-teal-10/40 dark:bg-neutral-80/10 text-green-teal dark:text-pale-teal shrink-0'>
-            {PresetIcon && <PresetIcon className='size-4.5' />}
+          <div className='p-2.5 rounded-xl bg-linear-to-br from-green-teal to-green-dark text-white shrink-0 shadow-lg shadow-green-teal/20 dark:shadow-none'>
+            {PresetIcon ? <PresetIcon className='size-5' /> : <Sparkles className='size-5' />}
           </div>
           <div className='min-w-0 flex flex-col'>
-            <span className='text-[10px] uppercase font-bold tracking-wider text-subtext-50 dark:text-neutral-45 mb-0.5'>
-              Cấu hình đang chọn
+            <span className='text-[10px] uppercase font-black tracking-wider text-green-teal/80 dark:text-pale-teal/80 mb-0.5'>
+              Cấu hình phiên
             </span>
-            <span className='text-sm md:text-base font-extrabold text-foreground truncate'>
+            <span className='text-base font-black text-foreground tracking-tight truncate'>
               {presetInfo?.label ?? preset}
             </span>
           </div>
         </div>
 
-        <span className={`text-[9px] md:text-[10px] font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-lg border shrink-0 ${source === 'system'
-          ? 'bg-green-teal-10/50 text-green-teal border-green-teal-15 dark:bg-green-teal-20/10'
-          : 'bg-neutral-5 dark:bg-neutral-90/20 text-subtext-50 dark:text-neutral-40 border-transparent'
+        <span className={`text-[10px] font-black tracking-wider uppercase px-3 py-1.5 rounded-xl border-2 transition-all shadow-sm ${source === 'system'
+          ? 'bg-green-teal-10 text-green-teal border-green-teal-20 dark:bg-green-teal-10 dark:text-pale-teal dark:border-green-teal-20'
+          : 'bg-green-teal-10 text-green-teal border-green-teal-20 dark:bg-green-teal-10 dark:text-pale-teal dark:border-green-teal-20'
           }`}>
-          {source === 'system' ? 'Ngân hàng hệ thống' : 'Tự luyện tập'}
+          {source === 'system' ? 'Hệ thống' : 'Tự luyện'}
         </span>
       </div>
 
-      {/* Đường cắt ngang tinh tế */}
-      <div className='h-px bg-green-teal-10/20 dark:bg-neutral-80/10' />
+      <div className='grid grid-cols-2 gap-4 relative z-10'>
+        {/* CARD 1: TỔNG SỐ CÂU HỎI (Tone Purple) */}
+        <div className='relative overflow-hidden bg-gradient-to-br from-purple-5 to-transparent dark:from-purple-10 dark:to-transparent border-2 border-purple-20 dark:border-purple-20 p-4 rounded-2xl flex flex-col justify-between group transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-purple/10'>
+          <div className='flex items-center justify-between text-purple dark:text-purple-80'>
+            <span className='text-[10px] font-extrabold uppercase tracking-widest opacity-80'>
+              Tổng số câu hỏi
+            </span>
+            <HelpCircle className='size-4 opacity-75' />
+          </div>
+          <div className='flex items-baseline gap-1 mt-4'>
+            <span className='text-3xl font-black tracking-tight text-purple dark:text-purple-60'>
+              {total}
+            </span>
+            <span className='text-xs font-bold text-purple/60 dark:text-purple-80/60'>
+              câu
+            </span>
+          </div>
+        </div>
 
-      {/* 2. DETAILED BREAKDOWN: Tách biệt rạch ròi Parts & Levels theo hàng dọc dọc */}
-      <div className='space-y-4'>
-        {/* Hàng hiển thị Levels */}
-        <div className='flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-4'>
-          <span className='text-[10px] font-bold uppercase tracking-wider text-subtext-50 dark:text-neutral-45 sm:w-16 sm:pt-1'>
-            Độ khó:
-          </span>
-          <div className='flex flex-wrap gap-1.5 flex-1'>
+        {/* CARD 2: THỜI LƯỢNG DỰ TÍNH (Safety Orange nếu vượt hạn / Green Teal nếu an toàn) */}
+        <div className={`relative overflow-hidden border-2 p-4 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${isOverTime
+          ? 'bg-gradient-to-br from-safety-orange-5 to-transparent dark:from-safety-orange-10 dark:to-transparent border-safety-orange-20 dark:border-safety-orange-20 hover:shadow-safety-orange/10'
+          : 'bg-gradient-to-br from-green-teal-5 to-transparent dark:from-green-teal-10 dark:to-transparent border-green-teal-20 dark:border-green-teal-20 hover:shadow-green-teal/10'
+          }`}>
+          <div className='flex items-center justify-between w-full'>
+            <span className={`text-[10px] font-extrabold uppercase tracking-widest ${isOverTime ? 'text-safety-orange dark:text-safety-orange-80' : 'text-green-teal dark:text-green-teal-80'
+              }`}>
+              Thời lượng dự tính
+            </span>
+            <Clock className={`size-4 ${isOverTime ? 'text-safety-orange dark:text-safety-orange-80' : 'text-green-teal dark:text-green-teal-80'
+              }`} />
+          </div>
+
+          <div className='flex items-baseline justify-between gap-1 mt-4'>
+            <div className='flex items-baseline gap-1'>
+              <span className={`text-3xl font-black tracking-tight ${isOverTime ? 'text-safety-orange dark:text-safety-orange-60' : 'text-green-dark dark:text-green-teal-60'
+                }`}>
+                ~{estimated}
+              </span>
+              <span className={`text-xs font-bold ${isOverTime ? 'text-safety-orange/60 dark:text-safety-orange-80/60' : 'text-green-teal/60 dark:text-green-teal-80/60'
+                }`}>
+                phút
+              </span>
+            </div>
+
+            {timeLimit != null && (
+              <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-lg border shadow-xs ${isOverTime
+                ? 'text-safety-orange bg-safety-orange-10 border-safety-orange-20 dark:text-safety-orange-80 dark:bg-safety-orange-5 dark:border-safety-orange-10'
+                : 'text-green-teal bg-green-teal-10 border-green-teal-20 dark:text-green-teal-80 dark:bg-green-teal-5 dark:border-green-teal-10'
+                }`}>
+                {isOverTime ? 'Tuyệt vời' : 'Cố lên'}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className='border-t-2 border-dashed border-neutral-100 dark:border-neutral-90/30' />
+
+      <div className='space-y-4 text-sm relative z-10'>
+
+        <div className='flex flex-col gap-2'>
+          <div className='flex items-center gap-1.5 text-neutral-400 dark:text-neutral-500'>
+            <Layers className='size-3.5' />
+            <span className='text-[10px] font-black uppercase tracking-widest'>
+              Độ khó phân bổ
+            </span>
+          </div>
+
+          <div className='flex flex-wrap gap-2'>
             {DIFFICULTY_ORDER.filter((d) => stats.byDifficulty[d]).length === 0 ? (
-              <span className='text-xs text-subtext-90/60 dark:text-neutral-40 italic'>Trống</span>
+              <span className='text-xs text-neutral-400 dark:text-neutral-500 italic pl-1'>Mặc định</span>
             ) : (
-              DIFFICULTY_ORDER.filter((d) => stats.byDifficulty[d]).map((d) => (
-                <span
-                  key={d}
-                  className='inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-bold text-green-teal dark:text-pale-teal bg-green-teal-10 dark:bg-green-teal-20/10 border border-green-teal-10/20'
-                >
-                  {DIFFICULTY_LABELS[d] ?? d}
-                  <span className='text-[10px] opacity-60 font-medium'>({stats.byDifficulty[d]})</span>
-                </span>
-              ))
+              DIFFICULTY_ORDER.filter((d) => stats.byDifficulty[d]).map((d) => {
+
+                return (
+                  <span
+                    key={d}
+                    className='inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold shadow-sm border
+                       text-neutral-100 bg-pale-teal-5 dark:bg-pale-teal-10/30 border-pale-teal-20 dark:border-pale-teal-20'
+                  >
+                    {DIFFICULTY_LABELS[d] ?? d}
+                    <span className='text-[10px] font-black px-1.5 py-0.5 rounded-md min-w-5 text-center shadow-inner text-white bg-pale-teal dark:bg-pale-teal'>
+                      {stats.byDifficulty[d]}
+                    </span>
+                  </span>
+                );
+              })
             )}
           </div>
         </div>
 
-        {/* Hàng hiển thị Parts */}
-        <div className='flex flex-col sm:flex-row sm:items-start gap-1.5 sm:gap-4'>
-          <span className='text-[10px] font-bold uppercase tracking-wider text-subtext-50 dark:text-neutral-45 sm:w-20 sm:pt-1'>
-            Phần luyện:
-          </span>
-          <div className='flex flex-wrap gap-1.5 flex-1'>
+        <div className='flex flex-col gap-2'>
+          <div className='flex items-center gap-1.5 text-neutral-400 dark:text-neutral-500'>
+            <Layers className='size-3.5' />
+            <span className='text-[10px] font-black uppercase tracking-widest'>
+              Cấu trúc bài luyện
+            </span>
+          </div>
+
+          <div className='flex flex-wrap gap-2'>
             {PART_ORDER.filter((p) => stats.byPart[p]).length === 0 ? (
-              <span className='text-xs text-subtext-90/60 dark:text-neutral-40 italic'>Chưa chọn phần nào</span>
+              <span className='text-xs text-neutral-400 dark:text-neutral-500 italic pl-1'>Chưa chọn phần</span>
             ) : (
               PART_ORDER.filter((p) => stats.byPart[p]).map((p) => (
                 <span
                   key={p}
-                  className='inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-bold text-primary-teal dark:text-pale-light bg-pale-teal-10/40 dark:bg-pale-teal-20/10 border border-pale-teal-20/10'
+                  className='inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold text-neutral-100 dark:text-pale-teal bg-linear-to-r from-steel-blue-5 to-pale-teal-5 dark:from-steel-blue-10 dark:to-pale-teal-10 border border-steel-blue-20 dark:border-pale-teal-20 shadow-sm'
                 >
                   {PART_LABELS[p] ?? `Part ${p}`}
-                  <span className='text-[10px] opacity-60 font-medium'>({stats.byPart[p]})</span>
+                  <span className='text-[10px] font-black text-white bg-pale-teal dark:bg-pale-teal px-1.5 py-0.2 rounded-md min-w-5 text-center shadow-sm'>
+                    {stats.byPart[p]}
+                  </span>
                 </span>
               ))
             )}
           </div>
-        </div>
-      </div>
-
-      {/* 3. GRID STATS FOOTER: Khối tổng quan dữ liệu dạng lưới lớn, thoáng đãng */}
-      <div className='grid grid-cols-2 gap-4 pt-2'>
-        {/* Ô Tổng câu hỏi */}
-        <div className='bg-green-bright/5 dark:bg-neutral-90/10 border border-green-teal-10/20 p-3.5 rounded-2xl flex flex-col justify-between min-h-[76px]'>
-          <span className='text-[10px] font-bold uppercase tracking-wider text-subtext-50 dark:text-neutral-45'>
-            Tổng số câu hỏi
-          </span>
-          <span className='text-lg md:text-xl font-black text-primary-teal dark:text-pale-teal leading-none mt-2'>
-            {total} <span className='text-xs font-bold text-subtext-90 dark:text-neutral-30 opacity-70'>câu</span>
-          </span>
-        </div>
-
-        {/* Ô Ước tính thời gian */}
-        <div className='bg-green-bright/5 dark:bg-neutral-90/10 border border-green-teal-10/20 p-3.5 rounded-2xl flex flex-col justify-between relative overflow-hidden min-h-[76px]'>
-          <div className='flex items-start justify-between gap-2 w-full'>
-            <span className='text-[10px] font-bold uppercase tracking-wider text-subtext-50 dark:text-neutral-45'>
-              Thời gian dự tính
-            </span>
-
-            {/* Nhãn cảnh báo Time Limit (Gọn gàng đặt góc phải) */}
-            {timeLimit != null && (
-              <span className={`text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md border ${timeLimit < estimated
-                ? 'text-amber-700 dark:text-amber-300 bg-amber-100/80 dark:bg-amber-900/40 border-amber-200/20 animate-pulse'
-                : 'text-success dark:text-success/80 bg-success-soft/20 border-success/15'
-                }`}>
-                {timeLimit < estimated ? '🔥 Quá giờ' : '👍 An toàn'}
-              </span>
-            )}
-          </div>
-
-          <span className='text-lg md:text-xl font-black text-primary-teal dark:text-pale-teal leading-none mt-2'>
-            ~{estimated} <span className='text-xs font-bold text-subtext-90 dark:text-neutral-30 opacity-70'>phút</span>
-          </span>
         </div>
       </div>
 

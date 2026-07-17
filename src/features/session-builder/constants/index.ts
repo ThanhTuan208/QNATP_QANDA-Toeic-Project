@@ -1,4 +1,5 @@
 export { DEFAULT_DIFFICULTY, DIFFICULTIES, DIFFICULTY_LABELS } from './difficulty'
+export { IMPORT_SCHEMA_FIELDS } from './json-schema'
 export { IMPORT_TEMPLATE } from './import-template'
 export type {
   KnowledgeGroupType,

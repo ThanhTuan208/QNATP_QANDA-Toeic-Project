@@ -15,7 +15,7 @@ export function MobileNav({ isOpen, navItems, onClose }: MobileNavProps) {
     <AnimatePresence>
       {isOpen && (
         <>
-          <motion.div
+      <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -29,7 +29,7 @@ export function MobileNav({ isOpen, navItems, onClose }: MobileNavProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-            className='absolute top-full left-0 right-0 z-50 lg:hidden max-h-[calc(100vh-4.5rem)] overflow-y-auto bg-white border-b border-border shadow-xl'
+            className='absolute top-full left-0 right-0 z-50 lg:hidden max-h-[calc(100dvh-4rem)] sm:max-h-[calc(100dvh-4.5rem)] overflow-y-auto bg-white border-b border-border shadow-xl'
           >
             <div className='px-4 py-4 space-y-1'>
               {navItems.map((item) => {

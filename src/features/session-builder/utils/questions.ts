@@ -18,6 +18,7 @@ export function sessionQuestionToQuizQuestion(sq: SessionQuestion): Question {
       id: o.id,
       text: o.text,
       order: o.order,
+      rationale: o.rationale,
     })),
   }
 }

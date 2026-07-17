@@ -27,12 +27,12 @@ export function QuickFormat({
 
   return (
     <AnimatePresence>
-      {show && (
+      {!show && (
         <motion.div
           initial={{ width: 0, opacity: 0, x: 40 }}
           animate={{ width: 380, opacity: 1, x: 0 }}
           exit={{ width: 0, opacity: 0, x: 40 }}
-          transition={{ duration: 0.45, ease: 'easeInOut' }}
+          transition={{ duration: 0.45, ease: 'linear' }}
           className='shrink-0 overflow-hidden border-l border-green-teal-10/50 dark:border-neutral-80/20 pl-5'
         >
           <div className='flex flex-col w-88' style={{ height: '640px', maxHeight: '80vh' }}>

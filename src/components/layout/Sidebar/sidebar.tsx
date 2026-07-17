@@ -40,7 +40,6 @@ export default function Sidebar({
     <>
       <SidebarOverlay isOpen={isOpen} onClose={onClose} />
 
-      {/* Floating toggle for mobile when sidebar is closed */}
       {!isOpen && onToggle && (
         <button
           type='button'

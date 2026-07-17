@@ -19,13 +19,13 @@ export function CompletionScreen({
   onBack,
 }: CompletionScreenProps) {
   return (
-    <div className='space-y-6'>
+    <div className='space-y-5 sm:space-y-6'>
       <div className='text-center space-y-2'>
-        <h3 className='text-2xl font-bold text-foreground'>Practice Complete</h3>
-        <p className='text-4xl font-bold text-primary'>
+        <h3 className='text-xl sm:text-2xl font-bold text-foreground'>Practice Complete</h3>
+        <p className='text-3xl sm:text-4xl font-bold text-primary'>
           {correctCount}/{totalCount}
         </p>
-        <p className='text-sm text-muted-foreground'>
+        <p className='text-xs sm:text-sm text-muted-foreground'>
           {totalCount > 0
             ? `Accuracy: ${Math.round((correctCount / totalCount) * 100)}%`
             : 'No questions answered'}
@@ -33,10 +33,10 @@ export function CompletionScreen({
       </div>
 
       {Object.entries(typeStats).length > 0 && (
-        <div className='bg-card border border-border rounded-xl p-4 space-y-2'>
-          <h4 className='text-sm font-semibold text-foreground'>Breakdown</h4>
+        <div className='bg-card border border-border rounded-xl p-3 sm:p-4 space-y-2'>
+          <h4 className='text-xs sm:text-sm font-semibold text-foreground'>Breakdown</h4>
           {Object.entries(typeStats).map(([type, stat]) => (
-            <div key={type} className='flex items-center justify-between text-sm'>
+            <div key={type} className='flex items-center justify-between text-xs sm:text-sm'>
               <span className='text-muted-foreground'>{type}</span>
               <span className='font-medium text-foreground'>
                 {stat.correct}/{stat.total}
@@ -46,15 +46,16 @@ export function CompletionScreen({
         </div>
       )}
 
-      <div className='flex gap-3'>
+      <div className='flex flex-col sm:flex-row gap-2 sm:gap-3'>
         <Button
           buttonType='fill'
-          icon={<RefreshCw className='size-4' />}
+          icon={<RefreshCw className='size-3.5 sm:size-4' />}
           onClick={onRetryIncorrect}
+          className='w-full sm:w-auto text-xs sm:text-sm'
         >
           Retry Incorrect
         </Button>
-        <Button buttonType='outline' onClick={onBack}>
+        <Button buttonType='outline' onClick={onBack} className='w-full sm:w-auto text-xs sm:text-sm'>
           Back to Preview
         </Button>
       </div>

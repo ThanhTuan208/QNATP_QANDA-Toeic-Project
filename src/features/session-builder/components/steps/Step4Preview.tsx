@@ -98,49 +98,51 @@ export function Step4Preview({
       />
 
       <div className='space-y-3'>
-        <div className='flex items-center justify-between'>
+        <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3'>
           <h4 className='text-sm font-bold text-primary-teal dark:text-pale-light'>
             Questions ({localQuestions.length})
           </h4>
-          <div className='flex items-center gap-2 bg-green-bright/20 dark:bg-neutral-90/40 px-3 py-1.5 rounded-xl border border-green-teal-10/50 dark:border-neutral-80/10'>
+          <div className='flex flex-wrap items-center gap-1.5 sm:gap-2 bg-green-bright/20 dark:bg-neutral-90/40 px-2 sm:px-3 py-1.5 rounded-xl border border-green-teal-10/50 dark:border-neutral-80/10'>
             <button
               type='button'
               onClick={shuffle}
-              className={`flex items-center gap-1.5 px-1.5 py-1 rounded-lg text-xs font-medium transition-all ${
+              className={`flex items-center gap-1 px-1.5 py-1 rounded-lg text-[10px] sm:text-xs font-medium transition-all ${
                 shuffled
                   ? 'bg-green-teal text-white shadow-xs'
                   : 'text-subtext-90 dark:text-neutral-30 hover:bg-green-teal-10 dark:hover:bg-neutral-80/20'
               }`}
             >
-              <Shuffle className='size-3.5' />
+              <Shuffle className='size-3 sm:size-3.5' />
               Shuffle
             </button>
             <button
               type='button'
               onClick={resetOrder}
-              className='flex items-center gap-1.5 px-1.5 py-1 rounded-lg text-xs font-medium text-subtext-90 dark:text-neutral-30 hover:bg-green-teal-10 dark:hover:bg-neutral-80/20 transition-all'
+              className='flex items-center gap-1 px-1.5 py-1 rounded-lg text-[10px] sm:text-xs font-medium text-subtext-90 dark:text-neutral-30 hover:bg-green-teal-10 dark:hover:bg-neutral-80/20 transition-all'
             >
               Reset
             </button>
-            <div className='h-3 w-px bg-green-teal-10 dark:bg-neutral-80/20' />
-            <Label className='flex items-center gap-2 text-xs text-subtext-90 dark:text-neutral-30 cursor-pointer select-none'>
+            <div className='h-3 w-px bg-green-teal-10 dark:bg-neutral-80/10' />
+            <Label className='flex items-center gap-1.5 text-[10px] sm:text-xs text-subtext-90 dark:text-neutral-30 cursor-pointer select-none'>
               <Switch
                 checked={showAnswers}
                 onCheckedChange={setShowAnswers}
-                className='data-[state=checked]:bg-green-teal'
+                className='data-[state=checked]:bg-green-teal scale-75 sm:scale-100 origin-left'
               />
-              Show Answers
+              <span className='hidden sm:inline'>Show Answers</span>
+              <span className='sm:hidden'>Answers</span>
             </Label>
-            <div className='h-3 w-px bg-green-teal-10 dark:bg-neutral-80/20' />
-            <Label className='flex items-center gap-2 text-xs text-subtext-90 dark:text-neutral-30 cursor-pointer select-none'>
+            <div className='h-3 w-px bg-green-teal-10 dark:bg-neutral-80/10' />
+            <Label className='flex items-center gap-1.5 text-[10px] sm:text-xs text-subtext-90 dark:text-neutral-30 cursor-pointer select-none'>
               <Switch
                 checked={showCorrect}
                 onCheckedChange={setShowCorrect}
-                className='data-[state=checked]:bg-green-teal'
+                className='data-[state=checked]:bg-green-teal scale-75 sm:scale-100 origin-left'
               />
-              Show Correct
+              <span className='hidden sm:inline'>Show Correct</span>
+              <span className='sm:hidden'>Correct</span>
             </Label>
-            <div className='h-3 w-px bg-green-teal-10 dark:bg-neutral-80/20' />
+            <div className='h-3 w-px bg-green-teal-10 dark:bg-neutral-80/10' />
             <TimeLimitSelect config={config} onConfigChange={onConfigChange} />
           </div>
         </div>

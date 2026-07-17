@@ -28,8 +28,8 @@ export function TimeLimitSelect({ config, onConfigChange }: Props) {
   return (
     <Select value={currentValue} onValueChange={handleValueChange}>
       <SelectTrigger
-        className='flex items-center gap-2 px-3 py-1.5 h-8 w-fit min-w-[130px] rounded-xl border border-green-teal-10/40 dark:border-neutral-80/10 bg-green-bright/10 dark:bg-neutral-90/20 hover:border-green-teal-20 dark:hover:border-neutral-80/30 text-xs font-bold text-primary-teal dark:text-pale-light focus:ring-1 focus:ring-green-teal-10 dark:focus:ring-pale-teal/20 focus:ring-offset-0 transition-all duration-300 group'
-        icon={<Clock className='size-3.5 text-green-teal dark:text-pale-teal shrink-0 transition-transform duration-300 group-hover:scale-105' />}
+        className='flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 h-7 sm:h-8 w-fit min-w-0 sm:min-w-[130px] rounded-xl border border-green-teal-10/40 dark:border-neutral-80/10 bg-green-bright/10 dark:bg-neutral-90/20 hover:border-green-teal-20 dark:hover:border-neutral-80/30 text-[10px] sm:text-xs font-bold text-primary-teal dark:text-pale-light focus:ring-1 focus:ring-green-teal-10 dark:focus:ring-pale-teal/20 focus:ring-offset-0 transition-all duration-300 group'
+        icon={<Clock className='size-3 sm:size-3.5 text-green-teal dark:text-pale-teal shrink-0 transition-transform duration-300 group-hover:scale-105' />}
       >
         <SelectValue placeholder='No limit' />
       </SelectTrigger>
