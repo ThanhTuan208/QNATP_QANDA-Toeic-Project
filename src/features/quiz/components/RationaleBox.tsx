@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, CheckCircle2, XCircle } from 'lucide-react'
+import { ArrowRight, BookOpen } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface RationaleBoxProps {
@@ -15,41 +15,33 @@ export function RationaleBox({ isCorrect, rationale, onNext, hasNext }: Rational
     <div className='space-y-4'>
       <div
         className={cn(
-          'rounded-xl border-2 p-4 sm:p-5',
-          isCorrect ? 'border-green-teal-20 bg-green-teal-5' : 'border-error/20 bg-error-soft',
+          'rounded-xl border p-4 sm:p-5 flex gap-3 transition-colors',
+          isCorrect ? 'border-primary/20 bg-primary/5' : 'border-rose-500/20 bg-rose-500/5',
         )}
       >
-        <div className='mb-2.5 sm:mb-3 flex items-center gap-2'>
-          {isCorrect ? (
-            <>
-              <CheckCircle2 className='h-5 sm:h-6 w-5 sm:w-6 text-green-teal' />
-              <span className='text-base sm:text-lg font-semibold text-green-dark'>Correct!</span>
-            </>
-          ) : (
-            <>
-              <XCircle className='h-5 sm:h-6 w-5 sm:w-6 text-error' />
-              <span className='text-base sm:text-lg font-semibold text-error'>Incorrect</span>
-            </>
-          )}
+        <BookOpen
+          className='w-4 h-4 flex-shrink-0 mt-0.5'
+          style={{ color: isCorrect ? 'var(--color-option-a)' : 'var(--color-quiz-error)' }}
+        />
+        <div>
+          <p
+            className='text-xs font-semibold mb-1'
+            style={{ color: isCorrect ? 'var(--color-option-a)' : 'var(--color-quiz-error)' }}
+          >
+            {isCorrect ? 'Chính xác!' : 'Sai rồi!'}
+          </p>
+          <p className='text-sm leading-relaxed text-foreground/80 font-medium'>{rationale}</p>
         </div>
-        <p
-          className={cn(
-            'text-xs sm:text-sm leading-5 sm:leading-6',
-            isCorrect ? 'text-green-dark' : 'text-error',
-          )}
-        >
-          {rationale}
-        </p>
       </div>
 
       {hasNext && (
         <button
           type='button'
           onClick={onNext}
-          className='flex w-full items-center justify-center gap-2 rounded-xl bg-neutral-90 px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-neutral-0 transition-colors hover:bg-neutral-80'
+          className='flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 active:scale-[0.98]'
         >
-          Next Question
-          <ArrowRight className='h-3.5 sm:h-4 w-3.5 sm:w-4' />
+          Câu tiếp
+          <ArrowRight className='h-4 w-4' />
         </button>
       )}
     </div>

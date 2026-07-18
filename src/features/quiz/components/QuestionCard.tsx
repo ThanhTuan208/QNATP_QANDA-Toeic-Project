@@ -1,5 +1,6 @@
 'use client'
 
+import { BookOpen, Flag } from 'lucide-react'
 import { OptionButton } from '@/features/quiz/components/OptionButton'
 import { OPTION_LABELS } from '@/features/quiz/constants'
 import type { OptionStatus } from '@/features/quiz/types'
@@ -28,6 +29,10 @@ interface QuestionCardProps {
   onSelect: (optionId: string) => void
   headerLeft?: React.ReactNode
   headerRight?: React.ReactNode
+  showFlag?: boolean
+  isFlagged?: boolean
+  onToggleFlag?: () => void
+  questionNumber?: number
 }
 
 export function QuestionCard({
@@ -37,22 +42,51 @@ export function QuestionCard({
   onSelect,
   headerLeft,
   headerRight,
+  showFlag,
+  isFlagged,
+  onToggleFlag,
+  questionNumber,
 }: QuestionCardProps) {
   const isAnswered = correctOptionId !== null
+  const correctOption = question.options.find((o) => o.id === correctOptionId)
+  const rationale = correctOption?.rationale
 
   return (
     <div className='space-y-4 sm:space-y-6'>
-      <div className='space-y-2'>
+      <div className='space-y-3'>
         <div className='flex items-center justify-between gap-2'>
-          <div className='flex items-center gap-2 sm:gap-3 min-w-0'>
+          <div className='flex items-center gap-2 sm:gap-3 min-w-0 flex-wrap'>
             {headerLeft}
-            <span className='inline-block rounded-full bg-green-teal-10 px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-green-teal shrink-0'>
+            <span className='inline-block rounded-full bg-muted px-2.5 py-0.5 text-[10px] sm:text-xs font-medium text-muted-foreground shrink-0'>
               {question.type}
             </span>
           </div>
-          {headerRight && <div className='shrink-0'>{headerRight}</div>}
+          <div className='flex items-center gap-2 shrink-0'>
+            {showFlag && (
+              <button
+                type='button'
+                onClick={onToggleFlag}
+                title='Đánh dấu câu này'
+                className='shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all hover:scale-110'
+                style={{
+                  background: isFlagged ? 'rgba(var(--color-option-c-rgb), 0.15)' : 'transparent',
+                  border: `1px solid ${isFlagged ? 'rgba(var(--color-option-c-rgb), 0.4)' : 'transparent'}`,
+                }}
+              >
+                <Flag
+                  className='w-3.5 h-3.5'
+                  style={{
+                    color: isFlagged ? 'var(--color-option-c)' : 'var(--color-muted-subtle)',
+                    fill: isFlagged ? 'var(--color-option-c)' : 'none',
+                  }}
+                />
+              </button>
+            )}
+            {headerRight}
+          </div>
         </div>
-        <p className='text-base sm:text-lg leading-6 sm:leading-7 text-foreground'>
+
+        <p className='text-base sm:text-lg leading-6 sm:leading-7 text-foreground font-medium'>
           {question.questionText}
         </p>
       </div>
@@ -73,17 +107,34 @@ export function QuestionCard({
         })}
       </div>
 
-      {isAnswered && question.hint && (
+      {isAnswered && (
         <div
           className={cn(
-            'rounded-xl border p-3 sm:p-4 text-xs sm:text-sm',
+            'rounded-xl border p-4 flex gap-3',
             selectedOptionId === correctOptionId
-              ? 'border-green-teal-20 bg-green-teal-5 text-green-dark'
-              : 'border-error/20 bg-error-soft text-error',
+              ? 'border-primary/20 bg-primary/5'
+              : 'border-rose-500/20 bg-rose-500/5',
           )}
         >
-          <span className='font-medium'>Hint: </span>
-          {question.hint}
+          <BookOpen
+            className='w-4 h-4 shrink-0 mt-0.5'
+            style={{
+              color: selectedOptionId === correctOptionId ? 'var(--color-option-a)' : 'var(--color-quiz-error)',
+            }}
+          />
+          <div>
+            <p
+              className='text-xs font-semibold mb-1'
+              style={{
+                color: selectedOptionId === correctOptionId ? 'var(--color-option-a)' : 'var(--color-quiz-error)',
+              }}
+            >
+              Giải thích
+            </p>
+            <p className='text-sm leading-relaxed text-foreground/80'>
+              {rationale ?? question.hint ?? 'Không có giải thích.'}
+            </p>
+          </div>
         </div>
       )}
     </div>

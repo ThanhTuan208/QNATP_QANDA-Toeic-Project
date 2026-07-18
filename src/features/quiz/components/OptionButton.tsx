@@ -12,11 +12,11 @@ interface OptionButtonProps {
   onSelect: () => void
 }
 
-const STATUS_STYLES: Record<OptionStatus, string> = {
+export const STATUS_STYLES: Record<OptionStatus, string> = {
   idle: 'border-border bg-card hover:border-green-teal hover:bg-green-teal-5',
   selected: 'border-green-teal bg-green-teal-5',
   correct: 'border-green-teal bg-green-teal-5',
-  wrong: 'border-error bg-error-soft',
+  wrong: 'border-error bg-error-soft/15',
   disabled: 'border-input bg-muted opacity-60 cursor-not-allowed',
 }
 
@@ -36,13 +36,34 @@ export function OptionButton({ text, label, status, rationale, onSelect }: Optio
       <div className='flex w-full items-start gap-2 sm:gap-3'>
         <span
           className={cn(
-            'flex h-7 sm:h-8 w-7 sm:w-8 shrink-0 items-center justify-center rounded-lg text-xs sm:text-sm font-semibold transition-colors',
-            status === 'correct' && 'bg-green-teal text-white',
-            status === 'wrong' && 'bg-error text-white',
-            status === 'selected' && 'bg-green-teal text-white',
-            status === 'idle' &&
-              'bg-muted text-muted-foreground group-hover:bg-green-teal-10 group-hover:text-green-dark',
-            status === 'disabled' && 'bg-muted text-neutral-40',
+            // Base layout & Typography: Thêm border ẩn và bóng đổ nhẹ tạo độ nổi khối
+            'flex h-7 sm:h-8 w-7 sm:w-8 shrink-0 items-center justify-center rounded-lg text-xs sm:text-sm font-bold border transition-all duration-200 shadow-sm',
+
+            // 1. Trạng thái IDLE (Chờ chọn)
+            // Nền gradient xám nhẹ sang trắng thanh lịch, hover lên sẽ chuyển sang gradient xanh lục
+            status === 'idle' && [
+              'bg-gradient-to-b from-neutral-0 to-neutral-5 dark:from-neutral-80 dark:to-neutral-90 border-neutral-2 dark:border-border text-muted-foreground',
+              'group-hover:scale-105 group-hover:border-green-teal/30 group-hover:bg-gradient-green group-hover:text-white dark:group-hover:text-neutral-90'
+            ],
+
+            // 2. Trạng thái SELECTED (Đã chọn - Chưa check kết quả)
+            // Sử dụng gradient thương hiệu đầy năng lượng từ mã màu gốc
+            status === 'selected' &&
+            'bg-gradient-green border-primary text-white dark:text-neutral-90 font-extrabold scale-105 shadow-md shadow-green-teal/20',
+
+            // 3. Trạng thái CORRECT (Đáp án chính xác)
+            // Gradient từ xanh lục Teal sang Mint ngả sáng, đem lại cảm giác tươi mát, thành công
+            status === 'correct' &&
+            'bg-gradient-to-br from-green-teal to-pale-light border-success text-white dark:text-neutral-90 font-extrabold scale-105 shadow-md shadow-success/30',
+
+            // 4. Trạng thái WRONG (Đáp án chọn sai)
+            // Gradient từ đỏ thẫm sang cam đỏ cá tính, không bị quá chói mắt nhưng vẫn rõ ràng
+            status === 'wrong' &&
+            'bg-gradient-to-br from-error-hover to-error-default border-error text-white font-extrabold scale-105 shadow-md shadow-error/30',
+
+            // 5. Trạng thái DISABLED (Bị khóa khi đã nộp bài)
+            status === 'disabled' &&
+            'bg-neutral-5 dark:bg-muted/40 border-neutral-2/30 dark:border-border/30 text-neutral-40/50 cursor-not-allowed shadow-none'
           )}
         >
           {label}
@@ -50,7 +71,7 @@ export function OptionButton({ text, label, status, rationale, onSelect }: Optio
 
         <span
           className={cn(
-            'flex-1 pt-1 sm:pt-1.5 text-xs sm:text-sm leading-4 sm:leading-5',
+            'flex-1 pt-1 sm:pt-1.5 text-xs sm:text-sm font-bold leading-4 sm:leading-5',
             status === 'correct' && 'text-green-dark',
             status === 'wrong' && 'text-error',
             status === 'disabled' && 'text-neutral-40',
@@ -68,10 +89,10 @@ export function OptionButton({ text, label, status, rationale, onSelect }: Optio
       {isRevealed && rationale && (
         <div
           className={cn(
-            'ml-9 sm:ml-11 text-[11px] sm:text-xs leading-relaxed border-l-2 pl-2.5 sm:pl-3 mt-1',
-            status === 'correct' && 'border-green-teal/30 text-green-teal/80',
-            status === 'wrong' && 'border-error/30 text-error/80',
-            status === 'disabled' && 'border-neutral-30/20 text-neutral-40',
+            'ml-9 sm:ml-11 text-[11px] sm:text-xs leading-relaxed border-l-2 pl-2.5 sm:pl-3',
+            status === 'correct' && 'border-green-teal text-green-teal',
+            status === 'wrong' && 'border-error text-error',
+            status === 'disabled' && 'border-neutral-30 text-neutral-40',
           )}
         >
           {rationale}

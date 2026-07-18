@@ -12,6 +12,8 @@ export interface Question {
   difficulty: string
   hint: string | null
   options: Option[]
+  correctOptionId?: string
+  rationale?: string
 }
 
 export interface AttemptResult {
@@ -71,6 +73,7 @@ export interface UseQuizQuestionsReturn {
   setQuestions: (questions: Question[]) => void
   advanceQuestion: () => void
   resetIdx: () => void
+  goToQuestion: (index: number) => void
 }
 
 export type TypeStats = Record<string, { total: number; correct: number }>

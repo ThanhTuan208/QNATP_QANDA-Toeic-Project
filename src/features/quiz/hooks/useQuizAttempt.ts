@@ -6,6 +6,7 @@ import { submitAttempt } from '@/features/quiz/client/quiz.client'
 import type {
   AttemptResult,
   AttemptState,
+  Question,
   UseQuizAttemptOptions,
   UseQuizAttemptReturn,
 } from '@/features/quiz/types'
@@ -106,6 +107,15 @@ export function useQuizAttempt(options: UseQuizAttemptOptions): UseQuizAttemptRe
     },
   })
 
+  function computeLocalResult(question: Question, optionId: string): AttemptResult {
+    const correctOpt = question.options.find((o) => o.id === question.correctOptionId)
+    return {
+      isCorrect: optionId === question.correctOptionId,
+      correctOptionId: question.correctOptionId ?? '',
+      rationale: correctOpt?.rationale ?? question.rationale ?? '',
+    }
+  }
+
   const handleSelect = useCallback(
     (optionId: string) => {
       const question = options.currentQuestion
@@ -115,9 +125,32 @@ export function useQuizAttempt(options: UseQuizAttemptOptions): UseQuizAttemptRe
       lastQuestionId.current = question.id
       lastSelectedOptionId.current = optionId
       dispatch({ type: 'SELECT', optionId })
-      mutation.mutate({ questionId: question.id, selectedOptionId: optionId })
+
+      if (question.correctOptionId) {
+        const result = computeLocalResult(question, optionId)
+        dispatch({
+          type: 'SUBMIT_SUCCESS',
+          result,
+          questionType: question.type,
+          questionId: question.id,
+          selectedOptionId: optionId,
+        })
+        options.onStatsUpdate?.(
+          options.currentIdx + 1,
+          state.correctCount + (result.isCorrect ? 1 : 0),
+        )
+      } else {
+        mutation.mutate({ questionId: question.id, selectedOptionId: optionId })
+      }
     },
-    [options.currentQuestion, state.phase, mutation.mutate],
+    [
+      options.currentQuestion,
+      state.phase,
+      state.correctCount,
+      mutation.mutate,
+      options.onStatsUpdate,
+      options.currentIdx,
+    ],
   )
 
   const clearAnswer = useCallback(() => {

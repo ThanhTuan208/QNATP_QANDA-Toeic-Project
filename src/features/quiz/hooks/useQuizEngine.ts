@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useQuizAttempt } from '@/features/quiz/hooks/useQuizAttempt'
 import { useQuizImport } from '@/features/quiz/hooks/useQuizImport'
 import { useQuizQuestions } from '@/features/quiz/hooks/useQuizQuestions'
@@ -13,7 +13,7 @@ interface UseQuizEngineOptions {
   onStatsUpdate?: (total: number, correct: number) => void
 }
 
-interface UseQuizEngineReturn {
+export interface UseQuizEngineReturn {
   currentQuestion: Question | null
   questions: Question[]
   selectedOptionId: string | null
@@ -33,6 +33,7 @@ interface UseQuizEngineReturn {
   promptText: string
   handleSelect: (optionId: string) => void
   handleNext: () => void
+  goToQuestion: (index: number) => void
   handleOpenImport: () => void
   handleSubmitImport: () => void
   setImportJson: (value: string) => void
@@ -40,6 +41,13 @@ interface UseQuizEngineReturn {
   reset: () => void
   retryIncorrect: () => void
   incorrectCount: number
+  flagged: Set<number>
+  showCompleteReview: boolean
+  pct: number
+  answeredMap: Record<number, string>
+  correctMap: Record<number, boolean>
+  toggleFlag: () => void
+  setShowCompleteReview: (v: boolean) => void
 }
 
 export function useQuizEngine(options: UseQuizEngineOptions): UseQuizEngineReturn {
@@ -65,9 +73,49 @@ export function useQuizEngine(options: UseQuizEngineOptions): UseQuizEngineRetur
     },
   })
 
+  const [flagged, setFlagged] = useState<Set<number>>(new Set())
+  const [showCompleteReview, setShowCompleteReview] = useState(false)
+
   const incorrectCount = useMemo(
     () => attemptHook.attemptHistory.filter((a) => !a.isCorrect).length,
     [attemptHook.attemptHistory],
+  )
+
+  const toggleFlag = useCallback(() => {
+    setFlagged((prev) => {
+      const next = new Set(prev)
+      next.has(questionsHook.currentIdx)
+        ? next.delete(questionsHook.currentIdx)
+        : next.add(questionsHook.currentIdx)
+      return next
+    })
+  }, [questionsHook.currentIdx])
+
+  const { answeredMap, correctMap } = useMemo(() => {
+    const map: Record<number, string> = {}
+    const cm: Record<number, boolean> = {}
+    for (let i = 0; i < questionsHook.questions.length; i++) {
+      const q = questionsHook.questions[i]
+      const attempt = attemptHook.attemptHistory.find((a) => a.questionId === q.id)
+      if (attempt) {
+        map[i] = attempt.selectedOptionId
+        cm[i] = attempt.isCorrect
+      }
+    }
+    return { answeredMap: map, correctMap: cm }
+  }, [questionsHook.questions, attemptHook.attemptHistory])
+
+  const pct =
+    questionsHook.totalQuestions > 0
+      ? Math.round((attemptHook.correctCount / questionsHook.totalQuestions) * 100)
+      : 0
+
+  const goToQuestion = useCallback(
+    (index: number) => {
+      attemptHook.clearAnswer()
+      questionsHook.goToQuestion(index)
+    },
+    [attemptHook.clearAnswer, questionsHook.goToQuestion],
   )
 
   const handleNext = useCallback(() => {
@@ -78,6 +126,8 @@ export function useQuizEngine(options: UseQuizEngineOptions): UseQuizEngineRetur
   const reset = useCallback(() => {
     questionsHook.resetIdx()
     attemptHook.clearAnswer()
+    setFlagged(new Set())
+    setShowCompleteReview(false)
     options.onStatsUpdate?.(0, 0)
   }, [questionsHook.resetIdx, attemptHook.clearAnswer, options.onStatsUpdate])
 
@@ -91,6 +141,8 @@ export function useQuizEngine(options: UseQuizEngineOptions): UseQuizEngineRetur
     attemptHook.resetSession()
     questionsHook.setQuestions(incorrectQuestions)
     questionsHook.resetIdx()
+    setFlagged(new Set())
+    setShowCompleteReview(false)
     options.onStatsUpdate?.(0, 0)
   }, [
     attemptHook.attemptHistory,
@@ -121,6 +173,7 @@ export function useQuizEngine(options: UseQuizEngineOptions): UseQuizEngineRetur
     promptText: importHook.promptText,
     handleSelect: attemptHook.handleSelect,
     handleNext,
+    goToQuestion,
     handleOpenImport: importHook.openImport,
     handleSubmitImport: importHook.submitImport,
     setImportJson: importHook.setImportJson,
@@ -128,5 +181,12 @@ export function useQuizEngine(options: UseQuizEngineOptions): UseQuizEngineRetur
     reset,
     retryIncorrect,
     incorrectCount,
+    flagged,
+    showCompleteReview,
+    pct,
+    answeredMap,
+    correctMap,
+    toggleFlag,
+    setShowCompleteReview,
   }
 }

@@ -56,6 +56,10 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
     setCurrentIdx(0)
   }, [])
 
+  const goToQuestion = useCallback((index: number) => {
+    setCurrentIdx(index)
+  }, [])
+
   const currentQuestion = questions[currentIdx] ?? null
   const totalQuestions = questions.length
   const isEmpty = questions.length === 0 && !isLoading
@@ -72,5 +76,6 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
     setQuestions,
     advanceQuestion,
     resetIdx,
+    goToQuestion,
   }
 }

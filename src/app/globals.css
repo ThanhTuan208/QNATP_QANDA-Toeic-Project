@@ -363,7 +363,22 @@
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
 
-    /* Notification tabs */
+    /* Practice UI Option Accent Colors */
+  --color-option-a: #7c5cfc;
+  --color-option-b: #00d4aa;
+  --color-option-c: #fbbf24;
+  --color-option-d: #f472b6;
+  --color-option-a-rgb: 124,92,252;
+  --color-option-b-rgb: 0,212,170;
+  --color-option-c-rgb: 251,191,36;
+  --color-option-d-rgb: 244,114,182;
+
+  /* Quiz UI specific colors */
+  --color-quiz-error: #ff4d6d;
+  --color-quiz-error-rgb: 255,77,109;
+  --color-muted-subtle: #6b6b8a;
+
+  /* Notification tabs */
   --color-tab-inactive-bg: oklch(1 0 0 / 0.10);
   --color-tab-inactive-text: oklch(1 0 0 / 0.80);
   --color-tab-inactive-hover: oklch(1 0 0 / 0.20);
@@ -435,6 +450,36 @@
 
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
+}
+
+@utility ambient-glow-fixed {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+@utility ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.12; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(1.05); }
+}
+
+@utility animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+@utility gradient-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 @utility no-scrollbar {
