@@ -1,21 +1,29 @@
 'use client'
 
-import { useEffect } from 'react'
-import { PracticeSession } from '@/features/session-builder/components/practice/PracticeSession'
+import {
+  DisplayModeSelector,
+  ListPracticeView,
+  PracticeSession,
+} from '@/features/session-builder/components/practice'
+import { useStep5Practice } from '@/features/session-builder/hooks/useStep5Practice'
 import type { SessionAttempt, SessionQuestion } from '@/features/temp-session/types'
-
-const MAX_QUESTIONS = 10
 
 interface Step5PracticeProps {
   questions: SessionQuestion[]
+  practiceMode: 'quiz' | 'list'
+  onPracticeModeChange: (mode: 'quiz' | 'list') => void
   onBack: () => void
   onComplete: (attempts: SessionAttempt[]) => void
 }
 
-export function Step5Practice({ questions, onBack, onComplete }: Step5PracticeProps) {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [])
+export function Step5Practice({
+  questions,
+  practiceMode,
+  onPracticeModeChange,
+  onBack,
+  onComplete,
+}: Step5PracticeProps) {
+  const { showFirstTimeModal, setShowFirstTimeModal } = useStep5Practice()
 
   if (questions.length === 0) {
     return (
@@ -25,6 +33,23 @@ export function Step5Practice({ questions, onBack, onComplete }: Step5PracticePr
     )
   }
 
-  const limited = questions.slice(0, MAX_QUESTIONS)
-  return <PracticeSession questions={limited} onComplete={onComplete} onBack={onBack} />
+  return (
+    <div className='relative'>
+      <DisplayModeSelector
+        open={showFirstTimeModal}
+        onConfirm={(mode) => {
+          onPracticeModeChange(mode)
+          setShowFirstTimeModal(false)
+        }}
+      />
+
+      <div className='space-y-4'>
+        {practiceMode === 'list' ? (
+          <ListPracticeView questions={questions} onComplete={onComplete} onBack={onBack} />
+        ) : (
+          <PracticeSession questions={questions} onComplete={onComplete} onBack={onBack} />
+        )}
+      </div>
+    </div>
+  )
 }

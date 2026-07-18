@@ -1,6 +1,6 @@
 'use client'
 
-import { Eye, Shuffle, Trash2 } from 'lucide-react'
+import { Eye, List, ListChecks, Shuffle, Trash2 } from 'lucide-react'
 import { Button } from '@/components/common/Button/Button'
 import { Label } from '@/components/common/Label'
 import { StepHeader } from '@/components/common/StepHeader'
@@ -24,6 +24,8 @@ export function Step4Preview({
   onQuestionsChange,
   isGenerating = false,
   generationError = '',
+  practiceMode = 'quiz',
+  onPracticeModeChange,
 }: Step4PreviewProps) {
   const {
     showAnswers,
@@ -144,6 +146,33 @@ export function Step4Preview({
             </Label>
             <div className='h-3 w-px bg-green-teal-10 dark:bg-neutral-80/10' />
             <TimeLimitSelect config={config} onConfigChange={onConfigChange} />
+            <div className='h-3 w-px bg-green-teal-10 dark:bg-neutral-80/10' />
+            <div className='flex items-center gap-1'>
+              <button
+                type='button'
+                onClick={() => onPracticeModeChange?.('quiz')}
+                className={`flex items-center gap-1 px-1.5 py-1 rounded-lg text-[10px] sm:text-xs font-medium transition-all ${
+                  practiceMode === 'quiz'
+                    ? 'bg-green-teal text-white shadow-xs'
+                    : 'text-subtext-90 dark:text-neutral-30 hover:bg-green-teal-10 dark:hover:bg-neutral-80/20'
+                }`}
+              >
+                <ListChecks className='size-3 sm:size-3.5' />
+                <span className='hidden sm:inline'>Quiz</span>
+              </button>
+              <button
+                type='button'
+                onClick={() => onPracticeModeChange?.('list')}
+                className={`flex items-center gap-1 px-1.5 py-1 rounded-lg text-[10px] sm:text-xs font-medium transition-all ${
+                  practiceMode === 'list'
+                    ? 'bg-green-teal text-white shadow-xs'
+                    : 'text-subtext-90 dark:text-neutral-30 hover:bg-green-teal-10 dark:hover:bg-neutral-80/20'
+                }`}
+              >
+                <List className='size-3 sm:size-3.5' />
+                <span className='hidden sm:inline'>List</span>
+              </button>
+            </div>
           </div>
         </div>
 

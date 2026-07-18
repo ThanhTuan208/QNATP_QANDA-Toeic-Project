@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { DEFAULT_DIFFICULTY, PART_MAX_QUESTIONS } from '@/features/session-builder/constants'
 import { getKnowledgeGroupsForPart } from '@/features/session-builder/utils/knowledge-groups'
 import {
@@ -17,6 +17,8 @@ export function useCustomConfig(
 ) {
   const knowledgeGroups = config.knowledgeGroups ?? {}
   const difficulties = config.difficulty ?? [DEFAULT_DIFFICULTY]
+
+  const [showQuickFormat, setShowQuickFormat] = useState(false)
 
   const getPartTotal = useCallback(
     (part: number) => {
@@ -111,6 +113,8 @@ export function useCustomConfig(
     knowledgeGroups,
     difficulties,
     total,
+    showQuickFormat,
+    setShowQuickFormat,
     getPartTotal,
     handleDeltaChange,
     handleCountChange,

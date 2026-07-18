@@ -20,6 +20,8 @@ export function sessionQuestionToQuizQuestion(sq: SessionQuestion): Question {
       order: o.order,
       rationale: o.rationale,
     })),
+    correctOptionId: sq.correctOptionId,
+    rationale: sq.rationale,
   }
 }
 

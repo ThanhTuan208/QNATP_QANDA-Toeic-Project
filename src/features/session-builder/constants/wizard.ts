@@ -12,4 +12,5 @@ export const INITIAL_WIZARD_STATE: SessionBuilderState = {
   questions: [],
   isGenerating: false,
   generationError: '',
+  practiceMode: 'quiz',
 }

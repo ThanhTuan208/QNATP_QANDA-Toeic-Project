@@ -1,13 +1,23 @@
 'use client'
 
-import { useCallback, useReducer } from 'react'
+import { useCallback, useEffect, useReducer } from 'react'
 import { INITIAL_WIZARD_STATE, WIZARD_STEPS } from '@/features/session-builder/constants'
 import { sessionBuilderReducer } from '@/features/session-builder/hooks/sessionBuilderReducer'
 import type { UseSessionBuilderReturn } from '@/features/session-builder/types'
 import { canAdvanceFromStep } from '@/features/session-builder/utils/steps'
 
+function getSavedPracticeMode(): 'quiz' | 'list' {
+  if (typeof window === 'undefined') return 'quiz'
+  const saved = localStorage.getItem('practice-mode')
+  if (saved === 'quiz' || saved === 'list') return saved
+  return 'quiz'
+}
+
 export function useSessionBuilder(): UseSessionBuilderReturn {
-  const [state, dispatch] = useReducer(sessionBuilderReducer, INITIAL_WIZARD_STATE)
+  const [state, dispatch] = useReducer(sessionBuilderReducer, {
+    ...INITIAL_WIZARD_STATE,
+    practiceMode: getSavedPracticeMode(),
+  })
 
   const setScope = useCallback((scope: (typeof state)['scope']) => {
     dispatch({ type: 'SET_SCOPE', scope })
@@ -43,6 +53,22 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
 
   const setGenerationError = useCallback((error: string) => {
     dispatch({ type: 'SET_GENERATION_ERROR', error })
+  }, [])
+
+  const setPracticeMode = useCallback((mode: 'quiz' | 'list') => {
+    dispatch({ type: 'SET_PRACTICE_MODE', mode })
+    try {
+      localStorage.setItem('practice-mode', mode)
+    } catch {}
+  }, [])
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('practice-mode')
+      if (saved === 'quiz' || saved === 'list') {
+        dispatch({ type: 'SET_PRACTICE_MODE', mode: saved })
+      }
+    } catch {}
   }, [])
 
   const nextStep = useCallback(() => {
@@ -84,6 +110,7 @@ export function useSessionBuilder(): UseSessionBuilderReturn {
     setQuestions,
     setGenerating,
     setGenerationError,
+    setPracticeMode,
     nextStep,
     prevStep,
     canGoNext,

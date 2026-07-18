@@ -96,6 +96,8 @@ export function SessionBuilder() {
                 onQuestionsChange={wizard.setQuestions}
                 isGenerating={wizard.state.isGenerating}
                 generationError={wizard.state.generationError}
+                practiceMode={wizard.state.practiceMode}
+                onPracticeModeChange={wizard.setPracticeMode}
               />
             </div>
           </motion.div>
@@ -103,12 +105,17 @@ export function SessionBuilder() {
 
         {wizard.state.step === 'practice' && (
           <motion.div key='practice' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 -mx-6 md:-mx-20 md:px-12 md:py-8 p-6 shadow-sm'>
-              <Step5Practice
-                questions={wizard.state.questions}
-                onBack={wizard.prevStep}
-                onComplete={handlePracticeComplete}
-              />
+            <div className='bg-card rounded-2xl border border-border/50 -mx-6 p-6 md:-mx-20 md:px-10 md:py-4 shadow-sm relative overflow-hidden'>
+              
+              <div className='relative z-1'>
+                <Step5Practice
+                  questions={wizard.state.questions}
+                  practiceMode={wizard.state.practiceMode}
+                  onPracticeModeChange={wizard.setPracticeMode}
+                  onBack={wizard.prevStep}
+                  onComplete={handlePracticeComplete}
+                />
+              </div>
             </div>
           </motion.div>
         )}

@@ -18,6 +18,16 @@ export {
 } from './knowledge-groups'
 export type { Part } from './part'
 export { PART } from './part'
+export {
+  DIFFICULTY_CONFIG,
+  GRADE_THRESHOLDS,
+  OPTION_ACCENT_COLORS,
+  OPTION_ACCENT_COLORS_RGB,
+  OPTION_LABELS,
+  PRACTICE_TIMER_DEFAULT,
+  TIMER_URGENT_SECONDS,
+  TIMER_WARNING_SECONDS,
+} from './practice-ui'
 export { PRESETS } from './presets-data'
 export { DIFFICULTY_ORDER, PART_ORDER } from './preview'
 export { WIZARD_STEPS } from './steps'

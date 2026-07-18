@@ -18,12 +18,13 @@ interface CustomConfigFormProps {
 }
 
 export function CustomConfigForm({ parts, config, onConfigChange }: CustomConfigFormProps) {
-  const [showQuickFormat, setShowQuickFormat] = useState(false)
   const {
     configIssues,
     knowledgeGroups,
     difficulties,
     total,
+    showQuickFormat,
+    setShowQuickFormat,
     handleDeltaChange,
     handleCountChange,
     applyPreset,
@@ -116,7 +117,7 @@ export function CustomConfigForm({ parts, config, onConfigChange }: CustomConfig
             onApply={applyPreset}
             onApplyAll={applyAllPresets}
             show={showQuickFormat}
-            onClose={() => setShowQuickFormat(false)}
+            onClose={() => setShowQuickFormat(true)}
           />
         </div>
       </div>

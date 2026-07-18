@@ -72,6 +72,8 @@ export function sessionBuilderReducer(
       return { ...state, isGenerating: action.isGenerating }
     case 'SET_GENERATION_ERROR':
       return { ...state, generationError: action.error }
+    case 'SET_PRACTICE_MODE':
+      return { ...state, practiceMode: action.mode }
     case 'NEXT_STEP': {
       const next = getNextStep(state.step)
       if (!next) return state

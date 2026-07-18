@@ -39,7 +39,7 @@ export function Step1Scope({ scope, onScopeChange, questions = [] }: Step1ScopeP
           title='Listening'
           parts={PART_GROUPS.listening}
           selectedParts={[]}
-          onToggle={() => { }}
+          onToggle={() => {}}
           disabled
         />
 
@@ -53,8 +53,9 @@ export function Step1Scope({ scope, onScopeChange, questions = [] }: Step1ScopeP
 
       <div className='border-t border-border/50'>
         <div
-          className={`flex items-center justify-center gap-2 text-xs font-medium transition-all duration-200 ${hasSelected ? 'text-green-teal' : 'text-destructive animate-pulse'
-            }`}
+          className={`flex items-center justify-center gap-2 text-xs font-medium transition-all duration-200 ${
+            hasSelected ? 'text-green-teal' : 'text-destructive animate-pulse'
+          }`}
         >
           {hasSelected ? (
             <>

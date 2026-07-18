@@ -11,4 +11,6 @@ export interface Step4PreviewProps {
   onQuestionsChange?: (questions: SessionQuestion[]) => void
   isGenerating?: boolean
   generationError?: string
+  practiceMode?: 'quiz' | 'list'
+  onPracticeModeChange?: (mode: 'quiz' | 'list') => void
 }

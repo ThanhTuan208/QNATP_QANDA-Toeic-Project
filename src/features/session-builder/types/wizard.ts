@@ -16,6 +16,7 @@ export interface SessionBuilderState {
   questions: SessionQuestion[]
   isGenerating: boolean
   generationError: string
+  practiceMode: 'quiz' | 'list'
 }
 
 export type SessionBuilderAction =
@@ -28,6 +29,7 @@ export type SessionBuilderAction =
   | { type: 'SET_QUESTIONS'; questions: SessionQuestion[] }
   | { type: 'SET_GENERATING'; isGenerating: boolean }
   | { type: 'SET_GENERATION_ERROR'; error: string }
+  | { type: 'SET_PRACTICE_MODE'; mode: 'quiz' | 'list' }
   | { type: 'NEXT_STEP' }
   | { type: 'PREV_STEP' }
   | { type: 'RESET' }
@@ -43,6 +45,7 @@ export interface UseSessionBuilderReturn {
   setQuestions: (questions: SessionQuestion[]) => void
   setGenerating: (isGenerating: boolean) => void
   setGenerationError: (error: string) => void
+  setPracticeMode: (mode: 'quiz' | 'list') => void
   nextStep: () => void
   prevStep: () => void
   canGoNext: () => boolean

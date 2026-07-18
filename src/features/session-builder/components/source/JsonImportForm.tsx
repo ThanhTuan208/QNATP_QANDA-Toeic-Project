@@ -61,10 +61,10 @@ export function JsonImportForm({
           loadingText='Đang kiểm tra...'
           className='w-full sm:w-auto'
         >
-          Xác thực & Sử dụng
+          Xác nhận
         </Button>
         <Button buttonType='outline' onClick={onReset} className='w-full sm:w-auto'>
-          Đặt lại mẫu
+          Tạo mẫu
         </Button>
         <div className='sm:ml-auto'>
           <Button
