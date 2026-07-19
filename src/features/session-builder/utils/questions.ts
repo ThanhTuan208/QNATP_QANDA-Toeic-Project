@@ -14,6 +14,7 @@ export function sessionQuestionToQuizQuestion(sq: SessionQuestion): Question {
     type: sq.type,
     difficulty: sq.difficulty,
     hint: null,
+    part: sq.part,
     options: sq.options.map((o) => ({
       id: o.id,
       text: o.text,
@@ -43,6 +44,7 @@ export function buildPracticeSession(
       source: state.source,
       importJson: state.importJson || undefined,
       totalQuestions: state.questions.length,
+      timeLimit: state.config.timeLimit,
     },
     questions: state.questions,
     attempts: [],

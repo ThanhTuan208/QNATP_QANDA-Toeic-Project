@@ -4,6 +4,7 @@ interface UsePracticeTimerOptions {
   totalSeconds: number
   onTimeUp?: () => void
   autoStart?: boolean
+  countUp?: boolean
 }
 
 interface UsePracticeTimerReturn {
@@ -18,8 +19,9 @@ export function usePracticeTimer({
   totalSeconds,
   onTimeUp,
   autoStart = false,
+  countUp = false,
 }: UsePracticeTimerOptions): UsePracticeTimerReturn {
-  const [timeLeft, setTimeLeft] = useState(totalSeconds)
+  const [timeLeft, setTimeLeft] = useState(countUp ? 0 : totalSeconds)
   const [isRunning, setIsRunning] = useState(autoStart)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const onTimeUpRef = useRef(onTimeUp)
@@ -44,9 +46,9 @@ export function usePracticeTimer({
 
   const reset = useCallback(() => {
     clearTimer()
-    setTimeLeft(totalSeconds)
+    setTimeLeft(countUp ? 0 : totalSeconds)
     setIsRunning(false)
-  }, [clearTimer, totalSeconds])
+  }, [clearTimer, totalSeconds, countUp])
 
   useEffect(() => {
     if (!isRunning) {
@@ -56,6 +58,7 @@ export function usePracticeTimer({
 
     intervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
+        if (countUp) return prev + 1
         if (prev <= 1) {
           clearTimer()
           setIsRunning(false)
@@ -67,7 +70,7 @@ export function usePracticeTimer({
     }, 1000)
 
     return clearTimer
-  }, [isRunning, clearTimer])
+  }, [isRunning, clearTimer, countUp])
 
   useEffect(() => {
     return clearTimer

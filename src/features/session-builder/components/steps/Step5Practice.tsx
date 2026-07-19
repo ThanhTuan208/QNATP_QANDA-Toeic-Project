@@ -11,6 +11,7 @@ import type { SessionAttempt, SessionQuestion } from '@/features/temp-session/ty
 interface Step5PracticeProps {
   questions: SessionQuestion[]
   practiceMode: 'quiz' | 'list'
+  timeLimit?: number
   onPracticeModeChange: (mode: 'quiz' | 'list') => void
   onBack: () => void
   onComplete: (attempts: SessionAttempt[]) => void
@@ -19,6 +20,7 @@ interface Step5PracticeProps {
 export function Step5Practice({
   questions,
   practiceMode,
+  timeLimit,
   onPracticeModeChange,
   onBack,
   onComplete,
@@ -47,7 +49,7 @@ export function Step5Practice({
         {practiceMode === 'list' ? (
           <ListPracticeView questions={questions} onComplete={onComplete} onBack={onBack} />
         ) : (
-          <PracticeSession questions={questions} onComplete={onComplete} onBack={onBack} />
+          <PracticeSession questions={questions} timeLimit={timeLimit} onComplete={onComplete} onBack={onBack} />
         )}
       </div>
     </div>

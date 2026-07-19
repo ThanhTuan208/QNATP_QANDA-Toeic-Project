@@ -54,7 +54,7 @@ export function SessionBuilder() {
 
         {wizard.state.step === 'config' && (
           <motion.div key='config' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 -mx-6 p-4 md:px-14 md:py-8 shadow-sm min-h-112'>
+            <div className='bg-card rounded-2xl border border-border/50 -m-8 p-4 md:px-14 md:py-8 shadow-sm min-h-112'>
               <Step2Config
                 parts={wizard.state.scope.parts}
                 preset={wizard.state.preset}
@@ -105,12 +105,13 @@ export function SessionBuilder() {
 
         {wizard.state.step === 'practice' && (
           <motion.div key='practice' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 -mx-6 p-6 md:-mx-20 md:px-10 md:py-4 shadow-sm relative overflow-hidden'>
+            <div className='bg-card rounded-2xl border border-border/50 -mx-8 md:-mx-20 md:px-10 md:py-4 shadow-sm relative overflow-hidden'>
               
               <div className='relative z-1'>
                 <Step5Practice
                   questions={wizard.state.questions}
                   practiceMode={wizard.state.practiceMode}
+                  timeLimit={wizard.state.config.timeLimit}
                   onPracticeModeChange={wizard.setPracticeMode}
                   onBack={wizard.prevStep}
                   onComplete={handlePracticeComplete}

@@ -1,5 +1,6 @@
 'use client'
 
+import { AnimatePresence, motion } from 'framer-motion'
 import { AlertTriangle, Zap } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/common/Button'
@@ -78,36 +79,63 @@ export function CustomConfigForm({ parts, config, onConfigChange }: CustomConfig
 
       <div className='flex gap-0'>
         <div className='flex-1 min-w-0 space-y-5'>
-          {configIssues.length > 0 && (
-            <div className='flex items-start gap-3 p-3 rounded-xl border border-warning-foreground/30 bg-warning-soft/50 dark:bg-warning-soft/10'>
-              <AlertTriangle className='size-5 text-warning-foreground shrink-0 mt-0.5' />
-              <div className='text-xs sm:text-sm text-warning-foreground space-y-1'>
-                <p className='font-semibold'>Cần cấu hình thêm</p>
-                <ul className='list-disc list-inside space-y-0.5 opacity-90'>
-                  {configIssues.map((issue) => (
-                    <li key={issue.part}>
-                      Part {issue.part} hiện có <strong>{issue.total}</strong> câu, tối thiểu{' '}
-                      <strong>5</strong> câu
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          )}
+          <AnimatePresence mode='popLayout'>
+            {configIssues.length > 0 && (
+              <motion.div
+                layout
+                initial={{ opacity: 0, y: -12, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -12, scale: 0.95 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className='flex items-start gap-3 p-3 rounded-xl border border-warning-foreground/30 bg-warning-soft/50 dark:bg-warning-soft/10'
+              >
+                <AlertTriangle className='size-5 text-warning-foreground shrink-0 mt-0.5' />
+                <div className='text-xs sm:text-sm text-warning-foreground space-y-1'>
+                  <p className='font-semibold'>Cần cấu hình thêm</p>
+                  <ul className='list-disc list-inside space-y-0.5 opacity-90'>
+                    {configIssues.map((issue) => (
+                      <li key={issue.part}>
+                        Part {issue.part} hiện có <strong>{issue.total}</strong> câu, tối thiểu{' '}
+                        <strong>5</strong> câu
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {parts.map((part) => (
-            <PartSection
+            <motion.div
               key={part}
-              part={part}
-              knowledgeGroups={knowledgeGroups}
-              onDeltaChange={handleDeltaChange}
-              onCountChange={handleCountChange}
-            />
+              layout
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}>
+              <PartSection
+                part={part}
+                knowledgeGroups={knowledgeGroups}
+                onDeltaChange={handleDeltaChange}
+                onCountChange={handleCountChange}
+              />
+            </motion.div>
           ))}
 
-          <DifficultySection difficulties={difficulties} onToggle={handleDifficultyToggle} />
+          <motion.div
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}>
+            <DifficultySection difficulties={difficulties} onToggle={handleDifficultyToggle} />
+          </motion.div>
 
-          <TotalBanner total={total} />
+          <motion.div
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}>
+            <TotalBanner total={total} />
+          </motion.div>
         </div>
 
         <div className='hidden lg:flex lg:flex-col gap-3'>
