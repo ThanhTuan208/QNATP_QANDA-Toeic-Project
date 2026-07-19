@@ -1,7 +1,7 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query'
-import { useCallback, useReducer, useRef } from 'react'
+import { useCallback, useEffect, useReducer, useRef } from 'react'
 import { submitAttempt } from '@/features/quiz/client/quiz.client'
 import type {
   AttemptResult,
@@ -32,6 +32,11 @@ type AttemptAction =
   | { type: 'SUBMIT_ERROR' }
   | { type: 'CLEAR' }
   | { type: 'RESET_SESSION' }
+  | {
+      type: 'RESTORE'
+      selectedOptionId: string | null
+      result: AttemptResult | null
+    }
 
 function attemptReducer(state: AttemptState, action: AttemptAction): AttemptState {
   switch (action.type) {
@@ -75,14 +80,56 @@ function attemptReducer(state: AttemptState, action: AttemptAction): AttemptStat
       return { ...state, phase: 'idle', selectedOptionId: null, result: null }
     case 'RESET_SESSION':
       return { ...INITIAL_STATE }
+    case 'RESTORE':
+      return {
+        ...state,
+        phase: action.result ? 'answered' : 'idle',
+        selectedOptionId: action.selectedOptionId,
+        result: action.result,
+      }
   }
 }
 
 export function useQuizAttempt(options: UseQuizAttemptOptions): UseQuizAttemptReturn {
   const [state, dispatch] = useReducer(attemptReducer, INITIAL_STATE)
+  const prevQuestionIdRef = useRef<string | null>(null)
+  const savedAttemptsRef = useRef<Map<string, { selectedOptionId: string | null; result: AttemptResult | null }>>(new Map())
   const lastQuestionType = useRef('')
   const lastQuestionId = useRef('')
   const lastSelectedOptionId = useRef('')
+
+  const navigateToQuestion = useCallback(
+    (nextQuestionId: string | null) => {
+      const currentId = options.currentQuestion?.id ?? null
+      if (currentId === nextQuestionId) return
+
+      if (currentId) {
+        savedAttemptsRef.current.set(currentId, {
+          selectedOptionId: state.selectedOptionId,
+          result: state.result,
+        })
+      }
+
+      prevQuestionIdRef.current = nextQuestionId
+
+      if (nextQuestionId) {
+        const saved = savedAttemptsRef.current.get(nextQuestionId)
+        if (saved) {
+          dispatch({ type: 'RESTORE', selectedOptionId: saved.selectedOptionId, result: saved.result })
+          return
+        }
+      }
+      dispatch({ type: 'RESTORE', selectedOptionId: null, result: null })
+    },
+    [options.currentQuestion?.id, state.selectedOptionId, state.result],
+  )
+
+  useEffect(() => {
+    const currentId = options.currentQuestion?.id ?? null
+    if (currentId === prevQuestionIdRef.current) return
+
+    navigateToQuestion(currentId)
+  }, [options.currentQuestion?.id, navigateToQuestion])
 
   const mutation = useMutation({
     mutationFn: ({
@@ -158,6 +205,7 @@ export function useQuizAttempt(options: UseQuizAttemptOptions): UseQuizAttemptRe
   }, [])
 
   const resetSession = useCallback(() => {
+    savedAttemptsRef.current.clear()
     dispatch({ type: 'RESET_SESSION' })
   }, [])
 
@@ -171,5 +219,6 @@ export function useQuizAttempt(options: UseQuizAttemptOptions): UseQuizAttemptRe
     handleSelect,
     clearAnswer,
     resetSession,
+    navigateToQuestion,
   }
 }

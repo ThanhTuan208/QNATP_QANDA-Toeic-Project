@@ -17,6 +17,7 @@ interface QuizActiveViewProps {
   answeredMap: Record<number, string>
   correctMap: Record<number, boolean>
   flagged: Set<number>
+  disabled?: boolean
   onSelect: (optionId: string) => void
   onToggleFlag: () => void
   onGoToQuestion: (index: number) => void
@@ -34,6 +35,7 @@ export function QuizActiveView({
   answeredMap,
   correctMap,
   flagged,
+  disabled,
   onSelect,
   onToggleFlag,
   onGoToQuestion,
@@ -43,14 +45,15 @@ export function QuizActiveView({
   const isLastQuestion = currentIdx === totalQuestions - 1
   const isAnswered = result !== null
 
+  const showSubmit = disabled || isLastQuestion
+
   return (
     <div className='mx-auto'>
       <div className='h-0.5 w-full bg-muted rounded-full mb-4 overflow-hidden'>
         <div
           className='h-full transition-all duration-500 rounded-full'
           style={{
-            width: `${totalQuestions > 0 ? ((currentIdx + (isAnswered ? 1 : 0)) / totalQuestions) * 100 : 0
-              }%`,
+            width: `${totalQuestions > 0 ? (answeredCount / totalQuestions) * 100 : 0}%`,
             background: 'linear-gradient(90deg, var(--color-option-a), var(--color-option-b))',
           }}
         />
@@ -63,7 +66,7 @@ export function QuizActiveView({
         <span>
           Đã làm: {answeredCount}/{totalQuestions}
           {result?.isCorrect && (
-            <span className='ml-2 text-emerald-500 font-medium'>· Đúng</span>
+            <span className='ml-2 text-success font-bold'>· Đúng</span>
           )}
         </span>
       </div>
@@ -74,8 +77,9 @@ export function QuizActiveView({
             key={`${currentQuestion.id}-${currentIdx}`}
             question={currentQuestion}
             selectedOptionId={selectedOptionId}
-            correctOptionId={result?.correctOptionId ?? null}
+            correctOptionId={disabled && !result ? null : (result?.correctOptionId ?? null)}
             onSelect={onSelect}
+            disabled={disabled}
             headerRight={
               <div className='flex items-center gap-2'>
                 {submitting && (
@@ -98,7 +102,7 @@ export function QuizActiveView({
               onClick={() => currentIdx > 0 && onGoToQuestion(currentIdx - 1)}
               disabled={currentIdx === 0}
               className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all',
+                'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold transition-all',
                 currentIdx === 0
                   ? 'opacity-25 cursor-not-allowed'
                   : 'bg-muted text-foreground hover:bg-muted/80 hover:scale-[1.02] active:scale-[0.98]',
@@ -130,16 +134,18 @@ export function QuizActiveView({
               ))}
             </div>
 
-            {isLastQuestion ? (
+            {showSubmit ? (
               <button
                 type='button'
-                onClick={isAnswered ? onNext : undefined}
-                disabled={!isAnswered}
+                onClick={() => {
+                  if (disabled && !isLastQuestion) {
+                    onGoToQuestion(totalQuestions - 1)
+                  }
+                  onNext()
+                }}
                 className={cn(
-                  'flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98]',
-                  isAnswered
-                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
-                    : 'bg-muted text-muted-foreground cursor-not-allowed',
+                  'flex items-center gap-2 px-5 py-2 rounded-md text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98]',
+                  'bg-primary text-primary-foreground shadow-lg shadow-primary/25',
                 )}
               >
                 Nộp bài
@@ -151,7 +157,7 @@ export function QuizActiveView({
                 onClick={onNext}
                 disabled={!isAnswered}
                 className={cn(
-                  'flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]',
+                  'flex items-center gap-2 px-5 py-2 rounded-md text-sm font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]',
                   isAnswered
                     ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
                     : 'bg-muted text-muted-foreground cursor-not-allowed',
@@ -175,63 +181,13 @@ export function QuizActiveView({
               </span>
             </div>
             <QuestionNavGrid
-              total={totalQuestions}
+              questions={questions}
               currentIndex={currentIdx}
               answered={answeredMap}
               correctMap={correctMap}
               flagged={flagged}
               onSelect={onGoToQuestion}
             />
-          </div>
-
-          <div className='flex flex-col gap-1.5'>
-            {[
-              {
-                color: 'var(--color-option-a)',
-                label: 'Đang làm',
-                style: { background: 'var(--color-option-a)', borderRadius: '4px' },
-              },
-              {
-                color: 'var(--color-option-b)',
-                label: 'Đúng',
-                style: {
-                  background: 'rgba(var(--color-option-b-rgb), 0.2)',
-                  border: '1px solid rgba(var(--color-option-b-rgb), 0.3)',
-                  borderRadius: '4px',
-                },
-              },
-              {
-                color: 'var(--color-quiz-error)',
-                label: 'Sai',
-                style: {
-                  background: 'rgba(var(--color-quiz-error-rgb), 0.2)',
-                  border: '1px solid rgba(var(--color-quiz-error-rgb), 0.3)',
-                  borderRadius: '4px',
-                },
-              },
-              {
-                color: 'var(--color-muted-subtle)',
-                label: 'Chưa làm',
-                style: { background: 'rgba(255,255,255,0.05)', borderRadius: '4px' },
-              },
-            ].map(({ label, style }) => (
-              <div key={label} className='flex items-center gap-2'>
-                <div style={{ width: 12, height: 12, flexShrink: 0, ...style }} />
-                <span className='text-xs text-muted-foreground'>{label}</span>
-              </div>
-            ))}
-            <div className='flex items-center gap-2 mt-0.5'>
-              <div
-                style={{
-                  width: 12,
-                  height: 12,
-                  flexShrink: 0,
-                  background: 'var(--color-option-c)',
-                  borderRadius: '50%',
-                }}
-              />
-              <span className='text-xs text-muted-foreground'>Đã đánh dấu</span>
-            </div>
           </div>
         </aside>
       </div>

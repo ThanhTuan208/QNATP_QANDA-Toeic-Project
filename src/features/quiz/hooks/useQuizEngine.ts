@@ -103,7 +103,7 @@ export function useQuizEngine(options: UseQuizEngineOptions): UseQuizEngineRetur
       }
     }
     return { answeredMap: map, correctMap: cm }
-  }, [questionsHook.questions, attemptHook.attemptHistory])
+  }, [questionsHook.questions, attemptHook.attemptHistory, attemptHook.attemptHistory.length])
 
   const pct =
     questionsHook.totalQuestions > 0
@@ -112,16 +112,23 @@ export function useQuizEngine(options: UseQuizEngineOptions): UseQuizEngineRetur
 
   const goToQuestion = useCallback(
     (index: number) => {
-      attemptHook.clearAnswer()
+      const target = questionsHook.questions[index]
+      attemptHook.navigateToQuestion(target?.id ?? null)
       questionsHook.goToQuestion(index)
     },
-    [attemptHook.clearAnswer, questionsHook.goToQuestion],
+    [questionsHook.goToQuestion, questionsHook.questions, attemptHook.navigateToQuestion],
   )
 
   const handleNext = useCallback(() => {
-    attemptHook.clearAnswer()
+    const nextQuestion = questionsHook.questions[questionsHook.currentIdx + 1]
+    attemptHook.navigateToQuestion(nextQuestion?.id ?? null)
     questionsHook.advanceQuestion()
-  }, [attemptHook.clearAnswer, questionsHook.advanceQuestion])
+  }, [
+    questionsHook.advanceQuestion,
+    questionsHook.questions,
+    questionsHook.currentIdx,
+    attemptHook.navigateToQuestion,
+  ])
 
   const reset = useCallback(() => {
     questionsHook.resetIdx()

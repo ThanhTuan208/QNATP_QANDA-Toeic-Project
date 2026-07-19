@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { BookOpen, Flag } from 'lucide-react'
 import { OptionButton } from '@/features/quiz/components/OptionButton'
 import { OPTION_LABELS } from '@/features/quiz/constants'
@@ -27,6 +28,7 @@ interface QuestionCardProps {
   selectedOptionId: string | null
   correctOptionId: string | null
   onSelect: (optionId: string) => void
+  disabled?: boolean
   headerLeft?: React.ReactNode
   headerRight?: React.ReactNode
   showFlag?: boolean
@@ -40,6 +42,7 @@ export function QuestionCard({
   selectedOptionId,
   correctOptionId,
   onSelect,
+  disabled,
   headerLeft,
   headerRight,
   showFlag,
@@ -47,9 +50,33 @@ export function QuestionCard({
   onToggleFlag,
   questionNumber,
 }: QuestionCardProps) {
-  const isAnswered = correctOptionId !== null
-  const correctOption = question.options.find((o) => o.id === correctOptionId)
-  const rationale = correctOption?.rationale
+  const [viewingOptionId, setViewingOptionId] = useState<string | null>(correctOptionId)
+  const prevCorrectRef = useRef(correctOptionId)
+
+  useEffect(() => {
+    if (prevCorrectRef.current === null && correctOptionId !== null) {
+      prevCorrectRef.current = correctOptionId
+      return
+    }
+    if (correctOptionId !== prevCorrectRef.current) {
+      prevCorrectRef.current = correctOptionId
+      setViewingOptionId(correctOptionId)
+    }
+  }, [correctOptionId])
+
+  const handleOptionClick = useCallback(
+    (optionId: string) => {
+      if (correctOptionId === null && !disabled) {
+        onSelect(optionId)
+      }
+      setViewingOptionId(optionId)
+    },
+    [correctOptionId, onSelect, disabled],
+  )
+
+  const viewingOption = viewingOptionId
+    ? question.options.find((o) => o.id === viewingOptionId)
+    : null
 
   return (
     <div className='space-y-4 sm:space-y-6'>
@@ -86,57 +113,77 @@ export function QuestionCard({
           </div>
         </div>
 
-        <p className='text-base sm:text-lg leading-6 sm:leading-7 text-foreground font-medium'>
+        <p className="font-serif text-base sm:text-lg text-foreground font-medium leading-relaxed indent-4">
           {question.questionText}
         </p>
       </div>
 
-      <div className='space-y-2 sm:space-y-3'>
-        {question.options.map((opt, idx) => {
-          const status: OptionStatus = getOptionStatus(opt.id, selectedOptionId, correctOptionId)
-          return (
-            <OptionButton
-              key={opt.id}
-              text={opt.text}
-              label={OPTION_LABELS[idx] ?? String(idx)}
-              status={status}
-              rationale={opt.rationale}
-              onSelect={() => onSelect(opt.id)}
-            />
-          )
-        })}
-      </div>
-
-      {isAnswered && (
-        <div
-          className={cn(
-            'rounded-xl border p-4 flex gap-3',
-            selectedOptionId === correctOptionId
-              ? 'border-primary/20 bg-primary/5'
-              : 'border-rose-500/20 bg-rose-500/5',
-          )}
-        >
-          <BookOpen
-            className='w-4 h-4 shrink-0 mt-0.5'
-            style={{
-              color: selectedOptionId === correctOptionId ? 'var(--color-option-a)' : 'var(--color-quiz-error)',
-            }}
-          />
-          <div>
-            <p
-              className='text-xs font-semibold mb-1'
-              style={{
-                color: selectedOptionId === correctOptionId ? 'var(--color-option-a)' : 'var(--color-quiz-error)',
-              }}
-            >
-              Giải thích
-            </p>
-            <p className='text-sm leading-relaxed text-foreground/80'>
-              {rationale ?? question.hint ?? 'Không có giải thích.'}
-            </p>
-          </div>
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
+        <div className='lg:col-span-2 space-y-2 sm:space-y-3'>
+          {question.options.map((opt, idx) => {
+            const status: OptionStatus = getOptionStatus(
+              opt.id,
+              selectedOptionId,
+              correctOptionId,
+              viewingOptionId,
+            )
+            return (
+              <OptionButton
+                key={opt.id}
+                text={opt.text}
+                label={OPTION_LABELS[idx] ?? String(idx)}
+                status={status}
+                onSelect={() => handleOptionClick(opt.id)}
+              />
+            )
+          })}
         </div>
-      )}
+
+        <div className='lg:col-span-1'>
+          {viewingOption ? (
+            <div
+              className={cn(
+                'rounded-xl border-2 p-3 sm:p-4 space-y-2 sm:space-y-3 h-full min-h-25',
+                viewingOption.id === correctOptionId
+                  ? 'border-green-teal bg-green-teal-5'
+                  : viewingOption.id === selectedOptionId && viewingOption.id !== correctOptionId
+                    ? 'border-error bg-error-soft/15'
+                    : 'border-steel-blue bg-steel-blue-5',
+              )}
+            >
+              <div className='flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
+                <BookOpen className='h-3.5 w-3.5' />
+                Giải thích
+              </div>
+              <p className='text-xs sm:text-sm font-bold leading-5'>
+                {viewingOption.text}
+              </p>
+              {viewingOption.rationale ? (
+                <p
+                  className={cn(
+                    'text-xs sm:text-sm leading-5',
+                    viewingOption.id === correctOptionId
+                      ? 'text-green-dark'
+                      : viewingOption.id === selectedOptionId && viewingOption.id !== correctOptionId
+                        ? 'text-error'
+                        : 'text-steel-blue',
+                  )}
+                >
+                  {viewingOption.rationale}
+                </p>
+              ) : (
+                <p className='text-xs sm:text-sm leading-5 text-muted-foreground italic'>
+                  Không có giải thích cho đáp án này
+                </p>
+              )}
+            </div>
+          ) : (
+            <div className='rounded-xl border-2 border-dashed border-input p-3 sm:p-4 flex items-center justify-center h-full min-h-25 text-xs sm:text-sm text-muted-foreground'>
+              Chọn một đáp án để xem giải thích
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

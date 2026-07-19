@@ -14,6 +14,7 @@ export interface Question {
   options: Option[]
   correctOptionId?: string
   rationale?: string
+  part?: number
 }
 
 export interface AttemptResult {
@@ -82,7 +83,7 @@ export type AttemptPhase = 'idle' | 'submitting' | 'answered'
 
 export type QuizState = 'loading' | 'ready' | 'answered' | 'complete'
 
-export type OptionStatus = 'idle' | 'selected' | 'correct' | 'wrong' | 'disabled'
+export type OptionStatus = 'idle' | 'selected' | 'correct' | 'wrong' | 'viewing' | 'disabled'
 
 export interface AttemptRecord {
   questionId: string
@@ -118,4 +119,5 @@ export interface UseQuizAttemptReturn {
   handleSelect: (optionId: string) => void
   clearAnswer: () => void
   resetSession: () => void
+  navigateToQuestion: (nextQuestionId: string | null) => void
 }

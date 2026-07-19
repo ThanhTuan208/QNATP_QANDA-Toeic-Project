@@ -14,6 +14,7 @@ interface QuizEngineProps {
   type?: string
   difficulty?: string
   initialQuestions?: Question[]
+  disabled?: boolean
   onStatsUpdate?: (total: number, correct: number) => void
   onComplete?: (result: {
     correctCount: number
@@ -24,7 +25,7 @@ interface QuizEngineProps {
 }
 
 export function QuizEngine(props: QuizEngineProps) {
-  const { type, difficulty, initialQuestions, onStatsUpdate, onComplete } = props
+  const { type, difficulty, initialQuestions, disabled, onStatsUpdate, onComplete } = props
   const engine = useQuizEngine({ type, difficulty, initialQuestions, onStatsUpdate })
 
   useEffect(() => {
@@ -89,21 +90,22 @@ export function QuizEngine(props: QuizEngineProps) {
   }
 
   return (
-    <QuizActiveView
-      currentQuestion={engine.currentQuestion}
-      selectedOptionId={engine.selectedOptionId}
-      submitting={engine.submitting}
-      result={engine.result}
-      currentIdx={engine.currentIdx}
-      totalQuestions={engine.totalQuestions}
-      questions={engine.questions}
-      answeredMap={engine.answeredMap}
-      correctMap={engine.correctMap}
-      flagged={engine.flagged}
-      onSelect={engine.handleSelect}
-      onToggleFlag={engine.toggleFlag}
-      onGoToQuestion={engine.goToQuestion}
-      onNext={engine.handleNext}
-    />
+      <QuizActiveView
+        currentQuestion={engine.currentQuestion}
+        selectedOptionId={engine.selectedOptionId}
+        submitting={engine.submitting}
+        result={engine.result}
+        currentIdx={engine.currentIdx}
+        totalQuestions={engine.totalQuestions}
+        questions={engine.questions}
+        answeredMap={engine.answeredMap}
+        correctMap={engine.correctMap}
+        flagged={engine.flagged}
+        disabled={disabled}
+        onSelect={engine.handleSelect}
+        onToggleFlag={engine.toggleFlag}
+        onGoToQuestion={engine.goToQuestion}
+        onNext={engine.handleNext}
+      />
   )
 }
