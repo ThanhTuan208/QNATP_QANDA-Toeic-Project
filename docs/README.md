@@ -41,3 +41,7 @@
 
 - [AI Prompt Spec](plans/ai_prompt_spec.md) — spec tích hợp AI sinh câu hỏi
 - [Roadmap 2 Skills](plans/roadmap-2skills.md) — lộ trình mở rộng lên Reading + Listening
+
+## Learning
+
+- [Learning Roadmap](learning-roadmap.md) — lộ trình học từ cơ bản đến nâng cao, phân tích kiến thức chi tiết từng file

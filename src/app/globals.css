@@ -377,6 +377,7 @@
   --color-quiz-error: #ff4d6d;
   --color-quiz-error-rgb: 255,77,109;
   --color-muted-subtle: #6b6b8a;
+  --color-muted-subtle-rgb: 107,107,138;
 
   /* Notification tabs */
   --color-tab-inactive-bg: oklch(1 0 0 / 0.10);
