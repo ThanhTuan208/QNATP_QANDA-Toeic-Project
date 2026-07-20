@@ -5,9 +5,21 @@ export interface Option {
   rationale?: string
 }
 
+export interface PassageInfo {
+  id: string
+  title?: string
+  content: string
+  passageFormat?: string
+  order?: number
+  metadata?: Record<string, unknown>
+}
+
 export interface Question {
   id: string
   questionText: string
+  passageText?: string
+  passage?: PassageInfo
+  passages?: PassageInfo[]
   type: string
   difficulty: string
   hint: string | null
@@ -15,6 +27,8 @@ export interface Question {
   correctOptionId?: string
   rationale?: string
   part?: number
+  passageGroupId?: string
+  passageId?: string
 }
 
 export interface AttemptResult {

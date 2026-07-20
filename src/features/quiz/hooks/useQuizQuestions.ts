@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { fetchQuestions, fetchWeightedQuestions } from '@/features/quiz/client/quiz.client'
 import type {
   FetchQuestionsResponse,
@@ -14,14 +14,16 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
   const queryClient = useQueryClient()
   const [currentIdx, setCurrentIdx] = useState(0)
 
+  const queryKey = [
+    'questions',
+    options.type,
+    options.difficulty,
+    options.weighted ? 'weighted' : 'random',
+  ]
+
   const { data, isLoading } = useQuery<FetchQuestionsResponse>({
     enabled: !options.initialQuestions,
-    queryKey: [
-      'questions',
-      options.type,
-      options.difficulty,
-      options.weighted ? 'weighted' : 'random',
-    ],
+    queryKey,
     queryFn: () => {
       if (options.weighted) {
         return fetchWeightedQuestions({
@@ -36,6 +38,16 @@ export function useQuizQuestions(options: UseQuizQuestionsOptions): UseQuizQuest
       ? { questions: options.initialQuestions, total: options.initialQuestions.length }
       : undefined,
   })
+
+  // Sync initialQuestions into cache whenever they change (e.g. after re-import)
+  useEffect(() => {
+    if (options.initialQuestions) {
+      queryClient.setQueryData(queryKey, {
+        questions: options.initialQuestions,
+        total: options.initialQuestions.length,
+      })
+    }
+  }, [options.initialQuestions, queryClient, ...queryKey])
 
   const questions = data?.questions ?? []
   const setQuestions = useCallback(
