@@ -8,6 +8,7 @@ datasource db {
 }
 
 enum QuestionType {
+  // Part 5 — Grammar & Vocabulary
   WORD_FORM
   VOCABULARY
   VERB_TENSE
@@ -18,6 +19,26 @@ enum QuestionType {
   RELATIVE_CLAUSE
   COMPARISON
   AGREEMENT
+  MODAL_VERBS
+  CONDITIONALS
+  INFINITIVE_GERUND
+  PARALLEL_STRUCTURE
+  PRONOUN
+  DETERMINER_QUANTIFIER
+
+  // Part 6 — Text Completion
+  SENTENCE_INSERTION
+  GRAMMAR
+  TRANSITION
+
+  // Part 7 — Reading Skills
+  MAIN_IDEA
+  DETAIL
+  INFERENCE
+  VOCABULARY_IN_CONTEXT
+  REFERENCE
+  INTENTION
+  NOT_QUESTION
 }
 
 enum Difficulty {
@@ -31,6 +52,12 @@ enum QuestionSource {
   AI
   ADMIN_IMPORT
   MANUAL
+}
+
+enum PassageFormat {
+  SINGLE
+  DOUBLE
+  TRIPLE
 }
 
 enum SessionType {
@@ -59,10 +86,29 @@ model User {
   @@map("users")
 }
 
+model Passage {
+  id             String         @id
+  passageGroupId String?
+  order          Int            @default(0)
+  title          String?
+  part           Int
+  passageFormat  PassageFormat  @default(SINGLE)
+  content        String
+  metadata       Json?
+
+  questions      Question[]
+
+  @@index([passageGroupId])
+  @@map("passages")
+}
+
 model Question {
   id           String         @id
+  part         Int            @default(5)
   questionText String
   type         QuestionType
+  passageText  String?
+  passageId    String?
   difficulty   Difficulty
   source       QuestionSource @default(MANUAL)
   hint         String?
@@ -72,11 +118,13 @@ model Question {
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
 
+  passage       Passage?       @relation(fields: [passageId], references: [id])
   options       Option[]
   attempts      Attempt[]
   tags          QuestionTag[]
   savedByUsers  SavedQuestion[]
 
+  @@index([passageId])
   @@map("questions")
 }
 

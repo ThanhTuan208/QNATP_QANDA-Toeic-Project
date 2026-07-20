@@ -1,10 +1,35 @@
 import type { Prisma } from '@prisma/client'
 import { prisma } from '@/lib/prisma'
 
+const QUESTION_INCLUDE = {
+  options: {
+    orderBy: { order: 'asc' },
+    select: {
+      id: true,
+      text: true,
+      order: true,
+      isCorrect: true,
+      rationale: true,
+    },
+  },
+  passage: {
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      part: true,
+      passageFormat: true,
+      order: true,
+      metadata: true,
+    },
+  },
+} as const
+
 export async function findQuestionById(id: string) {
   return prisma.question.findUnique({
     where: { id },
     include: {
+      ...QUESTION_INCLUDE,
       options: true,
     },
   })
@@ -13,18 +38,7 @@ export async function findQuestionById(id: string) {
 export async function findQuestions(where: Prisma.QuestionWhereInput) {
   return prisma.question.findMany({
     where,
-    include: {
-      options: {
-        orderBy: { order: 'asc' },
-        select: {
-          id: true,
-          text: true,
-          order: true,
-          isCorrect: true,
-          rationale: true,
-        },
-      },
-    },
+    include: QUESTION_INCLUDE,
   })
 }
 
@@ -36,12 +50,7 @@ export async function findQuestionsPaginated(
   const [questions, total] = await Promise.all([
     prisma.question.findMany({
       where,
-      include: {
-        options: {
-          orderBy: { order: 'asc' },
-          select: { id: true, text: true, order: true, isCorrect: true, rationale: true },
-        },
-      },
+      include: QUESTION_INCLUDE,
       take,
       skip,
       orderBy: { createdAt: 'desc' },
@@ -95,6 +104,35 @@ export async function findAllAttempts(userId: string) {
       isCorrect: true,
       question: { select: { type: true } },
     },
+  })
+}
+
+export async function findPassagesByGroupId(passageGroupId: string) {
+  return prisma.passage.findMany({
+    where: { passageGroupId },
+    orderBy: { order: 'asc' },
+    include: {
+      questions: { include: { options: { orderBy: { order: 'asc' } } } },
+    },
+  })
+}
+
+export async function findQuestionsByPassageGroup(
+  passageGroupId: string,
+  take?: number,
+) {
+  const passages = await prisma.passage.findMany({
+    where: { passageGroupId },
+    select: { id: true },
+  })
+  const passageIds = passages.map((p) => p.id)
+  if (passageIds.length === 0) return []
+
+  return prisma.question.findMany({
+    where: { passageId: { in: passageIds }, isActive: true },
+    include: QUESTION_INCLUDE,
+    take,
+    orderBy: { createdAt: 'asc' },
   })
 }
 

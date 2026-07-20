@@ -1,29 +1,14 @@
 import type { NextRequest } from 'next/server'
 import { getRandomQuestions } from '@/api/quiz/quiz.service'
-import type { SessionQuestion } from '@/features/temp-session/types'
 import { AppError } from '@/lib/errors/AppError'
 import { error, success } from '@/lib/response'
+import { buildTypeToPartMap, dbQuestionsToSessionQuestions } from '@/features/session-builder/utils/questions'
 
 interface GenerateRequest {
   parts: number[]
   knowledgeGroups: Record<number, { type: string; count: number }[]>
   difficulty: string[]
   totalQuestions: number
-}
-
-function buildTypeToPartMap(
-  knowledgeGroups: Record<number, { type: string; count: number }[]>,
-): Map<string, number> {
-  const map = new Map<string, number>()
-  for (const [partStr, groups] of Object.entries(knowledgeGroups)) {
-    const part = Number(partStr)
-    for (const group of groups) {
-      if (!map.has(group.type)) {
-        map.set(group.type, part)
-      }
-    }
-  }
-  return map
 }
 
 export async function POST(request: NextRequest) {
@@ -44,34 +29,7 @@ export async function POST(request: NextRequest) {
       balance: types.length > 1,
     })
 
-    const questions: SessionQuestion[] = result.questions.map((q) => {
-      const correctOption = q.options.find((o: { isCorrect: boolean }) => o.isCorrect)
-      return {
-        tempId: String(Date.now()) + String(Math.random()).slice(2, 8),
-        part: typeToPart.get(q.type.toLowerCase()) ?? 5,
-        type: q.type.toLowerCase(),
-        difficulty: q.difficulty.toLowerCase(),
-        questionText: q.questionText,
-        options: q.options.map(
-          (o: {
-            id: string
-            text: string
-            order: number
-            rationale?: string
-            isCorrect: boolean
-          }) => ({
-            id: o.id,
-            text: o.text,
-            order: o.order,
-            rationale: o.rationale ?? '',
-            isCorrect: o.isCorrect,
-          }),
-        ),
-        correctOptionId: correctOption?.id ?? '',
-        rationale: correctOption?.rationale ?? '',
-        originalId: q.id,
-      }
-    })
+    const questions = dbQuestionsToSessionQuestions(result.questions, typeToPart)
 
     return success({ questions })
   } catch (e) {

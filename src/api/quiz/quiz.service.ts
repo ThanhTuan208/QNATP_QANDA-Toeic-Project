@@ -120,6 +120,23 @@ export async function getWeightedQuestions(
     'voice',
     'relative-clause',
     'agreement',
+    'modal-verbs',
+    'conditionals',
+    'infinitive-gerund',
+    'parallel-structure',
+    'pronoun',
+    'determiner-quantifier',
+    'sentence-insertion',
+    'grammar',
+    'transition',
+    'main-idea',
+    'detail',
+    'inference',
+    'vocabulary-in-context',
+    'reference',
+    'intention',
+    'next-step',
+    'not-question',
   ]
 
   const stats = await quizRepo.findAllAttempts(userId)
@@ -182,6 +199,10 @@ export async function getWeightedQuestions(
   ).flat()
 
   return { questions: shuffle(questions), total: questions.length }
+}
+
+export async function getQuestionsByPassageGroup(passageGroupId: string, limit?: number) {
+  return quizRepo.findQuestionsByPassageGroup(passageGroupId, limit)
 }
 
 export async function getUserStats(userId: string) {

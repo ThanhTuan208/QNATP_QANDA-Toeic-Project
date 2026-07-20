@@ -24,6 +24,23 @@ const TYPE_MAP: Record<string, QuestionType> = {
   'relative-clause': 'RELATIVE_CLAUSE',
   comparison: 'COMPARISON',
   agreement: 'AGREEMENT',
+  'modal-verbs': 'MODAL_VERBS',
+  conditionals: 'CONDITIONALS',
+  'infinitive-gerund': 'INFINITIVE_GERUND',
+  'parallel-structure': 'PARALLEL_STRUCTURE',
+  pronoun: 'PRONOUN',
+  'determiner-quantifier': 'DETERMINER_QUANTIFIER',
+  'sentence-insertion': 'SENTENCE_INSERTION',
+  grammar: 'GRAMMAR',
+  transition: 'TRANSITION',
+  'main-idea': 'MAIN_IDEA',
+  detail: 'DETAIL',
+  inference: 'INFERENCE',
+  'vocabulary-in-context': 'VOCABULARY_IN_CONTEXT',
+  reference: 'REFERENCE',
+  intention: 'INTENTION',
+  'next-step': 'INTENTION',
+  'not-question': 'NOT_QUESTION',
 }
 
 async function main() {
@@ -39,6 +56,7 @@ async function main() {
 
   for (const q of data) {
     const questionData = {
+      part: q.part ?? 5,
       questionText: q.question,
       type: TYPE_MAP[q.type] || 'WORD_FORM',
       difficulty: (q.difficulty || 'medium').toUpperCase(),
@@ -48,48 +66,56 @@ async function main() {
 
     const questionId = q.code
 
-    if (isReset) {
-      await prisma.question.create({
-        data: {
-          id: questionId,
-          ...questionData,
-          options: {
-            create: q.options.map((opt: any, idx: number) => ({
-              id: `${questionId}_${idx + 1}`,
-              text: opt.text,
-              isCorrect: opt.isCorrect,
-              rationale: opt.rationale,
-              order: idx,
-            })),
-          },
+    const upsertQuestion = async () => {
+      const common = {
+        ...questionData,
+        options: {
+          create: q.options.map((opt: any, idx: number) => ({
+            id: `${questionId}_${idx + 1}`,
+            text: opt.text,
+            isCorrect: opt.isCorrect,
+            rationale: opt.rationale,
+            order: idx,
+          })),
         },
-      })
-    } else {
-      const existing = await prisma.question.findUnique({
-        where: { id: questionId },
-      })
+      }
 
+      if (isReset) {
+        return prisma.question.create({ data: { id: questionId, ...common } })
+      }
+
+      const existing = await prisma.question.findUnique({ where: { id: questionId } })
       if (existing) {
-        await prisma.question.update({
-          where: { id: questionId },
-          data: questionData,
+        return prisma.question.update({ where: { id: questionId }, data: questionData })
+      }
+      return prisma.question.create({ data: { id: questionId, ...common } })
+    }
+
+    const created = await upsertQuestion()
+
+    // Create Passage record for Part 6/7 questions
+    const part = q.part ?? 5
+    if ([6, 7].includes(part) && created.passageId === null) {
+      const sourceText = q.passageText || q.passage || q.question || ''
+      if (sourceText) {
+        const existingPassage = await prisma.passage.findUnique({
+          where: { id: `passage_${questionId}` },
         })
-      } else {
-        await prisma.question.create({
-          data: {
-            id: questionId,
-            ...questionData,
-            options: {
-              create: q.options.map((opt: any, idx: number) => ({
-                id: `${questionId}_${idx + 1}`,
-                text: opt.text,
-                isCorrect: opt.isCorrect,
-                rationale: opt.rationale,
-                order: idx,
-              })),
+        if (!existingPassage) {
+          const passage = await prisma.passage.create({
+            data: {
+              id: `passage_${questionId}`,
+              part,
+              passageFormat: 'SINGLE',
+              content: sourceText,
+              title: q.passageTitle || null,
             },
-          },
-        })
+          })
+          await prisma.question.update({
+            where: { id: questionId },
+            data: { passageId: passage.id },
+          })
+        }
       }
     }
   }
