@@ -6,13 +6,14 @@ export const P6_BALANCED = definePreset({
   id: 'p6-balanced',
   part: PART.P6,
   title: 'Balanced',
-  description: 'Equal distribution across sentence insertion, grammar, and vocabulary',
+  description: 'Equal distribution across sentence insertion, grammar, vocabulary, and transition',
   difficulty: 'medium',
   icon: 'scale',
   distribution: [
-    { type: P6_GROUP.SENTENCE_INSERTION, count: 6 },
-    { type: P6_GROUP.GRAMMAR, count: 5 },
-    { type: P6_GROUP.VOCABULARY, count: 5 },
+    { type: P6_GROUP.SENTENCE_INSERTION, count: 4 },
+    { type: P6_GROUP.GRAMMAR, count: 4 },
+    { type: P6_GROUP.VOCABULARY, count: 4 },
+    { type: P6_GROUP.TRANSITION, count: 4 },
   ],
 })
 
@@ -25,8 +26,9 @@ export const P6_GRAMMAR_HEAVY = definePreset({
   icon: 'sigma',
   distribution: [
     { type: P6_GROUP.SENTENCE_INSERTION, count: 4 },
-    { type: P6_GROUP.GRAMMAR, count: 8 },
-    { type: P6_GROUP.VOCABULARY, count: 4 },
+    { type: P6_GROUP.GRAMMAR, count: 6 },
+    { type: P6_GROUP.VOCABULARY, count: 3 },
+    { type: P6_GROUP.TRANSITION, count: 3 },
   ],
 })
 
@@ -38,9 +40,10 @@ export const P6_VOCAB_FOCUSED = definePreset({
   difficulty: 'medium',
   icon: 'book-open',
   distribution: [
-    { type: P6_GROUP.SENTENCE_INSERTION, count: 3 },
-    { type: P6_GROUP.GRAMMAR, count: 4 },
-    { type: P6_GROUP.VOCABULARY, count: 9 },
+    { type: P6_GROUP.SENTENCE_INSERTION, count: 2 },
+    { type: P6_GROUP.GRAMMAR, count: 3 },
+    { type: P6_GROUP.VOCABULARY, count: 7 },
+    { type: P6_GROUP.TRANSITION, count: 2 },
   ],
 })
 
@@ -52,9 +55,10 @@ export const P6_INSERTION_DRILL = definePreset({
   difficulty: 'hard',
   icon: 'between-vert-end',
   distribution: [
-    { type: P6_GROUP.SENTENCE_INSERTION, count: 8 },
-    { type: P6_GROUP.GRAMMAR, count: 5 },
-    { type: P6_GROUP.VOCABULARY, count: 3 },
+    { type: P6_GROUP.SENTENCE_INSERTION, count: 6 },
+    { type: P6_GROUP.GRAMMAR, count: 3 },
+    { type: P6_GROUP.VOCABULARY, count: 2 },
+    { type: P6_GROUP.TRANSITION, count: 3 },
   ],
 })
 
@@ -66,9 +70,10 @@ export const P6_SPEED = definePreset({
   difficulty: 'easy',
   icon: 'zap',
   distribution: [
-    { type: P6_GROUP.SENTENCE_INSERTION, count: 3 },
-    { type: P6_GROUP.GRAMMAR, count: 3 },
-    { type: P6_GROUP.VOCABULARY, count: 4 },
+    { type: P6_GROUP.SENTENCE_INSERTION, count: 2 },
+    { type: P6_GROUP.GRAMMAR, count: 2 },
+    { type: P6_GROUP.VOCABULARY, count: 2 },
+    { type: P6_GROUP.TRANSITION, count: 2 },
   ],
 })
 

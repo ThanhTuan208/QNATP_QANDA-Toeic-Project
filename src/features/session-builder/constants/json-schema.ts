@@ -19,7 +19,7 @@ export const IMPORT_SCHEMA_FIELDS: SchemaField[] = [
     type: 'chữ',
     required: true,
     values:
-      'word-form, vocabulary, verb-tense, preposition, conjunction, participle, voice, relative-clause, agreement, comparison, sentence-insertion, single-passage, double-passage',
+      'word-form, vocabulary, verb-tense, preposition, conjunction, participle, voice, relative-clause, agreement, comparison, modal-verbs, conditionals, infinitive-gerund, parallel-structure, pronoun, determiner-quantifier, sentence-insertion, grammar, transition, main-idea, detail, inference, vocabulary-in-context, reference, intention, not-question',
     desc: 'Dạng kiến thức của câu hỏi. Ví dụ: word-form (dạng từ), vocabulary (từ vựng), verb-tense (thì động từ). Mỗi part chỉ chấp nhận một số dạng nhất định.',
   },
   {

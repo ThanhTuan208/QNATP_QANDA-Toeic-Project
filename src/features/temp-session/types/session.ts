@@ -14,12 +14,31 @@ export interface KnowledgeGroupConfig {
   count: number
 }
 
+export interface ContentBlock {
+  type: 'text' | 'blank' | 'image'
+  value?: string
+}
+
+export interface SessionPassage {
+  id: string
+  title?: string
+  content: string
+  contentBlocks?: ContentBlock[]
+  passageFormat?: string
+  order?: number
+}
+
 export interface SessionQuestion {
   tempId: string
   part: number
   type: string
   difficulty: string
   questionText: string
+  passageText?: string
+  passage?: SessionPassage
+  passages?: SessionPassage[]
+  passageGroupId?: string
+  passageId?: string
   options: {
     id: string
     text: string

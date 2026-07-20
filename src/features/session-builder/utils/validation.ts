@@ -1,7 +1,9 @@
 import type { ValidationResult } from '@/features/session-builder/types'
 import type {
+  ContentBlock,
   KnowledgeGroupConfig,
   SessionConfig,
+  SessionPassage,
   SessionQuestion,
 } from '@/features/temp-session/types'
 
@@ -37,6 +39,55 @@ function isValidOption(value: unknown): value is RawOption {
   return isValidString(opt.id) && isValidString(opt.text) && typeof opt.order === 'number'
 }
 
+function isValidContentBlock(value: unknown): value is ContentBlock {
+  if (typeof value !== 'object' || value === null) return false
+  const block = value as Record<string, unknown>
+  if (block.type === 'blank') return true
+  if (block.type === 'text' && isValidString(block.value)) return true
+  if (block.type === 'image' && isValidString(block.value)) return true
+  return false
+}
+
+function isValidPassage(value: unknown): boolean {
+  if (typeof value !== 'object' || value === null) return false
+  const p = value as Record<string, unknown>
+  if (!Array.isArray(p.content) || p.content.length === 0) return false
+  for (const block of p.content) {
+    if (!isValidContentBlock(block)) return false
+  }
+  return true
+}
+
+function contentBlocksToString(blocks: ContentBlock[]): string {
+  return blocks
+    .map((b) => {
+      if (b.type === 'blank') return '______'
+      if (b.type === 'image') return `[Image: ${b.value ?? ''}]`
+      return b.value ?? ''
+    })
+    .join(' ')
+}
+
+function rawPassageToSessionPassage(
+  raw: Record<string, unknown>,
+  index: number,
+  passageType?: unknown,
+): SessionPassage | undefined {
+  if (!Array.isArray(raw.content) || raw.content.length === 0) return undefined
+  for (const block of raw.content) {
+    if (!isValidContentBlock(block)) return undefined
+  }
+  const blocks = raw.content as ContentBlock[]
+  return {
+    id: isValidString(raw.id) ? String(raw.id) : `p_${index}`,
+    title: isValidString(raw.title) ? String(raw.title) : undefined,
+    content: contentBlocksToString(blocks),
+    contentBlocks: blocks,
+    passageFormat: isValidString(passageType) ? String(passageType) : undefined,
+    order: typeof raw.order === 'number' ? raw.order : undefined,
+  }
+}
+
 export function parseImportedSessionJSON(raw: string): ParseResult {
   const errors: ParseError[] = []
   let parsed: unknown
@@ -50,26 +101,47 @@ export function parseImportedSessionJSON(raw: string): ParseResult {
     }
   }
 
+  if (typeof parsed !== 'object' || parsed === null) {
+    return {
+      questions: [],
+      errors: [{ index: -1, message: 'Dữ liệu phải là một object.' }],
+    }
+  }
+
+  const root = parsed as Record<string, unknown>
+
+  // Parse root-level passages map (new format)
+  const passagesMap = new Map<string, SessionPassage[]>()
+  const rawPassages = root.passages
+  if (typeof rawPassages === 'object' && rawPassages !== null && !Array.isArray(rawPassages)) {
+    for (const [groupId, groupPassages] of Object.entries(rawPassages as Record<string, unknown>)) {
+      if (Array.isArray(groupPassages)) {
+        const parsedGroup: SessionPassage[] = []
+        for (let pIdx = 0; pIdx < groupPassages.length; pIdx++) {
+          const rawP = groupPassages[pIdx] as Record<string, unknown>
+          if (typeof rawP === 'object' && rawP !== null) {
+            const sp = rawPassageToSessionPassage(rawP, pIdx)
+            if (sp) parsedGroup.push(sp)
+          }
+        }
+        if (parsedGroup.length > 0) {
+          passagesMap.set(groupId, parsedGroup)
+        }
+      }
+    }
+  }
+
+  // Parse questions array
   let items: unknown[] = []
 
   if (Array.isArray(parsed)) {
     items = parsed
-  } else if (typeof parsed === 'object' && parsed !== null && 'questions' in parsed) {
-    const obj = parsed as Record<string, unknown>
-    if (Array.isArray(obj.questions)) {
-      items = obj.questions
-    } else {
-      return {
-        questions: [],
-        errors: [{ index: -1, message: 'Dữ liệu phải chứa trường "questions" là một array.' }],
-      }
-    }
+  } else if (Array.isArray(root.questions)) {
+    items = root.questions
   } else {
     return {
       questions: [],
-      errors: [
-        { index: -1, message: 'Dữ liệu phải là một array hoặc object có trường "questions".' },
-      ],
+      errors: [{ index: -1, message: 'Dữ liệu phải chứa trường "questions" là một array.' }],
     }
   }
 
@@ -159,12 +231,51 @@ export function parseImportedSessionJSON(raw: string): ParseResult {
       continue
     }
 
+    // Resolve passage data
+    let passageData: SessionQuestion['passage'] | undefined
+    const passageGroupId = isValidString(item.passageGroupId) ? String(item.passageGroupId) : undefined
+    const passageId = isValidString(item.passageId) ? String(item.passageId) : undefined
+
+    let allPassagesData: SessionQuestion['passages'] | undefined
+
+    if (passageGroupId && passagesMap.has(passageGroupId)) {
+      // New format: look up from root-level passages map
+      const groupPassages = passagesMap.get(passageGroupId)!
+      allPassagesData = groupPassages
+      const matched = passageId
+        ? groupPassages.find((p) => p.id === passageId)
+        : groupPassages[0]
+      if (matched) {
+        passageData = matched
+      }
+    } else {
+      // Backward compat: parse inline passages array or passageText
+      const rawInlinePassages = item.passages
+      if (Array.isArray(rawInlinePassages) && rawInlinePassages.length > 0) {
+        const firstP = rawInlinePassages[0] as Record<string, unknown>
+        if (typeof firstP === 'object' && firstP !== null) {
+          passageData = rawPassageToSessionPassage(firstP, i, item.passageType)
+        }
+      } else if (isValidString(item.passageText)) {
+        passageData = {
+          id: `p_${i}`,
+          content: String(item.passageText),
+          passageFormat: isValidString(item.passageType) ? String(item.passageType) : undefined,
+        }
+      }
+    }
+
     questions.push({
       tempId: `import_${i}_${Date.now()}`,
       part,
       type: String(item.type),
-      difficulty: String(item.difficulty),
+      difficulty: String(item.difficulty).toUpperCase(),
       questionText: String(item.questionText),
+      passageText: isValidString(item.passageText) ? String(item.passageText) : undefined,
+      passage: passageData,
+      passages: allPassagesData,
+      passageGroupId,
+      passageId,
       options,
       correctOptionId,
       rationale: isValidString(item.rationale) ? String(item.rationale) : '',

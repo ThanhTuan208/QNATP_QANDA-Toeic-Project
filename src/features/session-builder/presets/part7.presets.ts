@@ -1,4 +1,5 @@
 import { P7_GROUP } from '@/features/session-builder/constants/knowledge-groups'
+import { PASSAGE_FORMAT } from '@/features/session-builder/constants/knowledge-groups'
 import { PART } from '@/features/session-builder/constants/part'
 import { definePreset } from './preset.utils'
 
@@ -6,55 +7,56 @@ export const P7_BALANCED = definePreset({
   id: 'p7-balanced',
   part: PART.P7,
   title: 'Balanced',
-  description: 'Equal distribution across single, double, and triple passages',
+  description: 'Balanced mix of reading skills',
   difficulty: 'medium',
   icon: 'scale',
   distribution: [
-    { type: P7_GROUP.SINGLE_PASSAGE, count: 18 },
-    { type: P7_GROUP.DOUBLE_PASSAGE, count: 18 },
-    { type: P7_GROUP.TRIPLE_PASSAGE, count: 18 },
+    { type: P7_GROUP.MAIN_IDEA, count: 6 },
+    { type: P7_GROUP.DETAIL, count: 12 },
+    { type: P7_GROUP.INFERENCE, count: 12 },
+    { type: P7_GROUP.VOCABULARY, count: 4 },
+    { type: P7_GROUP.REFERENCE, count: 4 },
+    { type: P7_GROUP.INTENTION, count: 6 },
+    { type: P7_GROUP.NOT_QUESTION, count: 4 },
+    { type: P7_GROUP.NEXT_STEP, count: 4 },
   ],
 })
 
-export const P7_SINGLE_HEAVY = definePreset({
-  id: 'p7-single-heavy',
+export const P7_DETAIL_HEAVY = definePreset({
+  id: 'p7-detail-heavy',
   part: PART.P7,
-  title: 'Single Passage Focus',
-  description: 'Emphasis on single passage comprehension',
+  title: 'Detail Focus',
+  description: 'Emphasis on detail-oriented questions',
   difficulty: 'easy',
-  icon: 'file-text',
+  icon: 'search',
   distribution: [
-    { type: P7_GROUP.SINGLE_PASSAGE, count: 30 },
-    { type: P7_GROUP.DOUBLE_PASSAGE, count: 14 },
-    { type: P7_GROUP.TRIPLE_PASSAGE, count: 10 },
+    { type: P7_GROUP.MAIN_IDEA, count: 4 },
+    { type: P7_GROUP.DETAIL, count: 20 },
+    { type: P7_GROUP.INFERENCE, count: 6 },
+    { type: P7_GROUP.VOCABULARY, count: 4 },
+    { type: P7_GROUP.REFERENCE, count: 4 },
+    { type: P7_GROUP.INTENTION, count: 4 },
+    { type: P7_GROUP.NOT_QUESTION, count: 4 },
+    { type: P7_GROUP.NEXT_STEP, count: 2 },
   ],
 })
 
-export const P7_TRIPLE_HEAVY = definePreset({
-  id: 'p7-triple-heavy',
+export const P7_INFERENCE_HEAVY = definePreset({
+  id: 'p7-inference-heavy',
   part: PART.P7,
-  title: 'Triple Passage Focus',
-  description: 'Emphasis on triple passage comprehension',
+  title: 'Inference Focus',
+  description: 'Emphasis on inference and main idea questions',
   difficulty: 'hard',
-  icon: 'columns-3',
+  icon: 'brain',
   distribution: [
-    { type: P7_GROUP.SINGLE_PASSAGE, count: 10 },
-    { type: P7_GROUP.DOUBLE_PASSAGE, count: 16 },
-    { type: P7_GROUP.TRIPLE_PASSAGE, count: 28 },
-  ],
-})
-
-export const P7_DOUBLE_HEAVY = definePreset({
-  id: 'p7-double-heavy',
-  part: PART.P7,
-  title: 'Double Passage Focus',
-  description: 'Emphasis on double passage comprehension',
-  difficulty: 'medium',
-  icon: 'columns-2',
-  distribution: [
-    { type: P7_GROUP.SINGLE_PASSAGE, count: 10 },
-    { type: P7_GROUP.DOUBLE_PASSAGE, count: 30 },
-    { type: P7_GROUP.TRIPLE_PASSAGE, count: 14 },
+    { type: P7_GROUP.MAIN_IDEA, count: 8 },
+    { type: P7_GROUP.DETAIL, count: 6 },
+    { type: P7_GROUP.INFERENCE, count: 18 },
+    { type: P7_GROUP.VOCABULARY, count: 4 },
+    { type: P7_GROUP.REFERENCE, count: 4 },
+    { type: P7_GROUP.INTENTION, count: 6 },
+    { type: P7_GROUP.NOT_QUESTION, count: 2 },
+    { type: P7_GROUP.NEXT_STEP, count: 4 },
   ],
 })
 
@@ -62,13 +64,18 @@ export const P7_SPEED = definePreset({
   id: 'p7-speed',
   part: PART.P7,
   title: 'Speed',
-  description: 'Quick reading practice with fewer passages',
+  description: 'Quick reading practice with common question types',
   difficulty: 'easy',
   icon: 'zap',
   distribution: [
-    { type: P7_GROUP.SINGLE_PASSAGE, count: 18 },
-    { type: P7_GROUP.DOUBLE_PASSAGE, count: 10 },
-    { type: P7_GROUP.TRIPLE_PASSAGE, count: 8 },
+    { type: P7_GROUP.MAIN_IDEA, count: 4 },
+    { type: P7_GROUP.DETAIL, count: 8 },
+    { type: P7_GROUP.INFERENCE, count: 4 },
+    { type: P7_GROUP.VOCABULARY, count: 2 },
+    { type: P7_GROUP.REFERENCE, count: 2 },
+    { type: P7_GROUP.INTENTION, count: 2 },
+    { type: P7_GROUP.NOT_QUESTION, count: 2 },
+    { type: P7_GROUP.NEXT_STEP, count: 2 },
   ],
 })
 
@@ -76,21 +83,45 @@ export const P7_CHALLENGE = definePreset({
   id: 'p7-challenge',
   part: PART.P7,
   title: 'Challenge',
-  description: 'Heavy on double and triple passages',
+  description: 'Tough inference and vocabulary in context',
   difficulty: 'hard',
   icon: 'target',
   distribution: [
-    { type: P7_GROUP.SINGLE_PASSAGE, count: 8 },
-    { type: P7_GROUP.DOUBLE_PASSAGE, count: 20 },
-    { type: P7_GROUP.TRIPLE_PASSAGE, count: 26 },
+    { type: P7_GROUP.MAIN_IDEA, count: 4 },
+    { type: P7_GROUP.DETAIL, count: 6 },
+    { type: P7_GROUP.INFERENCE, count: 14 },
+    { type: P7_GROUP.VOCABULARY, count: 8 },
+    { type: P7_GROUP.REFERENCE, count: 4 },
+    { type: P7_GROUP.INTENTION, count: 6 },
+    { type: P7_GROUP.NOT_QUESTION, count: 4 },
+    { type: P7_GROUP.NEXT_STEP, count: 4 },
+  ],
+})
+
+export const P7_REFERENCE_DRILL = definePreset({
+  id: 'p7-reference-drill',
+  part: PART.P7,
+  title: 'Reference Drill',
+  description: 'Focus on pronoun reference and vocabulary questions',
+  difficulty: 'medium',
+  icon: 'book-open',
+  distribution: [
+    { type: P7_GROUP.MAIN_IDEA, count: 2 },
+    { type: P7_GROUP.DETAIL, count: 6 },
+    { type: P7_GROUP.INFERENCE, count: 6 },
+    { type: P7_GROUP.VOCABULARY, count: 10 },
+    { type: P7_GROUP.REFERENCE, count: 14 },
+    { type: P7_GROUP.INTENTION, count: 4 },
+    { type: P7_GROUP.NOT_QUESTION, count: 4 },
+    { type: P7_GROUP.NEXT_STEP, count: 2 },
   ],
 })
 
 export const PART7_PRESETS = [
   P7_BALANCED,
-  P7_SINGLE_HEAVY,
-  P7_TRIPLE_HEAVY,
-  P7_DOUBLE_HEAVY,
+  P7_DETAIL_HEAVY,
+  P7_INFERENCE_HEAVY,
   P7_SPEED,
   P7_CHALLENGE,
+  P7_REFERENCE_DRILL,
 ] as const

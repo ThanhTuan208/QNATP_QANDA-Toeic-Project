@@ -105,7 +105,7 @@ export function SessionBuilder() {
 
         {wizard.state.step === 'practice' && (
           <motion.div key='practice' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 -mx-8 md:-mx-20 md:px-10 md:py-4 shadow-sm relative overflow-hidden'>
+            <div className='bg-card rounded-2xl border border-border/50 -mx-8 md:-mx-50 md:px-10 md:py-4 shadow-sm relative overflow-hidden'>
               
               <div className='relative z-1'>
                 <Step5Practice
