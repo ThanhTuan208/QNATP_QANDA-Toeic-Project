@@ -25,9 +25,21 @@ const PASSAGE_FORMATS = [
 ] as const
 
 const PASSAGE_SET_LABELS: Record<string, { label: string; desc: string; color: string }> = {
-  single: { label: 'Single', desc: '1 passage, 2-4 câu', color: 'text-green-teal border-green-teal/30 bg-green-teal-10' },
-  double: { label: 'Double', desc: '2 passages, 5-6 câu', color: 'text-steel-blue border-steel-blue/30 bg-steel-blue-10' },
-  triple: { label: 'Triple', desc: '3 passages, 8-12 câu', color: 'text-safety-orange border-safety-orange/30 bg-safety-orange-10' },
+  single: {
+    label: 'Single',
+    desc: '1 passage, 2-4 câu',
+    color: 'text-green-teal border-green-teal/30 bg-green-teal-10',
+  },
+  double: {
+    label: 'Double',
+    desc: '2 passages, 5-6 câu',
+    color: 'text-steel-blue border-steel-blue/30 bg-steel-blue-10',
+  },
+  triple: {
+    label: 'Triple',
+    desc: '3 passages, 8-12 câu',
+    color: 'text-safety-orange border-safety-orange/30 bg-safety-orange-10',
+  },
 }
 
 export function AiImportFlow({ config, onPromptGenerated }: AiImportFlowProps) {
@@ -62,8 +74,8 @@ export function AiImportFlow({ config, onPromptGenerated }: AiImportFlowProps) {
               <span className='font-bold text-sm'>Tùy chỉnh</span>
             </div>
             <p className='text-xs text-muted-foreground'>
-              Chọn format passage, số lượng từng loại passage set (single/double/triple), và ghi
-              chú thêm. AI sẽ tạo theo đúng yêu cầu của bạn.
+              Chọn format passage, số lượng từng loại passage set (single/double/triple), và ghi chú
+              thêm. AI sẽ tạo theo đúng yêu cầu của bạn.
             </p>
           </button>
 
@@ -111,7 +123,8 @@ export function AiImportFlow({ config, onPromptGenerated }: AiImportFlowProps) {
               <span className='group relative inline-flex'>
                 <Info className='size-3.5 text-muted-foreground/50 cursor-help' />
                 <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-52 p-2 rounded-lg bg-popover border border-border text-[10px] leading-relaxed text-muted-foreground shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10'>
-                  Chọn các format passage AI được phép dùng. AI sẽ tự phân bổ format vào các passage set.
+                  Chọn các format passage AI được phép dùng. AI sẽ tự phân bổ format vào các passage
+                  set.
                 </span>
               </span>
             </div>
@@ -143,21 +156,25 @@ export function AiImportFlow({ config, onPromptGenerated }: AiImportFlowProps) {
               <span className='group relative inline-flex'>
                 <Info className='size-3.5 text-muted-foreground/50 cursor-help' />
                 <span className='absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-56 p-2 rounded-lg bg-popover border border-border text-[10px] leading-relaxed text-muted-foreground shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10'>
-                  Mỗi passage set là 1 nhóm passage có liên quan. Single=1 passage, Double=2, Triple=3. AI tự phân bổ format và câu hỏi vào các set.
+                  Mỗi passage set là 1 nhóm passage có liên quan. Single=1 passage, Double=2,
+                  Triple=3. AI tự phân bổ format và câu hỏi vào các set.
                 </span>
               </span>
             </div>
             <div className='flex flex-wrap gap-2'>
-              {(Object.entries(PASSAGE_SET_LABELS) as [string, typeof PASSAGE_SET_LABELS[keyof typeof PASSAGE_SET_LABELS]][]).map(([type, info]) => {
+              {(
+                Object.entries(PASSAGE_SET_LABELS) as [
+                  string,
+                  (typeof PASSAGE_SET_LABELS)[keyof typeof PASSAGE_SET_LABELS],
+                ][]
+              ).map(([type, info]) => {
                 const value = passageSets[type as keyof typeof passageSets]
                 return (
                   <div
                     key={type}
                     className={cn(
                       'flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-medium transition-all',
-                      value > 0
-                        ? info.color
-                        : 'border-transparent bg-muted text-muted-foreground',
+                      value > 0 ? info.color : 'border-transparent bg-muted text-muted-foreground',
                     )}
                   >
                     <div className='flex flex-col leading-tight'>

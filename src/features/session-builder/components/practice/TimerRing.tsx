@@ -19,7 +19,11 @@ export function TimerRing({ timeLeft, total }: TimerRingProps) {
   const dash = circ * pct
   const urgent = timeLeft < TIMER_URGENT_SECONDS
   const warning = timeLeft < TIMER_WARNING_SECONDS
-  const color = urgent ? 'var(--color-quiz-error)' : warning ? 'var(--color-option-c)' : 'var(--color-option-a)'
+  const color = urgent
+    ? 'var(--color-quiz-error)'
+    : warning
+      ? 'var(--color-option-c)'
+      : 'var(--color-option-a)'
 
   return (
     <div className='relative flex items-center justify-center' style={{ width: 80, height: 80 }}>

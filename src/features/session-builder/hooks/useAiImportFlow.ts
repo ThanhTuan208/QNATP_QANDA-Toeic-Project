@@ -19,9 +19,7 @@ export function useAiImportFlow({ config, onPromptGenerated }: UseAiImportFlowOp
   const [copied, setCopied] = useState(false)
 
   const toggleFormat = (id: string) => {
-    setSelectedFormats((prev) =>
-      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id],
-    )
+    setSelectedFormats((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]))
   }
 
   const adjustSet = (type: 'single' | 'double' | 'triple', delta: number) => {

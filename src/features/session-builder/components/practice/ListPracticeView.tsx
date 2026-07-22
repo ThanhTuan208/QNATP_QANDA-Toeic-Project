@@ -121,8 +121,8 @@ export function ListPracticeView({ questions, onComplete, onBack }: ListPractice
                             isOptWrong && 'border-rose-500/40 bg-rose-500/10',
                             !isComplete && isOptSelected && 'border-primary bg-primary/10',
                             !isComplete &&
-                              !isOptSelected &&
-                              'border-border bg-card hover:border-primary/30 hover:bg-primary/5',
+                            !isOptSelected &&
+                            'border-border bg-card hover:border-primary/30 hover:bg-primary/5',
                           )}
                         >
                           <span
@@ -135,7 +135,10 @@ export function ListPracticeView({ questions, onComplete, onBack }: ListPractice
                             )}
                             style={
                               !isComplete && !isOptSelected
-                                ? { backgroundColor: `color-mix(in srgb, ${accentColor} 10%, transparent)`, color: accentColor }
+                                ? {
+                                  backgroundColor: `color-mix(in srgb, ${accentColor} 10%, transparent)`,
+                                  color: accentColor,
+                                }
                                 : undefined
                             }
                           >

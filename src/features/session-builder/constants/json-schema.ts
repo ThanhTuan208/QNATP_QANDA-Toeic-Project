@@ -11,21 +11,24 @@ export const IMPORT_SCHEMA_FIELDS: SchemaField[] = [
     key: 'passages',
     type: 'object',
     required: false,
-    values: '{ "groupKey": [ { "id": "...", "title": "...", "passageFormat": "...", "content": [...] } ] }',
+    values:
+      '{ "groupKey": [ { "id": "...", "title": "...", "passageFormat": "...", "content": [...] } ] }',
     desc: 'Object chứa tất cả passage. Key là groupId (vd: "P7_G1"), value là mảng các passage trong group. Dùng cho Part 6 và Part 7.',
   },
   {
     key: 'passages → passageFormat',
     type: 'chữ',
     required: false,
-    values: 'email, memo, letter, article, advertisement, schedule, form, text-message, review, announcement',
+    values:
+      'email, memo, letter, article, advertisement, schedule, form, text-message, review, announcement',
     desc: 'Định dạng của passage. Ảnh hưởng đến cách hiển thị: email (đầu thư), memo (in nghiêng), form (bảng), v.v.',
   },
   {
     key: 'passages → content',
     type: 'mảng',
     required: true,
-    values: 'Mảng các block: { "type": "text", "value": "..." } hoặc { "type": "blank" } hoặc { "type": "table", "headers": [], "rows": [] }',
+    values:
+      'Mảng các block: { "type": "text", "value": "..." } hoặc { "type": "blank" } hoặc { "type": "table", "headers": [], "rows": [] }',
     desc: 'Nội dung passage dưới dạng mảng block. Type "text": đoạn văn. Type "blank": chỗ trống (Part 6). Type "table": bảng biểu có headers và rows. Type "image": hình ảnh.',
   },
   {

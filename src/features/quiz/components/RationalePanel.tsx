@@ -26,7 +26,7 @@ export function RationalePanel({
   return (
     <div
       className={cn(
-        `rounded-xl border-2 p-3 sm:p-4 flex flex-col transition-all duration-300 ${setHeight === 'part_7' ? "h-30" : "h-full"}`,
+        `rounded-xl border-2 p-3 sm:p-4 flex flex-col transition-all duration-300 ${setHeight === 'part_7' ? 'h-30' : 'h-full'}`,
         !showExplanations
           ? 'border-dashed border-input'
           : viewingOption

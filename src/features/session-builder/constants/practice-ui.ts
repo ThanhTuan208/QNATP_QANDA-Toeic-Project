@@ -1,6 +1,11 @@
 export const OPTION_LABELS = ['A', 'B', 'C', 'D'] as const
 
-export const OPTION_ACCENT_COLORS = ['var(--color-option-a)', 'var(--color-option-b)', 'var(--color-option-c)', 'var(--color-option-d)'] as const
+export const OPTION_ACCENT_COLORS = [
+  'var(--color-option-a)',
+  'var(--color-option-b)',
+  'var(--color-option-c)',
+  'var(--color-option-d)',
+] as const
 
 export const OPTION_ACCENT_COLORS_RGB = [
   '124,92,252',

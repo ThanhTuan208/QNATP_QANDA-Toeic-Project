@@ -89,8 +89,8 @@ export function JsonSchemaHelp() {
               </li>
               <li>
                 Part 7: passage có thể có nhiều câu hỏi dùng chung. Với double/triple passage, nhiều
-                passage trong cùng groupId có quan hệ với nhau, câu hỏi có thể hỏi riêng từng passage
-                hoặc so sánh giữa các passage.
+                passage trong cùng groupId có quan hệ với nhau, câu hỏi có thể hỏi riêng từng
+                passage hoặc so sánh giữa các passage.
               </li>
               <li>
                 Độ khó của câu hỏi nên đặt theo đúng level bạn đã chọn ở bước trước, nếu không câu

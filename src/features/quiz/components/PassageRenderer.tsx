@@ -22,9 +22,9 @@ function EmailPassage({
 }) {
   const raw = blocks
     ? blocks
-      .filter((b) => b.type === 'text')
-      .map((b) => b.value ?? '')
-      .join('\n')
+        .filter((b) => b.type === 'text')
+        .map((b) => b.value ?? '')
+        .join('\n')
     : (content ?? '')
 
   const lines = raw.split('\n')
@@ -142,28 +142,28 @@ function DefaultPassage({ blocks, content, passageFormat, title }: PassageRender
       )}
       {blocks
         ? blocks.map((b, i) => {
-          if (b.type === 'table') return null
-          if (b.type === 'blank')
+            if (b.type === 'table') return null
+            if (b.type === 'blank')
+              return (
+                <span
+                  key={i.toString()}
+                  className='inline-block border-b-2 border-dashed border-primary/60 min-w-35 mx-1'
+                >
+                  &nbsp;
+                </span>
+              )
+            if (b.type === 'image')
+              return (
+                <span key={i.toString()} className='text-xs text-muted-foreground italic'>
+                  [Image: {b.value}]
+                </span>
+              )
             return (
-              <span
-                key={i.toString()}
-                className='inline-block border-b-2 border-dashed border-primary/60 min-w-35 mx-1'
-              >
-                &nbsp;
-              </span>
+              <p key={i.toString()} className='mb-2'>
+                {b.value}
+              </p>
             )
-          if (b.type === 'image')
-            return (
-              <span key={i.toString()} className='text-xs text-muted-foreground italic'>
-                [Image: {b.value}]
-              </span>
-            )
-          return (
-            <p key={i.toString()} className='mb-2'>
-              {b.value}
-            </p>
-          )
-        })
+          })
         : content}
     </div>
   )
