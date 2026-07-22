@@ -1,8 +1,10 @@
 'use client'
 
+import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Loader2, Trophy } from 'lucide-react'
 import { QuestionCard } from '@/features/quiz/components/QuestionCard'
 import type { AttemptResult, Question } from '@/features/quiz/types'
+import { PracticeToolbar } from '@/features/session-builder/components/practice/PracticeToolbar'
 import { QuestionNavGrid } from '@/features/session-builder/components/practice/QuestionNavGrid'
 import { cn } from '@/lib/utils'
 
@@ -65,113 +67,126 @@ export function QuizActiveView({
         </span>
         <span>
           Đã làm: {answeredCount}/{totalQuestions}
-          {result?.isCorrect && (
-            <span className='ml-2 text-success font-bold'>· Đúng</span>
-          )}
+          {result?.isCorrect && <span className='ml-2 text-success font-bold'>· Đúng</span>}
         </span>
       </div>
 
-      <div className='grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-6 lg:gap-8'>
+      <div className='grid grid-cols-1 lg:grid-cols-[1fr_250px] gap-6 lg:gap-8'>
         <div className='min-w-0 space-y-6'>
-          <QuestionCard
-            key={`${currentQuestion.id}-${currentIdx}`}
-            question={currentQuestion}
-            selectedOptionId={selectedOptionId}
-            correctOptionId={disabled && !result ? null : (result?.correctOptionId ?? null)}
-            onSelect={onSelect}
-            disabled={disabled}
-            headerRight={
-              <div className='flex items-center gap-2'>
-                {submitting && (
-                  <span className='flex items-center gap-1 text-xs text-muted-foreground animate-pulse'>
-                    <Loader2 className='h-3 w-3 animate-spin' />
-                    <span className='hidden sm:inline'>Đang kiểm tra...</span>
-                  </span>
-                )}
-              </div>
-            }
-            showFlag
-            isFlagged={flagged.has(currentIdx)}
-            onToggleFlag={onToggleFlag}
-            questionNumber={currentIdx + 1}
-          />
-
-          <div className='flex items-center justify-between pt-2 pb-4'>
-            <button
-              type='button'
-              onClick={() => currentIdx > 0 && onGoToQuestion(currentIdx - 1)}
-              disabled={currentIdx === 0}
-              className={cn(
-                'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold transition-all',
-                currentIdx === 0
-                  ? 'opacity-25 cursor-not-allowed'
-                  : 'bg-muted text-foreground hover:bg-muted/80 hover:scale-[1.02] active:scale-[0.98]',
-              )}
+          <AnimatePresence mode='wait'>
+            <motion.div
+              key={currentQuestion.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.2 }}
             >
-              <ChevronLeft className='w-4 h-4' />
-              Câu trước
-            </button>
+              <QuestionCard
+                question={currentQuestion}
+                selectedOptionId={selectedOptionId}
+                correctOptionId={disabled && !result ? null : (result?.correctOptionId ?? null)}
+                onSelect={onSelect}
+                disabled={disabled}
+                headerRight={
+                  <div className='flex items-center gap-2'>
+                    {submitting && (
+                      <span className='flex items-center gap-1 text-xs text-muted-foreground animate-pulse'>
+                        <Loader2 className='h-3 w-3 animate-spin' />
+                        <span className='hidden sm:inline'>Đang kiểm tra...</span>
+                      </span>
+                    )}
+                  </div>
+                }
+                showFlag
+                isFlagged={flagged.has(currentIdx)}
+                onToggleFlag={onToggleFlag}
+                questionNumber={currentIdx + 1}
+              />
 
-            <div className='flex gap-1.5 lg:hidden'>
-              {questions.map((_, i) => (
+              <div className='flex items-center justify-between mt-8'>
                 <button
                   type='button'
-                  key={i.toString()}
-                  onClick={() => onGoToQuestion(i)}
-                  className='transition-all'
-                  style={{
-                    width: i === currentIdx ? 20 : 6,
-                    height: 6,
-                    borderRadius: 3,
-                    background:
-                      i === currentIdx
-                        ? 'var(--color-option-a)'
-                        : answeredMap[i]
-                          ? 'rgba(var(--color-option-b-rgb), 0.25)'
-                          : 'rgba(255,255,255,0.15)',
-                  }}
-                />
-              ))}
-            </div>
+                  onClick={() => currentIdx > 0 && onGoToQuestion(currentIdx - 1)}
+                  disabled={currentIdx === 0}
+                  className={cn(
+                    'flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold transition-all',
+                    currentIdx === 0
+                      ? 'opacity-25 cursor-not-allowed'
+                      : 'bg-muted text-foreground hover:bg-muted/80 hover:scale-[1.02] active:scale-[0.98]',
+                  )}
+                >
+                  <ChevronLeft className='w-4 h-4' />
+                  Câu trước
+                </button>
 
-            {showSubmit ? (
-              <button
-                type='button'
-                onClick={() => {
-                  if (disabled && !isLastQuestion) {
-                    onGoToQuestion(totalQuestions - 1)
-                  }
-                  onNext()
-                }}
-                className={cn(
-                  'flex items-center gap-2 px-5 py-2 rounded-md text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98]',
-                  'bg-primary text-primary-foreground shadow-lg shadow-primary/25',
+                <div className='flex gap-1.5 lg:hidden'>
+                  {questions.map((_, i) => (
+                    <button
+                      type='button'
+                      key={i.toString()}
+                      onClick={() => onGoToQuestion(i)}
+                      className='transition-all'
+                      style={{
+                        width: i === currentIdx ? 20 : 6,
+                        height: 6,
+                        borderRadius: 3,
+                        background:
+                          i === currentIdx
+                            ? 'var(--color-option-a)'
+                            : answeredMap[i]
+                              ? 'rgba(var(--color-option-b-rgb), 0.25)'
+                              : 'rgba(255,255,255,0.15)',
+                      }}
+                    />
+                  ))}
+                </div>
+
+                {showSubmit ? (
+                  <button
+                    type='button'
+                    onClick={() => {
+                      if (disabled && !isLastQuestion) {
+                        onGoToQuestion(totalQuestions - 1)
+                      }
+                      onNext()
+                    }}
+                    className={cn(
+                      'flex items-center gap-2 px-5 py-2 rounded-md text-sm font-bold transition-all hover:scale-[1.02] active:scale-[0.98]',
+                      'bg-primary text-primary-foreground shadow-lg shadow-primary/25',
+                    )}
+                  >
+                    Nộp bài
+                    <Trophy className='w-4 h-4' />
+                  </button>
+                ) : (
+                  <button
+                    type='button'
+                    onClick={onNext}
+                    disabled={!isAnswered}
+                    className={cn(
+                      'flex items-center gap-2 px-5 py-2 rounded-md text-sm font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]',
+                      isAnswered
+                        ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
+                        : 'bg-muted text-muted-foreground cursor-not-allowed',
+                    )}
+                  >
+                    Câu tiếp
+                    <ChevronRight className='w-4 h-4' />
+                  </button>
                 )}
-              >
-                Nộp bài
-                <Trophy className='w-4 h-4' />
-              </button>
-            ) : (
-              <button
-                type='button'
-                onClick={onNext}
-                disabled={!isAnswered}
-                className={cn(
-                  'flex items-center gap-2 px-5 py-2 rounded-md text-sm font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]',
-                  isAnswered
-                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
-                    : 'bg-muted text-muted-foreground cursor-not-allowed',
-                )}
-              >
-                Câu tiếp
-                <ChevronRight className='w-4 h-4' />
-              </button>
-            )}
-          </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         <aside className='hidden lg:flex flex-col gap-4'>
           <div>
+            <div className='flex items-center justify-between gap-4 mb-4 flex-wrap'>
+              <span className='text-xs font-semibold tracking-widest uppercase text-muted-foreground'>
+                Tiện ích
+              </span>
+              <PracticeToolbar />
+            </div>
             <div className='flex items-center justify-between mb-3'>
               <span className='text-xs font-semibold tracking-widest uppercase text-muted-foreground'>
                 Câu hỏi

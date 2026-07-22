@@ -1,7 +1,8 @@
 'use client'
 
-import { OptionButton } from '@/features/quiz/components/OptionButton'
 import { FlagButton } from '@/features/quiz/components/FlagButton'
+import { OptionButton } from '@/features/quiz/components/OptionButton'
+import { PassageRenderer } from '@/features/quiz/components/PassageRenderer'
 import { RationalePanel } from '@/features/quiz/components/RationalePanel'
 import { OPTION_LABELS } from '@/features/quiz/constants'
 import { useViewingOption } from '@/features/quiz/hooks/useViewingOption'
@@ -28,8 +29,8 @@ export function Part6QuestionCard({
     options: question.options,
   })
 
-  const blocks = question.passage?.contentBlocks
-  const hasBlocks = blocks && blocks.length > 0
+  // const blocks = question.passage?.contentBlocks
+  // const hasBlocks = blocks && blocks.length > 0
 
   return (
     <div className='space-y-4 sm:space-y-6'>
@@ -47,42 +48,15 @@ export function Part6QuestionCard({
           </div>
         </div>
 
-        {hasBlocks ? (
+        {question.passage && (
           <div className='rounded-lg border bg-card p-4 sm:p-5'>
-            {question.passage?.title && (
-              <p className='text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3'>
-                {question.passage.title}
-              </p>
-            )}
-            <div className='font-serif text-base leading-relaxed space-y-3'>
-              {blocks!.map((block, i) => {
-                if (block.type === 'blank') {
-                  return (
-                    <span
-                      key={i.toString()}
-                      className='inline-block border-b-2 border-dashed border-primary/60 min-w-[140px] mx-1'
-                    >
-                      &nbsp;
-                    </span>
-                  )
-                }
-                return <p key={i.toString()}>{block.value}</p>
-              })}
-            </div>
+            <PassageRenderer
+              blocks={question.passage.contentBlocks}
+              content={question.passage.contentBlocks ? undefined : question.passage.content}
+              passageFormat={question.passage.passageFormat}
+              title={question.passage.title}
+            />
           </div>
-        ) : (
-          question.passage?.content && (
-            <div className='rounded-lg border bg-card p-4 sm:p-5'>
-              {question.passage.title && (
-                <p className='text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3'>
-                  {question.passage.title}
-                </p>
-              )}
-              <p className='font-serif text-base leading-relaxed whitespace-pre-line'>
-                {question.passage.content}
-              </p>
-            </div>
-          )
         )}
 
         <p className='text-sm italic text-muted-foreground border-l-2 border-muted-foreground/20 pl-3'>

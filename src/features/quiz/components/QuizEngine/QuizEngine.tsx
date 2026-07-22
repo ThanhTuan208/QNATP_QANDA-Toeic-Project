@@ -90,22 +90,22 @@ export function QuizEngine(props: QuizEngineProps) {
   }
 
   return (
-      <QuizActiveView
-        currentQuestion={engine.currentQuestion}
-        selectedOptionId={engine.selectedOptionId}
-        submitting={engine.submitting}
-        result={engine.result}
-        currentIdx={engine.currentIdx}
-        totalQuestions={engine.totalQuestions}
-        questions={engine.questions}
-        answeredMap={engine.answeredMap}
-        correctMap={engine.correctMap}
-        flagged={engine.flagged}
-        disabled={disabled}
-        onSelect={engine.handleSelect}
-        onToggleFlag={engine.toggleFlag}
-        onGoToQuestion={engine.goToQuestion}
-        onNext={engine.handleNext}
-      />
+    <QuizActiveView
+      currentQuestion={engine.currentQuestion}
+      selectedOptionId={engine.selectedOptionId}
+      submitting={engine.submitting}
+      result={engine.result}
+      currentIdx={engine.currentIdx}
+      totalQuestions={engine.totalQuestions}
+      questions={engine.questions}
+      answeredMap={engine.answeredMap}
+      correctMap={engine.correctMap}
+      flagged={engine.flagged}
+      disabled={disabled}
+      onSelect={engine.handleSelect}
+      onToggleFlag={engine.toggleFlag}
+      onGoToQuestion={engine.goToQuestion}
+      onNext={engine.handleNext}
+    />
   )
 }

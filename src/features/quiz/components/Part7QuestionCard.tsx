@@ -1,8 +1,11 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { OptionButton } from '@/features/quiz/components/OptionButton'
+import { usePracticeOptions } from '@/contexts/PracticeOptionsContext'
 import { FlagButton } from '@/features/quiz/components/FlagButton'
+import { OptionButton } from '@/features/quiz/components/OptionButton'
+import { PassageRenderer } from '@/features/quiz/components/PassageRenderer'
 import { RationalePanel } from '@/features/quiz/components/RationalePanel'
 import { OPTION_LABELS } from '@/features/quiz/constants'
 import { usePart7Passage } from '@/features/quiz/hooks/usePart7Passage'
@@ -36,6 +39,8 @@ export function Part7QuestionCard({
     activePassageIdx,
     activePassage,
     passageContent,
+    passageBlocks,
+    passageFormat,
     setActivePassageIdx,
   } = usePart7Passage({
     passage: question.passage,
@@ -43,45 +48,55 @@ export function Part7QuestionCard({
     passageId: question.passageId,
   })
 
+  const { passageViewMode } = usePracticeOptions()
+
   const [mobileView, setMobileView] = useState<'passage' | 'question'>('passage')
 
   const passagePanel = (
-    <div className='rounded-lg border bg-card p-4 sm:p-5 md:overflow-y-auto md:max-h-[75vh] md:sticky md:top-4'>
-      {allPassages.length > 1 && (
-        <div className='flex gap-1.5 mb-3 flex-wrap'>
-          {allPassages.map((p, i) => (
-            <button
-              type='button'
-              key={p.id ?? i}
-              onClick={() => setActivePassageIdx(i)}
-              className={cn(
-                'px-3 py-1.5 rounded-md text-xs font-medium transition-colors',
-                activePassageIdx === i
-                  ? 'bg-primary text-primary-foreground shadow-sm'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80',
-              )}
-            >
-              {p.title ?? `Passage ${i + 1}`}
-            </button>
-          ))}
-        </div>
-      )}
-      {activePassage?.title && allPassages.length <= 1 && (
-        <p className='text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3'>
-          {activePassage.title}
-        </p>
-      )}
-      <div className='font-serif text-sm leading-relaxed whitespace-pre-line'>
-        {passageContent}
-      </div>
+    <div className='rounded-lg bg-card px-4 md:px-5 md:overflow-y-auto md:max-h-[75vh] md:sticky md:top-4'>
+      <motion.div
+        key={passageViewMode === 'all' ? 'all' : (activePassage?.id ?? 'single')}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.15 }}
+      >
+        {passageViewMode === 'all' && allPassages.length > 1 ? (
+          allPassages.map((p, i) => (
+            <div key={p.id ?? i} className={i > 0 ? 'mt-4 pt-4 border-t border-border' : ''}>
+              <p className='text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3'>
+                {p.title ?? `Passage ${i + 1}`}
+              </p>
+              <PassageRenderer
+                blocks={p.contentBlocks}
+                content={p.content}
+                passageFormat={p.passageFormat}
+                title={undefined}
+              />
+            </div>
+          ))
+        ) : (
+          <>
+            {allPassages.length > 1 && <div className='flex gap-1.5 mb-3 flex-wrap'></div>}
+            {activePassage?.title && allPassages.length <= 1 && (
+              <p className='text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3'>
+                {activePassage.title}
+              </p>
+            )}
+            <PassageRenderer
+              blocks={passageBlocks}
+              content={passageContent}
+              passageFormat={passageFormat}
+              title={activePassage?.title}
+            />
+          </>
+        )}
+      </motion.div>
     </div>
   )
 
   const questionPanel = (
     <div className='space-y-4'>
-      <p className='font-semibold text-base sm:text-lg leading-relaxed'>
-        {question.questionText}
-      </p>
+      <p className='font-semibold text-base sm:text-lg leading-relaxed'>{question.questionText}</p>
 
       <div className='space-y-2 sm:space-y-3'>
         {question.options.map((opt, idx) => {
@@ -151,21 +166,18 @@ export function Part7QuestionCard({
       </div>
 
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6'>
-        <div className={mobileView === 'passage' ? 'block' : 'hidden md:block'}>
-          {passagePanel}
-        </div>
+        <div className={mobileView === 'passage' ? 'block' : 'hidden md:block'}>{passagePanel}</div>
         <div className={mobileView === 'question' ? 'block' : 'hidden md:block'}>
           {questionPanel}
         </div>
       </div>
 
-      {viewingOption && (
-        <RationalePanel
-          viewingOption={viewingOption}
-          selectedOptionId={selectedOptionId}
-          correctOptionId={correctOptionId}
-        />
-      )}
+      <RationalePanel
+        setHeight='part_7'
+        viewingOption={viewingOption}
+        selectedOptionId={selectedOptionId}
+        correctOptionId={correctOptionId}
+      />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
-import { useMemo } from 'react'
 import type { Question } from '@/features/quiz/types'
+import { useQuestionNavGrid } from '@/features/session-builder/hooks/useQuestionNavGrid'
 import { cn } from '@/lib/utils'
 
 interface QuestionNavGridProps {
@@ -13,13 +13,6 @@ interface QuestionNavGridProps {
   onSelect: (index: number) => void
 }
 
-interface PartGroup {
-  part: number
-  startIndex: number
-  endIndex: number
-  count: number
-}
-
 export function QuestionNavGrid({
   questions,
   currentIndex,
@@ -28,29 +21,17 @@ export function QuestionNavGrid({
   flagged,
   onSelect,
 }: QuestionNavGridProps) {
-  const groups = useMemo(() => {
-    const map = new Map<number, PartGroup>()
-    for (let i = 0; i < questions.length; i++) {
-      const part = questions[i].part ?? 0
-      const existing = map.get(part)
-      if (existing) {
-        existing.endIndex = i
-        existing.count++
-      } else {
-        map.set(part, { part, startIndex: i, endIndex: i, count: 1 })
-      }
-    }
-    return Array.from(map.values())
-  }, [questions])
+  const { groups, activePassageIndices } = useQuestionNavGrid({ questions, currentIndex })
 
   const renderButton = (i: number) => {
     const isAnswered = answered[i] !== undefined
     const isCurrent = i === currentIndex
     const isFlagged = flagged.has(i)
     const isCorrect = isAnswered && correctMap[i]
+    const isInActivePassage = activePassageIndices.has(i)
 
     const bg = isCurrent
-      ? 'bg-linear-to-br from-purple to-neutral-5 text-primary-foreground shadow-lg shadow-primary/30'
+      ? 'bg-green-teal/40 text-white shadow-sm shadow-green-teal/40'
       : isAnswered && isCorrect
         ? 'bg-linear-to-br from-green-teal to-pale-light border-success'
         : isAnswered && !isCorrect
@@ -65,6 +46,7 @@ export function QuestionNavGrid({
         className={cn(
           'relative w-full aspect-square rounded-md text-sm font-mono font-bold transition-all duration-200',
           bg,
+          isInActivePassage && 'border-[3px] border-neutral-90',
         )}
       >
         {i + 1}
@@ -84,9 +66,7 @@ export function QuestionNavGrid({
               Part {group.part}
             </span>
             <div className='flex-1 h-px bg-border/40' />
-            <span className='text-[10px] font-mono text-muted-foreground/40'>
-              {group.count}
-            </span>
+            <span className='text-[10px] font-mono text-muted-foreground/40'>{group.count}</span>
           </div>
           <div className='grid gap-1.5' style={{ gridTemplateColumns: 'repeat(6, 1fr)' }}>
             {Array.from({ length: group.count }, (_, offset) => {

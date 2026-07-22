@@ -69,12 +69,28 @@ export function JsonSchemaHelp() {
             ))}
           </div>
 
-          <div className='bg-amber-50 dark:bg-amber-900/20 border border-amber-200/40 dark:border-amber-700/30 rounded-xl p-3.5 text-xs text-amber-800 dark:text-amber-200 space-y-1'>
+          <div className='bg-amber-50 dark:bg-amber-900/20 border border-amber-200/40 dark:border-amber-700/30 rounded-xl p-3.5 text-xs text-amber-800 dark:text-amber-200 space-y-1.5'>
             <p className='font-semibold'>⚠️ Lưu ý quan trọng:</p>
             <ul className='list-disc list-inside space-y-0.5 opacity-80'>
               <li>
-                File JSON có thể là một mảng các câu hỏi, hoặc một đối tượng có trường{' '}
-                <code className='text-xs font-mono'>questions</code> chứa mảng câu hỏi.
+                JSON có cấu trúc object gồm 2 trường chính:{' '}
+                <code className='text-xs font-mono'>passages</code> (chứa passage) và{' '}
+                <code className='text-xs font-mono'>questions</code> (chứa câu hỏi).
+              </li>
+              <li>
+                Part 5: không cần <code className='text-xs font-mono'>passages</code>,{' '}
+                <code className='text-xs font-mono'>passageGroupId</code> và{' '}
+                <code className='text-xs font-mono'>passageId</code>.
+              </li>
+              <li>
+                Part 6/7: mỗi câu hỏi cần có{' '}
+                <code className='text-xs font-mono'>passageGroupId</code> (khớp key trong passages){' '}
+                và <code className='text-xs font-mono'>passageId</code> (khớp id của passage).
+              </li>
+              <li>
+                Part 7: passage có thể có nhiều câu hỏi dùng chung. Với double/triple passage, nhiều
+                passage trong cùng groupId có quan hệ với nhau, câu hỏi có thể hỏi riêng từng passage
+                hoặc so sánh giữa các passage.
               </li>
               <li>
                 Độ khó của câu hỏi nên đặt theo đúng level bạn đã chọn ở bước trước, nếu không câu

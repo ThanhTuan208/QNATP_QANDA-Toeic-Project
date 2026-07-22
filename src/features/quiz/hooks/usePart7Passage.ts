@@ -14,6 +14,8 @@ interface UsePart7PassageReturn {
   activePassageIdx: number
   activePassage: QuestionCardPassage | null
   passageContent: string
+  passageBlocks: import('@/features/temp-session/types').ContentBlock[] | undefined
+  passageFormat: string | undefined
   setActivePassageIdx: (idx: number) => void
 }
 
@@ -24,10 +26,7 @@ export function usePart7Passage({
 }: UsePart7PassageOptions): UsePart7PassageReturn {
   const [activePassageIdx, setActivePassageIdx] = useState(0)
 
-  const allPassages = useMemo(
-    () => passages ?? (passage ? [passage] : []),
-    [passage, passages],
-  )
+  const allPassages = useMemo(() => passages ?? (passage ? [passage] : []), [passage, passages])
 
   // Auto-switch to the passage tab matching passageId
   useEffect(() => {
@@ -57,6 +56,8 @@ export function usePart7Passage({
     activePassageIdx,
     activePassage,
     passageContent,
+    passageBlocks: activePassage?.contentBlocks,
+    passageFormat: activePassage?.passageFormat,
     setActivePassageIdx,
   }
 }

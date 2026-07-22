@@ -79,29 +79,28 @@ export function usePracticeEngine({
     [timer, onComplete],
   )
 
-  const timeTaken = hasTimeLimit
-    ? (timeLimit * 60) - timer.timeLeft
-    : timer.timeLeft
+  const timeTaken = hasTimeLimit ? timeLimit * 60 - timer.timeLeft : timer.timeLeft
 
-  const completionData = showCompletion && completionRef.current
-    ? {
-        correctCount: completionRef.current.correctCount,
-        totalCount: completionRef.current.totalCount,
-        typeStats: completionRef.current.typeStats,
-        timeTaken,
-        onRetryIncorrect: () => {
-          const fn = completionRef.current!.retryIncorrect
-          fn()
-          timer.reset()
-          setShowCompletion(false)
-        },
-        onBack: () => {
-          timer.reset()
-          setShowCompletion(false)
-          onBack()
-        },
-      }
-    : null
+  const completionData =
+    showCompletion && completionRef.current
+      ? {
+          correctCount: completionRef.current.correctCount,
+          totalCount: completionRef.current.totalCount,
+          typeStats: completionRef.current.typeStats,
+          timeTaken,
+          onRetryIncorrect: () => {
+            const fn = completionRef.current!.retryIncorrect
+            fn()
+            timer.reset()
+            setShowCompletion(false)
+          },
+          onBack: () => {
+            timer.reset()
+            setShowCompletion(false)
+            onBack()
+          },
+        }
+      : null
 
   return {
     quizQuestions,

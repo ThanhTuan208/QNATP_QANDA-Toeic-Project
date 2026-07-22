@@ -81,7 +81,7 @@ export function Step1Scope({ scope, onScopeChange, questions = [] }: Step1ScopeP
           'fixed z-50',
           'w-[90vw] sm:w-full sm:max-w-md', // Đảm bảo responsive không bị tràn viền trên mobile
           'relative overflow-hidden rounded-3xl p-6 md:p-7 border border-red-500/15 dark:border-red-500/10',
-          'bg-white dark:bg-neutral-95 shadow-[0_20px_50px_rgba(239,68,68,0.08)] dark:shadow-black/40',
+          'bg-white dark:bg-neutral-95 shadow-[0_20px_50px_color-mix(in_srgb,var(--color-error)_8%,transparent)] dark:shadow-black/40',
           'before:absolute before:top-0 before:right-0 before:w-32 before:h-32',
           'before:bg-linear-to-br before:from-red-500/10 before:to-transparent before:blur-2xl before:pointer-events-none',
         )}

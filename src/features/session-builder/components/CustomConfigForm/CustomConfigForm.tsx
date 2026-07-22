@@ -111,7 +111,8 @@ export function CustomConfigForm({ parts, config, onConfigChange }: CustomConfig
               layout
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25 }}>
+              transition={{ duration: 0.25 }}
+            >
               <PartSection
                 part={part}
                 knowledgeGroups={knowledgeGroups}
@@ -125,7 +126,8 @@ export function CustomConfigForm({ parts, config, onConfigChange }: CustomConfig
             layout
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}>
+            transition={{ duration: 0.3 }}
+          >
             <DifficultySection difficulties={difficulties} onToggle={handleDifficultyToggle} />
           </motion.div>
 
@@ -133,7 +135,8 @@ export function CustomConfigForm({ parts, config, onConfigChange }: CustomConfig
             layout
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}>
+            transition={{ duration: 0.3 }}
+          >
             <TotalBanner total={total} />
           </motion.div>
         </div>

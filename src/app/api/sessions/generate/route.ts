@@ -1,8 +1,11 @@
 import type { NextRequest } from 'next/server'
 import { getRandomQuestions } from '@/api/quiz/quiz.service'
+import {
+  buildTypeToPartMap,
+  dbQuestionsToSessionQuestions,
+} from '@/features/session-builder/utils/questions'
 import { AppError } from '@/lib/errors/AppError'
 import { error, success } from '@/lib/response'
-import { buildTypeToPartMap, dbQuestionsToSessionQuestions } from '@/features/session-builder/utils/questions'
 
 interface GenerateRequest {
   parts: number[]

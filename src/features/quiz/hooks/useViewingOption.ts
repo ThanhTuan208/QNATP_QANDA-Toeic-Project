@@ -47,7 +47,7 @@ export function useViewingOption({
   )
 
   const viewingOption = viewingOptionId
-    ? options.find((o) => o.id === viewingOptionId) ?? null
+    ? (options.find((o) => o.id === viewingOptionId) ?? null)
     : null
 
   return { viewingOptionId, viewingOption, handleOptionClick }

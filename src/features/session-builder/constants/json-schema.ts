@@ -8,6 +8,27 @@ export interface SchemaField {
 
 export const IMPORT_SCHEMA_FIELDS: SchemaField[] = [
   {
+    key: 'passages',
+    type: 'object',
+    required: false,
+    values: '{ "groupKey": [ { "id": "...", "title": "...", "passageFormat": "...", "content": [...] } ] }',
+    desc: 'Object chứa tất cả passage. Key là groupId (vd: "P7_G1"), value là mảng các passage trong group. Dùng cho Part 6 và Part 7.',
+  },
+  {
+    key: 'passages → passageFormat',
+    type: 'chữ',
+    required: false,
+    values: 'email, memo, letter, article, advertisement, schedule, form, text-message, review, announcement',
+    desc: 'Định dạng của passage. Ảnh hưởng đến cách hiển thị: email (đầu thư), memo (in nghiêng), form (bảng), v.v.',
+  },
+  {
+    key: 'passages → content',
+    type: 'mảng',
+    required: true,
+    values: 'Mảng các block: { "type": "text", "value": "..." } hoặc { "type": "blank" } hoặc { "type": "table", "headers": [], "rows": [] }',
+    desc: 'Nội dung passage dưới dạng mảng block. Type "text": đoạn văn. Type "blank": chỗ trống (Part 6). Type "table": bảng biểu có headers và rows. Type "image": hình ảnh.',
+  },
+  {
     key: 'part',
     type: 'số',
     required: true,
@@ -35,6 +56,20 @@ export const IMPORT_SCHEMA_FIELDS: SchemaField[] = [
     required: true,
     values: 'Nội dung bất kỳ, có thể có dấu _____',
     desc: 'Nội dung câu hỏi. Nếu là dạng điền từ, bạn có thể dùng dấu _____ để chỉ chỗ trống.',
+  },
+  {
+    key: 'passageGroupId',
+    type: 'chữ',
+    required: false,
+    values: 'Phải khớp với key trong object "passages"',
+    desc: 'Dùng cho Part 6/7. Tham chiếu đến groupId trong object passages để xác định passage set mà câu hỏi thuộc về.',
+  },
+  {
+    key: 'passageId',
+    type: 'chữ',
+    required: false,
+    values: 'Phải khớp với "id" của một passage trong group',
+    desc: 'Dùng cho Part 6/7. Xác định passage cụ thể trong group mà câu hỏi tham chiếu đến. Phải trùng với id của passage trong mảng passages[passageGroupId].',
   },
   {
     key: 'options',

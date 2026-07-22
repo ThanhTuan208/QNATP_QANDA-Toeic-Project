@@ -20,7 +20,7 @@ export function RationaleBox({ isCorrect, rationale, onNext, hasNext }: Rational
         )}
       >
         <BookOpen
-          className='w-4 h-4 flex-shrink-0 mt-0.5'
+          className='w-4 h-4 shrink-0 mt-0.5'
           style={{ color: isCorrect ? 'var(--color-option-a)' : 'var(--color-quiz-error)' }}
         />
         <div>

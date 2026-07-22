@@ -36,8 +36,8 @@ export {
   P7_CHALLENGE,
   P7_DETAIL_HEAVY,
   P7_INFERENCE_HEAVY,
-  P7_SPEED,
   P7_REFERENCE_DRILL,
+  P7_SPEED,
   PART7_PRESETS,
 } from './part7.presets'
 

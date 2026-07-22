@@ -117,10 +117,7 @@ export async function findPassagesByGroupId(passageGroupId: string) {
   })
 }
 
-export async function findQuestionsByPassageGroup(
-  passageGroupId: string,
-  take?: number,
-) {
+export async function findQuestionsByPassageGroup(passageGroupId: string, take?: number) {
   const passages = await prisma.passage.findMany({
     where: { passageGroupId },
     select: { id: true },

@@ -22,15 +22,14 @@ export function PartGroup({ title, parts, selectedParts, onToggle, disabled }: P
           return (
             <label
               key={part}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-colors ${
-                disabled
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl border transition-colors ${disabled
                   ? 'border-border cursor-not-allowed bg-muted/30'
                   : selected
                     ? 'border-green-teal bg-green-teal-5 shadow-sm shadow-green-teal/10 cursor-pointer'
                     : 'border-border hover:bg-muted/50 hover:border-green-teal-20 cursor-pointer transition-all duration-200'
-              }`}
+                }`}
             >
-              <span className='relative h-7 w-7 shrink-0 rounded-lg bg-green-teal-10 shadow-[inset_-1px_1px_4px_0px_#f0fffe,inset_1px_-1px_4px_0px_#00bdb0,-1px_2px_4px_0px_#00bdb0]'>
+              <span className='relative h-7 w-7 shrink-0 rounded-lg bg-green-teal-10 shadow-[inset_-1px_1px_4px_0px_var(--green-bright),inset_1px_-1px_4px_0px_var(--green-teal-default),-1px_2px_4px_0px_var(--green-teal-default)]'>
                 <input
                   type='checkbox'
                   checked={selected}
@@ -38,9 +37,9 @@ export function PartGroup({ title, parts, selectedParts, onToggle, disabled }: P
                   disabled={disabled}
                   className='peer absolute inset-0 z-10 opacity-0 w-full h-full cursor-pointer'
                 />
-                <span className='pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-md bg-[#ccfffc] shadow-[inset_-1px_1px_4px_0px_#f0fffe,inset_1px_-1px_4px_0px_#00bdb0,-1px_1px_2px_0px_#00bdb0] duration-200 peer-checked:shadow-[inset_1px_-1px_4px_0px_#f0fffe,inset_-1px_1px_4px_0px_#00bdb0]'></span>
+                <span className='pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-md bg-[var(--mint)] shadow-[inset_-1px_1px_4px_0px_var(--green-bright),inset_1px_-1px_4px_0px_var(--green-teal-default),-1px_1px_2px_0px_var(--green-teal-default)] duration-200 peer-checked:shadow-[inset_1px_-1px_4px_0px_var(--green-bright),inset_-1px_1px_4px_0px_var(--green-teal-default)]'></span>
                 <svg
-                  fill='#00756d'
+                  style={{ fill: 'var(--color-primary-teal)' }}
                   viewBox='-3.2 -3.2 38.4 38.4'
                   xmlns='http://www.w3.org/2000/svg'
                   className='pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100'
@@ -48,7 +47,7 @@ export function PartGroup({ title, parts, selectedParts, onToggle, disabled }: P
                   <path d='M5 16.577l2.194-2.195 5.486 5.484L24.804 7.743 27 9.937l-14.32 14.32z'></path>
                 </svg>
                 <svg
-                  fill='#00756d'
+                  style={{ fill: 'var(--color-primary-teal)' }}
                   viewBox='0 0 1024 1024'
                   xmlns='http://www.w3.org/2000/svg'
                   className='pointer-events-none absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 peer-checked:opacity-0'

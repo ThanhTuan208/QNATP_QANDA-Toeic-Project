@@ -121,10 +121,21 @@ ${countSection}4. YÊU CẦU CHI TIẾT THEO TỪNG PART:
 5. ĐỘ KHÓ YÊU CẦU: ${levelList}
    Trường "difficulty" của mỗi câu phải là một trong các giá trị: ${levelList}.
 
-6. YÊU CẦU KHÁC:
+6. SỐ LƯỢNG CÂU HỎI THEO LOẠI PASSAGE (CHUẨN ETS):
+   - Single (1 passage): mỗi passage có 2-4 câu hỏi
+   - Double (2 passages liên quan): tổng 5-6 câu hỏi cho cả set
+   - Triple (3 passages liên quan): tổng 8-12 câu hỏi cho cả set
+   - KHÔNG tạo passage chỉ có 1 câu hỏi. Mỗi passage phải có ít nhất 2 câu hỏi.
+   - KHÔNG tạo câu hỏi trùng lặp nội dung cho cùng một passage.
+
+7. YÊU CẦU KHÁC:
    - Đúng 1 đáp án đúng duy nhất (isCorrect: true)
    - Các đáp án sai (distractors) phải hợp lý, dễ gây nhầm lẫn
    - Mỗi option phải có "rationale": giải thích bằng tiếng Việt (2-3 câu) nêu rõ quy tắc, giải thích tại sao đúng/sai
    - KHÔNG thêm text nào khác ngoài JSON (không markdown, không code block)
-   - Đầu ra phải là JSON object duy nhất có dạng { "passages": {...}, "questions": [...] }${countLines.trim().length > 0 ? '\n   - Đảm bảo đúng số lượng câu hỏi cho mỗi part/type như yêu cầu ở mục 3' : ''}`
+   - Đầu ra phải là JSON object duy nhất có dạng { "passages": {...}, "questions": [...] }
+   - Part 7: BẮT BUỘC các câu hỏi của cùng một passageId phải nằm LIỀN KỀ nhau.
+     ⛔ SAI: [A, B, A, A, B, B, A, B]
+     ✅ ĐÚNG: [A, A, A, A, B, B, B, B]
+     KHÔNG ĐƯỢC đan xen câu hỏi của các passageId khác nhau.${countLines.trim().length > 0 ? '\n   - Đảm bảo đúng số lượng câu hỏi cho mỗi part/type như yêu cầu ở mục 3' : ''}`
 }

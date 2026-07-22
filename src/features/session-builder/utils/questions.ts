@@ -1,4 +1,4 @@
-import type { Question, PassageInfo } from '@/features/quiz/types'
+import type { PassageInfo, Question } from '@/features/quiz/types'
 import type { SessionBuilderState } from '@/features/session-builder/types'
 import { TTL_HOURS } from '@/features/temp-session/constants'
 import type {
@@ -27,7 +27,11 @@ export function buildTypeToPartMap(
 }
 
 function mapDbOptionToSessionOption(o: {
-  id: string; text: string; order: number; rationale?: string | null; isCorrect: boolean
+  id: string
+  text: string
+  order: number
+  rationale?: string | null
+  isCorrect: boolean
 }): SessionQuestion['options'][number] {
   return {
     id: o.id,
@@ -47,9 +51,7 @@ interface DbPassageInfo {
   passageGroupId?: string | null
 }
 
-function mapDbPassageToSessionPassage(
-  p: DbPassageInfo,
-): SessionQuestion['passage'] {
+function mapDbPassageToSessionPassage(p: DbPassageInfo): SessionQuestion['passage'] {
   return {
     id: p.id,
     title: p.title ?? undefined,
@@ -67,9 +69,13 @@ export function dbQuestionToSessionQuestion(
     type: string
     difficulty: string
     part?: number | null
-    passage?: (DbPassageInfo) | null
+    passage?: DbPassageInfo | null
     options: Array<{
-      id: string; text: string; order: number; rationale?: string | null; isCorrect: boolean
+      id: string
+      text: string
+      order: number
+      rationale?: string | null
+      isCorrect: boolean
     }>
   },
   typeToPart: Map<string, number>,

@@ -35,7 +35,12 @@ export function QuizCompleteView({
   setImportJson,
   onCloseImport,
 }: QuizCompleteViewProps) {
-  const gradeColor = pct >= 75 ? 'var(--color-option-b)' : pct >= 60 ? 'var(--color-option-a)' : 'var(--color-quiz-error)'
+  const gradeColor =
+    pct >= 75
+      ? 'var(--color-option-b)'
+      : pct >= 60
+        ? 'var(--color-option-a)'
+        : 'var(--color-quiz-error)'
   const gradeLetter = pct >= 90 ? 'S' : pct >= 75 ? 'A' : pct >= 60 ? 'B' : pct >= 45 ? 'C' : 'D'
 
   return (

@@ -14,7 +14,12 @@ interface PracticeSessionProps {
   onBack: () => void
 }
 
-export function PracticeSession({ questions, timeLimit, onComplete, onBack }: PracticeSessionProps) {
+export function PracticeSession({
+  questions,
+  timeLimit,
+  onComplete,
+  onBack,
+}: PracticeSessionProps) {
   const {
     quizQuestions,
     hasTimeLimit,
@@ -50,18 +55,10 @@ export function PracticeSession({ questions, timeLimit, onComplete, onBack }: Pr
           Quay lại
         </button>
 
-        <TimerBadge
-          timeLeft={timeLeft}
-          timeUp={timeUp}
-          hasTimeLimit={hasTimeLimit}
-        />
+        <TimerBadge timeLeft={timeLeft} timeUp={timeUp} hasTimeLimit={hasTimeLimit} />
       </div>
 
-      <QuizEngine
-        initialQuestions={quizQuestions}
-        disabled={timeUp}
-        onComplete={onQuizComplete}
-      />
+      <QuizEngine initialQuestions={quizQuestions} disabled={timeUp} onComplete={onQuizComplete} />
     </div>
   )
 }

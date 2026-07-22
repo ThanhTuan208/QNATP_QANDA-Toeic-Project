@@ -11,6 +11,7 @@ interface SidebarProps {
   isOpen: boolean
   isCollapsed?: boolean
   isLoggedIn?: boolean
+  isHidden?: boolean
   onClose: () => void
   onToggle?: () => void
   onToggleCollapse?: () => void
@@ -24,6 +25,7 @@ interface SidebarProps {
 export default function Sidebar({
   isOpen,
   isCollapsed = false,
+  isHidden = false,
   isLoggedIn = true,
   onClose,
   onToggle,
@@ -40,7 +42,7 @@ export default function Sidebar({
     <>
       <SidebarOverlay isOpen={isOpen} onClose={onClose} />
 
-      {!isOpen && onToggle && (
+      {!isOpen && !isHidden && onToggle && (
         <button
           type='button'
           onClick={onToggle}
@@ -67,10 +69,11 @@ export default function Sidebar({
       )}
 
       <aside
-        className={`h-screen border-r border-sidebar-border fixed left-0 top-0 flex flex-col z-60 lg:z-40 transition-all duration-400 ease-in-out transform lg:translate-x-0 w-64
+        className={`h-screen border-r border-sidebar-border fixed left-0 top-0 flex flex-col z-60 lg:z-40 transition-all duration-400 ease-in-out w-64
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          ${isCollapsed ? 'lg:w-20' : ''}
-          bg-white/75 backdrop-blur-xl text-sidebar-foreground shadow-[2px_0_24px_-8px_rgba(0,0,0,0.12)]
+          ${isHidden ? 'lg:-translate-x-full' : 'lg:translate-x-0'}
+          ${isCollapsed && !isHidden ? 'lg:w-20' : ''}
+          bg-white/75 backdrop-blur-xl text-sidebar-foreground shadow-[2px_0_24px_-8px_color-mix(in_srgb,var(--color-neutral-100)_12%,transparent)]
           before:absolute before:inset-0 before:pointer-events-none before:bg-linear-to-b before:from-green-teal-5/30 before:to-transparent`}
       >
         <div className='relative z-10 flex flex-col h-full px-3 py-4'>
@@ -90,6 +93,7 @@ export default function Sidebar({
 
           <SidebarBrand
             isExpanded={isExpanded}
+            isHidden={isHidden}
             currentPracticeContext={currentPracticeContext ?? null}
             onToggleCollapse={onToggleCollapse}
             onClose={onClose}

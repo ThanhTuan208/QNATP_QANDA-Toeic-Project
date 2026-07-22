@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { SiteHeader } from '@/components/layout/SiteHeader'
+import { useSidebarContext } from '@/contexts/SidebarContext'
 import { useMainLayoutController } from '@/hooks/useMainLayoutController'
 import { Button } from '../../common/Button'
 
@@ -24,6 +25,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     handleSettingsClick,
     handleLogout,
   } = useMainLayoutController()
+  const { isHidden: isSidebarHidden } = useSidebarContext()
 
   return (
     <div className='min-h-screen w-full bg-background flex flex-col'>
@@ -63,6 +65,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <Sidebar
           isOpen={isSidebarOpen}
           isCollapsed={isSidebarCollapsed}
+          isHidden={isSidebarHidden}
           isLoggedIn={isAuthenticated}
           onClose={closeSidebar}
           onToggle={toggleSidebar}
@@ -80,7 +83,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       ) : (
         <main
           className={`flex-1 py-6 md:px-18 transition-[margin-left] duration-300 flex justify-center items-center
-            ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}
+            ${isSidebarHidden ? 'lg:ml-0' : isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}`}
         >
           <div className='w-full max-w-6xl'>{children}</div>
         </main>

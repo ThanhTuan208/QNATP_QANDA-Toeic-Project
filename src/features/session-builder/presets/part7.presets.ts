@@ -1,5 +1,4 @@
-import { P7_GROUP } from '@/features/session-builder/constants/knowledge-groups'
-import { PASSAGE_FORMAT } from '@/features/session-builder/constants/knowledge-groups'
+import { P7_GROUP, PASSAGE_FORMAT } from '@/features/session-builder/constants/knowledge-groups'
 import { PART } from '@/features/session-builder/constants/part'
 import { definePreset } from './preset.utils'
 

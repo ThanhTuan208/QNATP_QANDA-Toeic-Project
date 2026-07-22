@@ -32,7 +32,7 @@ export function ProgressFooter({ step }: ProgressFooterProps) {
       </div>
       <div className='h-2.5 w-full overflow-hidden rounded-full bg-muted ring-1 ring-border shadow-inner'>
         <motion.div
-          className='h-full rounded-full bg-linear-to-r from-primary to-green-teal shadow-[0_0_10px_rgba(0,128,129,0.3)]'
+          className='h-full rounded-full bg-linear-to-r from-primary to-green-teal shadow-[0_0_10px_color-mix(in_srgb,var(--green-teal-default)_30%,transparent)]'
           initial={{ width: '78%' }}
           animate={{ width: step >= 5 ? '79%' : '78%' }}
           transition={{ duration: 1, ease: 'easeOut', type: 'spring' }}
@@ -45,7 +45,7 @@ export function ProgressFooter({ step }: ProgressFooterProps) {
             initial={{ opacity: 0, y: 10, scale: 0.5, x: '-50%' }}
             animate={{ opacity: [0, 1, 0], y: -50, scale: 1, x: '-50%' }}
             transition={{ duration: 1.8, ease: 'easeOut' }}
-            className='absolute -right-2.5 top-0 text-[15px] font-extrabold text-safety-orange drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]'
+            className='absolute -right-2.5 top-0 text-[15px] font-extrabold text-safety-orange drop-shadow-[0_2px_4px_color-mix(in_srgb,var(--color-neutral-100)_10%,transparent)]'
           >
             +10 XP
           </motion.div>

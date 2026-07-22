@@ -2,6 +2,7 @@
 
 import { CheckCircle2, ChevronDown, ChevronRight, XCircle } from 'lucide-react'
 import { Button } from '@/components/common/Button'
+import { usePracticeOptions } from '@/contexts/PracticeOptionsContext'
 import { OPTION_ACCENT_COLORS } from '@/features/session-builder/constants/practice-ui'
 import { useListPracticeView } from '@/features/session-builder/hooks/useListPracticeView'
 import type { SessionAttempt, SessionQuestion } from '@/features/temp-session/types'
@@ -16,6 +17,7 @@ interface ListPracticeViewProps {
 export function ListPracticeView({ questions, onComplete, onBack }: ListPracticeViewProps) {
   const { answers, completed, expanded, allAnswered, handleComplete, handleSelect, setExpanded } =
     useListPracticeView(questions, onComplete)
+  const { showExplanations } = usePracticeOptions()
 
   return (
     <div className='space-y-4'>
@@ -103,7 +105,7 @@ export function ListPracticeView({ questions, onComplete, onBack }: ListPractice
                       const isOptCorrect = isComplete && opt.id === question.correctOptionId
                       const isOptWrong = isComplete && isOptSelected && !isOptCorrect
                       const optLetter = String.fromCharCode(65 + idx)
-                      const accentColor = OPTION_ACCENT_COLORS[idx] ?? '#7c5cfc'
+                      const accentColor = OPTION_ACCENT_COLORS[idx] ?? 'var(--color-option-a)'
 
                       return (
                         <button
@@ -125,7 +127,7 @@ export function ListPracticeView({ questions, onComplete, onBack }: ListPractice
                         >
                           <span
                             className={cn(
-                              'flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all duration-200',
+                              'shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-all duration-200',
                               isOptCorrect && 'bg-emerald-500 text-white',
                               isOptWrong && 'bg-rose-500 text-white',
                               !isComplete && isOptSelected && 'bg-primary text-primary-foreground',
@@ -133,7 +135,7 @@ export function ListPracticeView({ questions, onComplete, onBack }: ListPractice
                             )}
                             style={
                               !isComplete && !isOptSelected
-                                ? { backgroundColor: `${accentColor}18`, color: accentColor }
+                                ? { backgroundColor: `color-mix(in srgb, ${accentColor} 10%, transparent)`, color: accentColor }
                                 : undefined
                             }
                           >
@@ -161,7 +163,7 @@ export function ListPracticeView({ questions, onComplete, onBack }: ListPractice
                     })}
                   </div>
 
-                  {isComplete && (
+                  {isComplete && showExplanations && (
                     <div className='rounded-xl border border-primary/20 bg-primary/5 p-3 text-xs leading-relaxed text-foreground'>
                       <span className='font-semibold text-primary block mb-1'>Giải thích:</span>
                       {question.rationale || 'Không có giải thích.'}

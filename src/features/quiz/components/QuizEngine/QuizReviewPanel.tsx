@@ -1,5 +1,6 @@
 'use client'
 
+import { usePracticeOptions } from '@/contexts/PracticeOptionsContext'
 import type { AttemptRecord, Question } from '@/features/quiz/types'
 
 interface QuizReviewPanelProps {
@@ -9,6 +10,7 @@ interface QuizReviewPanelProps {
 }
 
 export function QuizReviewPanel({ questions, attemptHistory, onBack }: QuizReviewPanelProps) {
+  const { showExplanations } = usePracticeOptions()
   return (
     <div className='space-y-4 py-4'>
       <button
@@ -23,7 +25,11 @@ export function QuizReviewPanel({ questions, attemptHistory, onBack }: QuizRevie
           const attempt = attemptHistory.find((a) => a.questionId === q.id)
           const userAns = attempt?.selectedOptionId
           const isCorrect = attempt?.isCorrect ?? false
-          const statusColor = !userAns ? 'var(--color-muted-subtle)' : isCorrect ? 'var(--color-option-b)' : 'var(--color-quiz-error)'
+          const statusColor = !userAns
+            ? 'var(--color-muted-subtle)'
+            : isCorrect
+              ? 'var(--color-option-b)'
+              : 'var(--color-quiz-error)'
 
           return (
             <div
@@ -37,7 +43,10 @@ export function QuizReviewPanel({ questions, attemptHistory, onBack }: QuizRevie
               <div className='flex items-start gap-3 mb-3'>
                 <span
                   className='w-6 h-6 rounded-full flex items-center justify-center text-xs font-mono font-bold shrink-0 mt-0.5'
-                  style={{ background: `color-mix(in srgb, ${statusColor} 12.5%, transparent)`, color: statusColor }}
+                  style={{
+                    background: `color-mix(in srgb, ${statusColor} 12.5%, transparent)`,
+                    color: statusColor,
+                  }}
                 >
                   {i + 1}
                 </span>
@@ -48,9 +57,9 @@ export function QuizReviewPanel({ questions, attemptHistory, onBack }: QuizRevie
                   const isUser = opt.id === userAns
                   const isRight = opt.id === q.correctOptionId
                   let style: Record<string, string> = {
-                      background: 'rgba(255,255,255,0.04)',
-                      color: 'var(--color-muted-subtle)',
-                      border: '1px solid rgba(255,255,255,0.07)',
+                    background: 'rgba(255,255,255,0.04)',
+                    color: 'var(--color-muted-subtle)',
+                    border: '1px solid rgba(255,255,255,0.07)',
                   }
                   if (isRight)
                     style = {
@@ -75,9 +84,11 @@ export function QuizReviewPanel({ questions, attemptHistory, onBack }: QuizRevie
                   )
                 })}
               </div>
-              <p className='text-xs text-muted-foreground leading-relaxed border-t border-white/5 pt-2'>
-                {attempt?.rationale ?? q.hint ?? 'Không có giải thích.'}
-              </p>
+              {showExplanations && (
+                <p className='text-xs text-muted-foreground leading-relaxed border-t border-white/5 pt-2'>
+                  {attempt?.rationale ?? q.hint ?? 'Không có giải thích.'}
+                </p>
+              )}
             </div>
           )
         })}

@@ -8,6 +8,7 @@ import type { PracticeContext } from '@/types/sidebar'
 
 interface SidebarBrandProps {
   isExpanded: boolean
+  isHidden?: boolean
   currentPracticeContext: PracticeContext | null
   onToggleCollapse?: () => void
   onClose?: () => void
@@ -15,6 +16,7 @@ interface SidebarBrandProps {
 
 export default function SidebarBrand({
   isExpanded,
+  isHidden = false,
   currentPracticeContext,
   onToggleCollapse,
   onClose,
@@ -56,12 +58,14 @@ export default function SidebarBrand({
         )}
       </div>
 
-      <Button
-        onClick={onToggleCollapse || onClose}
-        className='absolute -right-7 top-1/2 -translate-y-1/2 size-8 rounded-lg border border-sidebar-border bg-green-teal-40 hover:bg-green-teal-20 text-muted-foreground/90 hover:text-sidebar-accent-foreground hover:border-primary/40 shadow-sm hover:shadow-md items-center justify-center transition-all duration-200 hidden lg:flex hover:scale-105 active:scale-95'
-      >
-        {isExpanded ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
-      </Button>
+      {!isHidden && (
+        <Button
+          onClick={onToggleCollapse || onClose}
+          className='absolute -right-7 top-1/2 -translate-y-1/2 size-8 rounded-lg border border-sidebar-border bg-green-teal-40 hover:bg-green-teal-20 text-muted-foreground/90 hover:text-sidebar-accent-foreground hover:border-primary/40 shadow-sm hover:shadow-md items-center justify-center transition-all duration-200 hidden lg:flex hover:scale-105 active:scale-95'
+        >
+          {isExpanded ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+        </Button>
+      )}
     </div>
   )
 }

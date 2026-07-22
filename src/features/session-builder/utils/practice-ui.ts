@@ -15,7 +15,7 @@ export function getGradeInfo(pct: number): {
   for (const t of GRADE_THRESHOLDS) {
     if (pct >= t.min) return { grade: t.grade, label: t.label, color: t.color }
   }
-  return { grade: 'D', label: 'Thử lại nhé!', color: '#ff4d6d' }
+  return { grade: 'D', label: 'Thử lại nhé!', color: 'var(--color-quiz-error)' }
 }
 
 export function computeScore(

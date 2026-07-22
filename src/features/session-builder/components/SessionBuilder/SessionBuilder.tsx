@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { stepTransition } from '@/components/common/AnimatedStep'
+import { useSidebarContext } from '@/contexts/SidebarContext'
 import { StepNavigation } from '@/features/session-builder/components/StepNavigation'
 import {
   Step1Scope,
@@ -17,6 +18,8 @@ import { useTempSession } from '@/features/temp-session/hooks/useTempSession'
 
 export function SessionBuilder() {
   const wizard = useSessionBuilder()
+  const { setHidden } = useSidebarContext()
+
   const tempSession = useTempSession()
 
   const { handleNext } = useQuestionGeneration(wizard.state, {
@@ -35,6 +38,7 @@ export function SessionBuilder() {
       updateAttempt: tempSession.updateAttempt,
       updateIndex: tempSession.updateIndex,
     },
+    setHidden,
   )
 
   return (
@@ -105,8 +109,7 @@ export function SessionBuilder() {
 
         {wizard.state.step === 'practice' && (
           <motion.div key='practice' {...stepTransition}>
-            <div className='bg-card rounded-2xl border border-border/50 -mx-8 md:-mx-50 md:px-10 md:py-4 shadow-sm relative overflow-hidden'>
-              
+            <div className='bg-card rounded-2xl border border-border/50 -mx-8 md:-mx-60 md:px-10 md:py-8 shadow-sm relative overflow-hidden'>
               <div className='relative z-1'>
                 <Step5Practice
                   questions={wizard.state.questions}

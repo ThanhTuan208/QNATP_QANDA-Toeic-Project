@@ -82,7 +82,7 @@ export function CompletionScreen({
           </div>
           <h2
             className='text-xl font-bold'
-            style={{ fontFamily: "'Sora', sans-serif", color: '#eeeef5' }}
+            style={{ fontFamily: "'Sora', sans-serif", color: 'var(--color-near-white)' }}
           >
             {label}
           </h2>
@@ -94,9 +94,9 @@ export function CompletionScreen({
         {/* Stats row */}
         <div className='grid grid-cols-3 gap-3'>
           {[
-            { label: 'Đúng', value: correctCount, color: '#00d4aa' },
-            { label: 'Sai', value: wrong, color: '#ff4d6d' },
-            { label: 'Tổng', value: totalCount, color: '#6b6b8a' },
+            { label: 'Đúng', value: correctCount, color: 'var(--color-option-b)' },
+            { label: 'Sai', value: wrong, color: 'var(--color-quiz-error)' },
+            { label: 'Tổng', value: totalCount, color: 'var(--color-muted-subtle)' },
           ].map(({ label: lbl, value, color: clr }) => (
             <div
               key={lbl}

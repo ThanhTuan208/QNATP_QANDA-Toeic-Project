@@ -1,12 +1,16 @@
 'use client'
 
 import { Clock } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { getTimerState, getTimerStyles, formatTimerLabel } from '@/features/session-builder/utils/timer'
 import {
   TIMER_URGENT_SECONDS,
   TIMER_WARNING_SECONDS,
 } from '@/features/session-builder/constants/practice-ui'
+import {
+  formatTimerLabel,
+  getTimerState,
+  getTimerStyles,
+} from '@/features/session-builder/utils/timer'
+import { cn } from '@/lib/utils'
 
 interface TimerBadgeProps {
   timeLeft: number
@@ -15,7 +19,13 @@ interface TimerBadgeProps {
 }
 
 export function TimerBadge({ timeLeft, timeUp, hasTimeLimit }: TimerBadgeProps) {
-  const timerState = getTimerState(timeLeft, timeUp, hasTimeLimit, TIMER_WARNING_SECONDS, TIMER_URGENT_SECONDS)
+  const timerState = getTimerState(
+    timeLeft,
+    timeUp,
+    hasTimeLimit,
+    TIMER_WARNING_SECONDS,
+    TIMER_URGENT_SECONDS,
+  )
   const styles = getTimerStyles(timerState)
 
   return (
@@ -32,12 +42,8 @@ export function TimerBadge({ timeLeft, timeUp, hasTimeLimit }: TimerBadgeProps) 
       }}
     >
       <Clock className='w-3.5 h-3.5' />
-      <span>
-        {formatTimerLabel(timeUp, hasTimeLimit, timeLeft)}
-      </span>
-      {!hasTimeLimit && (
-        <span className='ml-0.5 text-[10px] opacity-50'>đã làm</span>
-      )}
+      <span>{formatTimerLabel(timeUp, hasTimeLimit, timeLeft)}</span>
+      {!hasTimeLimit && <span className='ml-0.5 text-[10px] opacity-50'>đã làm</span>}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import type { SessionBuilderState } from '@/features/session-builder/types'
 import { buildPracticeSession } from '@/features/session-builder/utils/questions'
 import type { PracticeSession, SessionAttempt } from '@/features/temp-session/types'
@@ -16,7 +16,19 @@ export function usePracticeSession(
   state: SessionBuilderState,
   nextStep: () => void,
   actions: UsePracticeSessionActions,
+  setHidden: (hidden: boolean) => void,
 ) {
+  useEffect(() => {
+    if (state.step === 'practice') {
+      const timer = setTimeout(() => setHidden(true), 350)
+      return () => {
+        clearTimeout(timer)
+        setHidden(false)
+      }
+    }
+    setHidden(false)
+  }, [state.step, setHidden])
+
   const handleStartPractice = useCallback(async () => {
     if (state.questions.length === 0) return
 

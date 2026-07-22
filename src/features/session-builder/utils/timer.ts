@@ -24,11 +24,7 @@ export function getTimerState(
   }
 }
 
-export function formatTimerLabel(
-  timeUp: boolean,
-  hasTimeLimit: boolean,
-  timeLeft: number,
-): string {
+export function formatTimerLabel(timeUp: boolean, hasTimeLimit: boolean, timeLeft: number): string {
   if (hasTimeLimit && timeUp) return 'Hết giờ'
   const m = Math.floor(timeLeft / 60)
   const s = timeLeft % 60

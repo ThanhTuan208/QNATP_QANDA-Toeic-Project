@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from '@/components/common/Dialog'
 import { StepHeader } from '@/components/common/StepHeader'
-import { CustomConfigForm } from '@/features/session-builder/components/CustomConfigForm'
+import { CustomConfigForm } from '@/features/session-builder/components/customConfigForm'
 import { PresetCards } from '@/features/session-builder/components/PresetCards'
 import type { PresetType } from '@/features/session-builder/types'
 import type { SessionConfig } from '@/features/temp-session/types'

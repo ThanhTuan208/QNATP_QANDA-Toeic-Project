@@ -45,6 +45,15 @@ function isValidContentBlock(value: unknown): value is ContentBlock {
   if (block.type === 'blank') return true
   if (block.type === 'text' && isValidString(block.value)) return true
   if (block.type === 'image' && isValidString(block.value)) return true
+  if (block.type === 'table') {
+    if (!Array.isArray(block.headers) || block.headers.some((h: unknown) => !isValidString(h)))
+      return false
+    if (!Array.isArray(block.rows)) return false
+    for (const row of block.rows) {
+      if (!Array.isArray(row) || row.some((c: unknown) => !isValidString(c))) return false
+    }
+    return true
+  }
   return false
 }
 
@@ -63,6 +72,11 @@ function contentBlocksToString(blocks: ContentBlock[]): string {
     .map((b) => {
       if (b.type === 'blank') return '______'
       if (b.type === 'image') return `[Image: ${b.value ?? ''}]`
+      if (b.type === 'table') {
+        const headerRow = b.headers?.join(' | ') ?? ''
+        const dataRows = b.rows?.map((r) => r.join(' | ')).join('\n') ?? ''
+        return `[TABLE]\n${headerRow}\n${dataRows}`
+      }
       return b.value ?? ''
     })
     .join(' ')
@@ -83,7 +97,7 @@ function rawPassageToSessionPassage(
     title: isValidString(raw.title) ? String(raw.title) : undefined,
     content: contentBlocksToString(blocks),
     contentBlocks: blocks,
-    passageFormat: isValidString(passageType) ? String(passageType) : undefined,
+    passageFormat: isValidString(raw.passageFormat) ? String(raw.passageFormat) : undefined,
     order: typeof raw.order === 'number' ? raw.order : undefined,
   }
 }
@@ -233,7 +247,9 @@ export function parseImportedSessionJSON(raw: string): ParseResult {
 
     // Resolve passage data
     let passageData: SessionQuestion['passage'] | undefined
-    const passageGroupId = isValidString(item.passageGroupId) ? String(item.passageGroupId) : undefined
+    const passageGroupId = isValidString(item.passageGroupId)
+      ? String(item.passageGroupId)
+      : undefined
     const passageId = isValidString(item.passageId) ? String(item.passageId) : undefined
 
     let allPassagesData: SessionQuestion['passages'] | undefined
@@ -242,9 +258,7 @@ export function parseImportedSessionJSON(raw: string): ParseResult {
       // New format: look up from root-level passages map
       const groupPassages = passagesMap.get(passageGroupId)!
       allPassagesData = groupPassages
-      const matched = passageId
-        ? groupPassages.find((p) => p.id === passageId)
-        : groupPassages[0]
+      const matched = passageId ? groupPassages.find((p) => p.id === passageId) : groupPassages[0]
       if (matched) {
         passageData = matched
       }
@@ -389,6 +403,38 @@ export interface ProcessResult {
   warnings: string[]
 }
 
+function reorderQuestionsByPassage(questions: SessionQuestion[]): SessionQuestion[] {
+  const part7: SessionQuestion[] = []
+  const others: SessionQuestion[] = []
+
+  for (const q of questions) {
+    if (q.part === 7 && q.passageGroupId && q.passageId) {
+      part7.push(q)
+    } else {
+      others.push(q)
+    }
+  }
+
+  const groups = new Map<string, SessionQuestion[]>()
+  const groupOrder: string[] = []
+
+  for (const q of part7) {
+    const key = `${q.passageGroupId}||${q.passageId}`
+    if (!groups.has(key)) {
+      groups.set(key, [])
+      groupOrder.push(key)
+    }
+    groups.get(key)!.push(q)
+  }
+
+  const reordered: SessionQuestion[] = []
+  for (const key of groupOrder) {
+    reordered.push(...groups.get(key)!)
+  }
+
+  return [...others, ...reordered]
+}
+
 export function processImportedSessionJSON(
   raw: string,
   config: Partial<SessionConfig>,
@@ -419,7 +465,7 @@ export function processImportedSessionJSON(
 
   return {
     success: true,
-    questions: parseResult.questions,
+    questions: reorderQuestionsByPassage(parseResult.questions),
     importJson: raw,
     errors: [],
     warnings: validationResult.warnings.map((w) => w.message),

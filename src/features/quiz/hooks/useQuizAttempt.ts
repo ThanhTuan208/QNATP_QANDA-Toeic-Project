@@ -93,7 +93,9 @@ function attemptReducer(state: AttemptState, action: AttemptAction): AttemptStat
 export function useQuizAttempt(options: UseQuizAttemptOptions): UseQuizAttemptReturn {
   const [state, dispatch] = useReducer(attemptReducer, INITIAL_STATE)
   const prevQuestionIdRef = useRef<string | null>(null)
-  const savedAttemptsRef = useRef<Map<string, { selectedOptionId: string | null; result: AttemptResult | null }>>(new Map())
+  const savedAttemptsRef = useRef<
+    Map<string, { selectedOptionId: string | null; result: AttemptResult | null }>
+  >(new Map())
   const lastQuestionType = useRef('')
   const lastQuestionId = useRef('')
   const lastSelectedOptionId = useRef('')
@@ -115,7 +117,11 @@ export function useQuizAttempt(options: UseQuizAttemptOptions): UseQuizAttemptRe
       if (nextQuestionId) {
         const saved = savedAttemptsRef.current.get(nextQuestionId)
         if (saved) {
-          dispatch({ type: 'RESTORE', selectedOptionId: saved.selectedOptionId, result: saved.result })
+          dispatch({
+            type: 'RESTORE',
+            selectedOptionId: saved.selectedOptionId,
+            result: saved.result,
+          })
           return
         }
       }

@@ -1,4 +1,4 @@
-export { CustomConfigForm } from './CustomConfigForm'
+export { CustomConfigForm } from './customConfigForm'
 export { PresetCards } from './PresetCards'
 export { SavedTemplates } from './SavedTemplates'
 export { SessionBuilder } from './SessionBuilder'

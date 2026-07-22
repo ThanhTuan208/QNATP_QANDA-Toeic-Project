@@ -15,8 +15,10 @@ export interface KnowledgeGroupConfig {
 }
 
 export interface ContentBlock {
-  type: 'text' | 'blank' | 'image'
+  type: 'text' | 'blank' | 'image' | 'table'
   value?: string
+  headers?: string[]
+  rows?: string[][]
 }
 
 export interface SessionPassage {
